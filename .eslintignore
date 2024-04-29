@@ -1,0 +1,6 @@
+!.*.json
+docs
+dist
+build
+src/js/vendor
+**/node_modules
