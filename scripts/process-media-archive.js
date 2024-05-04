@@ -1,85 +1,83 @@
-import {extract, extractToJson} from './media-exif-extract.js';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import process from 'process';
+import { extract, extractToJson } from './media-exif-extract.js'
+import path from 'path'
+import { fileURLToPath } from 'url'
+import process from 'process'
+
+/**
+ * NOTE: there is some unevenness in exfitools/Adobe Bridge, and how they handle some tags on video files.
+ * For example .mp4 files don't have a Keywords tag, and instead exiftools/Adobe Bridge will write to the 'Subject' tag instead.
+ * We could normilise this in our script (ie massage json output) however the behavior appears consistent
+ * between exfitools and Bridge for all file types, regardless of support for the "keyword" tag.
+ */
 
 // Get the directory path of the current module
 // We don't have access to __dirname in ES module mode, so we need to reconstruct it.
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 // The relative location of the source images
-const relativeDir = '../src/images/archive';
+const relativeDir = '../src/media-archive'
 
 // Convert the relative path to an absolute path
-const srcDir = path.join(__dirname, relativeDir);
+const srcDir = path.join(__dirname, relativeDir)
 
 // The relative location of the output JSON file
-const outputPath = '../public/api/archive.json';
+const outputPath = '../src/content/media-archive/media-archive.json'
 
 // The file types to include
-const validExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.bmp', '.mp3', '.mp4'];
+const validExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.mp3', '.mp4']
 
 // The EXIF fields to extract from media files
 const exifTags = [
-    { Keywords : "A boy loves tacos" },
-    { CountryCode : "3166-2:GB" },
-    { City : null },
-    { State : "Dumfries & Galloway" },
-    { Title : "Some great title" },
-    { Description : null },
-    { AltTextAccessibility : null },
-    { Source : null },
-    { Subject : null },
-    { Rights : null },
-    { Credit : null },
-    { Copyright : null },
-    'Source',
-    'FileName',
-    'SourceFile',
-    'Directory',
-    'FileType',
-    'FileTypeExtension',
-    'FileSize',
-    'TrackDuration',
-    'Duration',
-    'CreateDate',
-    'ShutterSpeed',
-    'ApertureValue',
-    'ISO',
-    'FocalLength',
-    'FocalLengthIn35mmFormat',
-    'ImageWidth',
-    'ImageHeight',
-    'ImageSize',
-    'Megapixels',
-    'GPSLatitude',
-    'GPSLongitude',
-    'GPSAltitude',
-    'GPSAltitudeRef',
-    'GPSLongitudeRef',
-    'GPSLatitudeRef',
-    'GPSDateStamp',
-    'GPSTimeStamp',
-    'GPSStatus',
-    'GPSMapDatum',
-    'GPSTrac'
-];
+  'Title',
+  'Description',
+  'AltTextAccessibility',
+  //   'Keywords',
+  'Subject', // a consistent fallback for lack of Keywords tag on some file types
+  'Credit',
+  'City',
+  { State: { val: 'Scotland', write: true } },
+  'Country',
+  { CountryCode: { val: '3166-2:GB', write: true } },
+  {
+    CopyrightNotice: {
+      val: '© All rights reserved Remembering Together Dumfries & Galloway c/o Katie Anderson & Tara Beall.',
+      write: true
+    }
+  },
+  'FileName',
+  'SourceFile',
+  'Directory',
+  'FileType',
+  'FileTypeExtension',
+  'FileSize',
+  'TrackDuration',
+  'Duration',
+  'CreateDate',
+  'ImageWidth',
+  'ImageHeight',
+  'ImageSize',
+  'Megapixels',
+  'ShutterSpeed',
+  'ApertureValue',
+  'ISO',
+  'FocalLength',
+  'FocalLengthIn35mmFormat',
+  'FocalLength35efl'
+]
 
 // Call extractToJson with options
-const  results = await extractToJson(
-    {
-        __dirname,
-        srcDir,
-        exifTags,
-        validExtensions,
-        outputPath
-    }
-).then(result => {
-    console.log('Extract successful.')
-    process.exit(0);
-}).catch(error => {
-    console.error('Error:', error);
-    process.exit(1);
-});
-
-console.log(Promise.resolve(results))
+extractToJson({
+  __dirname,
+  srcDir,
+  outputPath,
+  exifTags,
+  validExtensions
+})
+  .then((result) => {
+    console.log('extractToJson did not encounter errors.')
+    process.exit(0)
+  })
+  .catch((error) => {
+    console.error('Error:', error)
+    process.exit(1)
+  })
