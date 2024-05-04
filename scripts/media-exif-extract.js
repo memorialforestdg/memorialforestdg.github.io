@@ -230,6 +230,14 @@ async function processDirectory(
   return metadataList.filter(Boolean)
 }
 
+/**
+ * Writes a tag and its value to a file.
+ *
+ * @param {string} absFilePath - The absolute path of the file.
+ * @param {string} tag - The tag to write.
+ * @param {string} val - The value of the tag.
+ * @return {Promise<void>} A promise that resolves when the tag is successfully written to the file, or rejects with an error if there was a problem.
+ */
 async function writeTagToFile(absFilePath, tag, val) {
   try {
     // Will throw if the file is not writable.
@@ -240,16 +248,14 @@ async function writeTagToFile(absFilePath, tag, val) {
       }
     })
     // Write the tag to the file
+    // .write should return a resolved promise if successful, or reject with an error.
+    // https://photostructure.github.io/exiftool-vendored.js/classes/ExifTool.html#write
     console.log(`Writing: ${tag}=${val} to ${absFilePath}`)
-    // const result = await exiftool.write(absFilePath, { tag: val })
-    const result = await exiftool.wr
-    writeEXIF.close()
+    await exiftool.write(absFilePath, { tag: val })
     console.log(
       `-- exiftool wrote: ${tag} : ${val} \n   to file: ${absFilePath}`
     )
-    console.log('Details extracted:', result)
   } catch (error) {
-    writeEXIF.close()
     console.error('Error updating tag:', error)
     throw error
   }
