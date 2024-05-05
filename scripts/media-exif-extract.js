@@ -1,5 +1,5 @@
 import fs from 'fs'
-import { exiftool, ExifTool } from 'exiftool-vendored'
+import { exiftool } from 'exiftool-vendored'
 import path from 'path'
 import process from 'process'
 import { error } from 'console'
