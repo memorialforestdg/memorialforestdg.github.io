@@ -24,7 +24,6 @@ import { error } from 'console'
  * The behavior appears consistent but I don't know if this coming from exiftool or Bridge. But if you are using Bridge, it appears safe to use the
  * Keywords tag in Bridge, and the Subject tag will be ingested across media types -- as so far observed.
  *
- * @TODO currently exiftool.write() is failing to write tags back to files for some reason.
  */
 
 /**
@@ -274,7 +273,7 @@ async function writeTagToFile(absFilePath, tag, val) {
     await exiftool
       .write(absFilePath, { [tag]: val })
       .then((response) => {
-        console.log(`-- exiftool write success: ${response}`)
+        console.log(`-- exiftool write success: ${JSON.stringify(response)}`)
       })
       .catch((error) => {
         console.error(`-- exiftool write error: ${error}`)
@@ -412,7 +411,7 @@ export async function extractMetadata(opts) {
  *
  * @returns {Promise<object|error>} A Promise that resolves to 0 if successful or an error object.
  */
-export async function extractMetadataToJson(opts) {
+export async function extractMetadataToJsonFile(opts) {
   const { __dirname, srcDir, exifTags, validExtensions, outputPath } =
     mergeOptions(defaults, opts)
 
