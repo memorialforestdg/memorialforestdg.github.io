@@ -9,7 +9,7 @@ import { error } from 'console'
  *
  * Note: if returning data as an object from the exported extract function, remember to call process.exit(0) when you're done!
  *
- * const  results = await extract(opts).then(result => {
+ * const  results = await extractMetadata(opts).then(result => {
  *     console.log('Success:', result)
  *     process.exit(0)
  * }).catch(error => {
@@ -43,6 +43,13 @@ import { error } from 'console'
  * @param {array<ExifTag>} defaults.exifTags - An array of EXIF tags to extract.
  * @param {array<string>} defaults.validExtensions - An array of valid media extensions.
  */
+
+/**
+ * An array of error objects per media file.
+ *
+ * @param {array<object>} errors
+ */
+const mediaFileErrors = []
 
 /**
  * Default options.
@@ -160,17 +167,6 @@ function isObject(value) {
 }
 
 /**
- * Helper function to derive the relative path from a file and the project root directory.
- *
- * @param {string} absPathRoot - The absolute path of the project root.
- * @param {string} absPathFile - The absolute path of the file.
- * @returns {string} The relative path.
- */
-function calculateRelativePath(absPathRoot, absPathFile) {
-  return path.relative(absPathRoot, absPathFile)
-}
-
-/**
  * Function to recursively traverse directories
  *
  * @param {string} dir - Absolute path of directory to traverse.
@@ -208,6 +204,7 @@ async function traverseDirectory(dir, extensions, filesList = []) {
 
 /**
  * Function to traverse each file in a directory and extract tag metadata.
+ * Allows for parallel processing of images by mapping over files and collecting the promises, and using Promise.allSettled
  *
  * @param {string} dir
  * @param {string} __dirname
@@ -223,11 +220,20 @@ async function processDirectory(
   allowedMediaFileExtensions
 ) {
   const files = await traverseDirectory(dir, allowedMediaFileExtensions)
+
+  if (files.length === 0) {
+    throw new Error(`No media files found in ${dir}`)
+  }
   const metadataPromises = files.map(
-    async (file) => await extractWriteTags(file, __dirname, exifTags)
+    async (file) => await filterTags(file, __dirname, exifTags)
   )
-  const metadataList = await Promise.all(metadataPromises)
-  return metadataList.filter(Boolean)
+  try {
+    const metadataList = await Promise.allSettled(metadataPromises)
+    return metadataList.filter(Boolean).map((result) => result.value)
+  } catch (err) {
+    console.error(err)
+    throw err
+  }
 }
 
 /**
@@ -240,21 +246,41 @@ async function processDirectory(
  */
 async function writeTagToFile(absFilePath, tag, val) {
   try {
-    // Will throw if the file is not writable.
-    fs.access(absFilePath, fs.constants.W_OK, (err) => {
-      if (err) {
-        console.error(`File is not writable: ${absFilePath}`)
-        throw new Error(`File is not writable: ${absFilePath}`)
-      }
-    })
-    // Write the tag to the file
-    // .write should return a resolved promise if successful, or reject with an error.
-    // https://photostructure.github.io/exiftool-vendored.js/classes/ExifTool.html#write
-    console.log(`Writing: ${tag}=${val} to ${absFilePath}`)
-    await exiftool.write(absFilePath, { tag: val })
+    if (!absFilePath) {
+      throw new Error('absFilePath is null or undefined')
+    }
+    if (!tag) {
+      throw new Error('tag is null or undefined')
+    }
+    if (!val) {
+      throw new Error('val is null or undefined')
+    }
+    await fs.promises.access(absFilePath, fs.constants.W_OK)
+  } catch (error) {
+    if (error.code === 'ENOENT') {
+      // File does not exist
+      throw new Error(`File does not exist: ${absFilePath}`)
+    } else if (error.code === 'EACCES') {
+      // File is not writable
+      throw new Error(`File is not writable: ${absFilePath}`, error)
+    } else {
+      throw error
+    }
+  }
+  try {
     console.log(
-      `-- exiftool wrote: ${tag} : ${val} \n   to file: ${absFilePath}`
+      `-- exiftool writing: ${tag} : ${val} \n   to file: ${absFilePath}` // fires
     )
+    await exiftool
+      .write(absFilePath, { [tag]: val })
+      .then((response) => {
+        console.log(`-- exiftool write success: ${response}`)
+      })
+      .catch((error) => {
+        console.error(`-- exiftool write error: ${error}`)
+      })
+    console.log('push tags')
+    pushTagError(absFilePath, tag, val)
   } catch (error) {
     console.error('Error updating tag:', error)
     throw error
@@ -262,7 +288,25 @@ async function writeTagToFile(absFilePath, tag, val) {
 }
 
 /**
- * Extracts tag metadata from a media file using exiftool-vendored.
+ * Extracts the file name from the absolute file path, constructs an error object with the file name as key, and pushes it to the tagErrors array.
+ *
+ * @param {string} absFilePath - The absolute file path.
+ * @param {string} tag - The tag associated with the error.
+ * @param {string} val - The value causing the error.
+ * @return {void} This function does not return a value.
+ */
+function pushTagError(absFilePath, tag, val, error) {
+  // extract the file name from absFilePath
+  const fileName = path.basename(absFilePath)
+  // construct the error object with the file name as key with tag and value as an object
+  const fileErrors = { [fileName]: { [tag]: val } }
+  mediaFileErrors.push(fileErrors)
+  console.log(mediaFileErrors)
+}
+
+/**
+ * Contains the logic to reconcile user provided exifTags against the image metadata coming from exiftool-vendored.
+ * This function will return a promise that resolves with the metadata object or an error.
  *
  * @param {string} absFilePath - Absolute path to the media file.
  * @param {string} __dirname - Absolute path to the relative project directory.
@@ -270,47 +314,42 @@ async function writeTagToFile(absFilePath, tag, val) {
  * @returns {Promise<object|Error>} - The metadata object or an error.
  * @throws {Error} - If there is an error reading the metadata.
  */
-async function extractWriteTags(absFilePath, __dirname, exifTags = []) {
+async function filterTags(absFilePath, __dirname, exifTags = []) {
   try {
     console.log('Reading:', absFilePath)
     const metadata = await exiftool.read(absFilePath)
     let filteredMetadata = {}
 
     if (exifTags.length) {
-      exifTags.forEach((entry) => {
+      for (const entry of exifTags) {
         const tag = typeof entry === 'string' ? entry : Object.keys(entry)[0]
         const val = isObject(entry) ? entry[tag]?.val : entry[tag]
 
-        // If the key doesn't exist, or only contains whitespace, add it.
         if (
           metadata[tag] === undefined ||
           metadata[tag] === null ||
           /^\s*$/.test(metadata[tag])
         ) {
           if (isObject(entry) && !entry[tag].hasOwnProperty('val')) {
-            // Simple object {key: val}
             filteredMetadata[tag] = entry[tag]
-
-            // Complex {key: {val: val, write: boolean}}
           } else if (isObject(entry) && entry[tag].hasOwnProperty('val')) {
             filteredMetadata[tag] = val
             if (entry[tag].write) {
-              writeTagToFile(absFilePath, tag, val)
+              await writeTagToFile(absFilePath, tag, val)
             }
           }
         } else {
-          // the bare key exists in the exifTags, so if they key has a value in metadata, pass it over.
           if (metadata[tag]) {
             filteredMetadata[tag] = metadata[tag]
           }
         }
-      })
+      }
     } else {
       // We've not passed a filter so return all metadata.
       filteredMetadata = metadata
     }
-    filteredMetadata.SourceFile = calculateRelativePath(__dirname, absFilePath)
-    filteredMetadata.Directory = calculateRelativePath(
+    filteredMetadata.SourceFile = path.relative(__dirname, absFilePath)
+    filteredMetadata.Directory = path.relative(
       __dirname,
       path.dirname(absFilePath)
     )
@@ -335,8 +374,9 @@ async function extractWriteTags(absFilePath, __dirname, exifTags = []) {
  * @param {array<string>} opts.validExtensions - An array of valid media extensions.
  *
  * @returns {Promise<number|object|Error>} A Promise that resolves to 0 if successful or an error object.
+ * @throws {Error} If there is an error extracting metadata.
  */
-export async function extract(opts) {
+export async function extractMetadata(opts) {
   if (!opts || typeof opts !== 'object') {
     throw new Error('opts must be an object. Received:', opts)
   }
@@ -372,24 +412,25 @@ export async function extract(opts) {
  *
  * @returns {Promise<object|error>} A Promise that resolves to 0 if successful or an error object.
  */
-export async function extractToJson(opts) {
+export async function extractMetadataToJson(opts) {
   const { __dirname, srcDir, exifTags, validExtensions, outputPath } =
     mergeOptions(defaults, opts)
 
   try {
-    const metadataList = await extract(opts)
-    const jsonOutput = JSON.stringify(metadataList, null, 2)
-    let derivedOutputPath = outputPath
+    const metadata = await extractMetadata(opts)
+    const jsonOutput = JSON.stringify(metadata, null, 2)
 
     // Handel relative and absolute output paths.
     if (path.isAbsolute(outputPath)) {
       fs.writeFileSync(outputPath, jsonOutput)
     } else {
-      derivedOutputPath = path.resolve(__dirname, outputPath)
-      fs.writeFileSync(derivedOutputPath, jsonOutput)
+      fs.writeFileSync(path.resolve(__dirname, outputPath), jsonOutput)
     }
-    console.log('Metadata saved as JSON to:', derivedOutputPath)
-    return Promise.resolve(metadataList)
+    console.log(
+      'Metadata saved as JSON to:',
+      path.resolve(__dirname, outputPath)
+    )
+    return Promise.resolve(metadata)
   } catch (error) {
     console.error('Error writing metadata to file:', error)
     throw error
