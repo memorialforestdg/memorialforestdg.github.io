@@ -1,4 +1,7 @@
-import { extractMetadata, extractMetadataToJson } from './media-exif-extract.js'
+import {
+  extractMetadata,
+  extractMetadataToJsonFile
+} from './media-exif-extract.js'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import process from 'process'
@@ -14,7 +17,7 @@ import process from 'process'
 // We don't have access to __dirname in ES module mode, so we need to reconstruct it.
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
-// The relative location of the source images
+// The relative (or absolute) location of the source images
 const relativeDir = '../src/media-archive'
 
 // Convert the relative path to an absolute path
@@ -23,10 +26,11 @@ const srcDir = path.join(__dirname, relativeDir)
 // The relative location of the output JSON file
 const outputPath = '../src/content/media-archive/media-archive.json'
 
-// The file types to include
+// The file types to include, defaults to ['.jpg', '.jpeg']
 const validExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.mp3', '.mp4']
 
 // The EXIF fields to extract from media files
+//
 const exifTags = [
   'Title',
   'Description',
@@ -66,7 +70,7 @@ const exifTags = [
 ]
 
 // Call extractToJson with options
-extractMetadataToJson({
+extractMetadataToJsonFile({
   __dirname,
   srcDir,
   outputPath,
