@@ -1,4 +1,4 @@
-import { extract, extractToJson } from './media-exif-extract.js'
+import { extractMetadata, extractMetadataToJson } from './media-exif-extract.js'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import process from 'process'
@@ -6,7 +6,7 @@ import process from 'process'
 /**
  * NOTE: there is some unevenness in exfitools/Adobe Bridge, and how they handle some tags on video files.
  * For example .mp4 files don't have a Keywords tag, and instead exiftools/Adobe Bridge will write to the 'Subject' tag instead.
- * We could normilise this in our script (ie massage json output) however the behavior appears consistent
+ * We could normalize this in our script (ie massage json output) however the behavior appears consistent
  * between exfitools and Bridge for all file types, regardless of support for the "keyword" tag.
  */
 
@@ -66,7 +66,7 @@ const exifTags = [
 ]
 
 // Call extractToJson with options
-extractToJson({
+extractMetadataToJson({
   __dirname,
   srcDir,
   outputPath,
