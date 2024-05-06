@@ -12,7 +12,7 @@
 - Interesting
   <https://github.com/tatethurston/astrojs-service-worker#readme>
 
-- ASTRI OG
+- ASTRO OG
   <https://github.com/delucis/astro-og-canvas/tree/latest/packages/astro-og-canvas>
 
 - Robots.txt
