@@ -43,6 +43,8 @@ import { error, log } from 'console'
  * @see https://exiftool.org/TagNames/MPEG.html | MP3 (MPEG-1 layer 3 audio), MPEG-2, etc.
  * @see https://exiftool.org/TagNames/QuickTime.html | MPEG-4, Apple QuickTime, etc.
  *
+ * @todo complete the use of file write, by extracting the filename from the save path in both extractMetadataToJsonFile, and extractMetadata.
+ * @todo add documentation on the asymmetry of tags like CreatorWorkURL and Creator: Website(s).
  */
 
 /**
