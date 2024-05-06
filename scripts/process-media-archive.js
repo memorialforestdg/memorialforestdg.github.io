@@ -8,7 +8,7 @@ import process from 'process'
 
 /**
  * NOTE: there is some unevenness in exfitools/Adobe Bridge, and how they handle some tags on video files.
- * For example .mp4 files don't have a Keywords tag, and instead exiftools/Adobe Bridge will write to the 'Subject' tag instead.
+ * For example .mp4 files don't have a Keywords tag, and instead exfitools/Adobe Bridge will write to the 'Subject' tag instead.
  * We could normalize this in our script (ie massage json output) however the behavior appears consistent
  * between exfitools and Bridge for all file types, regardless of support for the "keyword" tag.
  */
@@ -37,17 +37,40 @@ const exifTags = [
   'AltTextAccessibility',
   //   'Keywords',
   'Subject', // a consistent fallback for lack of Keywords tag on some file types
-  'Credit',
+  { Creator: { val: 'Remembering Together Dumfries', write: true } },
+  { Credit: { val: 'Remembering Together Dumfries', write: true } },
+  { Source: { val: 'Remembering Together Dumfries', write: true } },
   'City',
-  { State: { val: 'Scotland', write: true } },
-  'Country',
+  { State: { val: 'Dumfries & Galloway', write: true } },
+  { CreatorPostalCode: { val: 'DG', write: true } },
+  { Country: { val: 'Scotland', write: true } },
   { CountryCode: { val: '3166-2:GB', write: true } },
+
   {
-    CopyrightNotice: {
-      val: '© All rights reserved Remembering Together Dumfries & Galloway c/o Katie Anderson & Tara Beall.',
+    CreatorWorkEmail: {
+      val: 'taco@gmail.com',
       write: true
     }
   },
+  {
+    CreatorWorkURL: {
+      val: 'https://remembering-together-dumfries.co.uk',
+      write: true
+    }
+  },
+  {
+    CopyrightNotice: {
+      val: '© Some rights reserved, Remembering Together Dumfries & Galloway c/o Katie Anderson & Tara Beall.',
+      write: true
+    }
+  },
+  {
+    'xmp:usageterms': {
+      val: 'This work is licensed under Creative Commons Attribution-ShareAlike 4.0 International ',
+      write: true
+    }
+  },
+  { 'XMP-xmpRights:Marked': { val: 'CS-PUB', write: true } }, // CopyrightStatus
   'FileName',
   'SourceFile',
   'Directory',
