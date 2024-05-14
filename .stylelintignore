@@ -1,2 +1,3 @@
+*.md
 **/*.js
 vendor/**/*.{css, scss, sass}
