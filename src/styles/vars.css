@@ -1,0 +1,48 @@
+:where(html) {
+  --brand-dk: hsl(220, 3%, 20%);
+  --brand-lt: hsl(60, 20%, 97%);
+  --brand-teal: hsl(190, 54%, 38%);
+  --brand-yellow: hsl(50, 96%, 55%);
+  --brand-green: hsl(124, 53%, 38%);
+  --brand-lavender: hsl(268, 76%, 87%);
+
+  --brand-surface-1: var(--brand-lt);
+  --brand-surface-2: var(--brand-dk);
+
+  --brand-tc-1-lt: var(--brand-dk);
+  --brand-tc-2-lt: var(--brand-dk);
+  --brand-tc-1-dk: var(--brand-lt);
+  --brand-tc-2-dk: var(--brand-lt);
+
+  --brand-surface-1-lt: var(--brand-lt);
+  --brand-surface-2-lt: var(--brand-lt);
+  --brand-surface-3-lt: var(--brand-lt);
+  --brand-surface-4-lt: var(--brand-lt);
+
+  --brand-surface-1-dk: var(--brand-lt);
+  --brand-surface-2-dk: var(--brand-lt);
+  --brand-surface-3-dk: var(--brand-lt);
+  --brand-surface-4-dk: var(--brand-lt);
+
+  --width-max-screen: 1280px;
+  --width-max-content: 900px;
+}
+
+:where(html) {
+  /* prefers-color-scheme: light */
+  --brand: var(--brand-lt);
+  --tc-1: var(--brand-tc-1-lt);
+  --tc-2: var(--brand-tc-2-lt);
+  --surface-fg: var(--brand-surface-1-lt);
+  --surface-bg: var(--brand-surface-2-dk);
+}
+
+@media (prefers-color-scheme: dk) {
+  :where(html) {
+    --brand: var(--brand-dk);
+    --tc-1: var(--brand-tc-1-dk);
+    --tc-2: var(--brand-tc-2-dk);
+    --surface-fg: var(--brand-surface-1-dk);
+    --surface-bg: var(--brand-surface-2-lt);
+  }
+}

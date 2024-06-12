@@ -1,0 +1,149 @@
+@font-face {
+  font-family: 'Nunito';
+  src: url('../../public/fonts/Nunito/static/Nunito-Bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Nunito';
+  src: url('../../public/fonts/Nunito/static/Nunito-BoldItalic.woff2')
+    format('woff2');
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Nunito';
+  src: url('../../public/fonts/Nunito/static/Nunito-Italic.woff2')
+    format('woff2');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Nunito';
+  src: url('../../public/fonts/Nunito/static/Nunito-MediumItalic.woff2')
+    format('woff2');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Nunito';
+  src: url('../../public/fonts/Nunito/static/Nunito-Regular.woff2')
+    format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Nunito';
+  src: url('../../public/fonts/Nunito/static/Nunito-Medium.woff2')
+    format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Nunito';
+  src: url('../../public/fonts/Nunito/static/Nunito-SemiBoldItalic.woff2')
+    format('woff2');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Nunito';
+  src: url('../../public/fonts/Nunito/static/Nunito-SemiBold.woff2')
+    format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lora';
+  src: url('../../public/fonts/Lora/static/Lora-BoldItalic.woff2')
+    format('woff2');
+  font-weight: bold;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lora';
+  src: url('../../public/fonts/Lora/static/Lora-Italic.woff2') format('woff2');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lora';
+  src: url('../../public/fonts/Lora/static/Lora-Bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lora';
+  src: url('../../public/fonts/Lora/static/Lora-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lora';
+  src: url('../../public/fonts/Lora/static/Lora-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lora';
+  src: url('../../public/fonts/Lora/static/Lora-SemiBoldItalic.woff2')
+    format('woff2');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  --sans: -apple-system, BlinkMacSystemFont, 'avenir next', avenir, 'segoe ui',
+    'helvetica neue', helvetica, Cantarell, Ubuntu, roboto, noto, arial,
+    sans-serif;
+
+  --serif: 'Iowan Old Style', 'Apple Garamond', Baskerville, 'Times New Roman',
+    'Droid Serif', Times, 'Source Serif Pro', serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol';
+
+  --mono: Menlo, Consolas, Monaco, 'Liberation Mono', 'Lucida Console',
+    monospace;
+
+  --headings: Nunito, var(--sans);
+  --body: Lora, var(--serif);
+}
+
+// TODO: set font sizes weight for headings
+
+// TODO: set font families for body
+.sans {
+  font-family: var(--sans);
+}
+.serif {
+  font-family: var(--serif);
+}
+.mono {
+  font-family: var(--mono);
+}
