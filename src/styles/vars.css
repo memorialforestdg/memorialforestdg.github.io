@@ -1,34 +1,43 @@
 :where(html) {
-  --brand-dk: hsl(220, 3%, 20%);
-  --brand-lt: hsl(60, 20%, 97%);
-  --brand-teal: hsl(190, 54%, 38%);
-  --brand-yellow: hsl(50, 96%, 55%);
-  --brand-green: hsl(124, 53%, 38%);
-  --brand-lavender: hsl(268, 76%, 87%);
+  /* Brand */
 
+  /* See ../vendor/tachyons-css/css/tachyons.css */
+
+  /*
+  --brand-dk: var(--mine-shaft-800);
+  --brand-lt: var(--desert-storm-50);
+  */
   --brand-surface-1: var(--brand-lt);
   --brand-surface-2: var(--brand-dk);
-
   --brand-tc-1-lt: var(--brand-dk);
   --brand-tc-2-lt: var(--brand-dk);
   --brand-tc-1-dk: var(--brand-lt);
   --brand-tc-2-dk: var(--brand-lt);
-
   --brand-surface-1-lt: var(--brand-lt);
   --brand-surface-2-lt: var(--brand-lt);
   --brand-surface-3-lt: var(--brand-lt);
   --brand-surface-4-lt: var(--brand-lt);
-
   --brand-surface-1-dk: var(--brand-lt);
   --brand-surface-2-dk: var(--brand-lt);
   --brand-surface-3-dk: var(--brand-lt);
   --brand-surface-4-dk: var(--brand-lt);
 
-  --width-max-screen: 1280px;
-  --width-max-content: 900px;
-}
+     /* Header  */
+  --header-height: 175px;
+  --header-nav-transition: 700ms ease-in-out;
+  --header-nav-left-color: var(--brand-teal);
+  --header-nav-right-color: var(--brand-orange);
+  --header-img-bg-color: var(--brand-teal-dk);
+  --header-img-gradent: linear-gradient(
+      0deg,
+      var(--brand-teal-dk) 0%,
+      hsl(190deg 100% 50% / 0%) 100%
+    );
 
-:where(html) {
+  /* Site */
+  --width-max-screen: 1280px;
+  --width-max-content: 1042px;
+
   /* prefers-color-scheme: light */
   --brand: var(--brand-lt);
   --tc-1: var(--brand-tc-1-lt);

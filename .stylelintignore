@@ -1,3 +1,4 @@
 *.md
 **/*.js
-vendor/**/*.{css, scss, sass}
+vendor/**/*
+src/vendor/**/*

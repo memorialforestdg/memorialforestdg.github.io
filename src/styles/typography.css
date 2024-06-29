@@ -1,19 +1,16 @@
-@import './fonts.css';
+@import url('./fonts.css');
 
 :root {
-  /* Set base font size and family */
-  font-size: 16px;
-  font-family: var(--body-font);
-
-  /* Set base line height */
-  line-height: 1.5;
-
-  /* Set base font weight and style */
+  /* Set base typography defaults */
   font-weight: normal;
+  font-size: 16px;
+  font-family: var(--sans);
   font-style: normal;
-
-  /* Set font display property */
+  line-height: 1.5;
   font-display: swap;
+  text-rendering: optimizelegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h1,
@@ -22,56 +19,55 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--headings-font);
   font-weight: 600;
+  font-family: var(--headings);
   font-style: bold;
-}
-.h1,
-h1 {
-  font-size: 2.5rem;
+  line-height: 1.1;
+  text-wrap: balance;
+  word-break: auto-phrase;
+  hyphens: auto;
 }
 
-.h2,
-h2 {
-  font-size: 2rem;
+a {
+  color: var(--brand-cyan-dk);
+  letter-spacing: 0;
 }
-.h3,
-h3 {
-  font-size: 1.75rem;
-}
-.h4 h4 {
-  font-size: 1.5rem;
-}
-.h5,
-h5 {
-  font-size: 1.25rem;
-}
-.h6,
-h6 {
-  font-size: 1rem;
+
+a:hover,
+a:focus {
+  font-weight: 600;
+  font-style: bold;
+  letter-spacing: -0.01em;
+
 }
 
 p,
 ul,
 ol {
-  font-size: 1rem;
-  line-height: 1.5;
-  margin-bottom: 1.5rem;
-  font-family: var(--body);
+  margin-block: var(--spacing-2) var(--spacing-2);
   font-weight: normal;
+  font-size: 1rem;
+  font-family: var(--body);
   font-style: normal;
+  line-height: 1.5;
 }
 
-.b,
-strong {
+p {
+  text-wrap: pretty;
+  word-break: auto-phrase;
+  hyphens: auto;
+}
+
+
+p:empty {
+  display: none;
+}
+
+b,
+.strong {
   font-weight: bold;
 }
 
-.i,
 i {
   font-style: italic;
-}
-
-a {
-  /*text-decoration: none; */
 }

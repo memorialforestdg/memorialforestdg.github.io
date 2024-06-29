@@ -1,0 +1,345 @@
+---
+import {Image} from 'astro:assets'
+import Logo from '../images/logos/rt-logo-smsh.svg'
+import PrimaryNav from './PrimaryNav.astro'
+import SkipToContent from './SkipToContent.astro'
+
+interface Props {
+  title: string
+  bannerImage?: ImageMetadata
+  bannerAlt?: string
+  maintenice?: boolean
+}
+
+const {title, bannerImage, bannerAlt, maintenice} = Astro.props
+---
+
+<>
+  <div class="header__background--left"></div>
+  <div class="header__background--right"></div>
+  <header id="main-header" class="header__main">
+    <div
+      class="header__wrapper flex flex-column items-center content-center w-100"
+    >
+      <div class="header__row items-center pr-5 pl-5 flex w-100">
+        <a class="header__link nt-4 brand-yellow" href="/"
+          ><Image
+            src={Logo}
+            alt="Remembering Together Dumfries & Galloway project logo."
+            height="90"
+            loading="eager"
+            class="header__logo"
+          /><span class="clip ">Remembering Together Dumfries & Galloway</span
+          ></a
+        >
+        <div class="header__right nt-4 flex">
+          <SkipToContent classArray={['self-end mr-3 link brand-lt ttu f5 di-underline-hover']} />
+          {
+            !maintenice && (
+              <a
+                class="nav__toggle pt-5 di-underline-hover link"
+                href="/maintenence"
+                >Menu</a
+              >
+                <a
+            class="nav__toggle pt-5 di-underline-hover link" href="/browse"
+            >Menu</a
+            >
+            <button
+              class="nav__toggle pt-5 button-reset"
+              aria-label="Show navigation menu"
+              aria-controls="super-navigation-menu"
+              aria-expanded="false"
+              type="button" hidden>Menu</button
+            >
+            )
+          }
+        </div>
+      </div>
+      <div class="nav__drawer" tn-hidden style="display: none;">
+        <div class="nav__drawer__content">
+          <PrimaryNav />
+        </div>
+      </div>
+      <div class="header__image poly-2">
+        {
+          bannerImage && (
+            <Image
+              src={bannerImage}
+              alt=` ${bannerAlt}`
+              loading="eager"
+              width="1024"
+              height="576"
+              class="w-100"
+            />
+          )
+        }
+<div class="container header__title"><h1 class="f1 brand-yellow-lt">{title}</h1></div>
+      </div>
+    </div>
+    <slot />
+  </header>
+</>
+
+<style>
+  .header__background--right,
+  .header__background--left {
+    position: absolute;
+    inset-block-start: 0;
+    z-index: -2;
+    display: block;
+    inline-size: 50vw;
+    block-size: calc(var(--header-height, 250px));
+  }
+
+  .header__background--left {
+    inset-inline-start: 0;
+    background-color: var(--header-nav-left-color);
+  }
+
+  .header__background--right {
+    inset-inline-end: 0;
+    background: var(--header-nav-right-color);
+  }
+
+  .header__main {
+    z-index: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    align-items: center;
+    inline-size: 100%;
+    max-inline-size: var(--width-max-content, 1042px);
+    min-block-size: var(--header-height, 250px);
+    margin: 0 auto;
+    padding: 0;
+    background: var(--brand-surface-1);
+  }
+
+  .header__wrapper {
+    position: relative;
+    inline-size: 100%;
+    z-index: 0;
+  }
+
+  .header__wrapper::before,
+  .header__wrapper::after {
+    position: absolute;
+    inset-block-start: 0;
+    z-index: -1;
+    display: block;
+    inline-size: 100vw;
+    max-inline-size: var(--width-max-content, 1042px);
+    block-size: var(--header-height);
+    background: var(--brand-surface-2);
+    transition: clip-path 0.3s ease-in-out;
+    content: '';
+  }
+
+  .header__wrapper::before {
+    background: var(--header-nav-left-color);
+    clip-path: polygon(100% 0%, 0% 0%, 0% 100%);
+  }
+
+  .header__wrapper::after {
+    z-index: -2;
+    background: var(--header-nav-right-color);
+    clip-path: polygon(-110% 0%, 100% 100%, 100% 0%);
+  }
+
+  @media screen and (min-width: 775px) {
+    .header__wrapper::before {
+      clip-path: polygon(45% 0%, 0% 0%, 0% 100%);
+    }
+
+    .header__wrapper::after {
+      clip-path: polygon(0% 0%, 100% 100%, 100% 0%);
+    }
+  }
+
+  .header__row {
+    z-index: 0;
+    place-content: space-between;
+    block-size: var(--header-height);
+    margin-block-end: calc(calc(-1 * var(--header-height)) / 1.3);
+  }
+
+  .header__link {
+    display: flex;
+    align-items: center;
+    padding: 0.8em;
+    border-radius: 100% !important;
+    aspect-ratio: 1 / 1;
+  }
+
+  .header__link:focus-visible,
+  .header__link:focus,
+  .header__link:hover {
+    outline: 4px dotted currentcolor;
+  }
+
+  .nav__drawer {
+    z-index: -2;
+    display: grid;
+    grid-template-rows: 0fr;
+    margin-block-start: calc(calc(-1 * var(--header-height)) / 1.3);
+    background-color: var(--forest-100);
+    /* stylelint-disable */
+    transition:
+      grid-template-rows var(--header-nav-transition),
+      padding var(--header-nav-transition),
+      margin var(--header-nav-transition);
+    /* stylelint-enable */
+    will-change: transition;
+    inset-block-start: 0;
+    inline-size: 100%;
+    max-block-size: 100%;
+    padding-block: var(--header-height) calc(var(--header-height) / 3);
+  }
+
+  .nav__drawer[tn-hidden] {
+    margin: 0;
+    padding: 0;
+    will-change: transition;
+  }
+
+  .nav__drawer__content {
+    z-index: 0;
+    display: flex;
+    overflow: hidden;
+  }
+
+  body.no-js .nav__drawer,
+  .nav__drawer:not([tn-hidden]) {
+    grid-template-rows: 1fr;
+  }
+
+  .header__image {
+    position: relative;
+    z-index: -2;
+    inline-size: 100%;
+    object-fit: cover;
+    min-block-size: calc(var(--header-height)* 1.3);
+    background: var(--header-img-bg-color);
+    margin-block-start: -1em;
+  }
+
+  .header__image img {
+    object-fit: cover;
+    inline-size: 100%;
+    aspect-ratio: 16 / 9;
+  }
+
+  @media screen and (min-width: 775px) {
+    .header__image img {
+      block-size: 100%;
+    }
+  }
+
+  .header__title {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-end;
+    margin: 0 auto;
+    padding: 0 var(--spacing-5);
+    color: var(--brand-surface-1);
+    inset-block-end: -1px;
+    background: var(--header-img-gradent);
+    min-block-size: 30%;
+  }
+
+  /* Navigation title */
+
+  .nav__toggle {
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    color: var(--brand-surface-1);
+    font-size: var(--f4);
+    background: none;
+    cursor: pointer;
+  }
+
+  button.nav__toggle {
+    white-space: nowrap;
+    border: 0;
+    border-block-end: 2px solid transparent;
+  }
+
+  button.nav__toggle:hover,
+  button.nav__toggle:focus-visible {
+    outline: 0;
+    border-block-end: 2px solid currentcolor;
+  }
+
+  button.nav__toggle[aria-expanded="true"]::before,
+  button.nav__toggle[aria-expanded="false"]::before {
+          display: inline-block;
+          margin: 0 10px 0 2px;
+          vertical-align: middle;
+          transition: transform 180ms ease-in-out;
+          content: "";
+          block-size: 8px;
+          inline-size: 8px;
+  }
+
+  button.nav__toggle[aria-expanded="true"]::before {
+        border-block-end: 2px solid var(--brand-surface-1);
+        border-inline-end: 2px solid var(--brand-surface-1);
+        transform: translateY(-2px) rotate(45deg) scale(1)
+  }
+
+  button.nav__toggle[aria-expanded="false"]::before {
+    border-block-end: 2px solid var(--brand-surface-1);
+    border-inline-end: 2px solid var(--brand-surface-1);
+    transform: translateY(-2px) rotate(225deg) scale(1)
+  }
+
+  /* progressive enhancement */
+
+  /* stylelint-disable no-duplicate-selectors, no-descending-specificity */
+  button.nav__toggle {
+    display: none;
+    margin-inline-start: auto;
+  }
+ /* stylelint-enable no-duplicate-selectors, no-descending-specificity */
+
+  a.nav__toggle {
+    display: inline;
+  }
+
+  body.js a.nav__toggle {
+    display: none;
+  }
+
+  body.js .nav__toggle {
+    display: block;
+  }
+
+  body.no-js .nav__drawer {
+    display: none;
+    grid-template-rows: 0fr;
+  }
+</style>
+
+<script>
+  import {initializeNavigation} from '../js/toggle-navigation'
+  document.addEventListener('DOMContentLoaded', () => {
+
+    // If we have js, we can hide the link to the nav-page.
+    const navLink = document.querySelector('a.nav__toggle')
+    navLink?.remove()
+    // Show the navToggle button
+    const navToggle = document.querySelector('button.nav__toggle') as HTMLElement
+
+    const navDrawer = document.querySelector('.nav__drawer') as HTMLElement
+
+    // Initialize the navigation with the elements
+    if (navToggle && navDrawer) {
+      initializeNavigation(navToggle, navDrawer)
+    }
+  })
+</script>

@@ -1,3 +1,50 @@
-.at-50 {
-  width: 50%;
+.gap-0 {
+  gap: var(--spacing-0, 0);
+}
+
+.gap-1 {
+  gap: var(--spacing-1, 0.25rem);
+}
+
+.gap-2 {
+  gap: var(--spacing-2, 0.5rem);
+}
+
+.gap-3 {
+  gap: var(--spacing-3, 1rem);
+}
+
+.gap-4 {
+  gap: var(--spacing-4, 2rem);
+}
+
+.gap-5 {
+  gap: var(--spacing-5, 4rem);
+}
+
+.gap-6 {
+  gap: var(--spacing-6, 8rem);
+}
+
+.gap-7 {
+  gap: var(--spacing-7, 16rem);
+}
+
+.poly-transition {
+  transition: clip-path 1s ease-in-out;
+}
+
+.poly-1 {
+ clip-path: polygon(2% -10%, 101.5% 7%, 98.3% 116%, -0.5% 95%)
+}
+
+.poly-2 {
+  clip-path: polygon(0% 0%, 50% 1em,100% 0, 100% 39%, 99% 100%, 0.8% 98%, 0% 70%);
+}
+
+
+@media screen and (max-width: 600px) {
+    .poly-1 {
+ clip-path: polygon(0% -10%, 101.5% 7%, 100% 116%, -0.5% 95%)
+}
 }

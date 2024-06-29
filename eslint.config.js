@@ -1,7 +1,11 @@
 import eslintPluginAstro from 'eslint-plugin-astro'
+
+// eslint.config.js
+import js from "@eslint/js";
+
 export default [
   // add more generic rule sets here, such as:
-  // js.configs.recommended,
+  js.configs.recommended,
   ...eslintPluginAstro.configs.recommended,
   {
     ignores: [
@@ -12,11 +16,12 @@ export default [
       'dist',
       'build',
       'src/js/vendor',
-      '**/node_modules'
+      '**/node_modules',
+      '.stylelintrc.*',
     ],
     rules: {
-      // override/add rules settings here, such as:
-      // "astro/no-set-html-directive": "error"
+    //   override/add rules settings here, such as:
+      "astro/no-set-html-directive": "error",
       'no-unused-vars': ['error', { argsIgnorePattern: '^typedefs' }],
       'no-useless-assignment': 'error',
       'no-useless-concat': 'error',

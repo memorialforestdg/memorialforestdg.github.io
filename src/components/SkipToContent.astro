@@ -1,0 +1,29 @@
+---
+interface Props {
+  target?: string
+  classArray?: Array<string>
+  text?: string
+}
+
+const {
+  target = '#main',
+  classArray = [],
+  text = 'Skip to content'
+} = Astro.props
+---
+
+<>
+  <a href={target} class={`skip_link ${classArray.join(' ')}`}>{text}</a>
+</>
+<style>
+  .skip_link {
+    position: absolute;
+    inset-block-start: auto;
+    inset-inline-start: -10000px;
+  }
+
+  .skip_link:focus {
+    position: static;
+    transition: color 0.15s ease-in;
+  }
+</style>

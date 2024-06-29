@@ -1,0 +1,101 @@
+---
+// nothing yet
+---
+
+<>
+  <nav id="primary-nav" class="nav__primary w-80 gap-4">
+    <ul class="list flex flex-column pa-0 gap-2 center">
+      <h3 class="mb-0 f3">Visit</h3>
+      <li>
+        <a class="di-underline-hover" href="/visit/"
+          >The Dispersed Memorial Forest</a
+        >
+      </li>
+      <ul class="list flex flex-column flex-wrap pa-0 ma-0 ml-2 gap-2">
+        <li>
+          <a class="di-underline-hover" href="/visit/castle-douglas"
+            >Castle Douglas</a
+          >
+        </li>
+        <li>
+          <a class="di-underline-hover" href="/visit/dumfries">Dumfries</a>
+        </li>
+        <li>
+          <a class="di-underline-hover" href="/visit/moffat">Moffat</a>
+        </li>
+        <li>
+          <a class="di-underline-hover" href="/visit/sanquhar">Sanquhar</a>
+        </li>
+        <li>
+          <a class="di-underline-hover" href="/visit/stranraer">Stranraer</a>
+        </li>
+      </ul>
+    </ul>
+
+    <ul class="list flex flex-column pa-0 gap-2 flex-grow-1">
+      <h3 class="mb-0 f3">About</h3>
+      <li>
+        <a class="di-underline-hover" href="/about/">Intro</a>
+      </li>
+      <ul class="list flex flex-row flex-wrap pa-0 ma-0 gap-2">
+        <li>
+          <a class="di-underline-hover" href="/about/phase-1">Phase 1</a>
+        </li>
+        &
+        <li>
+          <a class="di-underline-hover" href="/about/phase-2">Phase 2</a>
+        </li>
+      </ul>
+      <li>
+        <a class="di-underline-hover" href="/about/makeing-the-markers"
+          >Making the Markers</a
+        >
+      </li>
+      <li>
+        <a class="di-underline-hover" href="/about/the-artists"
+          >The Artists</a
+        >
+      </li>
+      <li>
+        <a class="di-underline-hover" href="/about/partners-fuders"
+          >Partners & Fuders</a
+        >
+      </li>
+    </ul>
+
+    <ul class="list flex flex-column pa-0 gap-2 flex-grow-1">
+      <h3 class="mb-0 f3">Stories</h3>
+      <li>
+        <a class="di-underline-hover" href="/stories/covid-interviews"
+          >Covid Interviews</a
+        >
+      </li>
+      <li>
+        <a class="di-underline-hover" href="/stories/postcards-from-dg"
+          >Postcards from D&G</a
+        >
+      </li>
+    </ul>
+  </nav>
+</>
+<style>
+  .nav__primary {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 80px auto 0;
+  }
+
+  @media screen and (min-width: 768px) {
+    .nav__primary {
+      display: grid;
+      grid-template-columns: repeat(3, 0.6fr);
+      gap: var(--spacing-3);
+      place-items: center;
+      margin: 50px auto 0;
+    }
+
+    ul {
+      font-family: var(--sans);
+    }
+  }
+</style>
