@@ -38,20 +38,16 @@ const {title, bannerImage, bannerAlt, maintenice} = Astro.props
             !maintenice && (
               <a
                 class="nav__toggle pt-5 di-underline-hover link"
-                href="/maintenence"
+                href="/browse"
                 >Menu</a
               >
-                <a
-            class="nav__toggle pt-5 di-underline-hover link" href="/browse"
-            >Menu</a
-            >
-            <button
-              class="nav__toggle pt-5 button-reset"
-              aria-label="Show navigation menu"
-              aria-controls="super-navigation-menu"
-              aria-expanded="false"
-              type="button" hidden>Menu</button
-            >
+              <button
+                class="nav__toggle pt-5 button-reset"
+                aria-label="Show navigation menu"
+                aria-controls="super-navigation-menu"
+                aria-expanded="false"
+                type="button" hidden>Menu</button
+              >
             )
           }
         </div>
