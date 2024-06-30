@@ -1,6 +1,7 @@
 [submodule "deps/solus-tachyons-sass"]
 	path = deps/solus-tachyons-sass
 	url = https://github.com/remembering-together-dg/solus-tachyons-sass
+	branch = RT
 [submodule "deps/exif-extract"]
 	path = deps/exif-extract
 	url = https://github.com/bnjmnrsh/exif-extract
