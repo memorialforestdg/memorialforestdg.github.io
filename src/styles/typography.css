@@ -35,10 +35,8 @@ a {
 
 a:hover,
 a:focus {
-  font-weight: 600;
-  font-style: bold;
-  letter-spacing: -0.01em;
-
+  font-weight: 500;
+  letter-spacing: -0.007ch;
 }
 
 p,
