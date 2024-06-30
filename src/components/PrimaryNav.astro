@@ -76,7 +76,7 @@
     </ul>
   </nav>
 </>
-<style>
+<style is:global>
   .nav__primary {
     display: flex;
     flex-wrap: wrap;
@@ -85,15 +85,25 @@
 
   @media screen and (min-width: 768px) {
     .nav__primary {
+      align-items: start;
+    }
+
+    .header__main .nav__primary {
       display: grid;
       grid-template-columns: repeat(3, 0.6fr);
       gap: var(--spacing-3);
-      place-items: center;
+      align-items: center;
+      justify-content: center;
       margin: 50px auto 0;
     }
 
     ul {
       font-family: var(--sans);
     }
+
+    /* .not-found-404 main .nav__primary,
+    .page-list main .nav__primary {
+      align-items: start;
+    } */
   }
 </style>
