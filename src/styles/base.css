@@ -4,8 +4,11 @@
   scroll-behavior: smooth;
 }
 
+/* Chrome overscroll bg-color */
 html::before {
 	position: fixed;
+  inset-block-start: 0;
+  inset-inline-start: 0;
 	z-index: -1;
   background-color: var(--brand-surface-2);
 	content: "";
@@ -67,6 +70,7 @@ footer {
 
 
 /* Stacking context https://every-layout.dev/layouts/stack/ */
+/* stylelint-disable no-descending-specificity */
 .stack {
   display: flex;
   flex-direction: column;
@@ -80,19 +84,16 @@ footer {
 .stack > * + * {
   margin-block-start: var(--spaceing-2, 1.5rem);
 }
+/* stylelint-enable no-descending-specificity */
 
 
 .btn {
   display: inline-block;
   padding: 0.5em 2em;
-
-  /* color: var(--brand-surface-2); */
   font-weight: 700;
   font-weight: inherit;
   letter-spacing: inherit;
   text-decoration: none;
-
-  /* background-color: var(--brand-surface-1); */
   border: 0;
   border-radius: 100px;
   outline: 2px dotted transparent;
