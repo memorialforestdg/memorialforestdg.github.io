@@ -70,7 +70,7 @@ const {title, bannerImage, bannerAlt, maintenice} = Astro.props
             />
           )
         }
-        <div class="container header__title absolute flex flex-column ma-0 center pa-0 pl-5 pr-5 brand-surface-1 self-start justify-end">
+        <div class="header__title absolute flex flex-column justify-end pa-0 pl-3 pl-5-ns pr-2">
           <h1 class="f1-ns f2 brand-yellow-lt">{title}</h1>
         </div>
       </div>
@@ -135,24 +135,24 @@ const {title, bannerImage, bannerAlt, maintenice} = Astro.props
   }
 
   .header__wrapper::before {
-    inset-inline-end: 1px;
     background: var(--header-nav-left-color);
     clip-path: polygon(100% 0%, 0% 0%, 0% 100%);
   }
 
   .header__wrapper::after {
-    inset-inline-start: 1px;
     z-index: -2;
     background: var(--header-nav-right-color);
     clip-path: polygon(-110% 0%, 100% 100%, 100% 0%);
   }
 
   @media screen and (min-width: 775px) {
-    .header__wrapper::before {
+  .header__wrapper::before {
+      inset-inline-end: 1px;
       clip-path: polygon(45% 0%, 0% 0%, 0% 100%);
     }
 
     .header__wrapper::after {
+     inset-inline-start: 1px;
       clip-path: polygon(0% 0%, 100% 100%, 100% 0%);
     }
   }
