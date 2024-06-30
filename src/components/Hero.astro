@@ -24,7 +24,7 @@ const {
   titleClasses = ['f3'],
   text = lipsum,
   wrapperClasses = ['full-width'],
-  innerClasses = ['ma-4', 'ml-5', 'mr-5', 'flex'],
+  innerClasses = ['ma-4', 'ml-5-ns', 'mr-5-ns', 'flex'],
   linkClasses = ['btn'],
   linkText = 'Learn more!',
   linkHref = '#'
@@ -33,7 +33,7 @@ const {
 
 <section class={`hero ${wrapperClasses.join(' ')}`} aria-label={title}>
   <div class={`hero__inner ${innerClasses.join(' ')}`}>
-    <div class="hiro__cols ma-4 ml-5 mr-5 flex">
+    <div class="hiro__cols ma-4 ml-5-ns mr-5-ns flex">
       <div class="hiro__cols-left flex flex-column">
         {
           title && (
