@@ -21,7 +21,7 @@ const {title, bannerImage, bannerAlt, maintenice} = Astro.props
     <div
       class="header__wrapper flex flex-column items-center content-center w-100"
     >
-      <div class="header__row items-center pr-5-ns pl-4-ns pl-3 pr-4 flex w-100">
+      <div class="header__row items-center pr-5-ns pl-4-ns pl-3 pr-3 flex w-100">
         <a class="header__link nt-4 brand-yellow" href="/"
           ><Image
             src={Logo}
@@ -37,12 +37,12 @@ const {title, bannerImage, bannerAlt, maintenice} = Astro.props
           {
             !maintenice && (
               <a
-                class="nav__toggle pt-5 di-underline-hover link"
+                class="nav__toggle di-underline-hover link items-center justify-center ma-0 pa-0 f4 brand-lt pointer bg-none"
                 href="/browse"
                 >Menu</a
               >
               <button
-                class="nav__toggle pt-5 button-reset"
+                class="nav__toggle button-reset di-underline-hover link items-center justify-center ma-0 pa-0 f4 brand-lt pointer bg-transparent"
                 aria-label="Show navigation menu"
                 aria-controls="super-navigation-menu"
                 aria-expanded="false"
@@ -70,7 +70,7 @@ const {title, bannerImage, bannerAlt, maintenice} = Astro.props
             />
           )
         }
-        <div class="container header__title">
+        <div class="container header__title absolute flex flex-column ma-0 center pa-0 pl-5 pr-5 brand-surface-1 self-start justify-end">
           <h1 class="f1-ns f2 brand-yellow-lt">{title}</h1>
         </div>
       </div>
@@ -237,14 +237,6 @@ const {title, bannerImage, bannerAlt, maintenice} = Astro.props
   }
 
   .header__title {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-end;
-    margin: 0 auto;
-    padding: 0 var(--spacing-5);
-    color: var(--brand-surface-1);
     inset-block-end: -1px;
     background: var(--header-img-gradent);
     min-block-size: 30%;
@@ -252,16 +244,7 @@ const {title, bannerImage, bannerAlt, maintenice} = Astro.props
 
   /* Navigation title */
 
-  .nav__toggle {
-    align-items: center;
-    justify-content: center;
-    margin: 0;
-    padding: 0;
-    color: var(--brand-surface-1);
-    font-size: var(--f4);
-    background: none;
-    cursor: pointer;
-  }
+  .nav__toggle {}
 
   button.nav__toggle {
     white-space: nowrap;
