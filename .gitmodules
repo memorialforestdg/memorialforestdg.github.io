@@ -1,0 +1,9 @@
+[submodule "deps/deps/exif-extract"]
+	path = deps/deps/exif-extract
+	url = https://github.com/bnjmnrsh/exif-extract
+[submodule "deps/solus-tachyons-sass"]
+	path = deps/solus-tachyons-sass
+	url = https://github.com/remembering-together-dg/solus-tachyons-sass
+[submodule "deps/exif-extract"]
+	path = deps/exif-extract
+	url = https://github.com/bnjmnrsh/exif-extract
