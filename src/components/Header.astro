@@ -70,7 +70,9 @@ const {title, bannerImage, bannerAlt, maintenice} = Astro.props
             />
           )
         }
-<div class="container header__title"><h1 class="f1 brand-yellow-lt">{title}</h1></div>
+        <div class="container header__title">
+          <h1 class="f1 brand-yellow-lt">{title}</h1>
+        </div>
       </div>
     </div>
     <slot />
@@ -82,7 +84,7 @@ const {title, bannerImage, bannerAlt, maintenice} = Astro.props
   .header__background--left {
     position: absolute;
     inset-block-start: 0;
-    z-index: -2;
+    z-index: 0;
     display: block;
     inline-size: 50vw;
     block-size: calc(var(--header-height, 250px));
@@ -133,11 +135,13 @@ const {title, bannerImage, bannerAlt, maintenice} = Astro.props
   }
 
   .header__wrapper::before {
+    inset-inline-end: 1px;
     background: var(--header-nav-left-color);
     clip-path: polygon(100% 0%, 0% 0%, 0% 100%);
   }
 
   .header__wrapper::after {
+    inset-inline-start: 1px;
     z-index: -2;
     background: var(--header-nav-right-color);
     clip-path: polygon(-110% 0%, 100% 100%, 100% 0%);
