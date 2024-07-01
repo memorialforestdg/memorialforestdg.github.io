@@ -1,41 +1,27 @@
 ---
 import BaseLayout from './BaseLayout.astro'
-import loadModule from '../js/loadModule'
 const {frontmatter} = Astro.props
+const {pageTitle, bannerImage, bannerAlt} = frontmatter
 
+// https://markjames.dev/blog/dynamically-importing-images-astro
 const images = import.meta.glob(
   '../images/**/*.{png,PNG,jpg,JPG,jpeg,svg,webp,avif}'
 )
-let BannerImageSrc
-
-if (typeof images[frontmatter.bannerImage] === 'function') {
-  BannerImageSrc = images[frontmatter.bannerImage]()
-}
+// Assuming `images[bannerImage]()` returns a module with an ImageMetadata as its default export.
+const bannerModule = images[bannerImage]
+  ? await images[bannerImage]()
+  : (null as any)
+// Assuming the default object is what you're after, but need to satisfy TypeScript about its existence.
+const BannerImage: ImageMetadata =
+  'default' in bannerModule ? bannerModule.default : null
 ---
 
-<BaseLayout pageTitle={frontmatter.pageTitle} bannerImage={BannerImageSrc}>
+<BaseLayout pageTitle={pageTitle} bannerImage={BannerImage}>
   <main id="main ">
     <div class="container full-width">
-      <div class="markdown-content measure-3 pt-4">
+      <div class="markdown-content measure-3 pt-4 dropcap">
         <slot />
       </div>
     </div>
   </main>
 </BaseLayout>
-<style is:global>
-  .markdown-content {
-    line-height: 1.6;
-  }
-
-  .markdown-content > p:first-of-type::first-letter {
-    float: left;
-    margin-top: calc(-1 * 0.5cap);
-    margin-bottom: -0.25cap;
-    padding-top: 0;
-    padding-right: 0.05ch;
-    padding-left: 0.05ch;
-    color: var(--brand-cyan-dk);
-    font-size: clamp(2rem, 2.5rlh, 2.5rlh);
-    font-family: var(--serif);
-  }
-</style>
