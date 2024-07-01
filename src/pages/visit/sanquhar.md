@@ -1,8 +1,8 @@
 ---
 layout: ../../layouts/MDPagesLayout.astro
-pageTitle: Postcards from D&G
-bannerImage: '../images/postcards.webp'
-bannerAlt: 'Some postcards.'
+pageTitle: Sanquhar
+bannerImage: '../images/ex-tree-planting/Trees planted last year_example_not RTDG plantings.jpg'
+bannerAlt: 'The launching of the forest in Sanquhar.'
 ---
 
 Mollit cillum sint veniam enim labore amet. Amet irure do enim irure. Elit exercitation consequat enim eiusmod Lorem. Tempor Lorem commodo do adipisicing non et in et ipsum reprehenderit.

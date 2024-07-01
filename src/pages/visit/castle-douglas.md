@@ -1,8 +1,8 @@
 ---
 layout: ../../layouts/MDPagesLayout.astro
-pageTitle: Postcards from D&G
-bannerImage: '../images/postcards.webp'
-bannerAlt: 'Some postcards.'
+pageTitle: Castle Douglass
+bannerImage: '../images/ex-tree-planting/Alder Tree growing out of Tree Tube_Threave.jpg'
+bannerAlt: 'The launching of the forest in Dumfries.'
 ---
 
 Mollit cillum sint veniam enim labore amet. Amet irure do enim irure. Elit exercitation consequat enim eiusmod Lorem. Tempor Lorem commodo do adipisicing non et in et ipsum reprehenderit.

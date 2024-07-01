@@ -1,8 +1,8 @@
 ---
 layout: ../../layouts/MDPagesLayout.astro
-pageTitle: Postcards from D&G
-bannerImage: '../images/postcards.webp'
-bannerAlt: 'Some postcards.'
+pageTitle: Making the Markers
+bannerImage: '../images/MarkerProduction/3de98b5b-5c5d-4e45-a8cc-d3b12604b121.JPG'
+bannerAlt: 'Image of Katie Anderson the crafting of the markers.'
 ---
 
 Mollit cillum sint veniam enim labore amet. Amet irure do enim irure. Elit exercitation consequat enim eiusmod Lorem. Tempor Lorem commodo do adipisicing non et in et ipsum reprehenderit.
