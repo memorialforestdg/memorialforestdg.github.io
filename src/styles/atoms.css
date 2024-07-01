@@ -48,3 +48,22 @@
  clip-path: polygon(0% -10%, 101.5% 7%, 100% 116%, -0.5% 95%)
 }
 }
+
+  .dropcap > p:first-of-type::first-letter {
+    float: inline-start;
+    margin-block: calc(-1 * 0.5cap) -0.25cap;
+    padding-block-start: 0;
+    padding-inline: 0.05ch;
+    color: var(--brand-cyan-dk);
+    font-size: clamp(2rem, 2.5rlh, 2.5rlh);
+    font-family: var(--serif);
+    background-image: url('/flourish-web/Beech.png') no-repeat center center;
+  }
+
+  .dropcap {
+    background-color: transparent;
+    background-image: url('/flourish-web/Beech.png') no-repeat center center;
+  }
+
+
+
