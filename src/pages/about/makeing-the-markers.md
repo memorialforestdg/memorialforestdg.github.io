@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/MDPagesLayout.astro
 pageTitle: Making the Markers
-bannerImage: '../../images/MarkerProduction/3de98b5b-5c5d-4e45-a8cc-d3b12604b121.jpg'
+bannerImage: '../images/MarkerProduction/3de98b5b-5c5d-4e45-a8cc-d3b12604b121.jpg'
 bannerAlt: 'Image of Katie Anderson the crafting of the markers.'
 ---
 
