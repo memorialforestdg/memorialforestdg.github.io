@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/MDPagesLayout.astro
 pageTitle: 'Phase 1: Consultation'
-bannerImage: '../images/RememberingTogetherWBF22LowRes57__Image ColinTennant.jpg'
+bannerImage: '../images/RememberingTogetherWBF22LowRes57__ImageColinTennant.jpg'
 bannerAlt: 'Image of workshop guest.'
 ---
 

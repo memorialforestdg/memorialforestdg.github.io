@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/MDPagesLayout.astro
 pageTitle: Sanquhar
-bannerImage: '../images/ex-tree-planting/Trees planted last year_example_not RTDG plantings.jpg'
+bannerImage: '../images/ex-tree-planting/Treesplantedlastyear_example_notRTDGplantings.jpg'
 bannerAlt: 'The launching of the forest in Sanquhar.'
 ---
 

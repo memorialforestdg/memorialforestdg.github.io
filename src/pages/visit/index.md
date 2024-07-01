@@ -1,11 +1,9 @@
 ---
 layout: ../../layouts/MDPagesLayout.astro
-pageTitle: Making the Markers
-bannerImage: '../images/Remembering Together_Dumfries Launch_300dpi-13.jpg'
+pageTitle: The Dispersed Memorial Forest
+bannerImage: '../images/dispersed-forrest-map.jpg'
 bannerAlt: 'Image of Katie Anderson the crafting of the markers.'
 ---
-
-## The markers
 
 Mollit cillum sint veniam enim labore amet. Amet irure do enim irure. Elit exercitation consequat enim eiusmod Lorem. Tempor Lorem commodo do adipisicing non et in et ipsum reprehenderit.
 

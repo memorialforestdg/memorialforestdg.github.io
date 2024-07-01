@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/MDPagesLayout.astro
 pageTitle: COVID interviews
-bannerImage: '../images/Handwriting Shortlists/handwriting-extract.png'
+bannerImage: '../images/HandwritingShortlists/handwriting-extract.png'
 bannerAlt: 'Some postcards.'
 ---
 

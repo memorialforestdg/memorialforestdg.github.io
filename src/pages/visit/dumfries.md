@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/MDPagesLayout.astro
 pageTitle: Dumfries
-bannerImage: '../images/Remembering Together_Dumfries Launch_300dpi-11.jpg'
+bannerImage: '../images/RememberingTogether_DumfriesLaunch_300dpi-11.jpg'
 bannerAlt: 'The launching of the forest in Dumfries.'
 ---
 
