@@ -218,7 +218,7 @@
     font-weight: 900;
     font-family: Alegreya;
     font-style: normal;
-    src: url('/fonts/Alegreya/Alegreya-Black.woff2') format('woff2');
+    src: url('/fonts/Alegreya/static/Alegreya-Black.woff2') format('woff2');
     font-display: swap;
 }
 
@@ -226,7 +226,7 @@
     font-weight: bold;
     font-family: Alegreya;
     font-style: normal;
-    src: url('/fonts/Alegreya/Alegreya-Bold.woff2') format('woff2');
+    src: url('/fonts/Alegreya/static/Alegreya-Bold.woff2') format('woff2');
     font-display: swap;
 }
 
@@ -234,7 +234,7 @@
     font-weight: 900;
     font-family: Alegreya;
     font-style: italic;
-    src: url('/fonts/Alegreya/Alegreya-BlackItalic.woff2') format('woff2');
+    src: url('/fonts/Alegreya/static/Alegreya-BlackItalic.woff2') format('woff2');
     font-display: swap;
 }
 
@@ -242,7 +242,7 @@
     font-weight: bold;
     font-family: Alegreya;
     font-style: normal;
-    src: url('/fonts/Alegreya/Alegreya-ExtraBold.woff2') format('woff2');
+    src: url('/fonts/Alegreya/static/Alegreya-ExtraBold.woff2') format('woff2');
     font-display: swap;
 }
 
@@ -250,7 +250,7 @@
     font-weight: bold;
     font-family: Alegreya;
     font-style: italic;
-    src: url('/fonts/Alegreya/Alegreya-ExtraBoldItalic.woff2') format('woff2');
+    src: url('/fonts/Alegreya/static/Alegreya-ExtraBoldItalic.woff2') format('woff2');
     font-display: swap;
 }
 
@@ -258,7 +258,7 @@
     font-weight: bold;
     font-family: Alegreya;
     font-style: italic;
-    src: url('/fonts/Alegreya/Alegreya-BoldItalic.woff2') format('woff2');
+    src: url('/fonts/Alegreya/static/Alegreya-BoldItalic.woff2') format('woff2');
     font-display: swap;
 }
 
@@ -266,7 +266,7 @@
     font-weight: normal;
     font-family: Alegreya;
     font-style: italic;
-    src: url('/fonts/Alegreya/Alegreya-Italic.woff2') format('woff2');
+    src: url('/fonts/Alegreya/static/Alegreya-Italic.woff2') format('woff2');
     font-display: swap;
 }
 
@@ -274,7 +274,7 @@
     font-weight: 500;
     font-family: Alegreya;
     font-style: italic;
-    src: url('/fonts/Alegreya/Alegreya-MediumItalic.woff2') format('woff2');
+    src: url('/fonts/Alegreya/static/Alegreya-MediumItalic.woff2') format('woff2');
     font-display: swap;
 }
 
@@ -282,7 +282,7 @@
     font-weight: 500;
     font-family: Alegreya;
     font-style: normal;
-    src: url('/fonts/Alegreya/Alegreya-Medium.woff2') format('woff2');
+    src: url('/fonts/Alegreya/static/Alegreya-Medium.woff2') format('woff2');
     font-display: swap;
 }
 
@@ -290,7 +290,7 @@
     font-weight: 400;
     font-family: Alegreya;
     font-style: normal;
-    src: url('/fonts/Alegreya/Alegreya-Regular.woff2') format('woff2');
+    src: url('/fonts/Alegreya/static/Alegreya-Regular.woff2') format('woff2');
     font-display: swap;
 }
 
@@ -301,7 +301,7 @@
     font-family: "Josefin Sans Thin" sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
-    src: url('/fonts/Josefin_Sans/JosefinSans-Thin.woff2') format('woff2');
+    src: url('/fonts/Josefin_Sans/static/JosefinSans-Thin.woff2') format('woff2');
     font-display: swap;
 }
 
@@ -310,7 +310,7 @@
     font-family: "Josefin Sans Thin Italic" sans-serif;
     font-optical-sizing: auto;
     font-style: italic;
-    src: url('/fonts/Josefin_Sans/JosefinSans-ThinItalic.woff2') format('woff2');
+    src: url('/fonts/Josefin_Sans/static/JosefinSans-ThinItalic.woff2') format('woff2');
     font-display: swap;
 }
 
@@ -319,7 +319,7 @@
     font-family: "Josefin Sans Extra Light" sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
-    src: url('/fonts/Josefin_Sans/JosefinSans-ExtraLight.woff2') format('woff2');
+    src: url('/fonts/Josefin_Sans/static/JosefinSans-ExtraLight.woff2') format('woff2');
     font-display: swap;
 }
 
@@ -328,7 +328,7 @@
     font-family: "Josefin Sans Extra Light Italic" sans-serif;
     font-optical-sizing: auto;
     font-style: italic;
-    src: url('/fonts/Josefin_Sans/JosefinSans-ExtraLightItalic.woff2') format('woff2');
+    src: url('/fonts/Josefin_Sans/static/JosefinSans-ExtraLightItalic.woff2') format('woff2');
     font-display: swap;
 }
 
@@ -337,7 +337,7 @@
     font-family: "Josefin Sans Light" sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
-    src: url('/fonts/Josefin_Sans/JosefinSans-Light.woff2') format('woff2');
+    src: url('/fonts/Josefin_Sans/static/JosefinSans-Light.woff2') format('woff2');
     font-display: swap;
 }
 
@@ -346,7 +346,7 @@
     font-family: "Josefin Sans Light Italic" sans-serif;
     font-optical-sizing: auto;
     font-style: italic;
-    src: url('/fonts/Josefin_Sans/JosefinSans-LightItalic.woff2') format('woff2');
+    src: url('/fonts/Josefin_Sans/static/JosefinSans-LightItalic.woff2') format('woff2');
     font-display: swap;
 }
 
@@ -355,7 +355,7 @@
     font-family: "Josefin Sans Regular" sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
-    src: url('/fonts/Josefin_Sans/JosefinSans-Regular.woff2') format('woff2');
+    src: url('/fonts/Josefin_Sans/static/JosefinSans-Regular.woff2') format('woff2');
     font-display: swap;
 }
 
@@ -364,7 +364,7 @@
     font-family: "Josefin Sans Italic" sans-serif;
     font-optical-sizing: auto;
     font-style: italic;
-    src: url('/fonts/Josefin_Sans/JosefinSans-Italic.woff2') format('woff2');
+    src: url('/fonts/Josefin_Sans/static/JosefinSans-Italic.woff2') format('woff2');
     font-display: swap;
 }
 
@@ -373,7 +373,7 @@
     font-family: "Josefin Sans Medium" sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
-    src: url('/fonts/Josefin_Sans/JosefinSans-Medium.woff2') format('woff2');
+    src: url('/fonts/Josefin_Sans/static/JosefinSans-Medium.woff2') format('woff2');
     font-display: swap;
 }
 
@@ -382,7 +382,7 @@
     font-family: "Josefin Sans Medium Italic" sans-serif;
     font-optical-sizing: auto;
     font-style: italic;
-    src: url('/fonts/Josefin_Sans/JosefinSans-MediumItalic.woff2') format('woff2');
+    src: url('/fonts/Josefin_Sans/static/JosefinSans-MediumItalic.woff2') format('woff2');
     font-display: swap;
 }
 
@@ -391,7 +391,7 @@
     font-family: "Josefin Sans Semi Bold" sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
-    src: url('/fonts/Josefin_Sans/JosefinSans-SemiBold.woff2') format('woff2');
+    src: url('/fonts/Josefin_Sans/static/JosefinSans-SemiBold.woff2') format('woff2');
     font-display: swap;
 }
 
@@ -400,7 +400,7 @@
     font-family: "Josefin Sans Semi Bold Italic" sans-serif;
     font-optical-sizing: auto;
     font-style: italic;
-    src: url('/fonts/Josefin_Sans/JosefinSans-SemiBoldItalic.woff2') format('woff2');
+    src: url('/fonts/Josefin_Sans/static/JosefinSans-SemiBoldItalic.woff2') format('woff2');
     font-display: swap;
 }
 
@@ -409,7 +409,7 @@
     font-family: "Josefin Sans Bold" sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
-    src: url('/fonts/Josefin_Sans/JosefinSans-Bold.woff2') format('woff2');
+    src: url('/fonts/Josefin_Sans/static/JosefinSans-Bold.woff2') format('woff2');
     font-display: swap;
 }
 
@@ -418,7 +418,7 @@
     font-family: "Josefin Sans Bold Italic" sans-serif;
     font-optical-sizing: auto;
     font-style: italic;
-    src: url('/fonts/Josefin_Sans/JosefinSans-BoldItalic.woff2') format('woff2');
+    src: url('/fonts/Josefin_Sans/static/JosefinSans-BoldItalic.woff2') format('woff2');
     font-display: swap;
 }
 
