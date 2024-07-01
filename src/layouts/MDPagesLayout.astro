@@ -7,13 +7,8 @@ const {pageTitle, bannerImage, bannerAlt} = frontmatter
 const images = import.meta.glob(
   '../images/**/*.{png,PNG,jpg,JPG,jpeg,svg,webp,avif}'
 )
-// Assuming `images[bannerImage]()` returns a module with an ImageMetadata as its default export.
-const bannerModule = images[bannerImage]
-  ? await images[bannerImage]()
-  : (null as any)
-// Assuming the default object is what you're after, but need to satisfy TypeScript about its existence.
-const BannerImage: ImageMetadata =
-  'default' in bannerModule ? bannerModule.default : null
+const banner = images[bannerImage] ? await images[bannerImage]() : (null as any)
+const BannerImage = banner.default as ImageMetadata
 ---
 
 <BaseLayout pageTitle={pageTitle} bannerImage={BannerImage}>
