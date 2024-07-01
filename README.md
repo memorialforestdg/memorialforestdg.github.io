@@ -56,3 +56,8 @@ git pull # pulls from rememberingtogetherdg.github.io
 
 git push # pushes to both rememberingtogetherdg.github.io AND rememberingtogetherdg.mirror
 ```
+
+### Mutiple Artifacts Errrors
+
+If your build fails with 'multiple artifacts', see errors, see this discussion:
+[https://github.com/orgs/community/discussions/111260](https://github.com/orgs/community/discussions/111260)
