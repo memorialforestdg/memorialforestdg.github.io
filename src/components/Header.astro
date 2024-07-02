@@ -44,7 +44,7 @@ const {title, bannerImage, bannerAlt, maintenice} = Astro.props
               <button
                 class="nav__toggle button-reset di-underline-hover link items-center justify-center ma-0 pa-0 f4 brand-lt pointer bg-transparent"
                 aria-label="Show navigation menu"
-                aria-controls="super-navigation-menu"
+                aria-controls="navigation-menu"
                 aria-expanded="false"
                 type="button" hidden>Menu</button
               >
@@ -52,7 +52,7 @@ const {title, bannerImage, bannerAlt, maintenice} = Astro.props
           }
         </div>
       </div>
-      <div class="nav__drawer" tn-hidden style="display: none;">
+      <div id="navigation-menu" class="nav__drawer" tn-hidden style="display: none;">
         <div class="nav__drawer__content">
           <PrimaryNav />
         </div>
