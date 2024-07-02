@@ -35,25 +35,25 @@
 }
 
 .poly-1 {
- clip-path: polygon(2% -10%, 101.5% 7%, 98.3% 116%, -0.5% 95%)
+  backface-visibility: hidden;
+  clip-path: polygon(2% -10%, 101.5% 7%, 98.3% 116%, -0.5% 95%)
 }
 
 .poly-2 {
+  backface-visibility: hidden;
   clip-path: polygon(0% 0%, 50% 1em,100% 0, 100% 66%, 99% 100%, 0.8% 98%, 0% 70%);
 }
 
-
 @media screen and (max-width: 600px) {
     .poly-1 {
- clip-path: polygon(0% -10%, 101.5% 7%, 100% 116%, -0.5% 95%)
-}
+    clip-path: polygon(0% -10%, 101.5% 7%, 100% 116%, -0.5% 95%)
+  }
 }
 
   .dropcap > p:first-of-type::first-letter {
+    z-index: 10;
+    display: inline-block;
     float: inline-start;
-    margin-block: calc(-1 * 0.5cap) -0.25cap;
-    padding-block-start: 0;
-    padding-inline: 0.05ch;
     color: var(--brand-cyan-dk);
     font-size: clamp(2rem, 2.5rlh, 2.5rlh);
     font-family: var(--serif);
