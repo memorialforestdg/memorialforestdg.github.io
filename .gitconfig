@@ -1,5 +1,6 @@
 [remote "origin"]
     url = https://github.com/memorialforestdg/memorialforestdg.github.io
+    pushurl = https://github.com/memorialforestdg/memorialforestdg.github.io
     pushurl = https://github.com/memorialforestdg/memorialforestdg.mirror
 [submodule "deps/solus-tachyons-sass"]
     url = https://github.com/memorialforestdg/solus-tachyons-sass.git
