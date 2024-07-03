@@ -50,6 +50,11 @@
   }
 }
 
+  /*
+    Dropcaps
+    We've also added a color override .dropcap.--dc-colorName-XXX
+    This has been added through Solus Tachyons.
+  */
   .dropcap > p:first-of-type::first-letter {
     z-index: 10;
     display: inline-block;
