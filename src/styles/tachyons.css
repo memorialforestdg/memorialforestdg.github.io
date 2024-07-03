@@ -66,7 +66,7 @@
   --brand-teal-lt: hsl(184, 55%, 82%);
   --brand-teal: hsl(187, 55%, 43%);
   --brand-teal-dk: hsl(192, 41%, 27%);
-  --brand-cyan-lt: hsl(194, 100%, 59%);
+  --brand-cyan-lt: hsl(196, 100%, 86%);
   --brand-cyan: hsl(194, 100%, 59%);
   --brand-cyan-dk: hsl(197, 100%, 28%);
   --brand-purple-lt: hsl(284, 61%, 83%);
@@ -989,7 +989,7 @@ img {
 }
 
 .b--brand-cyan-lt {
-  border-color: var(--brand-cyan-lt, hsl(194, 100%, 59%));
+  border-color: var(--brand-cyan-lt, hsl(196, 100%, 86%));
 }
 
 .b--brand-cyan {
@@ -3985,7 +3985,7 @@ img {
 }
 
 .brand-cyan-lt {
-  color: var(--brand-cyan-lt, hsl(194, 100%, 59%));
+  color: var(--brand-cyan-lt, hsl(196, 100%, 86%));
 }
 
 .brand-cyan {
@@ -4598,7 +4598,7 @@ img {
 }
 
 .bg-brand-cyan-lt {
-  background-color: var(--brand-cyan-lt, hsl(194, 100%, 59%));
+  background-color: var(--brand-cyan-lt, hsl(196, 100%, 86%));
 }
 
 .bg-brand-cyan {
@@ -5216,7 +5216,7 @@ img {
 }
 
 .dropcap.--dc-brand-cyan-lt > p:first-of-type::first-letter {
-  color: var(--brand-cyan-lt, hsl(194, 100%, 59%));
+  color: var(--brand-cyan-lt, hsl(196, 100%, 86%));
 }
 
 .dropcap.--dc-brand-cyan > p:first-of-type::first-letter {
@@ -5836,7 +5836,7 @@ img {
 }
 
 .hover-brand-cyan-lt:hover, .hover-brand-cyan-lt:focus {
-  color: var(--brand-cyan-lt, hsl(194, 100%, 59%));
+  color: var(--brand-cyan-lt, hsl(196, 100%, 86%));
 }
 
 .hover-brand-cyan:hover, .hover-brand-cyan:focus {
@@ -6448,7 +6448,7 @@ img {
 }
 
 .hover-bg-brand-cyan-lt:hover, .hover-bg-brand-cyan-lt:focus {
-  background-color: var(--brand-cyan-lt, hsl(194, 100%, 59%));
+  background-color: var(--brand-cyan-lt, hsl(196, 100%, 86%));
 }
 
 .hover-bg-brand-cyan:hover, .hover-bg-brand-cyan:focus {
@@ -7044,7 +7044,7 @@ img {
     color: var(--brand-teal-dk, hsl(192, 41%, 27%));
   }
   .hover-brand-cyan-lt:hover, .hover-brand-cyan-lt:focus {
-    color: var(--brand-cyan-lt, hsl(194, 100%, 59%));
+    color: var(--brand-cyan-lt, hsl(196, 100%, 86%));
   }
   .hover-brand-cyan:hover, .hover-brand-cyan:focus {
     color: var(--brand-cyan, hsl(194, 100%, 59%));
@@ -7503,7 +7503,7 @@ img {
     background-color: var(--brand-teal-dk, hsl(192, 41%, 27%));
   }
   .hover-bg-brand-cyan-lt:hover, .hover-bg-brand-cyan-lt:focus {
-    background-color: var(--brand-cyan-lt, hsl(194, 100%, 59%));
+    background-color: var(--brand-cyan-lt, hsl(196, 100%, 86%));
   }
   .hover-bg-brand-cyan:hover, .hover-bg-brand-cyan:focus {
     background-color: var(--brand-cyan, hsl(194, 100%, 59%));
@@ -7964,7 +7964,7 @@ img {
     color: var(--brand-teal-dk, hsl(192, 41%, 27%));
   }
   .hover-brand-cyan-lt:hover, .hover-brand-cyan-lt:focus {
-    color: var(--brand-cyan-lt, hsl(194, 100%, 59%));
+    color: var(--brand-cyan-lt, hsl(196, 100%, 86%));
   }
   .hover-brand-cyan:hover, .hover-brand-cyan:focus {
     color: var(--brand-cyan, hsl(194, 100%, 59%));
@@ -8423,7 +8423,7 @@ img {
     background-color: var(--brand-teal-dk, hsl(192, 41%, 27%));
   }
   .hover-bg-brand-cyan-lt:hover, .hover-bg-brand-cyan-lt:focus {
-    background-color: var(--brand-cyan-lt, hsl(194, 100%, 59%));
+    background-color: var(--brand-cyan-lt, hsl(196, 100%, 86%));
   }
   .hover-bg-brand-cyan:hover, .hover-bg-brand-cyan:focus {
     background-color: var(--brand-cyan, hsl(194, 100%, 59%));
@@ -8884,7 +8884,7 @@ img {
     color: var(--brand-teal-dk, hsl(192, 41%, 27%));
   }
   .hover-brand-cyan-lt:hover, .hover-brand-cyan-lt:focus {
-    color: var(--brand-cyan-lt, hsl(194, 100%, 59%));
+    color: var(--brand-cyan-lt, hsl(196, 100%, 86%));
   }
   .hover-brand-cyan:hover, .hover-brand-cyan:focus {
     color: var(--brand-cyan, hsl(194, 100%, 59%));
@@ -9343,7 +9343,7 @@ img {
     background-color: var(--brand-teal-dk, hsl(192, 41%, 27%));
   }
   .hover-bg-brand-cyan-lt:hover, .hover-bg-brand-cyan-lt:focus {
-    background-color: var(--brand-cyan-lt, hsl(194, 100%, 59%));
+    background-color: var(--brand-cyan-lt, hsl(196, 100%, 86%));
   }
   .hover-bg-brand-cyan:hover, .hover-bg-brand-cyan:focus {
     background-color: var(--brand-cyan, hsl(194, 100%, 59%));
