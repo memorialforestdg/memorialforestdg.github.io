@@ -14,6 +14,18 @@ Then cd into the `rememberingtogetherdg.github.io` folder, and update the submod
 git submodule update --remote
 ```
 
+### Remotes
+
+`git remote -v` to see the remotes.
+
+The correct response should be:
+
+```bash
+origin  https://github.com/memorialforestdg/memorialforestdg.github.io (fetch)
+origin  https://github.com/memorialforestdg/memorialforestdg.mirror (push)
+origin  https://github.com/memorialforestdg/memorialforestdg.github.io (push)
+```
+
 ### Solus-CSS
 
 If making customisations to Solus-CSS cd to the `deps/solus-tachyons-sass` folder and run:
