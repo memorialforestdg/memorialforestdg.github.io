@@ -1,0 +1,7 @@
+[remote "origin"]
+    url = https://github.com/memorialforestdg/memorialforestdg.github.io
+    pushurl = https://github.com/memorialforestdg/memorialforestdg.mirror
+[submodule "deps/solus-tachyons-sass"]
+    url = https://github.com/memorialforestdg/solus-tachyons-sass.git
+[submodule "deps/exif-extract"]
+    url = https://github.com/bnjmnrsh/exif-extract
