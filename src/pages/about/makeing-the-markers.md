@@ -3,6 +3,7 @@ layout: ../../layouts/MDPagesLayout.astro
 pageTitle: Making the Markers
 bannerImage: '../images/MarkerProduction/makeing-the-markers-03.jpg'
 bannerAlt: 'Image of Katie Anderson the crafting of the markers.'
+flourishClasses: ['--alder', 'dropcap', '--dc-cerise-800']
 ---
 
 Mollit cillum sint veniam enim labore amet. Amet irure do enim irure. Elit exercitation consequat enim eiusmod Lorem. Tempor Lorem commodo do adipisicing non et in et ipsum reprehenderit.

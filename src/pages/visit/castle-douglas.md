@@ -3,6 +3,7 @@ layout: ../../layouts/MDPagesLayout.astro
 pageTitle: Castle Douglas
 bannerImage: '../images/ex-tree-planting/AlderTreegrowingoutofTreeTube_Threave.jpg'
 bannerAlt: 'The launching of the forest in Dumfries.'
+flourishClasses: ['--hawthorn', 'dropcap', '--dc-brand-cyan-dk']
 ---
 
 Mollit cillum sint veniam enim labore amet. Amet irure do enim irure. Elit exercitation consequat enim eiusmod Lorem. Tempor Lorem commodo do adipisicing non et in et ipsum reprehenderit.

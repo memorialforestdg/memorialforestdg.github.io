@@ -3,6 +3,7 @@ layout: ../../layouts/MDPagesLayout.astro
 pageTitle: Dumfries
 bannerImage: '../images/RememberingTogether_DumfriesLaunch_300dpi-11.jpg'
 bannerAlt: 'The launching of the forest in Dumfries.'
+flourishClasses: ['--holly', 'dropcap', '--dc-brand-purple-dk']
 ---
 
 Mollit cillum sint veniam enim labore amet. Amet irure do enim irure. Elit exercitation consequat enim eiusmod Lorem. Tempor Lorem commodo do adipisicing non et in et ipsum reprehenderit.

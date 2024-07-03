@@ -1,8 +1,9 @@
 ---
 layout: ../../layouts/MDPagesLayout.astro
-pageTitle: Remembering Together Dumfries & Galloway
+pageTitle: About the Artists
 bannerImage: '../images/artists-katie-anderson+ts-beall.jpg'
 bannerAlt: 'Remembering Together WBF22 High Res57_Image Colin Tennant'
+flourishClasses: ['--downybirch', 'dropcap', '--dc-munsell-600']
 ---
 
 ## The Artists

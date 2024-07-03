@@ -3,6 +3,7 @@ layout: ../../layouts/MDPagesLayout.astro
 pageTitle: Stranraer
 bannerImage: '../images/ex-tree-planting/Treesplantedlastyear_example_notRTDGplantings.jpg'
 bannerAlt: 'The launching of the forest in Stranraer.'
+flourishClasses: ['--silverbirch', 'dropcap', '--dc-brand-green-dk']
 ---
 
 Mollit cillum sint veniam enim labore amet. Amet irure do enim irure. Elit exercitation consequat enim eiusmod Lorem. Tempor Lorem commodo do adipisicing non et in et ipsum reprehenderit.

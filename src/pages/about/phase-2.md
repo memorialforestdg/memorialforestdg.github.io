@@ -3,6 +3,7 @@ layout: ../../layouts/MDPagesLayout.astro
 pageTitle: 'Phase 2: The Dispersed Memorial Forest'
 bannerImage: '../images/dumfries-launch/planting-dumfries.jpg'
 bannerAlt: 'Volinteers planting trees in Dumfries.'
+flourishClasses: ['--apple', 'dropcap', '--dc-purpureus-600']
 ---
 
 Mollit cillum sint veniam enim labore amet. Amet irure do enim irure. Elit exercitation consequat enim eiusmod Lorem. Tempor Lorem commodo do adipisicing non et in et ipsum reprehenderit.

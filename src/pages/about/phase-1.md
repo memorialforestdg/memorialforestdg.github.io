@@ -3,6 +3,7 @@ layout: ../../layouts/MDPagesLayout.astro
 pageTitle: 'Phase 1: Consultation'
 bannerImage: '../images/RememberingTogetherWBF22LowRes57__ImageColinTennant.jpg'
 bannerAlt: 'Image of workshop guest.'
+flourishClasses: ['--aspen', 'dropcap', '--dc-candlelight-600']
 ---
 
 Mollit cillum sint veniam enim labore amet. Amet irure do enim irure. Elit exercitation consequat enim eiusmod Lorem. Tempor Lorem commodo do adipisicing non et in et ipsum reprehenderit.

@@ -3,6 +3,7 @@ layout: ../../layouts/MDPagesLayout.astro
 pageTitle: Postcards from D&G
 bannerImage: '../images/postcards.webp'
 bannerAlt: 'Some postcards.'
+flourishClasses: ['--fieldmaple', 'dropcap', '--dc-forest-700']
 ---
 
 Mollit cillum sint veniam enim labore amet. Amet irure do enim irure. Elit exercitation consequat enim eiusmod Lorem. Tempor Lorem commodo do adipisicing non et in et ipsum reprehenderit.

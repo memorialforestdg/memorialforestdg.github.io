@@ -3,6 +3,7 @@ layout: ../../layouts/MDPagesLayout.astro
 pageTitle: Planting the Forest
 bannerImage: '../images/dumfries-launch/planting-dumfries.jpg'
 bannerAlt: 'Image of Katie Anderson the crafting of the markers.'
+flourishClasses: ['--beech', 'dropcap', '--dc-picton-600']
 ---
 
 Mollit cillum sint veniam enim labore amet. Amet irure do enim irure. Elit exercitation consequat enim eiusmod Lorem. Tempor Lorem commodo do adipisicing non et in et ipsum reprehenderit.
