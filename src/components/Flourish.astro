@@ -3,12 +3,15 @@ import type {ImageMetadata} from 'astro'
 import {getImage} from 'astro:assets'
 
 /**
+ * Floursish component
+ * Add flourish images from the `/src/images/flourishes` folder as css props, used in background images.
+ *
  * All this to load the correct urls so they can be used in CSS custom-properites on backgrounds. :S
  *
- * The style declrations are added manually at this time.
+ * NOTE:The style declrations are added manually at this time.
  * If you add an image to the `/src/images/flourishes` folder you must also manually add it to the style secetion below.
  *
- * @TODO What is the tree shaking story re the inline syles tag? Are un used props being removed?
+ * @TODO What is the tree shaking story? Are un-used props removed?
  */
 
 interface Props {
@@ -32,7 +35,7 @@ const opts = {
 }
 
 /**
- * Use Astro getImage to fenerates an new image from the given source and provided options.
+ * Use Astro getImage to generate new images from the source and provided options.
  *
  * @param {ImageMetadata} img
  * @param {String: "jpeg" | "jpg" | "JPG" | "png" | "gif" | "avif" | "webp"} format
@@ -68,40 +71,42 @@ const cssProps = await Promise.all(
     const pngImage = await generateImage(image, 'png', opts)
 
     // For browsers that can handel image-set.
+    // Safari 17.5 has difficulty it will select the avif, but not display it :(
+    // Safari pre 17.5 must have a resolution, and no type declaration.
+    // url(${avifImage.src}) type("image/avif"),
+
     const imageSet = `
     --${filename}:
       -webkit-image-set(
-        url(${avifImage.src}) type("image/avif"),
-        url(${webpImage.src}) type("image/webp"),
-        url(${pngImage.src}) type("image/png")
+        url(${webpImage.src}) 1x type("image/webp"),
+        url(${pngImage.src})  1x type("image/png")
       ),
       image-set(
-        url(${avifImage.src}) type("image/avif"),
-        url(${webpImage.src}) type("image/webp"),
-        url(${pngImage.src}) type("image/png")
+        url(${webpImage.src}) 1x type("image/webp"),
+        url(${pngImage.src})  1x type("image/png")
       );`
     // For browsers that cannna handel image-set.
-    //I found that Safari 17.5 has difficulty with the type declaration.
     const fallback = `
-    --${filename}-fb: url(${pngImage.src});`
+    --${filename}-fb : url(${pngImage.src});`
 
-    return `${fallback} ${imageSet}`
+    return `${fallback} ${imageSet}` //
   })
 )
 ---
 
 <!-- The custom properties will be available to all descendants. -->
-<div class={`flourish ${classes.join(' ')}`} style={`${cssProps.join('\n')}`}>
+<div class={`flourish ${classes.join(' ')}`}>
   <slot />
 </div>
-<style>
-  .flourish {
+
+<style is:global define:vars={{cssProps}}>
+  .flourish > p:first-of-type {
     position: relative;
     z-index: 0;
     background-color: transparent;
   }
 
-  .flourish::before {
+  .flourish > p:first-of-type::before {
     position: absolute;
     z-index: -1;
     display: block;
@@ -121,7 +126,8 @@ const cssProps = await Promise.all(
   */
 
   /* stylelint-disable declaration-block-no-duplicate-properties */
-  .--alder.flourish::before {
+
+  .flourish.--alder > p:first-of-type::before {
     background-image: var(--alder-fb);
     background-image: var(--alder);
     transform: rotate(-20deg);
@@ -131,7 +137,7 @@ const cssProps = await Promise.all(
     block-size: 100px;
   }
 
-  .--apple.flourish::before {
+  .flourish.--apple > p:first-of-type::before {
     background-image: var(--apple-fb);
     background-image: var(--apple);
     transform: rotate(70deg);
@@ -142,7 +148,7 @@ const cssProps = await Promise.all(
     block-size: 100px;
   }
 
-  .--aspen.flourish::before {
+  .flourish.--aspen > p:first-of-type::before {
     background-image: var(--aspen-fb);
     background-image: var(--aspen);
     transform: rotate(20deg);
@@ -152,7 +158,7 @@ const cssProps = await Promise.all(
     block-size: 100px;
   }
 
-  .--beech.flourish::before {
+  .flourish.--beech > p:first-of-type::before {
     background-image: var(--beech-fb);
     background-image: var(--beech);
     transform: rotate(20deg);
@@ -163,7 +169,7 @@ const cssProps = await Promise.all(
     block-size: 100px;
   }
 
-  .--downybirch.flourish::before {
+  .flourish.--downybirch > p:first-of-type::before {
     background-image: var(--downybirch-fb);
     background-image: var(--downybirch);
     transform: rotate(20deg);
@@ -174,7 +180,7 @@ const cssProps = await Promise.all(
     block-size: 100px;
   }
 
-  .--englishoak.flourish::before {
+  .flourish.--englishoak > p:first-of-type::before {
     background-image: var(--englishoak-fb);
     background-image: var(--englishoak);
     transform: rotate(20deg);
@@ -185,7 +191,7 @@ const cssProps = await Promise.all(
     block-size: 100px;
   }
 
-  .--fieldmaple.flourish::before {
+  .flourish.--fieldmaple > p:first-of-type::before {
     background-image: var(--fieldmaple-fb);
     background-image: var(--fieldmaple);
     transform: rotate(90deg);
@@ -196,7 +202,7 @@ const cssProps = await Promise.all(
     block-size: 100px;
   }
 
-  .--greywillow.flourish::before {
+  .flourish.--greywillow > p:first-of-type::before {
     background-image: var(--greywillow-fb);
     background-image: var(--greywillow);
     inset-block-start: -2em;
@@ -206,7 +212,7 @@ const cssProps = await Promise.all(
     block-size: 100px;
   }
 
-  .--hawthorn.flourish::before {
+  .flourish.--hawthorn > p:first-of-type::before {
     background-image: var(--hawthorn-fb);
     background-image: var(--hawthorn);
     transform: rotate(-50deg);
@@ -217,7 +223,7 @@ const cssProps = await Promise.all(
     block-size: 100px;
   }
 
-  .--holly.flourish::before {
+  .flourish.--holly > p:first-of-type::before {
     background-image: var(--holly-fb);
     background-image: var(--holly);
     inset-block-start: -2em;
@@ -227,7 +233,7 @@ const cssProps = await Promise.all(
     block-size: 100px;
   }
 
-  .--horsechestnut.flourish::before {
+  .flourish.--horsechestnut > p:first-of-type::before {
     background-image: var(--horsechestnut-fb);
     background-image: var(--horsechestnut);
     transform: rotate(20deg);
@@ -238,7 +244,7 @@ const cssProps = await Promise.all(
     block-size: 100px;
   }
 
-  .--rowan-berries.flourish::before {
+  .flourish.--rowan-berries > p:first-of-type::before {
     background-image: var(--rowan-berries-fb);
     background-image: var(--rowan-berries);
     transform: rotate(20deg);
@@ -249,7 +255,7 @@ const cssProps = await Promise.all(
     block-size: 100px;
   }
 
-  .--rowan-leaves.flourish::before {
+  .flourish.--rowan-leaves > p:first-of-type::before {
     background-image: var(--rowan-leaves-fb);
     background-image: var(--rowan-leaves);
     inset-block-start: -1.8em;
@@ -259,9 +265,9 @@ const cssProps = await Promise.all(
     block-size: 100px;
   }
 
-  .--silverbirch.flourish::before {
+  .flourish.--silverbirch > p:first-of-type::before {
     background-image: var(--silverbirch-fb);
-    background-image: var(--silverbirch);
+    background-image: var(--silverbirch, --silverbirch-fb);
     transform: rotate(-20deg);
     opacity: 0.75;
     inset-block-start: -1.8em;
