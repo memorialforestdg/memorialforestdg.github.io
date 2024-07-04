@@ -37,7 +37,7 @@
 
   /* Site */
   --width-max-screen: 1280px;
-  --width-max-content: 1042px;
+  --width-max-content: 1050px;
 
   /* prefers-color-scheme: light */
   --brand: var(--brand-lt);
