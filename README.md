@@ -34,6 +34,12 @@ If making customisations to Solus-CSS cd to the `deps/solus-tachyons-sass` folde
 npm install
 ```
 
+All changes to this project should be tracked on the "RT" branch.
+
+```bash
+git chagebranch RT
+```
+
 To build the SASS files run:
 
 ```bash
