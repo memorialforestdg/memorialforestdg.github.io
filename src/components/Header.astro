@@ -112,12 +112,17 @@ const {title, bannerImage, bannerAlt, maintenice} = Astro.props
     margin: 0 auto;
     padding: 0;
     background: var(--brand-surface-1);
+    will-change: margin padding clip-path transition grid-template-rows;
   }
 
   .header__wrapper {
     position: relative;
     inline-size: 100%;
     z-index: 0;
+    overflow: hidden;
+    /*
+    perf distruction! with drop-shadow as the grid-template-rows margin and padding are aniated.
+    filter: drop-shadow(0 5px 0 var(--brand-orange)) drop-shadow(2px 0 0 var(--brand-orange)) drop-shadow(-3px 0 0 var(--brand-teal)); */
   }
 
   .header__wrapper::before,
@@ -130,29 +135,32 @@ const {title, bannerImage, bannerAlt, maintenice} = Astro.props
     max-inline-size: var(--width-max-content, 1042px);
     block-size: var(--header-height);
     background: var(--brand-surface-2);
-    transition: clip-path 0.3s ease-in-out;
+    transition: clip-path var(--header-nav-transition) var(--header-nav-transition-duration);
+    transition-duration: var(--header-nav-transition-duration);
     content: '';
+    will-change: clip-path;
   }
 
   .header__wrapper::before {
+    inset-inline-end: 1px;
     background: var(--header-nav-left-color);
     clip-path: polygon(100% 0%, 0% 0%, 0% 100%);
   }
 
   .header__wrapper::after {
     z-index: -2;
+    inset-inline-start: 1px;
     background: var(--header-nav-right-color);
     clip-path: polygon(-110% 0%, 100% 100%, 100% 0%);
   }
 
-  @media screen and (min-width: 775px) {
+
+ @media screen and (min-width: 775px) {
   .header__wrapper::before {
-      inset-inline-end: 1px;
       clip-path: polygon(45% 0%, 0% 0%, 0% 100%);
     }
 
     .header__wrapper::after {
-     inset-inline-start: 1px;
       clip-path: polygon(0% 0%, 100% 100%, 100% 0%);
     }
   }
@@ -186,15 +194,17 @@ const {title, bannerImage, bannerAlt, maintenice} = Astro.props
     background-color: var(--forest-100);
     /* stylelint-disable */
     transition:
-      grid-template-rows var(--header-nav-transition),
-      padding var(--header-nav-transition),
-      margin var(--header-nav-transition);
+      grid-template-rows var(--header-nav-transition) var(--header-nav-transition-duration),
+      padding var(--header-nav-transition) var(--header-nav-transition-duration),
+      margin var(--header-nav-transition) var(--header-nav-transition-duration);
     /* stylelint-enable */
-    will-change: transition;
+    transition-duration: var(--header-nav-transition-duration);
+    will-change: padding, margin, grid-template-rows;
     inset-block-start: 0;
     inline-size: 100%;
     max-block-size: 100%;
     padding-block: var(--header-height) calc(var(--header-height) / 3);
+
   }
 
   .nav__drawer[tn-hidden] {

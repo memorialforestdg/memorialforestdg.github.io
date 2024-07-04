@@ -24,7 +24,8 @@
 
      /* Header  */
   --header-height: 175px;
-  --header-nav-transition: 700ms ease-in-out;
+  --header-nav-transition: ease-in-out;
+  --header-nav-transition-duration: 700ms;
   --header-nav-left-color: var(--brand-teal);
   --header-nav-right-color: var(--brand-orange);
   --header-img-bg-color: var(--brand-teal-dk);
