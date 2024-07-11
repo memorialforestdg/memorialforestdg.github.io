@@ -26,7 +26,7 @@ const {title, bannerImage, bannerAlt, maintenice} = Astro.props
           ><Image
             src={Logo}
             alt="Remembering Together Dumfries & Galloway project logo."
-            height="90"
+            height={90}
             loading="eager"
             class="header__logo"
           /><span class="clip ">Remembering Together Dumfries & Galloway</span
@@ -66,7 +66,6 @@ const {title, bannerImage, bannerAlt, maintenice} = Astro.props
               loading="eager"
               width="1024"
               height="576"
-              class="w-100"
             />
           )
         }
@@ -101,7 +100,7 @@ const {title, bannerImage, bannerAlt, maintenice} = Astro.props
   }
 
   .header__main {
-    z-index: 0;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     gap: 1em;
@@ -112,7 +111,7 @@ const {title, bannerImage, bannerAlt, maintenice} = Astro.props
     margin: 0 auto;
     padding: 0;
     background: var(--brand-surface-1);
-    will-change: margin padding clip-path transition grid-template-rows;
+
   }
 
   .header__wrapper {
@@ -120,9 +119,13 @@ const {title, bannerImage, bannerAlt, maintenice} = Astro.props
     inline-size: 100%;
     z-index: 0;
     overflow: hidden;
+    will-change: margin padding transition grid-template-rows;
+
     /*
-    perf distruction! with drop-shadow as the grid-template-rows margin and padding are aniated.
-    filter: drop-shadow(0 5px 0 var(--brand-orange)) drop-shadow(2px 0 0 var(--brand-orange)) drop-shadow(-3px 0 0 var(--brand-teal)); */
+      perf distruction! with drop-shadow as the grid-template-rows margin and padding are aniated.
+      filter: drop-shadow(0 5px 0 var(--brand-orange)) drop-shadow(2px 0 0 var(--brand-orange)) drop-shadow(-3px 0 0 var(--brand-teal));
+    */
+
   }
 
   .header__wrapper::before,
@@ -193,6 +196,7 @@ const {title, bannerImage, bannerAlt, maintenice} = Astro.props
     margin-block-start: calc(calc(-1 * var(--header-height)) / 1.3);
     background-color: var(--forest-100);
     /* stylelint-disable */
+    transform: translateZ(0);
     transition:
       grid-template-rows var(--header-nav-transition) var(--header-nav-transition-duration),
       padding var(--header-nav-transition) var(--header-nav-transition-duration),
@@ -210,7 +214,7 @@ const {title, bannerImage, bannerAlt, maintenice} = Astro.props
   .nav__drawer[tn-hidden] {
     margin: 0;
     padding: 0;
-    will-change: transition;
+    will-change: margin padding;
   }
 
   .nav__drawer__content {
@@ -319,7 +323,7 @@ const {title, bannerImage, bannerAlt, maintenice} = Astro.props
 </style>
 
 <script>
-  import {initializeNavigation} from '../js/toggle-navigation'
+  import {initializeNavigation} from '../js/toggleNavigation'
   document.addEventListener('DOMContentLoaded', () => {
 
     // If we have js, we can hide the link to the nav-page.
