@@ -13,8 +13,8 @@ module.exports = {
     // browserslist supported
     "media-feature-range-notation": null, // prevent @media (width <= 1280px)  as upported
     "plugin/no-unsupported-browser-features": [true, {
-      ignore: ["rem"],
-      ignorePartialSupport: true
+      ignore: ["rem", "css-nesting", "css-blank-pseudo", "css-prefers-color-scheme", "css-mediaqueries"],
+      ignorePartialSupport: true,
     }],
     // animations
     "plugin/no-low-performance-animation-properties": [
