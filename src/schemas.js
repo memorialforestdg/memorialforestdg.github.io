@@ -1,6 +1,6 @@
 import { z } from 'astro:content'
 
-const mediaArchiveSchema = z.object({
+const imageExifMetadata = z.object({
   Title: z.string(),
   Description: z.string().optional(),
   Subject: z.array(z.string()),
@@ -41,7 +41,7 @@ const mediaArchiveSchema = z.object({
     zoneName: z.string(),
     inferredZone: z.boolean()
   }),
-  ImageWidth: z.number().optional(),
+  ImageinlineSize: z.number().optional(),
   ImageHeight: z.number().optional(),
   ImageSize: z.string().optional(),
   Megapixels: z.number().optional(),
@@ -58,4 +58,9 @@ const archiveContributorsSchema = z.object({
   url: z.string().url().optional()
 })
 
-export { mediaArchiveSchema, archiveContributorsSchema }
+const albumSchema = z.object({
+  title: z.string(),
+  description: z.string().optional()
+})
+
+export { imageExifMetadata, archiveContributorsSchema, albumSchema }

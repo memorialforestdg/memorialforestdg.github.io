@@ -1,16 +1,21 @@
 import { z, defineCollection } from 'astro:content'
-import { mediaArchiveSchema, archiveContributorsSchema } from '../schemas'
+import { imageExifMetadata, archiveContributorsSchema, albumSchema } from '../schemas'
 
 const mediaArchive = defineCollection({
   type: 'data',
-  schema: mediaArchiveSchema
+  schema: imageExifMetadata
 })
 const archiveContributors = defineCollection({
   type: 'data',
   schema: archiveContributorsSchema
 })
+const albums = defineCollection({
+  type: 'data',
+  schema: albumSchema
+});
 
 export const collections = {
+  albums,
   mediaArchive,
   archiveContributors
 }
