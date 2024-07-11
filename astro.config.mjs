@@ -1,20 +1,23 @@
-import { defineConfig } from 'astro/config'
+import { defineConfig } from 'astro/config';
+
+import prebuild from './src/intergrations/prebuild'
 
 // Icons
-import icon from 'astro-icon'
+import icon from 'astro-icon';
 
 // Robots
-import robotsTxt from 'astro-robots-txt'
+// import robotsTxt from 'astro-robots-txt';
 
 // Sitemap
-import sitemap from '@astrojs/sitemap'
+// import sitemap from '@astrojs/sitemap';
+
+// Better Images
+// import { imageService } from "@unpic/astro/service";
+
+import relativeLinks from "astro-relative-links";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [robotsTxt(), icon(), sitemap()]
-  //   vite: {
-  //     css: {
-  //       transformer: 'lightningcss'
-  //     }
-  //   }
-})
+  integrations: [prebuild(), icon(), relativeLinks()], // robotsTxt(), , sitemap(),
+  output: 'static'
+});
