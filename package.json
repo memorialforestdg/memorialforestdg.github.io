@@ -8,7 +8,7 @@
     "not dead"
   ],
   "scripts": {
-    "extract": "node ./deps/process-meta-albums.js",
+    "extract": "node ./deps/process-meta-albums.mjs",
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",

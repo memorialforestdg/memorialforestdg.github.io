@@ -19,7 +19,7 @@ export const prebuild = () => {
     hooks: {
       "astro:config:done": (options) => {
         // run our prebuild script
-         exec(`node ${options.config.root.pathname}/deps/process-meta-albums.js`, (error, stdout, stderr) => {
+         exec(`node ${options.config.root.pathname}/deps/process-meta-albums.mjs`, (error, stdout, stderr) => {
             if (error) {
                 console.error(`Error running script: ${error.message}`);
                 return;
