@@ -26,7 +26,6 @@
     "astro-robots-txt": "^1.0.0",
     "astro-seo": "^0.8.4",
     "dotenv": "^16.4.5",
-    "fs": "^0.0.1-security",
     "open-props": "^1.7.4",
     "photoswipe": "^5.4.4"
   },
