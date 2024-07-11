@@ -1,0 +1,168 @@
+---
+import {Picture} from 'astro:assets'
+import {getImage} from 'astro:assets'
+import {getCollection} from 'astro:content'
+import type {CollectionEntry, DataEntryMap} from 'astro:content'
+import {z} from 'zod'
+import {imageExifMetadata} from '../schemas.js'
+import {
+  getAlbumImages,
+  extractImagePath,
+  extrapolateImageDims,
+  extractImageData
+} from '../js/imageToolkit'
+import 'photoswipe/style.css'
+
+type ImageExifMetadata = z.infer<typeof imageExifMetadata>
+interface MetaPool extends Array<ImageExifMetadata> {}
+interface Props {
+  images?: Array<ImageMetadata>
+  albumId?: string
+  collectionId?: keyof DataEntryMap
+  galleryWraperClasses?: Array<string>
+  galleryListClasses?: Array<string>
+  cellLinkClasses?: Array<string>
+  cellClasses?: Array<string>
+  cellFormat?: null | 'square'
+  targetCellHeight?: number
+  targetModalImageLongDim?: number
+  ramdomize?: boolean
+}
+
+const {
+  images,
+  collectionId,
+  albumId,
+  galleryWraperClasses = [],
+  galleryListClasses = [],
+  cellLinkClasses = [],
+  cellClasses = [],
+  cellFormat = null,
+  targetCellHeight = 150,
+  targetModalImageLongDim = 800,
+  ramdomize = false
+} = Astro.props
+
+let metaPool: MetaPool | null
+let imgs: Array<ImageMetadata> = []
+let collection: CollectionEntry<keyof DataEntryMap>
+
+if (!images && !collectionId) {
+  throw new Error(
+    'No images or collectionId provided. Please provide either an array of astro ImageMetadata or  the name of a valid collection.'
+  )
+}
+if (collectionId && !albumId) {
+  throw new Error(
+    'No albumId provided. Please provide the name of a valid album'
+  )
+}
+
+// get the collection
+if (!images && collectionId) {
+  try {
+    const collectionData = await getCollection(collectionId)
+    const foundItem = collectionData.find((item) => item.id === albumId)
+
+    // Load metadata pool
+    metaPool = await import(
+      `../../src/meta/${collectionId}/${collectionId}-meta.json`
+    )
+
+    if (foundItem) {
+      collection = foundItem
+      imgs = await getAlbumImages(albumId)
+      if (ramdomize) {
+        imgs = imgs.sort(() => Math.random() - 0.5)
+      }
+    }
+  } catch (error) {
+    console.warn(error)
+    throw new Error(
+      'No images found. Please provide either an array of astro ImageMetadata or a valid collectionId.'
+    )
+  }
+}
+const targetCellHeightPx = targetCellHeight + 'px'
+const targetCellWidthPx =
+  cellFormat === 'square' ? targetCellHeightPx : 'inherit'
+---
+
+<section class={`gallery ${galleryWraperClasses.join(' ')}`}>
+  <ul class=`gallery__list ${galleryListClasses.join(' ')}`>
+    {
+      await Promise.all(
+        imgs.map(async (image) => {
+          const {imgData, metadata, lightboxDims, thumbDims, dominantColor} =
+            await extractImageData(
+              image,
+              targetCellHeight,
+              targetModalImageLongDim,
+              metaPool
+            )
+
+          return (
+            <li
+              class={`cell_wrapper  ${cellClasses.join(' ')}`}
+              style={`--dominantColor: ${dominantColor};`}
+            >
+              {
+                <a
+                  href={imgData.src}
+                  class=""
+                  data-pswp-width={imgData.attributes.width}
+                  data-pswp-height={imgData.attributes.height}
+                  data-pswp-srcset={imgData.srcSet.attribute}
+                  rel="prefetch"
+                  target="_blank"
+                >
+                  <Picture
+                    class="cell br2 overflow-hidden"
+                    src={image}
+                    formats={['avif', 'webp']}
+                    alt={
+                      metadata?.AltTextAccessibility ||
+                      metadata?.Description ||
+                      collection.data?.description ||
+                      'gallery image'
+                    }
+                    densities={[1.5, 2]}
+                    width={thumbDims.width}
+                    height={thumbDims.height}
+                  />
+                </a>
+              }
+            </li>
+          )
+        })
+      )
+    }
+  </ul>
+</section>
+
+<style define:vars={{targetCellHeightPx, targetCellWidthPx}}>
+  .gallery {
+    img {
+      object-fit: cover;
+    }
+  }
+
+  .cell_wrapper,
+  .cell {
+    /* stylelint-disable custom-property-pattern */
+    background-color: var(--dominantColor);
+    max-inline-size: calc(var(--targetCellWidthPx));
+    max-block-size: calc(var(--targetCellHeightPx));
+    /* stylelint-enable custom-property-pattern */
+  }
+</style>
+
+<script>
+  import PhotoSwipeLightbox from 'photoswipe/lightbox'
+  const lightbox = new PhotoSwipeLightbox({
+    gallery: '.gallery',
+    children: 'a',
+    pswpModule: () => import('photoswipe')
+  })
+  lightbox.init()
+</script>
