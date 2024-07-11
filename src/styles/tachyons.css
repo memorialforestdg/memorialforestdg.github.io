@@ -1538,6 +1538,436 @@ img {
 
 /*
 
+   BORDER RADIUS
+   Docs: http://tachyons.io/docs/themes/border-radius/
+
+   Base:
+     br   = border-radius
+
+   Modifiers:
+     0    = 0/none
+     1    = 1st step in scale
+     2    = 2nd step in scale
+     3    = 3rd step in scale
+     4    = 4th step in scale
+
+   Literal values:
+     -100 = 100%
+     -pill = 9999px
+
+*/
+.br-none {
+  border-radius: var(--br-none, 0);
+}
+
+.br1 {
+  border-radius: var(--br1, 0.125rem);
+}
+
+.br2 {
+  border-radius: var(--br2, 0.25rem);
+}
+
+.br3 {
+  border-radius: var(--br3, 0.5rem);
+}
+
+.br4 {
+  border-radius: var(--br4, 1rem);
+}
+
+.br-100 {
+  border-radius: var(--br-100, 100%);
+}
+
+.br-circle {
+  border-radius: var(--br-circle, 100%);
+}
+
+.br-pill {
+  border-radius: var(--br-pill, 9999px);
+}
+
+.br--bottom {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.br--top {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.br--right {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.br--left {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+@media screen and (min-width: 30em) {
+  .br-none-ns {
+    border-radius: var(--br-none, 0);
+  }
+  .br1-ns {
+    border-radius: var(--br1, 0.125rem);
+  }
+  .br2-ns {
+    border-radius: var(--br2, 0.25rem);
+  }
+  .br3-ns {
+    border-radius: var(--br3, 0.5rem);
+  }
+  .br4-ns {
+    border-radius: var(--br4, 1rem);
+  }
+  .br-100-ns {
+    border-radius: var(--br-100, 100%);
+  }
+  .br-circle-ns {
+    border-radius: var(--br-circle, 100%);
+  }
+  .br-pill-ns {
+    border-radius: var(--br-pill, 9999px);
+  }
+  .br--bottom-ns {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+  .br--top-ns {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .br--right-ns {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .br--left-ns {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
+@media screen and (min-width: 30em) and (max-width: 60em) {
+  .br-none-m {
+    border-radius: var(--br-none, 0);
+  }
+  .br1-m {
+    border-radius: var(--br1, 0.125rem);
+  }
+  .br2-m {
+    border-radius: var(--br2, 0.25rem);
+  }
+  .br3-m {
+    border-radius: var(--br3, 0.5rem);
+  }
+  .br4-m {
+    border-radius: var(--br4, 1rem);
+  }
+  .br-100-m {
+    border-radius: var(--br-100, 100%);
+  }
+  .br-circle-m {
+    border-radius: var(--br-circle, 100%);
+  }
+  .br-pill-m {
+    border-radius: var(--br-pill, 9999px);
+  }
+  .br--bottom-m {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+  .br--top-m {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .br--right-m {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .br--left-m {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
+@media screen and (min-width: 60em) {
+  .br-none-l {
+    border-radius: var(--br-none, 0);
+  }
+  .br1-l {
+    border-radius: var(--br1, 0.125rem);
+  }
+  .br2-l {
+    border-radius: var(--br2, 0.25rem);
+  }
+  .br3-l {
+    border-radius: var(--br3, 0.5rem);
+  }
+  .br4-l {
+    border-radius: var(--br4, 1rem);
+  }
+  .br-100-l {
+    border-radius: var(--br-100, 100%);
+  }
+  .br-circle-l {
+    border-radius: var(--br-circle, 100%);
+  }
+  .br-pill-l {
+    border-radius: var(--br-pill, 9999px);
+  }
+  .br--bottom-l {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+  .br--top-l {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .br--right-l {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .br--left-l {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}
+/*
+
+   BORDER STYLES
+   Docs: http://tachyons.io/docs/themes/borders/
+
+   Depends on base border module in _borders.css
+
+   Base:
+     b = border-style
+
+   Modifiers:
+     --none   = none
+     --dotted = dotted
+     --dashed = dashed
+     --solid  = solid
+
+ */
+.b--dotted {
+  border-style: dotted;
+}
+
+.b--dashed {
+  border-style: dashed;
+}
+
+.b--solid {
+  border-style: solid;
+}
+
+.b--none {
+  border-style: none;
+}
+
+@media screen and (min-width: 30em) {
+  .b--dotted-ns {
+    border-style: dotted;
+  }
+  .b--dashed-ns {
+    border-style: dashed;
+  }
+  .b--solid-ns {
+    border-style: solid;
+  }
+  .b--none-ns {
+    border-style: none;
+  }
+}
+@media screen and (min-width: 30em) and (max-width: 60em) {
+  .b--dotted-m {
+    border-style: dotted;
+  }
+  .b--dashed-m {
+    border-style: dashed;
+  }
+  .b--solid-m {
+    border-style: solid;
+  }
+  .b--none-m {
+    border-style: none;
+  }
+}
+@media screen and (min-width: 60em) {
+  .b--dotted-l {
+    border-style: dotted;
+  }
+  .b--dashed-l {
+    border-style: dashed;
+  }
+  .b--solid-l {
+    border-style: solid;
+  }
+  .b--none-l {
+    border-style: none;
+  }
+}
+/*
+
+   BORDER WIDTHS
+   Docs: http://tachyons.io/docs/themes/borders/
+
+   Base:
+     bw = border-width
+
+   Modifiers:
+     0 = 0 width border
+     1 = 1st step in border-width scale
+     2 = 2nd step in border-width scale
+     3 = 3rd step in border-width scale
+     4 = 4th step in border-width scale
+     5 = 5th step in border-width scale
+
+*/
+.bw0 {
+  border-width: var(--bw0, 0);
+}
+
+.bw1 {
+  border-width: var(--bw1, 0.125rem);
+}
+
+.bw2 {
+  border-width: var(--bw2, 0.25rem);
+}
+
+.bw3 {
+  border-width: var(--bw3, 0.5rem);
+}
+
+.bw4 {
+  border-width: var(--bw4, 1rem);
+}
+
+.bw5 {
+  border-width: var(--bw5, 2rem);
+}
+
+/* Resets */
+bt-0 {
+  border-top-width: 0;
+}
+
+br-0 {
+  border-right-width: 0;
+}
+
+bb-0 {
+  border-bottom-width: 0;
+}
+
+bl-0 {
+  border-left-width: 0;
+}
+
+@media screen and (min-width: 30em) {
+  .bw0-ns {
+    border-width: var(--bw0, 0);
+  }
+  .bw1-ns {
+    border-width: var(--bw1, 0.125rem);
+  }
+  .bw2-ns {
+    border-width: var(--bw2, 0.25rem);
+  }
+  .bw3-ns {
+    border-width: var(--bw3, 0.5rem);
+  }
+  .bw4-ns {
+    border-width: var(--bw4, 1rem);
+  }
+  .bw5-ns {
+    border-width: var(--bw5, 2rem);
+  }
+  /* Resets */
+  bt-0-ns {
+    border-top-width: 0;
+  }
+  br-0-ns {
+    border-right-width: 0;
+  }
+  bb-0-ns {
+    border-bottom-width: 0;
+  }
+  bl-0-ns {
+    border-left-width: 0;
+  }
+}
+@media screen and (min-width: 30em) and (max-width: 60em) {
+  .bw0-m {
+    border-width: var(--bw0, 0);
+  }
+  .bw1-m {
+    border-width: var(--bw1, 0.125rem);
+  }
+  .bw2-m {
+    border-width: var(--bw2, 0.25rem);
+  }
+  .bw3-m {
+    border-width: var(--bw3, 0.5rem);
+  }
+  .bw4-m {
+    border-width: var(--bw4, 1rem);
+  }
+  .bw5-m {
+    border-width: var(--bw5, 2rem);
+  }
+  /* Resets */
+  bt-0-m {
+    border-top-width: 0;
+  }
+  br-0-m {
+    border-right-width: 0;
+  }
+  bb-0-m {
+    border-bottom-width: 0;
+  }
+  bl-0-m {
+    border-left-width: 0;
+  }
+}
+@media screen and (min-width: 60em) {
+  .bw0-l {
+    border-width: var(--bw0, 0);
+  }
+  .bw1-l {
+    border-width: var(--bw1, 0.125rem);
+  }
+  .bw2-l {
+    border-width: var(--bw2, 0.25rem);
+  }
+  .bw3-l {
+    border-width: var(--bw3, 0.5rem);
+  }
+  .bw4-l {
+    border-width: var(--bw4, 1rem);
+  }
+  .bw5-l {
+    border-width: var(--bw5, 2rem);
+  }
+  /* Resets */
+  bt-0-l {
+    border-top-width: 0;
+  }
+  br-0-l {
+    border-right-width: 0;
+  }
+  bb-0-l {
+    border-bottom-width: 0;
+  }
+  bl-0-l {
+    border-left-width: 0;
+  }
+}
+/*
+
    DISPLAY
    Docs: http://tachyons.io/docs/layout/display
 

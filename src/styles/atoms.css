@@ -40,7 +40,9 @@
 }
 
 .poly-2 {
-  backface-visibility: hidden;
+  /* Slows animateion? add remove after nav animation?
+    backface-visibility: hidden;
+  */
   clip-path: polygon(0% 0%, 50% 1em,100% 0, 100% 66%, 99% 100%, 0.8% 98%, 0% 70%);
 }
 
