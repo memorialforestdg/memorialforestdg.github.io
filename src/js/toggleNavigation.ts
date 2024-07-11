@@ -1,5 +1,5 @@
 /**
- * toggle-navigation.ts
+ * toggleNavigation.ts
  * https://knowbility.org/blog/2020/accessible-slide-menus
  * https://inclusive-components.design/menus-menu-buttons/
  *
