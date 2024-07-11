@@ -1,5 +1,5 @@
 import { getImage } from "astro:assets";
-// import sharp from 'sharp'
+import sharp from 'sharp'
 import { z } from 'zod'
 import {imageExifMetadata} from '../schemas.js'
 type ImageExifMetadata = z.infer<typeof imageExifMetadata>
@@ -153,14 +153,19 @@ function getImageOrientation(width: number, height: number): 'square' | 'landsca
     }
 }
 
-async function extractImageData(image: ImageMetadata, targetCellHeight: number, targetModalImageLongDim: number, metaPool) {
+async function extractImageData(image: ImageMetadata, targetCellHeight: number, targetModalImageLongDim: number, metaPool: MetaPool ) {
+  // Fallback if sharp fails
   let dominantColor = 'inherit'
+
+  // Calculate image dimensions for lightbox
   const lightboxDims = extrapolateImageDims(
     targetModalImageLongDim,
     'long',
     image.width,
     image.height
   )
+
+  // Calculate image dimensions for thumbnail
   const thumbDims = extrapolateImageDims(
     targetCellHeight,
     'short',
@@ -168,45 +173,32 @@ async function extractImageData(image: ImageMetadata, targetCellHeight: number, 
     image.height
   )
 
-  const imgData = await getImage({
-    src: image,
-    width: lightboxDims.width,
-    height: lightboxDims.height,
-    format: ['webp'],
-    densities: [1.5, 2]
-  })
+  // Get dominant color
+  try {
+    // This is slow in dev as we are checking the full size image.
+    const path = '.' + extractImagePath(image)
+    const {dominant} = await sharp(path).stats()
+    dominantColor = `rgb(${dominant.r}, ${dominant.g}, ${dominant.b})`
+  } catch (error) {
+    console.warn(error)
+  }
 
-  const imagePath = extractImagePath(imgData)
+  // Pull in image metadata
+  let metadata
+  if (metaPool) {
+    try {
+      metadata = Object.values(metaPool)
+        .flat()
+        .find((item: ImageExifMetadata): boolean => {
+          return item.SourceFile === `..${extractImagePath(image)}`
+        }) as ImageExifMetadata
+    } catch (error) {
+      console.warn(error)
+    }
+  }
 
-  // try {
-  //   // This is slow in dev as we are checking the full size image.
-  //   const path = '.' + extractImagePath(image)
-  //   const {dominant} = await sharp(path).stats()
-  //   dominantColor = `rgb(${dominant.r}, ${dominant.g}, ${dominant.b})`
-  // } catch (error) {
-  //   console.warn(error)
-  // }
-
-  const metadata = Object.values(metaPool)
-    .flat()
-    .find((item: ImageExifMetadata): boolean => {
-      return item.SourceFile === `..${imagePath}`
-    })
-  return {imgData, metadata, lightboxDims, thumbDims, dominantColor}
+  return {lightboxDims, thumbDims, dominantColor, metadata}
 }
 
 
-async function fetchImage({ src }: { src: string }) {
-  if (!src) {
-    throw new Error('fetchImage: src is required')
-  }
-
-  const response = await fetch(src)
-  if (!response.ok) {
-    throw new Error(`fetchImage: Failed to fetch image ${src}`)
-  }
-
-  return await response.arrayBuffer()
-}
-
-export { getAlbumImages, extrapolateImageDims, extractImagePath, getImageOrientation, extractImageData, fetchImage }
+export { getAlbumImages, extrapolateImageDims, extractImagePath, getImageOrientation, extractImageData }

@@ -7,7 +7,6 @@ import {z} from 'zod'
 import {imageExifMetadata} from '../schemas.js'
 import {
   getAlbumImages,
-  extractImagePath,
   extrapolateImageDims,
   extractImageData
 } from '../js/imageToolkit'
@@ -93,45 +92,41 @@ const targetCellWidthPx =
     {
       await Promise.all(
         imgs.map(async (image) => {
-          const {imgData, metadata, lightboxDims, thumbDims, dominantColor} =
+          const {metadata, lightboxDims, thumbDims, dominantColor} =
             await extractImageData(
               image,
               targetCellHeight,
               targetModalImageLongDim,
-              metaPool
+              metaPool ?? {}
             )
-
           return (
             <li
               class={`cell_wrapper  ${cellClasses.join(' ')}`}
               style={`--dominantColor: ${dominantColor};`}
             >
-              {
-                <a
-                  href={imgData.src}
-                  class=""
-                  data-pswp-width={imgData.attributes.width}
-                  data-pswp-height={imgData.attributes.height}
-                  data-pswp-srcset={imgData.srcSet.attribute}
-                  rel="prefetch"
-                  target="_blank"
-                >
-                  <Picture
-                    class="cell br2 overflow-hidden"
-                    src={image}
-                    formats={['avif', 'webp']}
-                    alt={
-                      metadata?.AltTextAccessibility ||
-                      metadata?.Description ||
-                      collection.data?.description ||
-                      'gallery image'
-                    }
-                    densities={[1.5, 2]}
-                    width={thumbDims.width}
-                    height={thumbDims.height}
-                  />
-                </a>
-              }
+              <a
+                href={image.src}
+                class=""
+                data-pswp-width={lightboxDims.width}
+                data-pswp-height={lightboxDims.height}
+                rel="prefetch"
+                target="_blank"
+              >
+                <Picture
+                  class="cell br2 overflow-hidden"
+                  src={image}
+                  formats={['avif', 'webp']}
+                  alt={
+                    metadata?.AltTextAccessibility ||
+                    metadata?.Description ||
+                    collection.data?.description ||
+                    'gallery image'
+                  }
+                  densities={[1.5, 2]}
+                  width={thumbDims.width}
+                  height={thumbDims.height}
+                />
+              </a>
             </li>
           )
         })
