@@ -1,5 +1,5 @@
 import { getImage } from "astro:assets";
-import sharp from 'sharp'
+// import sharp from 'sharp'
 import { z } from 'zod'
 import {imageExifMetadata} from '../schemas.js'
 type ImageExifMetadata = z.infer<typeof imageExifMetadata>
@@ -178,14 +178,14 @@ async function extractImageData(image: ImageMetadata, targetCellHeight: number, 
 
   const imagePath = extractImagePath(imgData)
 
-  try {
-    // This is slow in dev as we are checking the full size image.
-    const path = '.' + extractImagePath(image)
-    const {dominant} = await sharp(path).stats()
-    dominantColor = `rgb(${dominant.r}, ${dominant.g}, ${dominant.b})`
-  } catch (error) {
-    console.warn(error)
-  }
+  // try {
+  //   // This is slow in dev as we are checking the full size image.
+  //   const path = '.' + extractImagePath(image)
+  //   const {dominant} = await sharp(path).stats()
+  //   dominantColor = `rgb(${dominant.r}, ${dominant.g}, ${dominant.b})`
+  // } catch (error) {
+  //   console.warn(error)
+  // }
 
   const metadata = Object.values(metaPool)
     .flat()
