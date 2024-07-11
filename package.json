@@ -8,7 +8,7 @@
     "not dead"
   ],
   "scripts": {
-    "extract": "node scripts/process-media-archive.js",
+    "extract": "node ./deps/process-meta-albums.js",
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
@@ -22,12 +22,13 @@
     "astro-capo": "^0.0.1",
     "astro-font": "^0.0.80",
     "astro-icon": "^1.1.0",
-    "astro-imagetools": "^0.9.0",
+    "astro-relative-links": "^0.3.9",
     "astro-robots-txt": "^1.0.0",
     "astro-seo": "^0.8.4",
     "dotenv": "^16.4.5",
     "fs": "^0.0.1-security",
-    "open-props": "^1.7.4"
+    "open-props": "^1.7.4",
+    "photoswipe": "^5.4.4"
   },
   "devDependencies": {
     "@typescript-eslint/parser": "^7.13.1",
