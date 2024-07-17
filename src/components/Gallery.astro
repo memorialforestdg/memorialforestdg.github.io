@@ -1,5 +1,4 @@
 ---
-// Test
 import {Picture} from 'astro:assets'
 import {
   getCollection,
@@ -12,7 +11,7 @@ import {
   getAlbumImages,
   extrapolateImageDims,
   extractImageData
-} from '../js/imageToolkit'
+} from '../js/imageToolkit.js'
 import 'photoswipe/style.css'
 type ImageExifMetadata = z.infer<typeof imageExifMetadata>
 interface MetaPool extends Array<ImageExifMetadata> {}
