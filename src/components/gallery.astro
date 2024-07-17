@@ -135,14 +135,14 @@ const targetCellWidthPx =
   </ul>
 </section>
 
-<style define:vars={{targetCellHeightPx, targetCellWidthPx}} is:global>
+<style define:vars={{targetCellHeightPx, targetCellWidthPx}}>
   .gallery {
     img {
       object-fit: cover;
     }
   }
 
-  .cell_wrapper,
+  .cell_li,
   .cell {
     /* stylelint-disable custom-property-pattern */
     background-color: var(--dominantColor);
