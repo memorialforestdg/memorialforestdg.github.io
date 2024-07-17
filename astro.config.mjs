@@ -18,6 +18,7 @@ import relativeLinks from "astro-relative-links";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [prebuild(), icon(), relativeLinks()], // robotsTxt(), , sitemap(),
+  // site: 'https://example.com', // We are not setting this as we want to use relative links, and deploy to mutiple domains eg yourname.github.io and yourname.com.
+  integrations: [icon(), relativeLinks()], // robotsTxt(), sitemap(), // prebuild()
   output: 'static'
 });
