@@ -67,6 +67,10 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
         working-directory: ${{ env.BUILD_PATH }}
       - name: Build with Astro
+        env:
+          # Make GitHub env vars available to astro as environment variable
+          PUBLIC_CANONICAL: ${{ vars.PUBLIC_CANONICAL }}
+          PUBLIC_MIRROR:    ${{ vars.PUBLIC_MIRROR }}
         run: |
           ${{ steps.detect-package-manager.outputs.runner }} astro build \
             --site "${{ steps.pages.outputs.origin }}" \
