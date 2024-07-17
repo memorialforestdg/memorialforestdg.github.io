@@ -18,10 +18,11 @@ interface Props {
   images?: Array<ImageMetadata>
   albumId?: string
   collectionId?: keyof DataEntryMap
-  galleryWraperClasses?: Array<string>
-  galleryListClasses?: Array<string>
-  cellLinkClasses?: Array<string>
-  cellClasses?: Array<string>
+  galleryWraperClasses?: string
+  galleryUlClasses?: string
+  cellLiClasses?: string
+  cellLinkClasses?: string
+  cellClasses?: string
   cellFormat?: null | 'square'
   targetCellHeight?: number
   targetModalImageLongDim?: number
@@ -33,17 +34,18 @@ const {
   collectionId,
   albumId,
   galleryWraperClasses = [],
-  galleryListClasses = [],
+  galleryUlClasses = [],
+  cellLiClasses = [],
   cellLinkClasses = [],
   cellClasses = [],
   cellFormat = null,
-  targetCellHeight = 150,
+  targetCellHeight = 180,
   targetModalImageLongDim = 800,
   ramdomize = false
 } = Astro.props
 
 let metaPool: MetaPool | null
-let imgs: Array<ImageMetadata> = []
+let imgs: Array<ImageMetadata> | [] = []
 let collection: CollectionEntry<keyof DataEntryMap>
 
 if (!images && !collectionId) {
@@ -81,14 +83,16 @@ if (!images && collectionId) {
       'No images found. Please provide either an array of astro ImageMetadata or a valid collectionId.'
     )
   }
+} else {
+  imgs = images ?? []
 }
 const targetCellHeightPx = targetCellHeight + 'px'
 const targetCellWidthPx =
   cellFormat === 'square' ? targetCellHeightPx : 'inherit'
 ---
 
-<section class={`gallery ${galleryWraperClasses.join(' ')}`}>
-  <ul class=`gallery__list ${galleryListClasses.join(' ')}`>
+<section class={`gallery ${galleryWraperClasses}`}>
+  <ul class=`gallery__list ${galleryUlClasses}`>
     {
       await Promise.all(
         imgs.map(async (image) => {
@@ -97,29 +101,30 @@ const targetCellWidthPx =
               image,
               targetCellHeight,
               targetModalImageLongDim,
-              metaPool ?? {}
+              metaPool ?? []
             )
           return (
             <li
-              class={`cell_wrapper  ${cellClasses.join(' ')}`}
+              class={`cell_li  ${cellLiClasses}`}
               style={`--dominantColor: ${dominantColor};`}
             >
               <a
                 href={image.src}
-                class=""
+                class={`cell_link  ${cellLinkClasses}`}
                 data-pswp-width={lightboxDims.width}
                 data-pswp-height={lightboxDims.height}
                 rel="prefetch"
                 target="_blank"
+                data-cropped="true"
               >
                 <Picture
-                  class="cell br2 overflow-hidden"
+                  class={`cell  ${cellClasses}`}
                   src={image}
                   formats={['avif', 'webp']}
                   alt={
                     metadata?.AltTextAccessibility ||
                     metadata?.Description ||
-                    collection.data?.description ||
+                    collection?.data?.description ||
                     'gallery image'
                   }
                   densities={[1.5, 2]}
@@ -142,7 +147,7 @@ const targetCellWidthPx =
     }
   }
 
-  .cell_li,
+  .cell_wrapper,
   .cell {
     /* stylelint-disable custom-property-pattern */
     background-color: var(--dominantColor);
