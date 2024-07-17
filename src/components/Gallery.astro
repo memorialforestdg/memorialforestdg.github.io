@@ -1,8 +1,11 @@
 ---
+// Test
 import {Picture} from 'astro:assets'
-import {getImage} from 'astro:assets'
-import {getCollection} from 'astro:content'
-import type {CollectionEntry, DataEntryMap} from 'astro:content'
+import {
+  getCollection,
+  type CollectionEntry,
+  type DataEntryMap
+} from 'astro:content'
 import {z} from 'zod'
 import {imageExifMetadata} from '../schemas.js'
 import {
@@ -11,17 +14,17 @@ import {
   extractImageData
 } from '../js/imageToolkit'
 import 'photoswipe/style.css'
-
 type ImageExifMetadata = z.infer<typeof imageExifMetadata>
 interface MetaPool extends Array<ImageExifMetadata> {}
 interface Props {
   images?: Array<ImageMetadata>
   albumId?: string
   collectionId?: keyof DataEntryMap
-  galleryWraperClasses?: Array<string>
-  galleryListClasses?: Array<string>
-  cellLinkClasses?: Array<string>
-  cellClasses?: Array<string>
+  galleryWraperClasses?: string
+  galleryUlClasses?: string
+  cellLiClasses?: string
+  cellLinkClasses?: string
+  cellClasses?: string
   cellFormat?: null | 'square'
   targetCellHeight?: number
   targetModalImageLongDim?: number
@@ -32,18 +35,19 @@ const {
   images,
   collectionId,
   albumId,
-  galleryWraperClasses = [],
-  galleryListClasses = [],
-  cellLinkClasses = [],
-  cellClasses = [],
+  galleryWraperClasses = '',
+  galleryUlClasses = '',
+  cellLiClasses = '',
+  cellLinkClasses = '',
+  cellClasses = '',
   cellFormat = null,
-  targetCellHeight = 150,
+  targetCellHeight = 180,
   targetModalImageLongDim = 800,
   ramdomize = false
 } = Astro.props
 
 let metaPool: MetaPool | null
-let imgs: Array<ImageMetadata> = []
+let imgs: Array<ImageMetadata> | [] = []
 let collection: CollectionEntry<keyof DataEntryMap>
 
 if (!images && !collectionId) {
@@ -81,14 +85,16 @@ if (!images && collectionId) {
       'No images found. Please provide either an array of astro ImageMetadata or a valid collectionId.'
     )
   }
+} else {
+  imgs = images ?? []
 }
 const targetCellHeightPx = targetCellHeight + 'px'
 const targetCellWidthPx =
   cellFormat === 'square' ? targetCellHeightPx : 'inherit'
 ---
 
-<section class={`gallery ${galleryWraperClasses.join(' ')}`}>
-  <ul class=`gallery__list ${galleryListClasses.join(' ')}`>
+<section class={`gallery ${galleryWraperClasses}`}>
+  <ul class=`gallery__list ${galleryUlClasses}`>
     {
       await Promise.all(
         imgs.map(async (image) => {
@@ -97,29 +103,30 @@ const targetCellWidthPx =
               image,
               targetCellHeight,
               targetModalImageLongDim,
-              metaPool ?? {}
+              metaPool ?? []
             )
           return (
             <li
-              class={`cell_wrapper  ${cellClasses.join(' ')}`}
+              class={`cell_li  ${cellLiClasses}`}
               style={`--dominantColor: ${dominantColor};`}
             >
               <a
                 href={image.src}
-                class=""
+                class={`cell_link  ${cellLinkClasses}`}
                 data-pswp-width={lightboxDims.width}
                 data-pswp-height={lightboxDims.height}
                 rel="prefetch"
                 target="_blank"
+                data-cropped="true"
               >
                 <Picture
-                  class="cell br2 overflow-hidden"
+                  class={`cell  ${cellClasses}`}
                   src={image}
                   formats={['avif', 'webp']}
                   alt={
                     metadata?.AltTextAccessibility ||
                     metadata?.Description ||
-                    collection.data?.description ||
+                    collection?.data?.description ||
                     'gallery image'
                   }
                   densities={[1.5, 2]}
@@ -135,14 +142,14 @@ const targetCellWidthPx =
   </ul>
 </section>
 
-<style define:vars={{targetCellHeightPx, targetCellWidthPx}}>
+<style define:vars={{targetCellHeightPx, targetCellWidthPx}} is:global>
   .gallery {
     img {
       object-fit: cover;
     }
   }
 
-  .cell_wrapper,
+  .cell_li,
   .cell {
     /* stylelint-disable custom-property-pattern */
     background-color: var(--dominantColor);
@@ -157,7 +164,10 @@ const targetCellWidthPx =
   const lightbox = new PhotoSwipeLightbox({
     gallery: '.gallery',
     children: 'a',
-    pswpModule: () => import('photoswipe')
+    pswpModule: () => import('photoswipe'),
+    preloadFirstSlide: true,
+    returnFocus: true,
+    showHideAnimationType: 'zoom'
   })
   lightbox.init()
 </script>
