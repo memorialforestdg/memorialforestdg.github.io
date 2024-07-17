@@ -1,8 +1,10 @@
 ---
 import {Picture} from 'astro:assets'
-import {getImage} from 'astro:assets'
-import {getCollection} from 'astro:content'
-import type {CollectionEntry, DataEntryMap} from 'astro:content'
+import {
+  getCollection,
+  type CollectionEntry,
+  type DataEntryMap
+} from 'astro:content'
 import {z} from 'zod'
 import {imageExifMetadata} from '../schemas.js'
 import {
@@ -157,10 +159,7 @@ const targetCellWidthPx =
   const lightbox = new PhotoSwipeLightbox({
     gallery: '.gallery',
     children: 'a',
-    pswpModule: () => import('photoswipe'),
-    preloadFirstSlide: true,
-    returnFocus: true,
-    showHideAnimationType: 'zoom'
+    pswpModule: () => import('photoswipe')
   })
   lightbox.init()
 </script>
