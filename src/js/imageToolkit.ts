@@ -1,5 +1,5 @@
-import { getImage } from "astro:assets";
-import sharp from 'sharp'
+// import { getImage } from "astro:assets";
+// import sharp from 'sharp'
 import { z } from 'zod'
 import {imageExifMetadata} from '../schemas.js'
 type ImageExifMetadata = z.infer<typeof imageExifMetadata>
@@ -51,6 +51,7 @@ function extractImagePath(image) {
 
 /**
  * Extrapolates the dimensions of an image based on a target in pixels and a flag representing the axis to target.
+ * Using named flags, you can calculate against a target the "width" or "height", or "long" or "short" dimensions irriespective of orientation.
  *
  * @param {number} targetDim - The target dimension.
  * @param {'long' | 'short' | 'width' | 'height'} axis - The axis to target.
@@ -153,9 +154,10 @@ function getImageOrientation(width: number, height: number): 'square' | 'landsca
     }
 }
 
-async function extractImageData(image: ImageMetadata, targetCellHeight: number, targetModalImageLongDim: number, metaPool: MetaPool ) {
+async function extractImageData(image: ImageMetadata, targetCellHeight: number, targetModalImageLongDim: number, metaPool: MetaPool) {
+
   // Fallback if sharp fails
-  let dominantColor = 'inherit'
+  let dominantColor = 'inherit;'
 
   // Calculate image dimensions for lightbox
   const lightboxDims = extrapolateImageDims(
@@ -174,14 +176,16 @@ async function extractImageData(image: ImageMetadata, targetCellHeight: number, 
   )
 
   // Get dominant color
-  try {
-    // This is slow in dev as we are checking the full size image.
-    const path = '.' + extractImagePath(image)
-    const {dominant} = await sharp(path).stats()
-    dominantColor = `rgb(${dominant.r}, ${dominant.g}, ${dominant.b})`
-  } catch (error) {
-    console.warn(error)
-  }
+  // try {
+  //   // This is slow in dev as we are checking the full size image.
+  //   // console.log('extractImagePath:', extractImagePath(image))
+  //   // console.log('image.src:', image.src)
+  //   const { dominant } = await sharp(`..${extractImagePath(image)}`).stats()
+  //   // const { dominant } = await sharp(image.src).stats()
+  //   dominantColor = `rgb(${dominant.r}, ${dominant.g}, ${dominant.b});`
+  // } catch (error) {
+  //   console.warn(error)
+  // }
 
   // Pull in image metadata
   let metadata
