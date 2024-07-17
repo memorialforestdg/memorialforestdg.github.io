@@ -1,4 +1,4 @@
-import { extractMetadataToJsonFile } from './exif-extract/exif-extract.mjs'
+import { extractMetadataToJsonFile } from 'exif-extract'
 import { fileURLToPath } from 'url'
 import path from 'path'
 
