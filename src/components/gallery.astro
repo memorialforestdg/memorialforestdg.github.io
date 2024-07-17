@@ -1,10 +1,8 @@
 ---
 import {Picture} from 'astro:assets'
-import {
-  getCollection,
-  type CollectionEntry,
-  type DataEntryMap
-} from 'astro:content'
+import {getImage} from 'astro:assets'
+import {getCollection} from 'astro:content'
+import type {CollectionEntry, DataEntryMap} from 'astro:content'
 import {z} from 'zod'
 import {imageExifMetadata} from '../schemas.js'
 import {
@@ -137,7 +135,7 @@ const targetCellWidthPx =
   </ul>
 </section>
 
-<style define:vars={{targetCellHeightPx, targetCellWidthPx}}>
+<style define:vars={{targetCellHeightPx, targetCellWidthPx}} is:global>
   .gallery {
     img {
       object-fit: cover;
