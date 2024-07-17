@@ -1,22 +1,22 @@
 ---
 // Conditionally put a link to cannonical mirror in the footer.
 // Relies on PUBLIC_CANNONICAL in .env or Github Secrets & Variables/Actions/Configure: Environment variables (non sensitive)
-import {PUBLIC_CANNONICAL} from 'astro:env/server'
+import {PUBLIC_CANONICAL} from 'astro:env/server'
 ---
 
 <>
   {
-    import.meta.env?.SITE === PUBLIC_CANNONICAL && (
+    import.meta.env?.SITE === PUBLIC_CANONICAL && (
       <li class="ml-1">
         <span class="dn di-ns" aira-hidden>
           |
         </span>{' '}
         mirrror:{' '}
         <a
-          href={PUBLIC_CANNONICAL}
+          href={PUBLIC_CANONICAL}
           class="sans di-underline-hover burnt-sienna-1"
         >
-          {PUBLIC_CANNONICAL.replace(/^https:\/\//, '')}
+          {PUBLIC_CANONICAL.replace(/^https:\/\//, '')}
         </a>
       </li>
     )

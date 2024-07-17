@@ -24,7 +24,7 @@ export default defineConfig({
   experimental: {
         env: {
             schema: {
-                PUBLIC_CANNONICAL: envField.string({ context: "server", access: "public", optional: true }),
+                PUBLIC_CANONICAL: envField.string({ context: "server", access: "public", optional: true }),
                 PUBLIC_MIRROR: envField.string({ context: "server", access: "public", optional: true }),
             },
         }

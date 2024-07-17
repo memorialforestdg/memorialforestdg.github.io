@@ -1,13 +1,13 @@
 ---
 // Conditionally put canonical link in the head
 // Relies on PUBLIC_CANNONICAL in .env or Github Secrets & Variables/Actions/Configure: Environment variables (non sensitive)
-import {PUBLIC_CANNONICAL} from 'astro:env/server'
-const canonical = PUBLIC_CANNONICAL + Astro.url.pathname
+import {PUBLIC_CANONICAL} from 'astro:env/server'
+const canonical = PUBLIC_CANONICAL + Astro.url.pathname
 ---
 
 <>
   {
-    import.meta.env.BASE_URL === PUBLIC_CANNONICAL && (
+    import.meta.env.BASE_URL === PUBLIC_CANONICAL && (
       <>
         <!-- Canonical Link -->
         <link rel="canonical" href={canonical} />
