@@ -1,8 +1,10 @@
 ---
 import {Picture} from 'astro:assets'
-import {getImage} from 'astro:assets'
-import {getCollection} from 'astro:content'
-import type {CollectionEntry, DataEntryMap} from 'astro:content'
+import {
+  getCollection,
+  type CollectionEntry,
+  type DataEntryMap
+} from 'astro:content'
 import {z} from 'zod'
 import {imageExifMetadata} from '../schemas.js'
 import {
@@ -11,7 +13,6 @@ import {
   extractImageData
 } from '../js/imageToolkit'
 import 'photoswipe/style.css'
-
 type ImageExifMetadata = z.infer<typeof imageExifMetadata>
 interface MetaPool extends Array<ImageExifMetadata> {}
 interface Props {
@@ -140,14 +141,14 @@ const targetCellWidthPx =
   </ul>
 </section>
 
-<style define:vars={{targetCellHeightPx, targetCellWidthPx}}>
+<style define:vars={{targetCellHeightPx, targetCellWidthPx}} is:global>
   .gallery {
     img {
       object-fit: cover;
     }
   }
 
-  .cell_wrapper,
+  .cell_li,
   .cell {
     /* stylelint-disable custom-property-pattern */
     background-color: var(--dominantColor);
@@ -162,7 +163,10 @@ const targetCellWidthPx =
   const lightbox = new PhotoSwipeLightbox({
     gallery: '.gallery',
     children: 'a',
-    pswpModule: () => import('photoswipe')
+    pswpModule: () => import('photoswipe'),
+    preloadFirstSlide: true,
+    returnFocus: true,
+    showHideAnimationType: 'zoom'
   })
   lightbox.init()
 </script>
