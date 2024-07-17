@@ -1,6 +1,6 @@
 ---
 // Conditionally put a link to cannonical mirror in the footer.
-// Relies on PUBLIC_CANNONICAL in .env or Github Secrets & Variables/Actions/Configure: Environment variables (non sensitive)
+// Relies on PUBLIC_CANNONICAL in .env or Github Settings: Environments / Environment Secrets
 import {PUBLIC_CANONICAL} from 'astro:env/server'
 
 console.log('PUBLIC_CANONICAL', PUBLIC_CANONICAL)
@@ -14,7 +14,7 @@ console.log('import.meta.env?.SITE', import.meta.env?.SITE)
 
 <>
   {
-    import.meta.env?.SITE && import.meta.env.BASE_URL === PUBLIC_CANONICAL && (
+    import.meta.env?.SITE !== PUBLIC_CANONICAL && (
       <li class="ml-1">
         <span class="dn di-ns" aira-hidden>
           |
