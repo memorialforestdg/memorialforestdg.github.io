@@ -3,14 +3,6 @@
 // Relies on PUBLIC_CANNONICAL set in both .env for dev, and in .github/workflows/astro.yml for deploy.
 
 import {PUBLIC_CANONICAL} from 'astro:env/server'
-
-console.log('PUBLIC_CANONICAL', PUBLIC_CANONICAL)
-console.log('import.meta.env.BASE_URL', import.meta.env.BASE_URL)
-console.log(
-  'import.meta.env.PUBLIC_CANONICAL',
-  import.meta.env.PUBLIC_CANONICAL
-)
-console.log('import.meta.env?.SITE', import.meta.env?.SITE)
 ---
 
 <>
