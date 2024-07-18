@@ -41,7 +41,7 @@ const {
   cellClasses = '',
   cellFormat = null,
   targetCellHeight = 180,
-  targetModalImageLongDim = 800,
+  targetModalImageLongDim = 1100,
   ramdomize = false
 } = Astro.props
 
@@ -156,17 +156,56 @@ const targetCellWidthPx =
     max-block-size: calc(var(--targetCellHeightPx));
     /* stylelint-enable custom-property-pattern */
   }
+
+  .pswp__bg {
+    --pswp-bg: var(--brand-lt);
+  }
+
+  .pswp__icn-shadow {
+    --pswp-icon-color-secondary: #333;
+  }
+
+  .pswp__icn {
+    --pswp-icon-color: var(--brand-teal-dk, #333);
+    --pswp-icon-color-secondary: var(--brand-teal-dk, #333);
+    --pswp-icon-stroke-width: 0.35;
+    --pswp-icon-stroke-color: var(--brand-lt, #fff);
+  }
+
+  .pswp__button.pswp__button--close {
+    margin-top: 10px;
+    margin-right: 20px;
+  }
+
+  .pswp__counter {
+    display: none;
+  }
 </style>
 
 <script>
+  // id="pswp__icn-arrow
   import PhotoSwipeLightbox from 'photoswipe/lightbox'
+  const leftArrowSVGString = `<svg aria-hidden="true" class="pswp__icn" width="20" height="20" viewBox="0 0 30 30" >
+      <path fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414" stroke-linecap="round" stroke="var(--pswp-icon-stroke-color)" stroke-width="var(--pswp-icon-stroke-width)" d="M15.7071 5.29289C16.0976 5.68342 16.0976 6.31658 15.7071 6.70711L10.4142 12L15.7071 17.2929C16.0976 17.6834 16.0976 18.3166 15.7071 18.7071C15.3165 19.0976 14.6834 19.0976 14.2929 18.7071L8.46963 12.8839C7.98148 12.3957 7.98148 11.6043 8.46963 11.1161L14.2929 5.29289C14.6834 4.90237 15.3165 4.90237 15.7071 5.29289Z" />
+    </svg>`
+  const closeSVGString = `<svg aria-hidden="true" class="pswp__icn" width="20" height="20" viewBox="0 0 20 20" >
+<path fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414" stroke-linecap="round" stroke="var(--pswp-icon-stroke-color)" stroke-width="var(--pswp-icon-stroke-width)"  d="M5.29289 5.29289C5.68342 4.90237 6.31658 4.90237 6.70711 5.29289L12 10.5858L17.2929 5.29289C17.6834 4.90237 18.3166 4.90237 18.7071 5.29289C19.0976 5.68342 19.0976 6.31658 18.7071 6.70711L13.4142 12L18.7071 17.2929C19.0976 17.6834 19.0976 18.3166 18.7071 18.7071C18.3166 19.0976 17.6834 19.0976 17.2929 18.7071L12 13.4142L6.70711 18.7071C6.31658 19.0976 5.68342 19.0976 5.29289 18.7071C4.90237 18.3166 4.90237 17.6834 5.29289 17.2929L10.5858 12L5.29289 6.70711C4.90237 6.31658 4.90237 5.68342 5.29289 5.29289Z" />
+</svg>`
+
   const lightbox = new PhotoSwipeLightbox({
+    arrowPrevSVG: leftArrowSVGString,
+    arrowNextSVG: leftArrowSVGString,
+    closeSVG: closeSVGString,
+    zoom: false,
+
     gallery: '.gallery',
     children: 'a',
+    bgOpacity: 0.8,
     pswpModule: () => import('photoswipe'),
     preloadFirstSlide: true,
     returnFocus: true,
-    showHideAnimationType: 'zoom'
+    showHideAnimationType: 'zoom',
+    padding: {top: 30, bottom: 30, left: 80, right: 80}
   })
   lightbox.init()
 </script>
