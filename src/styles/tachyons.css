@@ -14147,17 +14147,17 @@ bl-0 {
 }
 
 .di-underline-hover {
+  text-decoration: none;
   transition: border-color 300ms ease;
   border-block-end: 2px solid transparent;
-  text-decoration: none;
 }
 .di-underline-hover:hover,
 .di-underline-hover:focus {
+  text-decoration: none;
   outline: none;
   border-inline: none;
   border-block-start: none;
   border-block-end: 2px solid currentcolor;
-  text-decoration: none;
 }
 
 /* Can combine this with overflow-hidden to make background images grow on hover
@@ -14169,10 +14169,12 @@ bl-0 {
   -moz-osx-font-smoothing: grayscale;
 }
 .grow:hover,
-.grow:focus {
-  transform: scale(1.05);
+.grow:focus,
+.grow:focus-within {
+  transform: scale(1.02);
 }
-.grow:active {
+.grow:active,
+.grow:active:focus {
   transform: scale(0.9);
 }
 
