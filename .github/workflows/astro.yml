@@ -69,8 +69,8 @@ jobs:
       - name: Build with Astro
         # Make GitHub env vars available to astro as environment variable
         env:
-          PUBLIC_CANONICAL: ${{ vars.PUBLIC_CANONICAL }}
-          PUBLIC_MIRROR:    ${{ vars.PUBLIC_MIRROR }}
+          PUBLIC_CANONICAL: 'https://example.com'
+          PUBLIC_MIRROR: 'https://mirror.example.com'
         run: |
           ${{ steps.detect-package-manager.outputs.runner }} astro build \
             --site "${{ steps.pages.outputs.origin }}" \
