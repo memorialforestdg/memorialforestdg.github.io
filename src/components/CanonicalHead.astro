@@ -1,6 +1,7 @@
 ---
 // Conditionally put canonical link in the head
-// Relies on PUBLIC_CANNONICAL in .env or Github Settings: Environments / Environment Secrets
+// Relies on PUBLIC_CANNONICAL set in both .env for dev, and in .github/workflows/astro.yml for deploy.
+
 import {PUBLIC_CANONICAL} from 'astro:env/server'
 const canonical = PUBLIC_CANONICAL + Astro.url.pathname
 ---

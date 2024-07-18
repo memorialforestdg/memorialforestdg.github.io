@@ -1,6 +1,7 @@
 ---
 // Conditionally put a link to cannonical mirror in the footer.
-// Relies on PUBLIC_CANNONICAL in .env or Github Settings: Environments / Environment Secrets
+// Relies on PUBLIC_CANNONICAL set in both .env for dev, and in .github/workflows/astro.yml for deploy.
+
 import {PUBLIC_CANONICAL} from 'astro:env/server'
 
 console.log('PUBLIC_CANONICAL', PUBLIC_CANONICAL)
