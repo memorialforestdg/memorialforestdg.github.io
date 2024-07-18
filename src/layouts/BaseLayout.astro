@@ -8,9 +8,15 @@ interface Props {
   bannerImage?: ImageMetadata
   bannerAlt?: string
   maintenice?: boolean
+  ogThunmbnail?: ImageMetadata
 }
 
-const {pageTitle, bannerImage, bannerAlt, maintenice} = Astro.props
+const {pageTitle, bannerImage, bannerAlt, maintenice, ogThunmbnail} =
+  Astro.props
+
+// og LinkedIn: 1200 x 627    // https://www.linkedin.com/help/linkedin/answer/a521928
+// og FB: 1200 x 630          // https://developers.facebook.com/docs/sharing/webmasters/images/
+// og twitter: 1200 x 675    // https://developer.x.com/en/docs/twitter-for-websites/cards/overview/summary (NOT OG)
 ---
 
 <!doctype html>
@@ -19,7 +25,7 @@ const {pageTitle, bannerImage, bannerAlt, maintenice} = Astro.props
     <meta charset="UTF-8" />
     <meta
       name="description"
-      content="Remembering Together D&G - A Community Covid Memorial for Dumfries and Galloway."
+      content="Remembering Together D&G - A Community Covid Memorial for Dumfries and Galloway, Scotland."
     />
     <meta name="viewport" content="width=device-width" initial-scale='1.0"/' />
     <meta
@@ -33,12 +39,15 @@ const {pageTitle, bannerImage, bannerAlt, maintenice} = Astro.props
       media="(prefers-color-scheme: dark)"
     />
     <CanonicalHead />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:site_name" content="Dispersed Memorial Forest D&G" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="generator" content={Astro.generator} />
-    <title>{pageTitle}</title>
+    <title>Dispersed Memorial Forest D&G | {pageTitle}</title>
   </head>
   <body class={`no-js ${sluggo(pageTitle)}`}>
     <Header
@@ -49,25 +58,26 @@ const {pageTitle, bannerImage, bannerAlt, maintenice} = Astro.props
     />
     <slot />
     <Footer />
-  </body><style is:global>
-    /*
+    <style is:global>
+      /*
     @import "open-props/style";
     @import "open-props/normalize";
     @import "open-props/buttons";
     */
 
-    @import url('../styles/tachyons.css');
-    @import url('../styles/vars.css');
-    @import url('../styles/base.css');
-    @import url('../styles/atoms.css');
-    @import url('../styles/fonts.css');
-    @import url('../styles/typography.css');
-    @import url('photoswipe/style.css');
-  </style>
+      @import url('../styles/tachyons.css');
+      @import url('../styles/vars.css');
+      @import url('../styles/base.css');
+      @import url('../styles/atoms.css');
+      @import url('../styles/fonts.css');
+      @import url('../styles/typography.css');
+      @import url('photoswipe/style.css');
+    </style>
 
-  <script>
-    // Remove the 'no-js' class the body when the document is ready
-    document.body.classList.remove('no-js')
-    document.body.classList.add('js')
-  </script>
+    <script>
+      // Remove the 'no-js' class the body when the document is ready
+      document.body.classList.remove('no-js')
+      document.body.classList.add('js')
+    </script>
+  </body>
 </html>
