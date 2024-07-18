@@ -1,7 +1,7 @@
 :root {
   color: var(--brand-dk);
   background: var(--brand-surface-1);
-  scroll-behavior: smooth;
+
 }
 
 /* Chrome overscroll bg-color */
@@ -61,7 +61,7 @@ footer {
   inline-size: 100%;
   max-inline-size: var(--width-max-content, 1042px);
   margin: 0.5em auto;
-  padding: 0 1em;
+  padding: 0 2em;
 }
 
 .full-width {
@@ -123,3 +123,4 @@ footer {
   gap: 2rem;
   padding: 0;
 }
+
