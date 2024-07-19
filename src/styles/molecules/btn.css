@@ -1,0 +1,21 @@
+.btn {
+  display: inline-block;
+  padding: 0.5em 2em;
+  font-weight: 700;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  text-decoration: none;
+  border: 0;
+  border-radius: 100px;
+  outline: 2px dotted transparent;
+  outline-offset: .5ch;
+  cursor: pointer;
+  inline-size: fit-content;
+}
+
+.btn:hover,
+.btn:focus {
+  color: var(--brand-surface-1);
+  background-color: var(--brand-surface-2);
+  transition: background-color 0.15s ease-in, color 0.15s ease-in;
+}
