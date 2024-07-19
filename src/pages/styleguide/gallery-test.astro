@@ -8,6 +8,9 @@ import img2 from '../../images/RememberingTogetherDG_imageGregorAnderson_full.jp
 <BaseLayout pageTitle="Test Gallery">
   <main id="main">
     <div class="container full-width">
+      <h2>
+        A basic gallery, with iamges loaded directly, and a custom cell height.
+      </h2>
       <Gallery
         images={[img1, img2]}
         galleryWraperClasses={'flex flex-wrap flex-row bt bb w-100 justify-center b--desert-200'}
@@ -16,7 +19,7 @@ import img2 from '../../images/RememberingTogetherDG_imageGregorAnderson_full.jp
         cellClasses={'flex pa-0 ma-0 bg-brand-purple grow shadow-hover br1'}
         targetCellHeight={225}
       />
-
+      <h2>A gallery loaded via collection & album IDs</h2>
       <Gallery
         collectionId="albums"
         albumId="foo"
