@@ -251,6 +251,12 @@ const {title, bannerImage, bannerAlt, maintenice} = Astro.props
     }
   }
 
+  @media screen and (max-width: 550px) {
+    .header__image {
+      block-size: 450px;
+    }
+  }
+
   .header__title {
     inset-block-end: -1px;
     background: var(--header-img-gradent);
@@ -258,7 +264,6 @@ const {title, bannerImage, bannerAlt, maintenice} = Astro.props
   }
 
   /* Navigation title */
-
   .nav__toggle {}
 
   button.nav__toggle {
@@ -297,7 +302,6 @@ const {title, bannerImage, bannerAlt, maintenice} = Astro.props
   }
 
   /* progressive enhancement */
-
   /* stylelint-disable no-duplicate-selectors, no-descending-specificity */
   button.nav__toggle {
     display: none;
