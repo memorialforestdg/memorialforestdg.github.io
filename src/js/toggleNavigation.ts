@@ -152,6 +152,9 @@ function initializeNavigation(navToggle, navDrawer, opts = { cssProp: 'grid-temp
         toggleNavDrawer(navToggle, navDrawer)
     })
 
+   // Reveal navToggle by removing the [hidden] attribute
+   navToggle.removeAttribute('hidden')
+
     // Toggle the nav drawer display state on subsequent animations
     navDrawer.addEventListener('transitionend', (e) => toggleDisplayAfterTransition(e, navDrawer, opts ))
 
