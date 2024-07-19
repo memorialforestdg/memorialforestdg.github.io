@@ -66,26 +66,3 @@
   }
 }
 
-  /*
-    Dropcaps
-    We've also added a color override .dropcap.--dc-colorName-XXX
-    This has been added through Solus Tachyons.
-  */
-  .dropcap > p:first-of-type::first-letter {
-    z-index: 10;
-    display: inline-block;
-    float: inline-start;
-    color: var(--brand-cyan-dk);
-    font-size: clamp(2rem, 2.5rlh, 2.5rlh);
-    font-family: var(--serif);
-    margin-block: -1rem -1rem;
-    padding-block: 0;
-    padding-inline: 0.05ch;
-  }
-
-
-  .dropcap {
-    position: relative;
-    z-index: 0;
-    background-color: transparent;
-  }
