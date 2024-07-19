@@ -1,33 +1,47 @@
-.gap-0 {
-  gap: var(--spacing-0, 0);
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  align-items: center;
+  inline-size: 100%;
+  max-inline-size: var(--width-max-content, 1042px);
+  margin: 0.5em auto;
+  padding: 0 2em;
 }
 
-.gap-1 {
-  gap: var(--spacing-1, 0.25rem);
+.full-width {
+  padding: 1em inherit;
 }
 
-.gap-2 {
-  gap: var(--spacing-2, 0.5rem);
+
+/* Stacking context https://every-layout.dev/layouts/stack/ */
+.stack {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
-.gap-3 {
-  gap: var(--spacing-3, 1rem);
+.stack > * {
+  margin-block: 0;
 }
 
-.gap-4 {
-  gap: var(--spacing-4, 2rem);
+.stack > * + * {
+  margin-block-start: var(--spaceing-2, 1.5rem);
 }
 
-.gap-5 {
-  gap: var(--spacing-5, 4rem);
+.text-gradient {
+  background-image: var(--accent-gradient);
+  background-position: 0%;
+  background-size: 400%;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.gap-6 {
-  gap: var(--spacing-6, 8rem);
-}
-
-.gap-7 {
-  gap: var(--spacing-7, 16rem);
+.link-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20ch, 1fr));
+  gap: 2rem;
+  padding: 0;
 }
 
 .poly-transition {
