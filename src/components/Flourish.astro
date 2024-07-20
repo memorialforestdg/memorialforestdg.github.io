@@ -11,7 +11,7 @@ import {getImage} from 'astro:assets'
  * NOTE:The style declrations are added manually at this time.
  * If you add an image to the `/src/images/flourishes` folder you must also manually add it to the style secetion below.
  *
- * @TODO What is the tree shaking story? Are un-used props removed?
+ * @TODO What is the tree shaking story? Are un-used props rremoved?
  */
 
 interface Props {
@@ -102,7 +102,6 @@ const cssProps = await Promise.all(
 <style is:global define:vars={{cssProps}}>
   .flourish > p:first-of-type {
     position: relative;
-    z-index: 0;
     background-color: transparent;
   }
 
@@ -112,16 +111,17 @@ const cssProps = await Promise.all(
     display: block;
     background-repeat: no-repeat;
     background-size: cover;
+    opacity: 0.75;
     transition: transform 0.5s ease-in-out;
     content: '';
-    inset-block-start: 0.5em;
+    inset-block-start: -1.5rem;
     inline-size: 100px;
     block-size: 100px;
-    inset-inline-start: -4em;
+    inset-inline-start: calc(var(--fluid-base) * -2.5);
   }
 
   /*
-    The css custom props are generated on the fly by the Flourish component, but you have to manually assign them below to clases below.
+    The css custom props are generated on the fly by the Flourish component, but you have to manually assign threm below to clases below.
     In some respects this is good, as you can finesse the position ect for each image.
   */
 
@@ -131,148 +131,94 @@ const cssProps = await Promise.all(
     background-image: var(--alder-fb);
     background-image: var(--alder);
     transform: rotate(-20deg);
-    opacity: 0.75;
-    inset-block-start: -2em;
-    inline-size: 100px;
-    block-size: 100px;
   }
 
   .flourish.--apple > p:first-of-type::before {
     background-image: var(--apple-fb);
     background-image: var(--apple);
-    transform: rotate(70deg);
+    transform: rotate(10deg);
     opacity: 0.65;
-    inset-block-start: -2em;
-    inset-inline-start: -4em;
-    inline-size: 100px;
-    block-size: 100px;
   }
 
   .flourish.--aspen > p:first-of-type::before {
     background-image: var(--aspen-fb);
     background-image: var(--aspen);
     transform: rotate(20deg);
-    opacity: 0.75;
-    inset-block-start: -2em;
-    inline-size: 100px;
-    block-size: 100px;
+    inset-block-start: -2rem;
+    inset-inline-start: calc(var(--fluid-base) * -3);
   }
 
   .flourish.--beech > p:first-of-type::before {
     background-image: var(--beech-fb);
     background-image: var(--beech);
     transform: rotate(20deg);
-    opacity: 0.75;
-    inset-block-start: -2em;
-    inset-inline-start: -4em;
-    inline-size: 100px;
-    block-size: 100px;
   }
 
   .flourish.--downybirch > p:first-of-type::before {
     background-image: var(--downybirch-fb);
     background-image: var(--downybirch);
     transform: rotate(20deg);
-    opacity: 0.75;
-    inset-block-start: -2em;
-    inset-inline-start: -4em;
-    inline-size: 100px;
-    block-size: 100px;
+    inset-block-start: -2rem;
+    inset-inline-start: calc(var(--fluid-base) * -2);
   }
 
   .flourish.--englishoak > p:first-of-type::before {
     background-image: var(--englishoak-fb);
     background-image: var(--englishoak);
     transform: rotate(20deg);
-    opacity: 0.75;
-    inset-block-start: -2em;
-    inset-inline-start: -4em;
-    inline-size: 100px;
-    block-size: 100px;
   }
 
   .flourish.--fieldmaple > p:first-of-type::before {
     background-image: var(--fieldmaple-fb);
     background-image: var(--fieldmaple);
     transform: rotate(90deg);
-    opacity: 0.75;
-    inset-block-start: -2em;
-    inset-inline-start: -4em;
-    inline-size: 100px;
-    block-size: 100px;
   }
 
   .flourish.--greywillow > p:first-of-type::before {
     background-image: var(--greywillow-fb);
     background-image: var(--greywillow);
-    inset-block-start: -2em;
-    opacity: 0.75;
-    inset-inline-start: -4em;
-    inline-size: 100px;
-    block-size: 100px;
+    inset-block-start: -2rem;
   }
 
   .flourish.--hawthorn > p:first-of-type::before {
     background-image: var(--hawthorn-fb);
     background-image: var(--hawthorn);
     transform: rotate(-50deg);
-    opacity: 0.75;
-    inset-block-start: -2em;
-    inset-inline-start: -4em;
-    inline-size: 100px;
-    block-size: 100px;
+    inset-block-start: -2rem;
   }
 
   .flourish.--holly > p:first-of-type::before {
     background-image: var(--holly-fb);
     background-image: var(--holly);
-    inset-block-start: -2em;
-    opacity: 0.75;
-    inset-inline-start: -5em;
-    inline-size: 100px;
-    block-size: 100px;
+    inset-block-start: -2rem;
+    inset-inline-start: calc(var(--fluid-base) * -3);
   }
 
   .flourish.--horsechestnut > p:first-of-type::before {
     background-image: var(--horsechestnut-fb);
     background-image: var(--horsechestnut);
     transform: rotate(20deg);
-    opacity: 0.75;
-    inset-block-start: -2em;
-    inset-inline-start: -4em;
-    inline-size: 100px;
-    block-size: 100px;
   }
 
   .flourish.--rowan-berries > p:first-of-type::before {
     background-image: var(--rowan-berries-fb);
     background-image: var(--rowan-berries);
-    transform: rotate(20deg);
-    opacity: 0.75;
-    inset-block-start: -2.3em;
-    inset-inline-start: -3em;
-    inline-size: 100px;
-    block-size: 100px;
+    transform: rotate(-10deg);
+    inset-block-start: -1rem;
   }
 
   .flourish.--rowan-leaves > p:first-of-type::before {
     background-image: var(--rowan-leaves-fb);
     background-image: var(--rowan-leaves);
-    inset-block-start: -1.8em;
-    opacity: 0.75;
-    inset-inline-start: -3em;
-    inline-size: 100px;
-    block-size: 100px;
+    inset-block-start: -1.8rem;
+    inset-inline-start: -3rem;
   }
 
   .flourish.--silverbirch > p:first-of-type::before {
     background-image: var(--silverbirch-fb);
     background-image: var(--silverbirch, --silverbirch-fb);
     transform: rotate(-20deg);
-    opacity: 0.75;
-    inset-block-start: -1.8em;
-    inset-inline-start: -3em;
-    inline-size: 100px;
-    block-size: 100px;
+    inset-block-start: -1.8rem;
+    inset-inline-start: -3rem;
   }
 </style>
