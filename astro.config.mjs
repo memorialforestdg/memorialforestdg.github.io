@@ -1,6 +1,5 @@
-import { defineConfig, envField } from "astro/config"
-
-import prebuild from './src/intergrations/prebuild'
+import { defineConfig, envField } from "astro/config";
+import prebuild from './src/intergrations/prebuild';
 
 // Icons
 import icon from 'astro-icon';
@@ -16,17 +15,28 @@ import icon from 'astro-icon';
 
 import relativeLinks from "astro-relative-links";
 
+import mdx from "@astrojs/mdx";
+
 // https://astro.build/config
 export default defineConfig({
   // site: 'https://example.com', // We are not setting this as we want to use relative links, and deploy to mutiple domains eg yourname.github.io and yourname.com.
-  integrations: [icon(), relativeLinks()], // robotsTxt(), sitemap(), // prebuild()
+  integrations: [icon(), relativeLinks(), mdx()],
+  // robotsTxt(), sitemap(), // prebuild()
   output: 'static',
   experimental: {
-        env: {
-            schema: {
-                PUBLIC_CANONICAL: envField.string({ context: "server", access: "public", optional: true }),
-                PUBLIC_MIRROR: envField.string({ context: "server", access: "public", optional: true }),
-            },
-        }
+    env: {
+      schema: {
+        PUBLIC_CANONICAL: envField.string({
+          context: "server",
+          access: "public",
+          optional: true
+        }),
+        PUBLIC_MIRROR: envField.string({
+          context: "server",
+          access: "public",
+          optional: true
+        })
       }
+    }
+  }
 });
