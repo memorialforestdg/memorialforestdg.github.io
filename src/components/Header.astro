@@ -255,6 +255,10 @@ const {title, bannerImage, bannerAlt, maintenice} = Astro.props
     .header__image {
       block-size: 450px;
     }
+
+    .header__image:not(img) {
+       block-size: calc(var(--header-height) + 2cap);
+       }
   }
 
   .header__title {
