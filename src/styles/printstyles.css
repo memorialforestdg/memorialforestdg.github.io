@@ -4,6 +4,7 @@
 @media print {
   :root {
     --fluid-base: min(max(.9rem, 4vw), 12pt);
+    --brand-lt: white;
   }
 
   /* hide some structure */
@@ -26,6 +27,11 @@
     --measure-1: 90%;
     --measure-2: 90%;
     --measure-3: 90%;
+
+  }
+
+  main a::after {
+    content: " [" attr(href) "] ";
   }
 
   /* stylelint-disable-next-line no-descending-specificity */
