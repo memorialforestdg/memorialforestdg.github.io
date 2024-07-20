@@ -1,0 +1,80 @@
+---
+interface Props {
+  style?: string
+  width?: string
+  height?: string
+  lat: number
+  lon: number
+  zoom?: string
+  classes?: string
+}
+
+const {
+  style = 'border  : 1px solid var(--brand-surface-1);',
+  lat = -3.6107,
+  lon = 55.0691,
+  zoom = '19',
+  width = '100%',
+  height = '350px',
+  classes = ''
+} = Astro.props
+---
+
+<>
+  <open-map
+    id="map"
+    style={style}
+    class={classes}
+    data-lon={lon}
+    data-lat={lat}
+    data-zoom={zoom}
+  >
+  </open-map>
+</>
+
+<script type="module">
+  import '../../node_modules/leaflet'
+
+  class OpenMap extends HTMLElement {
+    constructor() {
+      super()
+      const {lon, lat, zoom} = this.dataset
+      const mapOptions = {
+        center: [lon, lat],
+        zoom: '15'
+      }
+      const map = new L.map('map', mapOptions)
+      const layer = new L.TileLayer(
+        'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+        {
+          maxZoom: 19,
+          attribution:
+            '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }
+      )
+      const icon = L.icon({
+        iconUrl: '../../node_modules/leaflet/dist/images/marker-icon.png'
+      })
+      const marker = L.marker([lon, lat], {icon}).addTo(map)
+      map.addLayer(layer)
+    }
+  }
+
+  customElements.define('open-map', OpenMap)
+</script>
+
+<style define:vars={{width, height}}>
+  /* @import url('leaflet/dist/leaflet.css'); */
+  @import url('http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css');
+
+  .leaflet-attribution-flag {
+    display: none !important;
+  }
+
+  #map {
+    display: block;
+    width: var(--width);
+    height: var(--height);
+    margin-block-end: var(--spacing-4);
+  }
+</style>
