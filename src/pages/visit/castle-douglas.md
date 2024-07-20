@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/MDPagesLayout.astro
+layout: ../../layouts/LocationsLayout.astro
 pageTitle: Castle Douglas
 bannerImage: '../images/ex-tree-planting/AlderTreegrowingoutofTreeTube_Threave.jpg'
 bannerAlt: 'The launching of the forest in Dumfries.'
