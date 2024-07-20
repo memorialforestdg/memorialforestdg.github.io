@@ -3,6 +3,7 @@ layout: ../../layouts/MDPagesLayout.astro
 pageTitle: Remembering Together Dumfries & Galloway
 bannerImage: '../images/RememberingTogetherWBF22LowRes74_ImageColinTennant.jpg'
 bannerAlt: 'Remembering Together WBF22 High Res57_Image Colin Tennant'
+flourishClasses: ['--alder', 'dropcap', '--dc-cerise-800']
 ---
 
 ## The Story
