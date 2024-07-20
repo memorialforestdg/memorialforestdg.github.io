@@ -1,7 +1,7 @@
 blockquote {
   position: relative;
   z-index: 0;
-  font-size: var(--f2);
+  font-size: var(--f3);
   font-family: var(--serif);
   font-style: italic;
   line-height: 1.2;
