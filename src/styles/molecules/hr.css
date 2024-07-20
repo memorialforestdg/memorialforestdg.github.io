@@ -1,0 +1,38 @@
+
+
+hr {
+   --flare-radius: 30px;
+
+    display: block;
+    width: 100%;
+    margin-block: var(--flare-radius);
+    height: var(--flare-radius);
+    overflow: visible; /* For IE */
+      text-align: center;
+    border-color: var(--dropcap-color, var(--brand-cyan-dk));
+    border-style: solid;
+    border-width: 1px 0 0;
+    border-radius: 20px;
+}
+
+hr::before {
+    display: block;
+    height: var(--flare-radius);
+    margin-top: calc(-1 * var(--flare-radius));
+    border-color: var(--dropcap-color, var(--brand-cyan-dk));
+    border-style: solid;
+    border-width: 0 0 1px;
+    border-radius: var(--flare-radius);
+    content: "";
+
+}
+
+hr::after {
+  position: relative;
+  top: calc(calc(var(--f4) / 2) * -1);
+  display: inline-block;
+  padding: 0 calc(var(--f4) / 2);
+  font-size: var(--f4);
+  background: var(--brand-lt);
+  content: "🍂" / "";
+}
