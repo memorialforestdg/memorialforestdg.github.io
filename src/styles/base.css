@@ -1,54 +1,12 @@
-:root {
-  color: var(--brand-dk);
-  background: var(--brand-surface-1);
+@import url('./tachyons.css');
+@import url('./vars.css');
+@import url('./fonts.css');
+@import url('./typography.css');
+@import url('./structure.css');
+@import url('./atoms.css');
+@import url('./molecules/btn.css');
+@import url('./molecules/drop-cap.css');
+@import url('./molecules/quotes.css');
+@import url('./molecules/hr.css');
 
-}
 
-/* Chrome overscroll bg-color */
-html::before {
-	position: fixed;
-  inset-block-start: 0;
-  inset-inline-start: 0;
-	z-index: -1;
-  background-color: var(--brand-surface-2);
-	content: "";
-	block-size: 100vh;
-	inline-size: 100vw;
-}
-
-*:focus:not(.di-underline-hover) {
-  outline: 2px dotted currentcolor;
-  outline-offset: .5ch;
-  transition: outline 50ms ease-in-out;
-  margin-block-end: 0;
-}
-
-*:focus:not(.di-underline-hover, .btn, .nav__toggle ){
-   border-radius: 3px;
-}
-
-body {
-  display: flex;
-  flex-direction: column;
-  min-block-size: 100vh;
-  margin: 0 auto;
-  color: var(--brand-surface-2);
-  overflow-wrap: break-word;
-  background-color: var(--brand-surface-1);
-}
-
-@media (max-width: 1280px) {
-  body {
-    max-inline-size: calc( 1280px - 1em);
-  }
-}
-
-main {
-  flex: 1 0 auto;
-  padding-block-end: 2em;
-}
-
-header,
-footer {
-  flex: 0 0 auto;
-}
