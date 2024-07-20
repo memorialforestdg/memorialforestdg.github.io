@@ -6062,612 +6062,1224 @@ bl-0 {
   color: var(--brand-dk, hsl(217, 6%, 27%));
 }
 
+.dropcap.--dc-brand-dk {
+  --dropcap-color: var(--brand-dk, hsl(217, 6%, 27%));
+}
+
 .dropcap.--dc-brand-lt > p:first-of-type::first-letter {
   color: var(--brand-lt, hsl(60, 20%, 97%));
+}
+
+.dropcap.--dc-brand-lt {
+  --dropcap-color: var(--brand-lt, hsl(60, 20%, 97%));
 }
 
 .dropcap.--dc-brand-red-lt > p:first-of-type::first-letter {
   color: var(--brand-red-lt, hsl(342, 100%, 89%));
 }
 
+.dropcap.--dc-brand-red-lt {
+  --dropcap-color: var(--brand-red-lt, hsl(342, 100%, 89%));
+}
+
 .dropcap.--dc-brand-red > p:first-of-type::first-letter {
   color: var(--brand-red, hsl(337, 100%, 49%));
+}
+
+.dropcap.--dc-brand-red {
+  --dropcap-color: var(--brand-red, hsl(337, 100%, 49%));
 }
 
 .dropcap.--dc-brand-red-dk > p:first-of-type::first-letter {
   color: var(--brand-red-dk, hsl(334, 100%, 35%));
 }
 
+.dropcap.--dc-brand-red-dk {
+  --dropcap-color: var(--brand-red-dk, hsl(334, 100%, 35%));
+}
+
 .dropcap.--dc-brand-orange-lt > p:first-of-type::first-letter {
   color: var(--brand-orange-lt, hsl(20, 93%, 83%));
+}
+
+.dropcap.--dc-brand-orange-lt {
+  --dropcap-color: var(--brand-orange-lt, hsl(20, 93%, 83%));
 }
 
 .dropcap.--dc-brand-orange > p:first-of-type::first-letter {
   color: var(--brand-orange, hsl(15, 92%, 61%));
 }
 
+.dropcap.--dc-brand-orange {
+  --dropcap-color: var(--brand-orange, hsl(15, 92%, 61%));
+}
+
 .dropcap.--dc-brand-orange-dk > p:first-of-type::first-letter {
   color: var(--brand-orange-dk, hsl(3, 76%, 34%));
+}
+
+.dropcap.--dc-brand-orange-dk {
+  --dropcap-color: var(--brand-orange-dk, hsl(3, 76%, 34%));
 }
 
 .dropcap.--dc-brand-yellow-lt > p:first-of-type::first-letter {
   color: var(--brand-yellow-lt, hsl(57, 97%, 88%));
 }
 
+.dropcap.--dc-brand-yellow-lt {
+  --dropcap-color: var(--brand-yellow-lt, hsl(57, 97%, 88%));
+}
+
 .dropcap.--dc-brand-yellow > p:first-of-type::first-letter {
   color: var(--brand-yellow, hsl(53, 98%, 64%));
+}
+
+.dropcap.--dc-brand-yellow {
+  --dropcap-color: var(--brand-yellow, hsl(53, 98%, 64%));
 }
 
 .dropcap.--dc-brand-yellow-dk > p:first-of-type::first-letter {
   color: var(--brand-yellow-dk, hsl(34, 82%, 29%));
 }
 
+.dropcap.--dc-brand-yellow-dk {
+  --dropcap-color: var(--brand-yellow-dk, hsl(34, 82%, 29%));
+}
+
 .dropcap.--dc-brand-green-lt > p:first-of-type::first-letter {
   color: var(--brand-green-lt, hsl(123, 55%, 85%));
+}
+
+.dropcap.--dc-brand-green-lt {
+  --dropcap-color: var(--brand-green-lt, hsl(123, 55%, 85%));
 }
 
 .dropcap.--dc-brand-green > p:first-of-type::first-letter {
   color: var(--brand-green, hsl(124, 49%, 45%));
 }
 
+.dropcap.--dc-brand-green {
+  --dropcap-color: var(--brand-green, hsl(124, 49%, 45%));
+}
+
 .dropcap.--dc-brand-green-dk > p:first-of-type::first-letter {
   color: var(--brand-green-dk, hsl(124, 45%, 24%));
+}
+
+.dropcap.--dc-brand-green-dk {
+  --dropcap-color: var(--brand-green-dk, hsl(124, 45%, 24%));
 }
 
 .dropcap.--dc-brand-teal-lt > p:first-of-type::first-letter {
   color: var(--brand-teal-lt, hsl(184, 55%, 82%));
 }
 
+.dropcap.--dc-brand-teal-lt {
+  --dropcap-color: var(--brand-teal-lt, hsl(184, 55%, 82%));
+}
+
 .dropcap.--dc-brand-teal > p:first-of-type::first-letter {
   color: var(--brand-teal, hsl(187, 55%, 43%));
+}
+
+.dropcap.--dc-brand-teal {
+  --dropcap-color: var(--brand-teal, hsl(187, 55%, 43%));
 }
 
 .dropcap.--dc-brand-teal-dk > p:first-of-type::first-letter {
   color: var(--brand-teal-dk, hsl(192, 41%, 27%));
 }
 
+.dropcap.--dc-brand-teal-dk {
+  --dropcap-color: var(--brand-teal-dk, hsl(192, 41%, 27%));
+}
+
 .dropcap.--dc-brand-cyan-lt > p:first-of-type::first-letter {
   color: var(--brand-cyan-lt, hsl(196, 100%, 86%));
+}
+
+.dropcap.--dc-brand-cyan-lt {
+  --dropcap-color: var(--brand-cyan-lt, hsl(196, 100%, 86%));
 }
 
 .dropcap.--dc-brand-cyan > p:first-of-type::first-letter {
   color: var(--brand-cyan, hsl(194, 100%, 59%));
 }
 
+.dropcap.--dc-brand-cyan {
+  --dropcap-color: var(--brand-cyan, hsl(194, 100%, 59%));
+}
+
 .dropcap.--dc-brand-cyan-dk > p:first-of-type::first-letter {
   color: var(--brand-cyan-dk, hsl(197, 100%, 28%));
+}
+
+.dropcap.--dc-brand-cyan-dk {
+  --dropcap-color: var(--brand-cyan-dk, hsl(197, 100%, 28%));
 }
 
 .dropcap.--dc-brand-purple-lt > p:first-of-type::first-letter {
   color: var(--brand-purple-lt, hsl(284, 61%, 83%));
 }
 
+.dropcap.--dc-brand-purple-lt {
+  --dropcap-color: var(--brand-purple-lt, hsl(284, 61%, 83%));
+}
+
 .dropcap.--dc-brand-purple > p:first-of-type::first-letter {
   color: var(--brand-purple, hsl(287, 46%, 54%));
+}
+
+.dropcap.--dc-brand-purple {
+  --dropcap-color: var(--brand-purple, hsl(287, 46%, 54%));
 }
 
 .dropcap.--dc-brand-purple-dk > p:first-of-type::first-letter {
   color: var(--brand-purple-dk, hsl(288, 46%, 33%));
 }
 
+.dropcap.--dc-brand-purple-dk {
+  --dropcap-color: var(--brand-purple-dk, hsl(288, 46%, 33%));
+}
+
 .dropcap.--dc-jet-50 > p:first-of-type::first-letter {
   color: var(--jet-50, hsl(180, 5%, 96%));
+}
+
+.dropcap.--dc-jet-50 {
+  --dropcap-color: var(--jet-50, hsl(180, 5%, 96%));
 }
 
 .dropcap.--dc-jet-100 > p:first-of-type::first-letter {
   color: var(--jet-100, hsl(216, 10%, 90%));
 }
 
+.dropcap.--dc-jet-100 {
+  --dropcap-color: var(--jet-100, hsl(216, 10%, 90%));
+}
+
 .dropcap.--dc-jet-200 > p:first-of-type::first-letter {
   color: var(--jet-200, hsl(213, 10%, 82%));
+}
+
+.dropcap.--dc-jet-200 {
+  --dropcap-color: var(--jet-200, hsl(213, 10%, 82%));
 }
 
 .dropcap.--dc-jet-300 > p:first-of-type::first-letter {
   color: var(--jet-300, hsl(214, 9%, 69%));
 }
 
+.dropcap.--dc-jet-300 {
+  --dropcap-color: var(--jet-300, hsl(214, 9%, 69%));
+}
+
 .dropcap.--dc-jet-400 > p:first-of-type::first-letter {
   color: var(--jet-400, hsl(210, 8%, 53%));
+}
+
+.dropcap.--dc-jet-400 {
+  --dropcap-color: var(--jet-400, hsl(210, 8%, 53%));
 }
 
 .dropcap.--dc-jet-500 > p:first-of-type::first-letter {
   color: var(--jet-500, hsl(213, 9%, 43%));
 }
 
+.dropcap.--dc-jet-500 {
+  --dropcap-color: var(--jet-500, hsl(213, 9%, 43%));
+}
+
 .dropcap.--dc-jet-600 > p:first-of-type::first-letter {
   color: var(--jet-600, hsl(214, 9%, 36%));
+}
+
+.dropcap.--dc-jet-600 {
+  --dropcap-color: var(--jet-600, hsl(214, 9%, 36%));
 }
 
 .dropcap.--dc-jet-700 > p:first-of-type::first-letter {
   color: var(--jet-700, hsl(220, 8%, 31%));
 }
 
+.dropcap.--dc-jet-700 {
+  --dropcap-color: var(--jet-700, hsl(220, 8%, 31%));
+}
+
 .dropcap.--dc-jet-800 > p:first-of-type::first-letter {
   color: var(--jet-800, hsl(217, 6%, 27%));
+}
+
+.dropcap.--dc-jet-800 {
+  --dropcap-color: var(--jet-800, hsl(217, 6%, 27%));
 }
 
 .dropcap.--dc-jet-900 > p:first-of-type::first-letter {
   color: var(--jet-900, hsl(220, 6%, 20%));
 }
 
+.dropcap.--dc-jet-900 {
+  --dropcap-color: var(--jet-900, hsl(220, 6%, 20%));
+}
+
 .dropcap.--dc-jet-950 > p:first-of-type::first-letter {
   color: var(--jet-950, hsl(220, 8%, 15%));
+}
+
+.dropcap.--dc-jet-950 {
+  --dropcap-color: var(--jet-950, hsl(220, 8%, 15%));
 }
 
 .dropcap.--dc-desert-50 > p:first-of-type::first-letter {
   color: var(--desert-50, hsl(60, 20%, 97%));
 }
 
+.dropcap.--dc-desert-50 {
+  --dropcap-color: var(--desert-50, hsl(60, 20%, 97%));
+}
+
 .dropcap.--dc-desert-100 > p:first-of-type::first-letter {
   color: var(--desert-100, hsl(67, 19%, 92%));
+}
+
+.dropcap.--dc-desert-100 {
+  --dropcap-color: var(--desert-100, hsl(67, 19%, 92%));
 }
 
 .dropcap.--dc-desert-200 > p:first-of-type::first-letter {
   color: var(--desert-200, hsl(60, 19%, 83%));
 }
 
+.dropcap.--dc-desert-200 {
+  --dropcap-color: var(--desert-200, hsl(60, 19%, 83%));
+}
+
 .dropcap.--dc-desert-300 > p:first-of-type::first-letter {
   color: var(--desert-300, hsl(58, 19%, 72%));
+}
+
+.dropcap.--dc-desert-300 {
+  --dropcap-color: var(--desert-300, hsl(58, 19%, 72%));
 }
 
 .dropcap.--dc-desert-400 > p:first-of-type::first-letter {
   color: var(--desert-400, hsl(54, 20%, 61%));
 }
 
+.dropcap.--dc-desert-400 {
+  --dropcap-color: var(--desert-400, hsl(54, 20%, 61%));
+}
+
 .dropcap.--dc-desert-500 > p:first-of-type::first-letter {
   color: var(--desert-500, hsl(51, 19%, 53%));
+}
+
+.dropcap.--dc-desert-500 {
+  --dropcap-color: var(--desert-500, hsl(51, 19%, 53%));
 }
 
 .dropcap.--dc-desert-600 > p:first-of-type::first-letter {
   color: var(--desert-600, hsl(48, 18%, 48%));
 }
 
+.dropcap.--dc-desert-600 {
+  --dropcap-color: var(--desert-600, hsl(48, 18%, 48%));
+}
+
 .dropcap.--dc-desert-700 > p:first-of-type::first-letter {
   color: var(--desert-700, hsl(43, 17%, 40%));
+}
+
+.dropcap.--dc-desert-700 {
+  --dropcap-color: var(--desert-700, hsl(43, 17%, 40%));
 }
 
 .dropcap.--dc-desert-800 > p:first-of-type::first-letter {
   color: var(--desert-800, hsl(41, 16%, 34%));
 }
 
+.dropcap.--dc-desert-800 {
+  --dropcap-color: var(--desert-800, hsl(41, 16%, 34%));
+}
+
 .dropcap.--dc-desert-900 > p:first-of-type::first-letter {
   color: var(--desert-900, hsl(44, 15%, 28%));
+}
+
+.dropcap.--dc-desert-900 {
+  --dropcap-color: var(--desert-900, hsl(44, 15%, 28%));
 }
 
 .dropcap.--dc-desert-950 > p:first-of-type::first-letter {
   color: var(--desert-950, hsl(40, 16%, 15%));
 }
 
+.dropcap.--dc-desert-950 {
+  --dropcap-color: var(--desert-950, hsl(40, 16%, 15%));
+}
+
 .dropcap.--dc-cerise-50 > p:first-of-type::first-letter {
   color: var(--cerise-50, hsl(345, 100%, 97%));
+}
+
+.dropcap.--dc-cerise-50 {
+  --dropcap-color: var(--cerise-50, hsl(345, 100%, 97%));
 }
 
 .dropcap.--dc-cerise-100 > p:first-of-type::first-letter {
   color: var(--cerise-100, hsl(345, 100%, 94%));
 }
 
+.dropcap.--dc-cerise-100 {
+  --dropcap-color: var(--cerise-100, hsl(345, 100%, 94%));
+}
+
 .dropcap.--dc-cerise-200 > p:first-of-type::first-letter {
   color: var(--cerise-200, hsl(342, 100%, 89%));
+}
+
+.dropcap.--dc-cerise-200 {
+  --dropcap-color: var(--cerise-200, hsl(342, 100%, 89%));
 }
 
 .dropcap.--dc-cerise-300 > p:first-of-type::first-letter {
   color: var(--cerise-300, hsl(342, 100%, 80%));
 }
 
+.dropcap.--dc-cerise-300 {
+  --dropcap-color: var(--cerise-300, hsl(342, 100%, 80%));
+}
+
 .dropcap.--dc-cerise-400 > p:first-of-type::first-letter {
   color: var(--cerise-400, hsl(341, 100%, 68%));
+}
+
+.dropcap.--dc-cerise-400 {
+  --dropcap-color: var(--cerise-400, hsl(341, 100%, 68%));
 }
 
 .dropcap.--dc-cerise-500 > p:first-of-type::first-letter {
   color: var(--cerise-500, hsl(339, 100%, 57%));
 }
 
+.dropcap.--dc-cerise-500 {
+  --dropcap-color: var(--cerise-500, hsl(339, 100%, 57%));
+}
+
 .dropcap.--dc-cerise-600 > p:first-of-type::first-letter {
   color: var(--cerise-600, hsl(337, 100%, 49%));
+}
+
+.dropcap.--dc-cerise-600 {
+  --dropcap-color: var(--cerise-600, hsl(337, 100%, 49%));
 }
 
 .dropcap.--dc-cerise-700 > p:first-of-type::first-letter {
   color: var(--cerise-700, hsl(337, 100%, 42%));
 }
 
+.dropcap.--dc-cerise-700 {
+  --dropcap-color: var(--cerise-700, hsl(337, 100%, 42%));
+}
+
 .dropcap.--dc-cerise-800 > p:first-of-type::first-letter {
   color: var(--cerise-800, hsl(334, 100%, 35%));
+}
+
+.dropcap.--dc-cerise-800 {
+  --dropcap-color: var(--cerise-800, hsl(334, 100%, 35%));
 }
 
 .dropcap.--dc-cerise-900 > p:first-of-type::first-letter {
   color: var(--cerise-900, hsl(332, 97%, 30%));
 }
 
+.dropcap.--dc-cerise-900 {
+  --dropcap-color: var(--cerise-900, hsl(332, 97%, 30%));
+}
+
 .dropcap.--dc-cerise-950 > p:first-of-type::first-letter {
   color: var(--cerise-950, hsl(337, 100%, 17%));
+}
+
+.dropcap.--dc-cerise-950 {
+  --dropcap-color: var(--cerise-950, hsl(337, 100%, 17%));
 }
 
 .dropcap.--dc-sienna-50 > p:first-of-type::first-letter {
   color: var(--sienna-50, hsl(20, 100%, 96%));
 }
 
+.dropcap.--dc-sienna-50 {
+  --dropcap-color: var(--sienna-50, hsl(20, 100%, 96%));
+}
+
 .dropcap.--dc-sienna-100 > p:first-of-type::first-letter {
   color: var(--sienna-100, hsl(23, 95%, 92%));
+}
+
+.dropcap.--dc-sienna-100 {
+  --dropcap-color: var(--sienna-100, hsl(23, 95%, 92%));
 }
 
 .dropcap.--dc-sienna-200 > p:first-of-type::first-letter {
   color: var(--sienna-200, hsl(20, 93%, 83%));
 }
 
+.dropcap.--dc-sienna-200 {
+  --dropcap-color: var(--sienna-200, hsl(20, 93%, 83%));
+}
+
 .dropcap.--dc-sienna-300 > p:first-of-type::first-letter {
   color: var(--sienna-300, hsl(19, 93%, 72%));
+}
+
+.dropcap.--dc-sienna-300 {
+  --dropcap-color: var(--sienna-300, hsl(19, 93%, 72%));
 }
 
 .dropcap.--dc-sienna-400 > p:first-of-type::first-letter {
   color: var(--sienna-400, hsl(15, 92%, 61%));
 }
 
+.dropcap.--dc-sienna-400 {
+  --dropcap-color: var(--sienna-400, hsl(15, 92%, 61%));
+}
+
 .dropcap.--dc-sienna-500 > p:first-of-type::first-letter {
   color: var(--sienna-500, hsl(13, 91%, 53%));
+}
+
+.dropcap.--dc-sienna-500 {
+  --dropcap-color: var(--sienna-500, hsl(13, 91%, 53%));
 }
 
 .dropcap.--dc-sienna-600 > p:first-of-type::first-letter {
   color: var(--sienna-600, hsl(8, 86%, 48%));
 }
 
+.dropcap.--dc-sienna-600 {
+  --dropcap-color: var(--sienna-600, hsl(8, 86%, 48%));
+}
+
 .dropcap.--dc-sienna-700 > p:first-of-type::first-letter {
   color: var(--sienna-700, hsl(6, 84%, 40%));
+}
+
+.dropcap.--dc-sienna-700 {
+  --dropcap-color: var(--sienna-700, hsl(6, 84%, 40%));
 }
 
 .dropcap.--dc-sienna-800 > p:first-of-type::first-letter {
   color: var(--sienna-800, hsl(3, 76%, 34%));
 }
 
+.dropcap.--dc-sienna-800 {
+  --dropcap-color: var(--sienna-800, hsl(3, 76%, 34%));
+}
+
 .dropcap.--dc-sienna-900 > p:first-of-type::first-letter {
   color: var(--sienna-900, hsl(4, 72%, 28%));
+}
+
+.dropcap.--dc-sienna-900 {
+  --dropcap-color: var(--sienna-900, hsl(4, 72%, 28%));
 }
 
 .dropcap.--dc-sienna-950 > p:first-of-type::first-letter {
   color: var(--sienna-950, hsl(1, 78%, 15%));
 }
 
+.dropcap.--dc-sienna-950 {
+  --dropcap-color: var(--sienna-950, hsl(1, 78%, 15%));
+}
+
 .dropcap.--dc-candlelight-50 > p:first-of-type::first-letter {
   color: var(--candlelight-50, hsl(57, 92%, 95%));
+}
+
+.dropcap.--dc-candlelight-50 {
+  --dropcap-color: var(--candlelight-50, hsl(57, 92%, 95%));
 }
 
 .dropcap.--dc-candlelight-100 > p:first-of-type::first-letter {
   color: var(--candlelight-100, hsl(57, 97%, 88%));
 }
 
+.dropcap.--dc-candlelight-100 {
+  --dropcap-color: var(--candlelight-100, hsl(57, 97%, 88%));
+}
+
 .dropcap.--dc-candlelight-200 > p:first-of-type::first-letter {
   color: var(--candlelight-200, hsl(55, 98%, 77%));
+}
+
+.dropcap.--dc-candlelight-200 {
+  --dropcap-color: var(--candlelight-200, hsl(55, 98%, 77%));
 }
 
 .dropcap.--dc-candlelight-300 > p:first-of-type::first-letter {
   color: var(--candlelight-300, hsl(53, 98%, 64%));
 }
 
+.dropcap.--dc-candlelight-300 {
+  --dropcap-color: var(--candlelight-300, hsl(53, 98%, 64%));
+}
+
 .dropcap.--dc-candlelight-400 > p:first-of-type::first-letter {
   color: var(--candlelight-400, hsl(50, 96%, 55%));
+}
+
+.dropcap.--dc-candlelight-400 {
+  --dropcap-color: var(--candlelight-400, hsl(50, 96%, 55%));
 }
 
 .dropcap.--dc-candlelight-500 > p:first-of-type::first-letter {
   color: var(--candlelight-500, hsl(48, 93%, 47%));
 }
 
+.dropcap.--dc-candlelight-500 {
+  --dropcap-color: var(--candlelight-500, hsl(48, 93%, 47%));
+}
+
 .dropcap.--dc-candlelight-600 > p:first-of-type::first-letter {
   color: var(--candlelight-600, hsl(43, 96%, 40%));
+}
+
+.dropcap.--dc-candlelight-600 {
+  --dropcap-color: var(--candlelight-600, hsl(43, 96%, 40%));
 }
 
 .dropcap.--dc-candlelight-700 > p:first-of-type::first-letter {
   color: var(--candlelight-700, hsl(38, 92%, 33%));
 }
 
+.dropcap.--dc-candlelight-700 {
+  --dropcap-color: var(--candlelight-700, hsl(38, 92%, 33%));
+}
+
 .dropcap.--dc-candlelight-800 > p:first-of-type::first-letter {
   color: var(--candlelight-800, hsl(34, 82%, 29%));
+}
+
+.dropcap.--dc-candlelight-800 {
+  --dropcap-color: var(--candlelight-800, hsl(34, 82%, 29%));
 }
 
 .dropcap.--dc-candlelight-900 > p:first-of-type::first-letter {
   color: var(--candlelight-900, hsl(31, 73%, 26%));
 }
 
+.dropcap.--dc-candlelight-900 {
+  --dropcap-color: var(--candlelight-900, hsl(31, 73%, 26%));
+}
+
 .dropcap.--dc-candlelight-950 > p:first-of-type::first-letter {
   color: var(--candlelight-950, hsl(28, 83%, 14%));
+}
+
+.dropcap.--dc-candlelight-950 {
+  --dropcap-color: var(--candlelight-950, hsl(28, 83%, 14%));
 }
 
 .dropcap.--dc-forest-50 > p:first-of-type::first-letter {
   color: var(--forest-50, hsl(120, 53%, 97%));
 }
 
+.dropcap.--dc-forest-50 {
+  --dropcap-color: var(--forest-50, hsl(120, 53%, 97%));
+}
+
 .dropcap.--dc-forest-100 > p:first-of-type::first-letter {
   color: var(--forest-100, hsl(123, 58%, 93%));
+}
+
+.dropcap.--dc-forest-100 {
+  --dropcap-color: var(--forest-100, hsl(123, 58%, 93%));
 }
 
 .dropcap.--dc-forest-200 > p:first-of-type::first-letter {
   color: var(--forest-200, hsl(123, 55%, 85%));
 }
 
+.dropcap.--dc-forest-200 {
+  --dropcap-color: var(--forest-200, hsl(123, 55%, 85%));
+}
+
 .dropcap.--dc-forest-300 > p:first-of-type::first-letter {
   color: var(--forest-300, hsl(123, 53%, 73%));
+}
+
+.dropcap.--dc-forest-300 {
+  --dropcap-color: var(--forest-300, hsl(123, 53%, 73%));
 }
 
 .dropcap.--dc-forest-400 > p:first-of-type::first-letter {
   color: var(--forest-400, hsl(124, 48%, 58%));
 }
 
+.dropcap.--dc-forest-400 {
+  --dropcap-color: var(--forest-400, hsl(124, 48%, 58%));
+}
+
 .dropcap.--dc-forest-500 > p:first-of-type::first-letter {
   color: var(--forest-500, hsl(124, 49%, 45%));
+}
+
+.dropcap.--dc-forest-500 {
+  --dropcap-color: var(--forest-500, hsl(124, 49%, 45%));
 }
 
 .dropcap.--dc-forest-600 > p:first-of-type::first-letter {
   color: var(--forest-600, hsl(124, 53%, 38%));
 }
 
+.dropcap.--dc-forest-600 {
+  --dropcap-color: var(--forest-600, hsl(124, 53%, 38%));
+}
+
 .dropcap.--dc-forest-700 > p:first-of-type::first-letter {
   color: var(--forest-700, hsl(124, 49%, 29%));
+}
+
+.dropcap.--dc-forest-700 {
+  --dropcap-color: var(--forest-700, hsl(124, 49%, 29%));
 }
 
 .dropcap.--dc-forest-800 > p:first-of-type::first-letter {
   color: var(--forest-800, hsl(124, 45%, 24%));
 }
 
+.dropcap.--dc-forest-800 {
+  --dropcap-color: var(--forest-800, hsl(124, 45%, 24%));
+}
+
 .dropcap.--dc-forest-900 > p:first-of-type::first-letter {
   color: var(--forest-900, hsl(126, 42%, 20%));
+}
+
+.dropcap.--dc-forest-900 {
+  --dropcap-color: var(--forest-900, hsl(126, 42%, 20%));
 }
 
 .dropcap.--dc-forest-950 > p:first-of-type::first-letter {
   color: var(--forest-950, hsl(126, 57%, 10%));
 }
 
+.dropcap.--dc-forest-950 {
+  --dropcap-color: var(--forest-950, hsl(126, 57%, 10%));
+}
+
 .dropcap.--dc-munsell-50 > p:first-of-type::first-letter {
   color: var(--munsell-50, hsl(185, 58%, 96%));
+}
+
+.dropcap.--dc-munsell-50 {
+  --dropcap-color: var(--munsell-50, hsl(185, 58%, 96%));
 }
 
 .dropcap.--dc-munsell-100 > p:first-of-type::first-letter {
   color: var(--munsell-100, hsl(182, 55%, 90%));
 }
 
+.dropcap.--dc-munsell-100 {
+  --dropcap-color: var(--munsell-100, hsl(182, 55%, 90%));
+}
+
 .dropcap.--dc-munsell-200 > p:first-of-type::first-letter {
   color: var(--munsell-200, hsl(184, 55%, 82%));
+}
+
+.dropcap.--dc-munsell-200 {
+  --dropcap-color: var(--munsell-200, hsl(184, 55%, 82%));
 }
 
 .dropcap.--dc-munsell-300 > p:first-of-type::first-letter {
   color: var(--munsell-300, hsl(185, 54%, 69%));
 }
 
+.dropcap.--dc-munsell-300 {
+  --dropcap-color: var(--munsell-300, hsl(185, 54%, 69%));
+}
+
 .dropcap.--dc-munsell-400 > p:first-of-type::first-letter {
   color: var(--munsell-400, hsl(186, 50%, 53%));
+}
+
+.dropcap.--dc-munsell-400 {
+  --dropcap-color: var(--munsell-400, hsl(186, 50%, 53%));
 }
 
 .dropcap.--dc-munsell-500 > p:first-of-type::first-letter {
   color: var(--munsell-500, hsl(187, 55%, 43%));
 }
 
+.dropcap.--dc-munsell-500 {
+  --dropcap-color: var(--munsell-500, hsl(187, 55%, 43%));
+}
+
 .dropcap.--dc-munsell-600 > p:first-of-type::first-letter {
   color: var(--munsell-600, hsl(190, 54%, 38%));
+}
+
+.dropcap.--dc-munsell-600 {
+  --dropcap-color: var(--munsell-600, hsl(190, 54%, 38%));
 }
 
 .dropcap.--dc-munsell-700 > p:first-of-type::first-letter {
   color: var(--munsell-700, hsl(191, 48%, 31%));
 }
 
+.dropcap.--dc-munsell-700 {
+  --dropcap-color: var(--munsell-700, hsl(191, 48%, 31%));
+}
+
 .dropcap.--dc-munsell-800 > p:first-of-type::first-letter {
   color: var(--munsell-800, hsl(192, 41%, 27%));
+}
+
+.dropcap.--dc-munsell-800 {
+  --dropcap-color: var(--munsell-800, hsl(192, 41%, 27%));
 }
 
 .dropcap.--dc-munsell-900 > p:first-of-type::first-letter {
   color: var(--munsell-900, hsl(195, 37%, 24%));
 }
 
+.dropcap.--dc-munsell-900 {
+  --dropcap-color: var(--munsell-900, hsl(195, 37%, 24%));
+}
+
 .dropcap.--dc-munsell-950 > p:first-of-type::first-letter {
   color: var(--munsell-950, hsl(195, 47%, 15%));
+}
+
+.dropcap.--dc-munsell-950 {
+  --dropcap-color: var(--munsell-950, hsl(195, 47%, 15%));
 }
 
 .dropcap.--dc-picton-50 > p:first-of-type::first-letter {
   color: var(--picton-50, hsl(199, 100%, 97%));
 }
 
+.dropcap.--dc-picton-50 {
+  --dropcap-color: var(--picton-50, hsl(199, 100%, 97%));
+}
+
 .dropcap.--dc-picton-100 > p:first-of-type::first-letter {
   color: var(--picton-100, hsl(200, 100%, 94%));
+}
+
+.dropcap.--dc-picton-100 {
+  --dropcap-color: var(--picton-100, hsl(200, 100%, 94%));
 }
 
 .dropcap.--dc-picton-200 > p:first-of-type::first-letter {
   color: var(--picton-200, hsl(196, 100%, 86%));
 }
 
+.dropcap.--dc-picton-200 {
+  --dropcap-color: var(--picton-200, hsl(196, 100%, 86%));
+}
+
 .dropcap.--dc-picton-300 > p:first-of-type::first-letter {
   color: var(--picton-300, hsl(194, 100%, 73%));
+}
+
+.dropcap.--dc-picton-300 {
+  --dropcap-color: var(--picton-300, hsl(194, 100%, 73%));
 }
 
 .dropcap.--dc-picton-400 > p:first-of-type::first-letter {
   color: var(--picton-400, hsl(194, 100%, 59%));
 }
 
+.dropcap.--dc-picton-400 {
+  --dropcap-color: var(--picton-400, hsl(194, 100%, 59%));
+}
+
 .dropcap.--dc-picton-500 > p:first-of-type::first-letter {
   color: var(--picton-500, hsl(195, 100%, 47%));
+}
+
+.dropcap.--dc-picton-500 {
+  --dropcap-color: var(--picton-500, hsl(195, 100%, 47%));
 }
 
 .dropcap.--dc-picton-600 > p:first-of-type::first-letter {
   color: var(--picton-600, hsl(198, 100%, 42%));
 }
 
+.dropcap.--dc-picton-600 {
+  --dropcap-color: var(--picton-600, hsl(198, 100%, 42%));
+}
+
 .dropcap.--dc-picton-700 > p:first-of-type::first-letter {
   color: var(--picton-700, hsl(199, 100%, 34%));
+}
+
+.dropcap.--dc-picton-700 {
+  --dropcap-color: var(--picton-700, hsl(199, 100%, 34%));
 }
 
 .dropcap.--dc-picton-800 > p:first-of-type::first-letter {
   color: var(--picton-800, hsl(197, 100%, 28%));
 }
 
+.dropcap.--dc-picton-800 {
+  --dropcap-color: var(--picton-800, hsl(197, 100%, 28%));
+}
+
 .dropcap.--dc-picton-900 > p:first-of-type::first-letter {
   color: var(--picton-900, hsl(198, 90%, 24%));
+}
+
+.dropcap.--dc-picton-900 {
+  --dropcap-color: var(--picton-900, hsl(198, 90%, 24%));
 }
 
 .dropcap.--dc-picton-950 > p:first-of-type::first-letter {
   color: var(--picton-950, hsl(201, 90%, 16%));
 }
 
+.dropcap.--dc-picton-950 {
+  --dropcap-color: var(--picton-950, hsl(201, 90%, 16%));
+}
+
 .dropcap.--dc-purpureus-50 > p:first-of-type::first-letter {
   color: var(--purpureus-50, hsl(283, 64%, 98%));
+}
+
+.dropcap.--dc-purpureus-50 {
+  --dropcap-color: var(--purpureus-50, hsl(283, 64%, 98%));
 }
 
 .dropcap.--dc-purpureus-100 > p:first-of-type::first-letter {
   color: var(--purpureus-100, hsl(280, 65%, 95%));
 }
 
+.dropcap.--dc-purpureus-100 {
+  --dropcap-color: var(--purpureus-100, hsl(280, 65%, 95%));
+}
+
 .dropcap.--dc-purpureus-200 > p:first-of-type::first-letter {
   color: var(--purpureus-200, hsl(282, 63%, 91%));
+}
+
+.dropcap.--dc-purpureus-200 {
+  --dropcap-color: var(--purpureus-200, hsl(282, 63%, 91%));
 }
 
 .dropcap.--dc-purpureus-300 > p:first-of-type::first-letter {
   color: var(--purpureus-300, hsl(284, 61%, 83%));
 }
 
+.dropcap.--dc-purpureus-300 {
+  --dropcap-color: var(--purpureus-300, hsl(284, 61%, 83%));
+}
+
 .dropcap.--dc-purpureus-400 > p:first-of-type::first-letter {
   color: var(--purpureus-400, hsl(285, 61%, 73%));
+}
+
+.dropcap.--dc-purpureus-400 {
+  --dropcap-color: var(--purpureus-400, hsl(285, 61%, 73%));
 }
 
 .dropcap.--dc-purpureus-500 > p:first-of-type::first-letter {
   color: var(--purpureus-500, hsl(285, 56%, 61%));
 }
 
+.dropcap.--dc-purpureus-500 {
+  --dropcap-color: var(--purpureus-500, hsl(285, 56%, 61%));
+}
+
 .dropcap.--dc-purpureus-600 > p:first-of-type::first-letter {
   color: var(--purpureus-600, hsl(287, 46%, 54%));
+}
+
+.dropcap.--dc-purpureus-600 {
+  --dropcap-color: var(--purpureus-600, hsl(287, 46%, 54%));
 }
 
 .dropcap.--dc-purpureus-700 > p:first-of-type::first-letter {
   color: var(--purpureus-700, hsl(288, 48%, 40%));
 }
 
+.dropcap.--dc-purpureus-700 {
+  --dropcap-color: var(--purpureus-700, hsl(288, 48%, 40%));
+}
+
 .dropcap.--dc-purpureus-800 > p:first-of-type::first-letter {
   color: var(--purpureus-800, hsl(288, 46%, 33%));
+}
+
+.dropcap.--dc-purpureus-800 {
+  --dropcap-color: var(--purpureus-800, hsl(288, 46%, 33%));
 }
 
 .dropcap.--dc-purpureus-900 > p:first-of-type::first-letter {
   color: var(--purpureus-900, hsl(289, 43%, 28%));
 }
 
+.dropcap.--dc-purpureus-900 {
+  --dropcap-color: var(--purpureus-900, hsl(289, 43%, 28%));
+}
+
 .dropcap.--dc-purpureus-950 > p:first-of-type::first-letter {
   color: var(--purpureus-950, hsl(289, 61%, 16%));
+}
+
+.dropcap.--dc-purpureus-950 {
+  --dropcap-color: var(--purpureus-950, hsl(289, 61%, 16%));
 }
 
 .dropcap.--dc-black-o-90 > p:first-of-type::first-letter {
   color: var(--black-o-90, hsla(225, 4%, 20%, 0.9));
 }
 
+.dropcap.--dc-black-o-90 {
+  --dropcap-color: var(--black-o-90, hsla(225, 4%, 20%, 0.9));
+}
+
 .dropcap.--dc-black-o-80 > p:first-of-type::first-letter {
   color: var(--black-o-80, hsla(225, 4%, 20%, 0.8));
+}
+
+.dropcap.--dc-black-o-80 {
+  --dropcap-color: var(--black-o-80, hsla(225, 4%, 20%, 0.8));
 }
 
 .dropcap.--dc-black-o-70 > p:first-of-type::first-letter {
   color: var(--black-o-70, hsla(225, 4%, 20%, 0.7));
 }
 
+.dropcap.--dc-black-o-70 {
+  --dropcap-color: var(--black-o-70, hsla(225, 4%, 20%, 0.7));
+}
+
 .dropcap.--dc-black-o-60 > p:first-of-type::first-letter {
   color: var(--black-o-60, hsla(225, 4%, 20%, 0.6));
+}
+
+.dropcap.--dc-black-o-60 {
+  --dropcap-color: var(--black-o-60, hsla(225, 4%, 20%, 0.6));
 }
 
 .dropcap.--dc-black-o-50 > p:first-of-type::first-letter {
   color: var(--black-o-50, hsla(225, 4%, 20%, 0.5));
 }
 
+.dropcap.--dc-black-o-50 {
+  --dropcap-color: var(--black-o-50, hsla(225, 4%, 20%, 0.5));
+}
+
 .dropcap.--dc-black-o-40 > p:first-of-type::first-letter {
   color: var(--black-o-40, hsla(225, 4%, 20%, 0.4));
+}
+
+.dropcap.--dc-black-o-40 {
+  --dropcap-color: var(--black-o-40, hsla(225, 4%, 20%, 0.4));
 }
 
 .dropcap.--dc-black-o-30 > p:first-of-type::first-letter {
   color: var(--black-o-30, hsla(225, 4%, 20%, 0.3));
 }
 
+.dropcap.--dc-black-o-30 {
+  --dropcap-color: var(--black-o-30, hsla(225, 4%, 20%, 0.3));
+}
+
 .dropcap.--dc-black-o-20 > p:first-of-type::first-letter {
   color: var(--black-o-20, hsla(225, 4%, 20%, 0.2));
+}
+
+.dropcap.--dc-black-o-20 {
+  --dropcap-color: var(--black-o-20, hsla(225, 4%, 20%, 0.2));
 }
 
 .dropcap.--dc-black-o-10 > p:first-of-type::first-letter {
   color: var(--black-o-10, hsla(225, 4%, 20%, 0.1));
 }
 
+.dropcap.--dc-black-o-10 {
+  --dropcap-color: var(--black-o-10, hsla(225, 4%, 20%, 0.1));
+}
+
 .dropcap.--dc-black-o-05 > p:first-of-type::first-letter {
   color: var(--black-o-05, hsla(225, 4%, 20%, 0.05));
+}
+
+.dropcap.--dc-black-o-05 {
+  --dropcap-color: var(--black-o-05, hsla(225, 4%, 20%, 0.05));
 }
 
 .dropcap.--dc-black-o-025 > p:first-of-type::first-letter {
   color: var(--black-o-025, hsla(225, 4%, 20%, 0.025));
 }
 
+.dropcap.--dc-black-o-025 {
+  --dropcap-color: var(--black-o-025, hsla(225, 4%, 20%, 0.025));
+}
+
 .dropcap.--dc-black-o-0125 > p:first-of-type::first-letter {
   color: var(--black-o-0125, hsla(225, 4%, 20%, 0.0125));
+}
+
+.dropcap.--dc-black-o-0125 {
+  --dropcap-color: var(--black-o-0125, hsla(225, 4%, 20%, 0.0125));
 }
 
 .dropcap.--dc-white-o-90 > p:first-of-type::first-letter {
   color: var(--white-o-90, hsla(240, 2.22%, 91.18%, 0.9));
 }
 
+.dropcap.--dc-white-o-90 {
+  --dropcap-color: var(--white-o-90, hsla(240, 2.22%, 91.18%, 0.9));
+}
+
 .dropcap.--dc-white-o-80 > p:first-of-type::first-letter {
   color: var(--white-o-80, hsla(240, 2.22%, 91.18%, 0.8));
+}
+
+.dropcap.--dc-white-o-80 {
+  --dropcap-color: var(--white-o-80, hsla(240, 2.22%, 91.18%, 0.8));
 }
 
 .dropcap.--dc-white-o-70 > p:first-of-type::first-letter {
   color: var(--white-o-70, hsla(240, 2.22%, 91.18%, 0.7));
 }
 
+.dropcap.--dc-white-o-70 {
+  --dropcap-color: var(--white-o-70, hsla(240, 2.22%, 91.18%, 0.7));
+}
+
 .dropcap.--dc-white-o-60 > p:first-of-type::first-letter {
   color: var(--white-o-60, hsla(240, 2.22%, 91.18%, 0.6));
+}
+
+.dropcap.--dc-white-o-60 {
+  --dropcap-color: var(--white-o-60, hsla(240, 2.22%, 91.18%, 0.6));
 }
 
 .dropcap.--dc-white-o-50 > p:first-of-type::first-letter {
   color: var(--white-o-50, hsla(240, 2.22%, 91.18%, 0.5));
 }
 
+.dropcap.--dc-white-o-50 {
+  --dropcap-color: var(--white-o-50, hsla(240, 2.22%, 91.18%, 0.5));
+}
+
 .dropcap.--dc-white-o-40 > p:first-of-type::first-letter {
   color: var(--white-o-40, hsla(240, 2.22%, 91.18%, 0.4));
+}
+
+.dropcap.--dc-white-o-40 {
+  --dropcap-color: var(--white-o-40, hsla(240, 2.22%, 91.18%, 0.4));
 }
 
 .dropcap.--dc-white-o-30 > p:first-of-type::first-letter {
   color: var(--white-o-30, hsla(240, 2.22%, 91.18%, 0.3));
 }
 
+.dropcap.--dc-white-o-30 {
+  --dropcap-color: var(--white-o-30, hsla(240, 2.22%, 91.18%, 0.3));
+}
+
 .dropcap.--dc-white-o-20 > p:first-of-type::first-letter {
   color: var(--white-o-20, hsla(240, 2.22%, 91.18%, 0.2));
+}
+
+.dropcap.--dc-white-o-20 {
+  --dropcap-color: var(--white-o-20, hsla(240, 2.22%, 91.18%, 0.2));
 }
 
 .dropcap.--dc-white-o-10 > p:first-of-type::first-letter {
   color: var(--white-o-10, hsla(240, 2.22%, 91.18%, 0.1));
 }
 
+.dropcap.--dc-white-o-10 {
+  --dropcap-color: var(--white-o-10, hsla(240, 2.22%, 91.18%, 0.1));
+}
+
 .dropcap.--dc-white-o-05 > p:first-of-type::first-letter {
   color: var(--white-o-05, hsla(240, 2.22%, 91.18%, 0.05));
+}
+
+.dropcap.--dc-white-o-05 {
+  --dropcap-color: var(--white-o-05, hsla(240, 2.22%, 91.18%, 0.05));
 }
 
 .dropcap.--dc-white-o-025 > p:first-of-type::first-letter {
   color: var(--white-o-025, hsla(240, 2.22%, 91.18%, 0.025));
 }
 
+.dropcap.--dc-white-o-025 {
+  --dropcap-color: var(--white-o-025, hsla(240, 2.22%, 91.18%, 0.025));
+}
+
 .dropcap.--dc-white-o-0125 > p:first-of-type::first-letter {
   color: var(--white-o-0125, hsla(240, 2.22%, 91.18%, 0.0125));
+}
+
+.dropcap.--dc-white-o-0125 {
+  --dropcap-color: var(--white-o-0125, hsla(240, 2.22%, 91.18%, 0.0125));
 }
 
 .dropcap.--dc-transparent > p:first-of-type::first-letter {
   color: var(--transparent, transparent);
 }
 
+.dropcap.--dc-transparent {
+  --dropcap-color: var(--transparent, transparent);
+}
+
 .dropcap.--dc-currencolor > p:first-of-type::first-letter {
   color: var(--currencolor, currentcolor);
+}
+
+.dropcap.--dc-currencolor {
+  --dropcap-color: var(--currencolor, currentcolor);
 }
 
 .dropcap.--dc-color-inherit > p:first-of-type::first-letter {
   color: var(--color-inherit, inherit);
 }
 
+.dropcap.--dc-color-inherit {
+  --dropcap-color: var(--color-inherit, inherit);
+}
+
 .dropcap.--dc-color-initial > p:first-of-type::first-letter {
   color: var(--color-initial, initial);
+}
+
+.dropcap.--dc-color-initial {
+  --dropcap-color: var(--color-initial, initial);
 }
 
 .dropcap.--dc-color-revert > p:first-of-type::first-letter {
   color: var(--color-revert, revert);
 }
 
+.dropcap.--dc-color-revert {
+  --dropcap-color: var(--color-revert, revert);
+}
+
 .dropcap.--dc-color-revert-layer > p:first-of-type::first-letter {
   color: var(--color-revert-layer, revert-layer);
 }
 
+.dropcap.--dc-color-revert-layer {
+  --dropcap-color: var(--color-revert-layer, revert-layer);
+}
+
 .dropcap.--dc-color-unset > p:first-of-type::first-letter {
   color: var(--color-unset, unset);
+}
+
+.dropcap.--dc-color-unset {
+  --dropcap-color: var(--color-unset, unset);
 }
 
 /*
