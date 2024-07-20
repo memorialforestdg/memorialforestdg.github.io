@@ -1,6 +1,6 @@
 ---
 layout: ../../layouts/MDPagesLayout.astro
-pageTitle: 'Phase 2: The Dispersed Memorial Forest'
+pageTitle: 'Phase 2: A Dispersed Memorial Forest'
 bannerImage: '../images/dumfries-launch/planting-dumfries.jpg'
 bannerAlt: 'Volinteers planting trees in Dumfries.'
 flourishClasses: ['--apple', 'dropcap', '--dc-purpureus-600']
