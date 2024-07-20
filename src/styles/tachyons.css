@@ -27,9 +27,9 @@
 }
 
 /*
-  Remove default margins & padding.
+  Remove default margins & padding
 */
-*:not(ul, li, dd, dt) {
+*:not(ul, ol, dd, dt) {
   margin: 0;
   padding: 0;
 }
