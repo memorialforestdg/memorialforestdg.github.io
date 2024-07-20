@@ -14,7 +14,7 @@ blockquote {
 }
 
 blockquote * {
- font-size: var(--f4);
+ font-size: inherit;
  font-family: inherit;
  font-style: inherit;
  line-height: inherit;
@@ -28,7 +28,7 @@ blockquote cite {
 }
 
 blockquote cite::before {
-  content: "— ";
+  content: "— " /"";
 }
 
 blockquote::before,
