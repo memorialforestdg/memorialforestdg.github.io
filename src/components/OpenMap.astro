@@ -32,9 +32,10 @@ const {
   </open-map>
 </>
 
-<script type="module">
-  import '../../node_modules/leaflet/dist/leaflet'
-
+<script>
+  import L from 'leaflet/dist/leaflet'
+  import 'leaflet/dist/leaflet.css'
+  import iconImg from 'leaflet/dist/images/marker-icon.png'
   class OpenMap extends HTMLElement {
     constructor() {
       super()
@@ -43,7 +44,7 @@ const {
         center: [lon, lat],
         zoom: '15'
       }
-      const map = new L.map('map', mapOptions)
+      const map = L.map('map', mapOptions)
       const layer = new L.TileLayer(
         'https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
         {
@@ -53,9 +54,9 @@ const {
         }
       )
       const icon = L.icon({
-        iconUrl: '../../node_modules/leaflet/dist/images/marker-icon.png'
+        iconUrl: iconImg.src
       })
-      const marker = L.marker([lon, lat], {icon}).addTo(map)
+      L.marker([lon, lat], {icon}).addTo(map)
       map.addLayer(layer)
     }
   }
@@ -64,8 +65,6 @@ const {
 </script>
 
 <style define:vars={{width, height}} is:global>
-  @import url('../../node_modules/leaflet/dist/leaflet.css');
-
   .leaflet-control-attribution {
     font-size: 10px;
   }
