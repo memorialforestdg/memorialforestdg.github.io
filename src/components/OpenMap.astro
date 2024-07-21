@@ -45,11 +45,11 @@ const {
       }
       const map = new L.map('map', mapOptions)
       const layer = new L.TileLayer(
-        'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+        'https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
         {
           maxZoom: 19,
           attribution:
-            '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap: Tiles by Humanitarian</a>'
         }
       )
       const icon = L.icon({
@@ -63,9 +63,12 @@ const {
   customElements.define('open-map', OpenMap)
 </script>
 
-<style define:vars={{width, height}}>
-  /* @import url('leaflet/dist/leaflet.css'); */
-  @import url('http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css');
+<style define:vars={{width, height}} is:global>
+  @import url('../../node_modules/leaflet/dist/leaflet.css');
+
+  .leaflet-control-attribution {
+    font-size: 10px;
+  }
 
   .leaflet-attribution-flag {
     display: none !important;
