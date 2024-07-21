@@ -1,5 +1,7 @@
 ---
 import {Picture} from 'astro:assets'
+import Logger from '../js/logger.js'
+
 import {
   getCollection,
   type CollectionEntry,
@@ -12,9 +14,12 @@ import {
   extrapolateImageDims,
   extractImageData
 } from '../js/imageToolkit.js'
-import 'photoswipe/style.css'
+import {warn} from 'node_modules/astro/dist/core/logger/core'
+
 type ImageExifMetadata = z.infer<typeof imageExifMetadata>
+
 interface MetaPool extends Array<ImageExifMetadata> {}
+
 interface Props {
   images?: Array<ImageMetadata>
   albumId?: string
@@ -51,7 +56,7 @@ let collection: CollectionEntry<keyof DataEntryMap>
 
 if (!images && !collectionId) {
   throw new Error(
-    'No images or collectionId provided. Please provide either an array of astro ImageMetadata or  the name of a valid collection.'
+    'No images or collectionId provided. Please provide either an array of astro ImageMetadata or the name of a valid collection.'
   )
 }
 if (collectionId && !albumId) {
@@ -74,14 +79,28 @@ if (!images && collectionId) {
     if (foundItem) {
       collection = foundItem
       imgs = await getAlbumImages(albumId)
+
+      // Warn if we have an empty album.
+      if (imgs.length === 0) {
+        Logger.warn(`No images found for collection: ${collectionId}`)
+      }
+
       if (ramdomize) {
         imgs = imgs.sort(() => Math.random() - 0.5)
       }
+    } else {
+      // Warn if we cant find the album.
+      Logger.warn(`Album not found: ${albumId}`)
     }
   } catch (error) {
-    console.warn(error)
+    Logger.error(`The error ${error}`)
     throw new Error(
-      'No images found. Please provide either an array of astro ImageMetadata or a valid collectionId.'
+      `No images found.
+Please provide either an array of astro ImageMetadata OR a valid collectionId & albumId.
+      images: ${images}
+      collectionId: ${collectionId}
+      albumId: ${albumId}
+      error: ${error}`
     )
   }
 } else {
@@ -184,6 +203,8 @@ const targetCellWidthPx =
 <script>
   // id="pswp__icn-arrow
   import PhotoSwipeLightbox from 'photoswipe/lightbox'
+  import 'photoswipe/style.css'
+
   const leftArrowSVGString = `<svg aria-hidden="true" class="pswp__icn" width="20" height="20" viewBox="0 0 30 30" >
       <path fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414" stroke-linecap="round" stroke="var(--pswp-icon-stroke-color)" stroke-width="var(--pswp-icon-stroke-width)" d="M15.7071 5.29289C16.0976 5.68342 16.0976 6.31658 15.7071 6.70711L10.4142 12L15.7071 17.2929C16.0976 17.6834 16.0976 18.3166 15.7071 18.7071C15.3165 19.0976 14.6834 19.0976 14.2929 18.7071L8.46963 12.8839C7.98148 12.3957 7.98148 11.6043 8.46963 11.1161L14.2929 5.29289C14.6834 4.90237 15.3165 4.90237 15.7071 5.29289Z" />
     </svg>`
