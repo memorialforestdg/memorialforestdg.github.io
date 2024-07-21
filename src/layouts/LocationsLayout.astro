@@ -2,9 +2,36 @@
 import Flourish from '../components/Flourish.astro'
 import OpenMap from '../components/OpenMap.astro'
 import BaseLayout from './BaseLayout.astro'
+import type {ImageMetadata} from 'astro'
+
+interface Props {
+  frontmatter: {
+    pageTitle: string
+    bannerImage?: any
+    bannerAlt?: string
+    flourishClasses?: Array<string>
+    w3w: string
+    lat: number
+    lon: number
+    siteInfo?: string
+    webstie?: string
+    phone?: string
+  }
+}
+
 const {frontmatter} = Astro.props
-const {pageTitle, bannerImage, bannerAlt, flourishClasses, w3w, siteInfo} =
-  frontmatter
+const {
+  pageTitle,
+  bannerImage,
+  bannerAlt,
+  flourishClasses,
+  w3w,
+  lat,
+  lon,
+  siteInfo,
+  webstie,
+  phone
+} = frontmatter
 
 // https://markjames.dev/blog/dynamically-importing-images-astro
 const images = import.meta.glob<{default: ImageMetadata}>(
@@ -20,9 +47,9 @@ const BannerImage = banner.default as ImageMetadata
   bannerAlt={bannerAlt}
 >
   <main id="main">
-    <div class="container full-width">
+    <div class="location container full-width">
+      <OpenMap lat={lat} lon={lon} />
       <div class="markdown-content measure-3 pt-4">
-        <OpenMap />
         <Flourish classes={flourishClasses}>
           <slot />
         </Flourish>
