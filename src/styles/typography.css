@@ -44,6 +44,12 @@ a:focus {
   letter-spacing: -0.007ch;
 }
 
+strong a:hover,
+strong a:focus {
+  font-weight: inherit;
+  letter-spacing: inherit;
+}
+
 p,
 ul,
 ol {
