@@ -1,11 +1,11 @@
 
 
 hr {
-   --flare-radius: 30px;
+   --flare-radius: 25px;
 
     display: block;
     width: 100%;
-    margin-block: var(--flare-radius);
+    margin-block: calc(var(--flare-radius) * 1.5);
     height: var(--flare-radius);
     overflow: visible; /* For IE */
       text-align: center;
