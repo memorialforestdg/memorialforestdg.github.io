@@ -1,0 +1,16 @@
+---
+interface Props {
+  w3w: string
+  lat: number
+  lon: number
+  siteInfo?: string
+  webstie?: string
+  phone?: string
+  hours?: string
+  food?: string
+  transport?: string
+}
+const {w3w, lat, lon, siteInfo, webstie, phone} = Astro.props
+---
+
+<section class="location__sidebar bg--brand-teal poly-2"></section>
