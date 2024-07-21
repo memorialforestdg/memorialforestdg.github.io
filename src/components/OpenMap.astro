@@ -1,33 +1,51 @@
 ---
+export interface IconType {
+  iconUrl: string // the url for the icon
+  shadowUrl?: string // the url for the shadow image
+  iconSize?: [number, number] // size of the icon
+  shadowSize?: [number, number] // size of the shadow
+  iconAnchor?: [number, number] // point of the icon which will correspond to marker's location
+  shadowAnchor?: [number, number] // the same for the shadow
+  popupAnchor?: [number, number] // point from which the popup should open relative to the iconAnchor
+  tooltipAnchor?: [number, number] // point from which the tooltip should open relative to the iconAnchor
+}
 interface Props {
+  id?: string
   style?: string
   width?: string
   height?: string
   lat: number
   lon: number
   zoom?: string
+  controls?: boolean
   classes?: string
+  icon?: IconType
 }
 
 const {
+  id = 'map',
   style = 'border  : 1px solid var(--brand-surface-1);',
   lat = -3.6107,
   lon = 55.0691,
   zoom = '19',
+  controls = 'true',
   width = '100%',
   height = '350px',
-  classes = ''
+  classes = '',
+  icon
 } = Astro.props
 ---
 
 <>
   <open-map
-    id="map"
+    id={id}
     style={style}
-    class={classes}
+    class=`open-map ${classes}`
     data-lon={lon}
     data-lat={lat}
     data-zoom={zoom}
+    data-controls={controls}
+    data-icon={JSON.stringify(icon)}
   >
   </open-map>
 </>
@@ -39,24 +57,30 @@ const {
   class OpenMap extends HTMLElement {
     constructor() {
       super()
-      const {lon, lat, zoom} = this.dataset
+      const {lon, lat, zoom, controls, icon} = this.dataset
+
+      console.log(this.dataset)
+
+      const id = this.id
       const mapOptions = {
         center: [lon, lat],
-        zoom: '15'
+        zoom,
+        zoomControl: controls
       }
-      const map = L.map('map', mapOptions)
+      const map = L.map(id, mapOptions)
       const layer = new L.TileLayer(
         'https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
         {
-          maxZoom: 19,
+          maxZoom: 25,
           attribution:
             '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap: Tiles by Humanitarian</a>'
         }
       )
-      const icon = L.icon({
-        iconUrl: iconImg.src
-      })
-      L.marker([lon, lat], {icon}).addTo(map)
+      let loadIcon = icon
+        ? L.icon(JSON.parse(icon))
+        : L.icon({iconUrl: iconImg.src})
+
+      L.marker([lon, lat], {icon: loadIcon}).addTo(map)
       map.addLayer(layer)
     }
   }
@@ -69,14 +93,13 @@ const {
     font-size: 10px;
   }
 
-  #map .leaflet-attribution-flag {
+  .open-map .leaflet-attribution-flag {
     display: none !important;
   }
 
-  #map {
+  .open-map {
     display: block;
     width: var(--width);
     height: var(--height);
-    margin-block-end: var(--spacing-4);
   }
 </style>
