@@ -4,6 +4,8 @@ import OpenMap from '../components/OpenMap.astro'
 import {type IconType} from '../components/OpenMap.astro'
 import BaseLayout from './BaseLayout.astro'
 import type {ImageMetadata} from 'astro'
+import mapIcon from '../../public/map-pin-trees.svg'
+import mapIconShadow from '../../public/map-pin-trees-shadow.png'
 
 interface Props {
   frontmatter: {
@@ -42,8 +44,8 @@ const banner = images[bannerImage] ? await images[bannerImage]() : (null as any)
 const BannerImage = banner.default as ImageMetadata
 
 const iconOpts: IconType = {
-  iconUrl: '../map-pin-trees.svg',
-  shadowUrl: '../map-pin-trees-shadow.png',
+  iconUrl: mapIcon.src,
+  shadowUrl: mapIconShadow.src,
   iconSize: [80, 77],
   shadowSize: [80, 40],
   shadowAnchor: [0, 8],
