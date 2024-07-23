@@ -7,33 +7,36 @@ import {type DataEntryMap} from 'astro:content'
 interface Props {
   frontmatter: {
     pageTitle: string
-    bannerImage: string
+    bannerImage?: string
+    bannerHeight?: number
     bannerAlt?: string
     flourishClasses?: Array<string>
     collectionId?: keyof DataEntryMap
     albumId?: string
   }
 }
-const {frontmatter} = Astro.props
+
 const {
   pageTitle,
-  bannerImage,
+  bannerImage = '',
+  bannerHeight,
   bannerAlt,
   flourishClasses,
   collectionId,
   albumId
-} = frontmatter
+} = Astro.props.frontmatter
 
 const images = import.meta.glob<{default: ImageMetadata}>(
   '../images/**/*.{png,PNG,jpg,JPG,jpeg,svg,webp,avif}'
 )
 const banner = images[bannerImage] ? await images[bannerImage]() : (null as any)
-const BannerImage = banner.default as ImageMetadata
+const BannerImage = banner?.default as ImageMetadata
 ---
 
 <BaseLayout
   pageTitle={pageTitle}
   bannerImage={BannerImage}
+  bannerHeight={bannerHeight}
   bannerAlt={bannerAlt}
 >
   <main id="main">

@@ -5,14 +5,23 @@ import sluggo from '../js/sluggo'
 import CanonicalHead from '../components/CanonicalHead.astro'
 interface Props {
   pageTitle: string
+  bodyClasses?: string
   bannerImage?: ImageMetadata
+  bannerHeight?: number
   bannerAlt?: string
   maintenice?: boolean
   ogThunmbnail?: ImageMetadata
 }
 
-const {pageTitle, bannerImage, bannerAlt, maintenice, ogThunmbnail} =
-  Astro.props
+const {
+  pageTitle,
+  bodyClasses = '',
+  bannerImage,
+  bannerHeight,
+  bannerAlt,
+  maintenice,
+  ogThunmbnail
+} = Astro.props
 
 // og LinkedIn: 1200 x 627    // https://www.linkedin.com/help/linkedin/answer/a521928
 // og FB: 1200 x 630          // https://developers.facebook.com/docs/sharing/webmasters/images/
@@ -49,10 +58,11 @@ const {pageTitle, bannerImage, bannerAlt, maintenice, ogThunmbnail} =
     <meta name="generator" content={Astro.generator} />
     <title>Dispersed Memorial Forest D&G | {pageTitle}</title>
   </head>
-  <body class={`no-js ${sluggo(pageTitle)}`}>
+  <body class={`no-js ${bodyClasses} ${sluggo(pageTitle)}`}>
     <Header
       title={pageTitle}
       bannerImage={bannerImage}
+      bannerHeight={bannerHeight}
       bannerAlt={bannerAlt}
       maintenice={maintenice}
     />
@@ -66,6 +76,10 @@ const {pageTitle, bannerImage, bannerAlt, maintenice, ogThunmbnail} =
       // Remove the 'no-js' class the body when the document is ready
       document.body.classList.remove('no-js')
       document.body.classList.add('js')
+      document.documentElement.style.setProperty(
+        '--page-url',
+        `"${window.location.href}"`
+      )
     </script>
   </body>
 </html>

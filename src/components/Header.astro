@@ -7,11 +7,13 @@ import SkipToContent from './SkipToContent.astro'
 interface Props {
   title: string
   bannerImage?: ImageMetadata
+  bannerHeight?: number
   bannerAlt?: string
   maintenice?: boolean
+
 }
 
-const {title, bannerImage, bannerAlt, maintenice} = Astro.props
+const {title, bannerImage, bannerHeight = 576, bannerAlt, maintenice} = Astro.props
 ---
 
 <>
@@ -26,8 +28,8 @@ const {title, bannerImage, bannerAlt, maintenice} = Astro.props
           ><Image
             src={Logo}
             alt="Remembering Together Dumfries & Galloway project logo."
-            height={90}
             loading="eager"
+            height={90}
             class="header__logo"
           /><span class="clip ">Remembering Together Dumfries & Galloway</span
           ></a
@@ -64,8 +66,8 @@ const {title, bannerImage, bannerAlt, maintenice} = Astro.props
               src={bannerImage}
               alt=` ${bannerAlt}`
               loading="eager"
-              width="1024"
-              height="576"
+              width={1024}
+              height={bannerHeight}
             />
           )
         }
@@ -78,7 +80,7 @@ const {title, bannerImage, bannerAlt, maintenice} = Astro.props
   </header>
 </>
 
-<style>
+<style define:vars={{bannerHeight}}>
   .header__background--right,
   .header__background--left {
     position: absolute;
@@ -245,7 +247,7 @@ const {title, bannerImage, bannerAlt, maintenice} = Astro.props
 
   @media (min-width: 775px) {
     .header__image img {
-      block-size: 100%;
+      block-size: calc(var(--bannerHeight) * 1px);
       object-position: 50% 28%;
     }
   }
@@ -267,7 +269,7 @@ const {title, bannerImage, bannerAlt, maintenice} = Astro.props
   }
 
   /* Navigation title */
-  .nav__toggle {}
+  /* .nav__toggle {} */
 
   button.nav__toggle {
     white-space: nowrap;
