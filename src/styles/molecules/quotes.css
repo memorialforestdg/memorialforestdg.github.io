@@ -8,7 +8,7 @@ blockquote {
   border-left: .35rem solid var(--dropcap-color, var(--brand-cyan-dk));
   quotes: '“' '”' '‘' '’';
   padding-inline: 2cap 1cap;
-  padding-block: .5cap .5cap;
+  padding-block: 1cap .5cap;
   max-inline-size: 100%;
   max-block-size: 100%;
 }
@@ -41,18 +41,20 @@ blockquote::after {
   font-family: inherit;
   font-style: inherit;
   line-height: inherit;
-  opacity: .5;
+  opacity: .25;
   inset-inline-end: 0;
   inset-block-end: 0;
 }
 
 blockquote::before {
+  margin-block-start: calc(-1cap / 3);
   top: 0;
   left: 0;
   content: "“";
 }
 
 blockquote::after {
+margin-block-end: calc(-1cap / 2);
   right: 0;
   bottom: 0;
   content: "”";
