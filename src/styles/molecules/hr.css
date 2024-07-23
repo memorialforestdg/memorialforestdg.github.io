@@ -1,7 +1,6 @@
 
-
 hr {
-   --flare-radius: 25px;
+   --flare-radius: 3ch;
 
     display: block;
     width: 100%;
@@ -10,9 +9,11 @@ hr {
     overflow: visible; /* For IE */
       text-align: center;
     border-color: var(--dropcap-color, var(--brand-cyan-dk));
+    border-color: color-mix(in srgb, var(--dropcap-color, var(--brand-cyan-dk)) 25%, transparent);
     border-style: solid;
     border-width: 1px 0 0;
-    border-radius: 20px;
+    border-radius: calc(var(--flare-radius) - 5px);
+    opacity: 0.9;
 }
 
 hr::before {
@@ -20,6 +21,7 @@ hr::before {
     height: var(--flare-radius);
     margin-top: calc(-1 * var(--flare-radius));
     border-color: var(--dropcap-color, var(--brand-cyan-dk));
+    border-color: color-mix(in srgb, var(--dropcap-color, var(--brand-cyan-dk)) 25%, transparent);
     border-style: solid;
     border-width: 0 0 1px;
     border-radius: var(--flare-radius);
@@ -29,10 +31,16 @@ hr::before {
 
 hr::after {
   position: relative;
-  top: calc(calc(var(--f4) / 2) * -1);
-  display: inline-block;
-  padding: 0 calc(var(--f4) / 2);
-  font-size: var(--f4);
-  background: var(--brand-lt);
-  content: "🍂" / "";
+    top: calc(calc(var(--flare-radius) / 2)* -1);
+    display: inline-block;
+    font-size: 2ch;
+    font-family: system-ui;
+    text-align: center;
+    background: var(--brand-lt);
+    border: 1px solid var(--dropcap-color, var(--brand-cyan-dk));
+    border-color: color-mix(in srgb, var(--dropcap-color, var(--brand-cyan-dk)) 50%, transparent);
+    border-radius: var(--br-circle);
+    content: "🍂" / "";
+    inline-size: var(--flare-radius);
+    block-size: var(--flare-radius);
 }
