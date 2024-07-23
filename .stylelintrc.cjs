@@ -16,6 +16,8 @@ module.exports = {
       ignore: ["rem", "css-nesting", "css-blank-pseudo", "css-prefers-color-scheme", "css-mediaqueries"],
       ignorePartialSupport: true,
     }],
+    // custom properties allow both camel and kebab-case
+    "custom-property-pattern": "^(--)?[a-z][a-zA-Z0-9]*((-)?[a-zA-Z0-9]+)*$",
     // animations
     "plugin/no-low-performance-animation-properties": [
       true,
