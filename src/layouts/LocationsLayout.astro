@@ -112,6 +112,10 @@ const mapHeight = '350px'
 </BaseLayout>
 
 <style define:vars={{mapHeight, bannerHeight}} is:global>
+  .open-map {
+    background-color: var(--brand-teal-dk);
+  }
+
   @media (max-width: 550px) {
     .open-map {
       --height: calc(var(--mapHeight) * 0.6) !important;
