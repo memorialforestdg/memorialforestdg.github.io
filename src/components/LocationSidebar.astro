@@ -1,13 +1,35 @@
 ---
 import {Icon} from 'astro-icon/components'
 
+function isHttpOrHttpsUrl(url: string): boolean {
+  return url.startsWith('http://') || url.startsWith('https://')
+}
+
+function isValidW3WFormat(w3w: string): boolean {
+  // Less then 64 characters and three words separated by dots.
+  return w3w.length < 64 && /^[a-zA-Z]+\.[a-zA-Z]+\.[a-zA-Z]+$/.test(w3w)
+}
+
+function isValidColorFormat(color: string | undefined): boolean {
+  // Assuming the color format is like --example-color, adjust regex as needed.
+  return color === undefined || /^--[\w-]+$/.test(color)
+}
+
+type Word = string // Placeholder, can't enforce alphabet characters only
+export type W3WFormat = `${Word}.${Word}.${Word}`
+
+type ValidUrl = Props & {url: string} & {
+  url: ReturnType<typeof isHttpOrHttpsUrl> extends true ? string : undefined
+}
+
 interface Props {
-  w3w: string
+  bgColor?: `--${string}`
+  textColor?: `--${string}`
+  w3w: W3WFormat
   lat: number
   lon: number
-  siteInfo?: string
   address?: string
-  website?: string
+  website?: ValidUrl
   phone?: string
   hours?: string
   food?: string
@@ -16,12 +38,15 @@ interface Props {
   transport?: string
   bicycles?: string
   parking?: string
+  siteInfo?: string
 }
+
 const {
+  bgColor,
+  textColor,
   w3w,
   lat,
   lon,
-  siteInfo,
   address,
   website,
   phone,
@@ -29,46 +54,79 @@ const {
   food,
   bathrooms,
   accessible,
-  parking,
+  transport,
   bicycles,
-  transport
-} = Astro.props
+  parking,
+  siteInfo
+} = Astro.props as ValidUrl
+
+// Validate w3w format
+if (!isValidW3WFormat(w3w)) {
+  throw new Error(
+    `Invalid w3w format (should be three words, seperated buy dots): ${w3w}`
+  )
+}
+
+// Validate bgColor and textColor formats
+if (!isValidColorFormat(bgColor)) {
+  throw new Error(`Invalid css property format for bgColor: ${bgColor}`)
+}
+
+if (!isValidColorFormat(textColor)) {
+  throw new Error(`Invalid css property format for textColor: ${textColor}`)
+}
+
+const bgColorVar = `var(${bgColor})`
+const textColorVar = `var(${textColor})`
 ---
 
-<section class="location__sidebar bg-brand-purple-dk poly-1 mw-100">
+<section class="location__sidebar poly-1 mw-100 mt-4">
   <div class="location__sidebar--content ma-4">
     <h2 class="f2 sans">Getting There</h2>
     <ul
-      class="list location__sidebar--list grid gap-2 justify-self-start items-start"
+      class="list location__sidebar--list grid gap-2 justify-self-start items-start pa-0"
     >
       <li class="info-item maps justify-self-start">
         <Icon name="material-symbols-light:map-sharp" />
-        <ul class="map-items list grid justify-self-start">
+        <ul class="map-items list grid justify-self-start pa-0">
           {
             w3w && (
               <li class="w3w">
                 <strong>What 3 Words:</strong>{' '}
-                <a class="di-underline-hover" href={`https://w3w.co/${w3w}`}>
-                  {w3w}
+                <a
+                  class="di-underline-hover"
+                  href={`https://w3w.co/${w3w}`}
+                  target="_blank"
+                >
+                  ///{w3w}
                 </a>
                 <Icon name="material-symbols-light:open-in-new" />
               </li>
             )
           }
-          <li class="open-street-map">
-            <strong>Open Street Map:</strong>
+          <li class="google-maps">
+            <strong>Google Maps:</strong>
             <a
               class="di-underline-hover"
-              href={`https://www.openstreetmap.org/#map=18/${lat}/${lon}&layers=H`}
+              href={`https://www.google.com/maps/dir/?api=1&destination=${lat},${lon}`}
               target="_blank">{lat}, {lon}</a
             >
             <Icon name="material-symbols-light:open-in-new" />
           </li>
+          <!-- <li class="open-street-map">
+            <strong>Open Street Map:</strong>
+            <a
+              class="di-underline-hover"
+              href={`https://www.openstreetmap.org/?mlat=${lat}&mlon=${lon}&map=18/${lat}/${lon}&layers=H`}
+              target="_blank">{lat}, {lon}</a
+            >
+            <Icon name="material-symbols-light:open-in-new" />
+          </li> -->
         </ul>
       </li>
       <li class="w-100">
         <address>
-          <ul class="list ma-0 grid gap-2">
+          <ul class="list ma-0 grid gap-2 pa-0">
             {
               address && (
                 <li class="info-item address m">
@@ -82,7 +140,11 @@ const {
                 <li class="info-item website">
                   <Icon name="material-symbols-light:globe-uk-sharp" />
                   <div class="item-subject">
-                    <a class="di-underline-hover" href={website}>
+                    <a
+                      class="di-underline-hover"
+                      href={website}
+                      target="_blank"
+                    >
                       {website}
                     </a>
                     <Icon name="material-symbols-light:open-in-new" />
@@ -168,7 +230,7 @@ const {
             <div class="item-subject">
               {siteInfo}
               <br />
-              <i class="f6 dib mt-2">
+              <i class="f6 dib mt-2 word-wrap">
                 –– Opening and access times subject to change without notice;
                 where possible visit the website or phone ahead to avoid
                 dissappointment.
@@ -180,57 +242,61 @@ const {
     </ul>
   </div>
 </section>
-<style>
-  ul,
+<style define:vars={{bgColorVar, textColorVar}}>
   li {
     padding: 0;
   }
+
   .location__sidebar {
     padding: 1rem;
-    color: var(--brand-lt);
+    color: var(--textColorVar, var(--brand-lt));
+    background-color: var(--bgColorVar, var(--brand-dk));
   }
 
   a {
     word-wrap: break-word;
   }
-  a + [data-icon] {
-    display: inline-block;
-    font-size: 1rem;
-    width: 1rem;
-    height: 1rem;
-    margin-block-end: -2px;
-    color: var(--brand-lt);
-  }
 
-  a,
-  a:visited {
-    color: currentColor;
-  }
   [data-icon] {
     width: 30px;
     height: 30px;
     color: var(--brand-lt);
   }
 
+  a + [data-icon] {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    color: var(--brand-lt);
+    font-size: 1rem;
+    margin-block-end: -2px;
+  }
+
+  a,
+  a:visited {
+    color: currentcolor;
+  }
+
   .location__sidebar--list {
     /* display: grid; */
     grid-template-columns: 1fr;
+
     /* justify-items: self-start;
     align-items: center; */
   }
 
   .info-item {
     display: grid;
-    align-items: start;
-    justify-items: start;
     grid-template-columns: minmax(0, 30px) minmax(0, 1fr);
-    column-gap: 0.8rem;
+    place-items: start start;
     width: 100%;
+    column-gap: 0.8rem;
   }
 
   .info-item:not(.maps) > *:first-child {
     margin-block-start: 0.5rem;
   }
+
   .item-subject {
     width: 100%;
     padding-block-start: 0.5rem;
