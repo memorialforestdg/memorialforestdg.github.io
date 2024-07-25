@@ -80,9 +80,9 @@ const mapHeight = '350px'
         classes="container poly-3 z-0"
         style="@media (max-width: 700px) { width: calc(100% - 4px); }"
         zoom="16"
-        maxzoom="16"
-        controls={false}
-        scrollwheel={false}
+        controls="true"
+        scrollwheel="true"
+
         icon={iconOpts}
       />
     </div>
@@ -102,10 +102,10 @@ const mapHeight = '350px'
       <Gallery
         collectionId="albums"
         albumId="foo"
-        galleryWraperClasses={'flex flex-wrap flex-row'}
-        galleryUlClasses={'pa-0 flex flex-row flex-wrap gap-2 justify-center measure-4'}
-        cellLiClasses={'flex pa-0 ma-0 flex-grow shadow-hover'}
-        cellClasses={'flex pa-0 ma-0 bg-brand-purple flex-grow shadow-hover br1'}
+        galleryWraperClasses={'nt-4'}
+        galleryUlClasses={'pa-0 list flex flex-wrap gap-2 justify-center'}
+        cellLiClasses={'pa-0 ma-0 shadow-hover'}
+        cellClasses={'pa-0 ma-0 bg-brand-purple shadow-hover br1'}
       />
     </div>
   </main>
