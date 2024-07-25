@@ -1,0 +1,111 @@
+---
+import OpenMap from '../../components/OpenMap.astro'
+import BaseLayout from '../../layouts/BaseLayout.astro'
+
+import {
+  type Icon,
+  type Location,
+  type Popup
+} from '../../components/OpenMap.astro'
+import mapIcon from '../../../public/map-pin-trees.svg'
+import mapIconShadow from '../../../public/map-pin-trees-shadow.png'
+
+// Icon
+const iconOpts: Icon = {
+  iconUrl: mapIcon.src,
+  shadowUrl: mapIconShadow.src,
+  iconSize: [80, 77],
+  shadowSize: [80, 40],
+  shadowAnchor: [0, 8],
+  iconAnchor: [12, 41]
+}
+
+// map center
+const lat = 54.9248355
+const lon = -3.948683
+
+// locations
+const locations: Location[] = [
+  {
+    id: 'Castle Douglas',
+    content:
+      'Castle Douglas: Some mixed <a href="https://example.com">markup</a> & content.',
+    popup: {offset: {x: 30, y: -22}},
+    lat: 54.9248355,
+    lon: -3.948683,
+    open: true,
+    icon: iconOpts
+  },
+  {
+    id: 'The Crichton, Dumfries',
+    content:
+      'The Crichton, Dumfries: <a href="https://example.com">markup</a> & content.',
+    popup: {offset: {x: 30, y: -22}},
+    lat: 55.0512608,
+    lon: -3.5941989,
+    open: false,
+    icon: iconOpts
+  },
+  {
+    id: 'Moffat',
+    content:
+      'Moffat: Some mixed <a href="https://example.com">markup</a> & content.',
+    popup: {offset: {x: 30, y: -22}},
+    lat: 55.3332407,
+    lon: -3.444357,
+    open: false,
+    icon: iconOpts
+  },
+  {
+    id: 'Sanquhar',
+    content:
+      'Sanquhar: Some mixed <a href="https://example.com">markup</a> & content.',
+    popup: {offset: {x: 30, y: -22}},
+    lat: 55.3676858,
+    lon: -3.9236766,
+    open: false,
+    icon: iconOpts
+  },
+  {
+    id: 'Stranraer',
+    content:
+      'Stranraer: Some mixed <a href="https://example.com">markup</a> & content.',
+    popup: {offset: {x: 30, y: -22}},
+    lat: 54.9044332,
+    lon: -5.026204,
+    open: false,
+    icon: iconOpts
+  }
+]
+---
+
+<BaseLayout pageTitle="Test Gallery">
+  <main id="main">
+    <div class="container full-width">
+      <h2>A basic map with a pin at the center lat lon:</h2>
+      <OpenMap
+        id="map"
+        lat={lat}
+        lon={lon}
+        height="300px"
+        classes="container"
+        zoom="16"
+        controls="true"
+        icon={iconOpts}
+        centericon="true"
+      />
+      <h2>A map with an array of location objects map:</h2>
+      <OpenMap
+        id="map2"
+        lat={lat}
+        lon={lon}
+        height="400px"
+        classes="container"
+        zoom="8"
+        controls="true"
+        icon={iconOpts}
+        locations={locations}
+      />
+    </div>
+  </main>
+</BaseLayout>

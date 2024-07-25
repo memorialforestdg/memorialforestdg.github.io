@@ -1,5 +1,5 @@
 ---
-export interface IconType {
+export interface Icon {
   iconUrl: string // the url for the icon
   shadowUrl?: string // the url for the shadow image
   iconSize?: [number, number] // size of the icon
@@ -9,6 +9,41 @@ export interface IconType {
   popupAnchor?: [number, number] // point from which the popup should open relative to the iconAnchor
   tooltipAnchor?: [number, number] // point from which the tooltip should open relative to the iconAnchor
 }
+
+export interface Point {
+  x: number
+  y: number
+}
+
+// https://leafletjs.com/reference.html#popup
+export interface Popup {
+  pane?: string // 'popupPane'
+  offset?: Point // {x: 0, y: 0}
+  maxWidth?: number // 300
+  minWidth?: number // 50
+  maxHeight?: number | null // null
+  autoPan?: boolean // true
+  autoPanPaddingTopLeft?: Point | null // null
+  autoPanPaddingBottomRight?: Point | null // null
+  autoPanPadding?: Point // Point(5, 5)
+  keepInView?: boolean // false
+  closeButton?: boolean // true
+  autoClose?: boolean // true
+  closeOnEscapeKey?: boolean // true
+  closeOnClick?: boolean // Optional, defaults to the map's closePopupOnClick option
+  className?: string // ''
+}
+
+export interface Location {
+  id: string
+  content: string
+  popup?: Popup
+  lat: number
+  lon: number
+  open: boolean
+  icon: Icon
+}
+
 interface Props {
   id?: string
   style?: string
@@ -19,9 +54,11 @@ interface Props {
   lon: number
   zoom?: string
   maxzoom?: string
-  scrollwheel?: boolean
-  controls?: boolean
-  icon?: IconType
+  scrollwheel?: 'false'
+  controls?: 'true'
+  icon?: Icon
+  centericon?: 'true'
+  locations?: Location[]
 }
 
 const {
@@ -36,7 +73,9 @@ const {
   maxzoom = '19',
   scrollwheel = true,
   controls = true,
-  icon
+  icon,
+  centericon,
+  locations
 } = Astro.props
 ---
 
@@ -52,6 +91,8 @@ const {
     data-scrollwheel={scrollwheel}
     data-controls={controls}
     data-icon={JSON.stringify(icon)}
+    data-centericon={centericon}
+    data-locations={JSON.stringify(locations)}
   >
   </open-map>
 </>
@@ -63,11 +104,17 @@ const {
   class OpenMap extends HTMLElement {
     constructor() {
       super()
-      const {lat, lon, zoom, controls, maxzoom, scrollwheel, icon} =
-        this.dataset
-
-      console.log(this.dataset)
-      console.log('scrollwheel', scrollwheel)
+      const {
+        lat,
+        lon,
+        zoom,
+        controls,
+        maxzoom,
+        scrollwheel,
+        icon,
+        centericon,
+        locations
+      } = this.dataset
 
       const id = this.id
       const mapOptions = {
@@ -86,12 +133,37 @@ const {
             '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap: Tiles by Humanitarian</a>'
         }
       )
+
+      // Add layer to the map
+      map.addLayer(layer)
+
+      // Load provided icon or use default
       let loadIcon = icon
         ? L.icon(JSON.parse(icon))
         : L.icon({iconUrl: iconImg.src})
 
-      L.marker([lat, lon], {icon: loadIcon}).addTo(map)
-      map.addLayer(layer)
+      // Dont alow both a location array and centericon
+      if (centericon && !locations) {
+        L.marker([lat, lon], {icon: loadIcon}).addTo(map)
+      }
+
+      // load the locations if they exist
+      if (locations) {
+        JSON.parse(locations).forEach((location) => {
+          // Load location icon or use default
+          loadIcon = location?.icon ? L.icon(location.icon) : loadIcon
+          const marker = L.marker([location.lat, location.lon], {
+            icon: loadIcon
+          })
+          location?.content &&
+            marker.bindPopup(location.content, location?.popup)
+          if (location.open) {
+            marker.addTo(map).openPopup()
+          } else {
+            marker.addTo(map)
+          }
+        })
+      }
     }
   }
 
