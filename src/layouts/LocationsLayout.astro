@@ -70,7 +70,7 @@ const mapHeight = '350px'
   bannerHeight={bannerHeight}
   bannerAlt={bannerAlt}
 >
-  <main id="main container">
+  <main id="main">
     <div class="open-map__wrap nt-3 poly-shadow">
       <OpenMap
         id="map"
@@ -86,9 +86,8 @@ const mapHeight = '350px'
         icon={iconOpts}
       />
     </div>
-
-    <div class="location">
-      <div class="markdown-content mw-100 ma-4-l mr-5-l">
+    <div class="location container stack">
+      <div class="markdown-content">
         <Flourish classes={flourishClasses}>
           <slot />
         </Flourish>
@@ -112,28 +111,10 @@ const mapHeight = '350px'
   </main>
 </BaseLayout>
 
-<style define:vars={{mapHeight}}>
-  .open-map__wrap {
-    grid-column: 1 / 3;
-  }
-
-  .location {
-    display: grid;
-    grid-template-rows: minmax(0, --mapheight) minmax(0, 1fr);
-
-    /* grid-template-columns: minmax(400px, 1fr) minmax(300px, 0.75fr); */
-    grid-template-columns: 1fr;
-    max-width: var(--width-max-content, 100%);
-    margin-top: var(--spacing-4);
-    margin-inline: auto;
-    padding-inline: var(--spacing-2);
-  }
-
-  @media (max-width: 1000px) {
-    .location {
-      /* Adjust to a single column layout */
-      grid-template-columns: 1fr;
-      margin-inline: var(--spacing-5);
+<style define:vars={{mapHeight, bannerHeight}} is:global>
+  @media (max-width: 550px) {
+    .open-map {
+      --height: calc(var(--mapHeight) * 0.6) !important;
     }
   }
 </style>
