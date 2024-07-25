@@ -21,9 +21,9 @@
 }
 
 .word-wrap {
-  overflow-wrap: break-word;
   word-wrap: break-word;
   word-break: break-word;
+  overflow-wrap: break-word;
   hyphens: auto;
 }
 
@@ -78,9 +78,20 @@
   clip-path: polygon( 0.8% 0%, 99% 0%, 100% 100%, 100% 146%, 0% 93%)
 }
 
-@media (max-width: 600px) {
-    .poly-1 {
-    clip-path: polygon(0% -10%, 101.5% 7%, 100% 116%, -0.5% 95%)
+.poly-shadow {
+  filter: drop-shadow(2px 2px 0 var(--drop-shadow-color, rgb(0 0 0 / 20%)))
+    drop-shadow(-1px 0 0 var(--drop-shadow-color, rgb(0 0 0 / 20%)));
+}
+
+@media (max-width: 700px) {
+  .poly-1,
+  .poly-2,
+  .poly-3 {
+    clip-path: none;
+  }
+
+  .poly-shadow {
+    filter: none;
   }
 }
 
