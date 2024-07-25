@@ -63,7 +63,7 @@ const {
   class OpenMap extends HTMLElement {
     constructor() {
       super()
-      const {lon, lat, zoom, controls, maxzoom, scrollwheel, icon} =
+      const {lat, lon, zoom, controls, maxzoom, scrollwheel, icon} =
         this.dataset
 
       console.log(this.dataset)
@@ -71,7 +71,7 @@ const {
 
       const id = this.id
       const mapOptions = {
-        center: [lon, lat],
+        center: [lat, lon],
         zoom,
         maxZoom: maxzoom,
         scrollWheelZoom: scrollwheel,
@@ -90,7 +90,7 @@ const {
         ? L.icon(JSON.parse(icon))
         : L.icon({iconUrl: iconImg.src})
 
-      L.marker([lon, lat], {icon: loadIcon}).addTo(map)
+      L.marker([lat, lon], {icon: loadIcon}).addTo(map)
       map.addLayer(layer)
     }
   }
