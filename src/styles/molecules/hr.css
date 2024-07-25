@@ -35,6 +35,7 @@ hr::after {
     display: inline-block;
     font-size: 2ch;
     font-family: system-ui;
+    letter-spacing: 0;
     text-align: center;
     background: var(--brand-lt);
     border: 1px solid var(--dropcap-color, var(--brand-cyan-dk));
