@@ -80,7 +80,7 @@ const bgColorVar = `var(${bgColor})`
 const textColorVar = `var(${textColor})`
 ---
 
-<section class="location__sidebar poly-1 mw-100 mt-4">
+<section class="location__sidebar poly-1 mw-100">
   <div class="location__sidebar--content ma-2 ma-4-ns">
     <h2 class="f2 sans">Getting There</h2>
     <ul
@@ -131,7 +131,7 @@ const textColorVar = `var(${textColor})`
               address && (
                 <li class="info-item address m">
                   <Icon name="material-symbols-light:location-on" />
-                  <div class="item-subject">{address}</div>
+                  <div class="item-subject" set:html={address} />
                 </li>
               )
             }
@@ -171,7 +171,7 @@ const textColorVar = `var(${textColor})`
         hours && (
           <li class="info-item hours">
             <Icon name="material-symbols-light:nest-clock-farsight-analog-outline" />
-            <div class="item-subject">{hours}</div>
+            <div class="item-subject" set:html={hours} />
           </li>
         )
       }
@@ -179,7 +179,7 @@ const textColorVar = `var(${textColor})`
         food && (
           <li class="info-item food">
             <Icon name="material-symbols-light:coffee-rounded" />
-            <div class="item-subject">{food}</div>
+            <div class="item-subject" set:html={food} />
           </li>
         )
       }
@@ -187,7 +187,7 @@ const textColorVar = `var(${textColor})`
         bathrooms && (
           <li class="info-item bathrooms">
             <Icon name="material-symbols-light:family-restroom-rounded" />
-            <div class="item-subject">{bathrooms}</div>
+            <div class="item-subject" set:html={bathrooms} />
           </li>
         )
       }
@@ -195,7 +195,7 @@ const textColorVar = `var(${textColor})`
         accessible && (
           <li class="info-item accessible">
             <Icon name="material-symbols-light:accessible-forward-rounded" />
-            <div class="item-subject">{accessible}</div>
+            <div class="item-subject" set:html={accessible} />
           </li>
         )
       }
@@ -203,7 +203,7 @@ const textColorVar = `var(${textColor})`
         parking && (
           <li class="info-item parking">
             <Icon name="material-symbols-light:local-parking-rounded" />
-            <div class="item-subject">{parking}</div>
+            <div class="item-subject" set:html={parking} />
           </li>
         )
       }
@@ -211,7 +211,7 @@ const textColorVar = `var(${textColor})`
         transport && (
           <li class="info-item transport">
             <Icon name="material-symbols-light:train-outline" />
-            <div class="item-subject">{transport}</div>
+            <div class="item-subject" set:html={transport} />
           </li>
         )
       }
@@ -219,7 +219,7 @@ const textColorVar = `var(${textColor})`
         bicycles && (
           <li class="info-item bicycles">
             <Icon name="material-symbols-light:directions-bike" />
-            <div class="item-subject">{bicycles}</div>
+            <div class="item-subject" set:html={bicycles} />
           </li>
         )
       }
@@ -228,7 +228,7 @@ const textColorVar = `var(${textColor})`
           <li class="info-item site-info">
             <Icon name="material-symbols-light:info-outline" />
             <div class="item-subject">
-              {siteInfo}
+              <span set:html={siteInfo} />
               <br />
               <i class="f6 dib mt-2 word-wrap">
                 –– Opening and access times subject to change without notice;
