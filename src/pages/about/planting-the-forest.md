@@ -6,14 +6,14 @@ bannerAlt: 'Image of Katie Anderson the crafting of the markers.'
 flourishClasses: ['--beech', 'dropcap', '--dc-picton-600']
 ---
 
-Mollit cillum sint veniam enim labore amet. Amet irure do enim irure. Elit exercitation consequat enim eiusmod Lorem. Tempor Lorem commodo do adipisicing non et in et ipsum reprehenderit.
+In March and April 2024, the Remembering Together D&G project planted over 400 trees at five locations across the region as part of The Dispersed Memorial Forest, working alongside local site partners and community groups, as well as individuals and families affected during the COVID19 pandemics.
 
-Irure officia do dolore cillum ea labore veniam quis ad sint ad non laborum. Duis ipsum velit tempor eiusmod duis. Do aliqua adipisicing do nostrud cillum cupidatat magna anim nisi ad velit excepteur labore.
+The tree planting events, working with partners alongside woodland planting experts [TreeSurv](https://www.treesurv.co.uk/), took place at key sites selected during the first phase of the project:
 
-Qui elit consequat enim nostrud veniam incididunt aliquip voluptate qui ex culpa. In est aliquip ut pariatur. Voluptate aute excepteur cillum magna proident id minim voluptate duis. Incididunt sint nulla sunt culpa consequat enim aute excepteur sint sit est irure. Cillum sint consectetur laboris laborum irure sint excepteur fugiat ut. Qui incididunt exercitation eu ad sit laborum voluptate eiusmod amet est id proident.
+- Dumfries, with trees planted across The Crichton and NHS Mountainhall sites
+- Moffat Community Nature Reserve
+- Threave Nature Reserve at Castle Douglas
+- Bell Crescent Playing Field in Sanquhar
+- NHS Galloway Community Hospital in Stranraer
 
-Id est Lorem amet eiusmod consequat velit aliquip. Elit sit occaecat ad in. Aute sunt aliquip minim cupidatat dolor incididunt. Sunt labore mollit nisi ex sint occaecat amet ipsum commodo commodo eu.
-
-Anim laboris culpa ex laboris sint tempor esse reprehenderit est exercitation. Sit proident fugiat dolor exercitation mollit elit id nulla. Eu amet duis id ex ipsum commodo mollit minim labore. Nisi aute esse commodo culpa excepteur fugiat irure pariatur anim duis exercitation eiusmod laboris voluptate. Incididunt do irure dolor ex commodo labore reprehenderit fugiat fugiat. Velit aliquip enim excepteur pariatur.
-
-Deserunt elit sunt fugiat laboris esse Lorem incididunt quis eu eiusmod sit. Laboris enim aliqua Lorem do mollit labore occaecat irure ea veniam Lorem. Veniam sint cupidatat dolor ea duis aliquip qui consequat laborum irure qui ut. Sunt non aute ullamco ex.
+To mark the opening for each of the sites, the project hosted a series of community gathering events at each location in June 2024, with activities including walks, sharing stories, music and food.

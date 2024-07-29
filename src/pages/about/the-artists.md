@@ -1,21 +1,17 @@
 ---
 layout: ../../layouts/MDPagesLayout.astro
-pageTitle: About the Artists
+pageTitle: The Artists
 bannerImage: '../images/artists-katie-anderson+ts-beall.jpg'
 bannerAlt: 'Remembering Together WBF22 High Res57_Image Colin Tennant'
 flourishClasses: ['--downybirch', 'dropcap', '--dc-munsell-600']
 ---
 
-## The Artists
+[Remembering Together Dumfries and Galloway](https://www.rememberingtogether.scot/dumfries-galloway) commissioned two artists to co-create the Community Covid Memorial  with communities across the region, t s Beall and Katie Anderson. Their process began in 2022, speaking to communities, groups, and individuals across the region –  asking what they would like to be remembered, and what form a Covid Memorial for D&G might take (<a href="./phase-1.md">Phase 1, July-Dec 2022</a>). They were then appointed for <a href="./phase-2">Phase 2 (July 2023-Sept 2024)</a> to co-create <a href="../about/">The Dispersed Memorial Forest</a>, working with communities across the region.
 
-Mollit cillum sint veniam enim labore amet. Amet irure do enim irure. Elit exercitation consequat enim eiusmod Lorem. Tempor Lorem commodo do adipisicing non et in et ipsum reprehenderit.
+**dr t s Beall** is a socially-engaged artist and researcher based in Dumfries and Glasgow, working with diverse communities on durational artworks which aim to recover and celebrate underknown histories. For the last decade she has developed projects in both rural and post-industrial urban environments, collaborating with under-represented communities across Scotland and internationally. Her work spans a variety of media including performative events, printed matter, and creative interventions in the public realm.
 
-Irure officia do dolore cillum ea labore veniam quis ad sint ad non laborum. Duis ipsum velit tempor eiusmod duis. Do aliqua adipisicing do nostrud cillum cupidatat magna anim nisi ad velit excepteur labore.
+**Katie Anderson** is a public artist, working across sculpture, installation, sound, lettering, and participatory practice based from her home and studio near Annan. Her practice as an artist is about establishing projects alongside, and as part of, communities – creating work that has its foundations in a sense of place.
 
-Qui elit consequat enim nostrud veniam incididunt aliquip voluptate qui ex culpa. In est aliquip ut pariatur. Voluptate aute excepteur cillum magna proident id minim voluptate duis. Incididunt sint nulla sunt culpa consequat enim aute excepteur sint sit est irure. Cillum sint consectetur laboris laborum irure sint excepteur fugiat ut. Qui incididunt exercitation eu ad sit laborum voluptate eiusmod amet est id proident.
+**ts Beall**: website |  [X](https://x.com/tsBeall) |  [Instagram](https://www.instagram.com/tsbeall/)
 
-Id est Lorem amet eiusmod consequat velit aliquip. Elit sit occaecat ad in. Aute sunt aliquip minim cupidatat dolor incididunt. Sunt labore mollit nisi ex sint occaecat amet ipsum commodo commodo eu.
-
-Anim laboris culpa ex laboris sint tempor esse reprehenderit est exercitation. Sit proident fugiat dolor exercitation mollit elit id nulla. Eu amet duis id ex ipsum commodo mollit minim labore. Nisi aute esse commodo culpa excepteur fugiat irure pariatur anim duis exercitation eiusmod laboris voluptate. Incididunt do irure dolor ex commodo labore reprehenderit fugiat fugiat. Velit aliquip enim excepteur pariatur.
-
-Deserunt elit sunt fugiat laboris esse Lorem incididunt quis eu eiusmod sit. Laboris enim aliqua Lorem do mollit labore occaecat irure ea veniam Lorem. Veniam sint cupidatat dolor ea duis aliquip qui consequat laborum irure qui ut. Sunt non aute ullamco ex.
+**Katie Anderson**:  [website](https://katiejanderson.com/) |  [X](https://x.com/KatieJoAnd) | [Instagram](https://www.instagram.com/katie_j_and/)

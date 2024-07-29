@@ -1,19 +1,11 @@
 ---
 layout: ../../layouts/MDPagesLayout.astro
-pageTitle: 'Phase 1: Consultation'
+pageTitle: 'Phase 1: Conversations'
 bannerImage: '../images/RememberingTogetherWBF22LowRes57__ImageColinTennant.jpg'
 bannerAlt: 'Image of workshop guest.'
 flourishClasses: ['--aspen', 'dropcap', '--dc-candlelight-600']
 ---
 
-Mollit cillum sint veniam enim labore amet. Amet irure do enim irure. Elit exercitation consequat enim eiusmod Lorem. Tempor Lorem commodo do adipisicing non et in et ipsum reprehenderit.
+In Dumfries & Galloway, commissioned artists t s Beall and Katie Anderson worked with communities to collaboratively design and plant _**The Dispersed Memorial Forest**_ across the region. The artists began working with communities in 2022, exploring how to remember and honour those impacted by Covid. Between July-December 2022 (Phase 1), the artists brought a sculptural ‘Tree of Remembrance’ to public events across D&G, and hosted postcard-making workshops and conversational events with community groups – including NHS staff, young people, and unpaid carers.  These activities were designed to encourage people to share their experiences, and to help decide the shape of D&G’s Covid Memorial.
 
-Irure officia do dolore cillum ea labore veniam quis ad sint ad non laborum. Duis ipsum velit tempor eiusmod duis. Do aliqua adipisicing do nostrud cillum cupidatat magna anim nisi ad velit excepteur labore.
-
-Qui elit consequat enim nostrud veniam incididunt aliquip voluptate qui ex culpa. In est aliquip ut pariatur. Voluptate aute excepteur cillum magna proident id minim voluptate duis. Incididunt sint nulla sunt culpa consequat enim aute excepteur sint sit est irure. Cillum sint consectetur laboris laborum irure sint excepteur fugiat ut. Qui incididunt exercitation eu ad sit laborum voluptate eiusmod amet est id proident.
-
-Id est Lorem amet eiusmod consequat velit aliquip. Elit sit occaecat ad in. Aute sunt aliquip minim cupidatat dolor incididunt. Sunt labore mollit nisi ex sint occaecat amet ipsum commodo commodo eu.
-
-Anim laboris culpa ex laboris sint tempor esse reprehenderit est exercitation. Sit proident fugiat dolor exercitation mollit elit id nulla. Eu amet duis id ex ipsum commodo mollit minim labore. Nisi aute esse commodo culpa excepteur fugiat irure pariatur anim duis exercitation eiusmod laboris voluptate. Incididunt do irure dolor ex commodo labore reprehenderit fugiat fugiat. Velit aliquip enim excepteur pariatur.
-
-Deserunt elit sunt fugiat laboris esse Lorem incididunt quis eu eiusmod sit. Laboris enim aliqua Lorem do mollit labore occaecat irure ea veniam Lorem. Veniam sint cupidatat dolor ea duis aliquip qui consequat laborum irure qui ut. Sunt non aute ullamco ex.
+In workshops and conversations during Phase 1, the artists spoke to approximately 835 people from Stranraer to Sanquhar. Through those conversations, they identified three key elements for the memorial: _**The Dispersed Memorial Forest**_, a series of tree-planting and Community Gathering events, and an Archive sharing stories of loss and resilience from across the region. The artists asked what people wanted to remember about lockdown, and what they wished they could forget or let go off. Some of their answers, collected as a series of postcards, are inscribed into the sculptural markers that are installed on each forest site.

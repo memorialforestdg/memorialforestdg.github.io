@@ -4,14 +4,37 @@ pageTitle: Partners & Funders
 flourishClasses: ['--alder', 'dropcap', '--dc-cerise-800']
 ---
 
-Mollit cillum sint veniam enim labore amet. Amet irure do enim irure. Elit exercitation consequat enim eiusmod Lorem. Tempor Lorem commodo do adipisicing non et in et ipsum reprehenderit.
+__The Dispersed Memorial Forest__ is part of the Scotland-wide project, [Remembering Together](https://www.rememberingtogether.scot/), which worked between 2022-24 to co-create memorials to honour those we lost, mark what has changed in our lives, and preserve the best of what we learned and created together during the Covid pandemic. Artists and creative organisations were commissioned in each of Scotland’s 32 local authority areas.
 
-Irure officia do dolore cillum ea labore veniam quis ad sint ad non laborum. Duis ipsum velit tempor eiusmod duis. Do aliqua adipisicing do nostrud cillum cupidatat magna anim nisi ad velit excepteur labore.
+More information about the national Remembering Together project, including details on the Community Covid Memorials which have been co-created across Scotland, is available at:
+[https://www.rememberingtogether.scot/](https://www.rememberingtogether.scot/)
 
-Qui elit consequat enim nostrud veniam incididunt aliquip voluptate qui ex culpa. In est aliquip ut pariatur. Voluptate aute excepteur cillum magna proident id minim voluptate duis. Incididunt sint nulla sunt culpa consequat enim aute excepteur sint sit est irure. Cillum sint consectetur laboris laborum irure sint excepteur fugiat ut. Qui incididunt exercitation eu ad sit laborum voluptate eiusmod amet est id proident.
+<br />
 
-Id est Lorem amet eiusmod consequat velit aliquip. Elit sit occaecat ad in. Aute sunt aliquip minim cupidatat dolor incididunt. Sunt labore mollit nisi ex sint occaecat amet ipsum commodo commodo eu.
+__Remembering Together D&G__ was commissioned by Greenspace Scotland, DG Unlimited, and Dumfries & Galloway Council with funding from the Scottish Government.
 
-Anim laboris culpa ex laboris sint tempor esse reprehenderit est exercitation. Sit proident fugiat dolor exercitation mollit elit id nulla. Eu amet duis id ex ipsum commodo mollit minim labore. Nisi aute esse commodo culpa excepteur fugiat irure pariatur anim duis exercitation eiusmod laboris voluptate. Incididunt do irure dolor ex commodo labore reprehenderit fugiat fugiat. Velit aliquip enim excepteur pariatur.
+Site Partners for The Dispersed Memorial Forest include NHS Dumfries and Galloway (at GCH in Stranraer, and Mountainhall Treatment Centre in Dumfries), [NTS Threave Estate and Gardens](https://www.nts.org.uk/visit/places/threave-garden) in Castle Douglas, [Moffat Community Nature Reserve](https://www.facebook.com/profile.php?id=100064786416143), [Sanquhar Community Council](https://www.facebook.com/sanquharcommunitycouncil/), and [The Crichton Estate](https://www.crichton.co.uk/) in Dumfries.
 
-Deserunt elit sunt fugiat laboris esse Lorem incididunt quis eu eiusmod sit. Laboris enim aliqua Lorem do mollit labore occaecat irure ea veniam Lorem. Veniam sint cupidatat dolor ea duis aliquip qui consequat laborum irure qui ut. Sunt non aute ullamco ex.
+<br />
+
+__Community Partners for each site are listed below, with profound thanks:__
+
+- __Castle Douglas: NTS Threave Nature Reserve__
+Site Partners: National Trust for Scotland
+_Working with [Castle Douglas Development Forum (CDDF)](https://www.castledouglas.info/) and [Castle Douglas Community Council](https://www.castledouglas.info/community-development/)_
+
+- __Dumfries: The Crichton Estate and NHS Mountainhall Treatment Centre__
+Site Partners (both Site Owners): Crichton Trust and NHS D&G
+_Working with [Dumfries Climate Kitchen](https://climatekitchen.co.uk/) volunteers, [The People’s Project](https://www.thepeoplesprojects.org.uk/) volunteers, individual NHS staff and community members_
+
+- __Moffat: Moffat Community Nature Reserve__
+Site Partners: Moffat Community Nature Reserve
+_Working with [Moffat Community Nature Reserve](https://www.facebook.com/profile.php?id=100064786416143&sk=about) and their volunteers, [Borders Forest Trust](https://bordersforesttrust.org/) and their volunteers, and individual community members_
+
+- __Sanquhar: Bells Crescent Park__
+Site Partners: Wheatley Group (Site Owner), Dumfries and Galloway Council, Sanquhar Enterprise
+_Working with [Sanquhar Enterprise](https://sanquharenterprisecompany.co.uk/), Sanquhar Community Council, [A the Airts](https://atheairts.org.uk/) and individual community members_
+
+- __Stranraer: Galloway Community Hospital, Stranraer__
+Site Partner: NHS D&G
+_Working with [Incredible Edibles Stranraer](https://www.facebook.com/groups/765364053649833/?locale=en_GB) (GCH Community Garden Volunteers), [D&G Carers Stranraer](https://www.dgalcarers.co.uk/), [Unexpected Gardens Stranraer](https://www.facebook.com/UnexpectedGardenStranraer/), and individual NHS staff and community members_

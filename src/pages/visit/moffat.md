@@ -1,23 +1,28 @@
 ---
-layout: ../../layouts/MDPagesLayout.astro
+layout: ../../layouts/LocationsLayout.astro
 pageTitle: Moffat
 bannerImage: '../images/ex-tree-planting/Treesplantedlastyear_example_notRTDGplantings.jpg'
 bannerAlt: 'The launching of the forest in Dumfries.'
+bannerHeight: 350
 flourishClasses: ['--horsechestnut', 'dropcap', '--dc-brand-orange-dk']
+
+# Gallery info
+
+# Sidebar info
+bgColor: '--brand-cyan-dk' # css custom prop
+textColor: '--brand-lt'    # css custom prop
+w3w:  'president.spouse.holly'
+lat: 55.319197
+lon: -3.43987
+address: 'Moffat Community Nature Reserve, Moffat DG10 9SF'
+partners: 'Moffat Community Nature Reserve <br/>
+<i>Working with Moffat Community Nature Reserve volunteers, Borders Forest Trust and BFT volunteers, Moffat Academy (tbd), and individual community members.</i>'
+website: 'https://visitmoffat.co.uk/explore-moffat/moffat-community-nature-reserve'
+hours: 'The reserve is open every day from 8.00am to 8.00pm. Entry is free.'
+siteInfo: 'The Memorial Forest is accessible via a 10 minute walk from the Nature Reserve car park. The ground is rough in some places, and those with access concerns can also drive to the Memorial site by driving rather than walking the access road. To drive in: rather than parking in the car park, turn left just before the car park and access through a vehicle gate (please close the gate behind you). Drive straight for 2 minutes, the memorial planting site will be on your right, marked by a paving stones. <br/><br/>
+The postcode for the Community Nature Reserve is DG10 9SF, and is signposted off the A701. Find the reserve by following the brown signs for the Community Nature Reserve from the A701 between Moffat and the M74.'
 ---
 
-Mollit cillum sint veniam enim labore amet. Amet irure do enim irure. Elit exercitation consequat enim eiusmod Lorem. Tempor Lorem commodo do adipisicing non et in et ipsum reprehenderit.
+The Memorial Forest at Moffat site is part of the Moffat Community Nature Reserve, once a working quarry and now a haven for wildlife and a wonderful place to explore for local people and visitors to Moffat. The old weigh-bridge is now part of a wildflower meadow, and the sand pits have become wildlife pools.
 
-Irure officia do dolore cillum ea labore veniam quis ad sint ad non laborum. Duis ipsum velit tempor eiusmod duis. Do aliqua adipisicing do nostrud cillum cupidatat magna anim nisi ad velit excepteur labore.
-
-Qui elit consequat enim nostrud veniam incididunt aliquip voluptate qui ex culpa. In est aliquip ut pariatur. Voluptate aute excepteur cillum magna proident id minim voluptate duis. Incididunt sint nulla sunt culpa consequat enim aute excepteur sint sit est irure. Cillum sint consectetur laboris laborum irure sint excepteur fugiat ut. Qui incididunt exercitation eu ad sit laborum voluptate eiusmod amet est id proident.
-
-Id est Lorem amet eiusmod consequat velit aliquip. Elit sit occaecat ad in. Aute sunt aliquip minim cupidatat dolor incididunt. Sunt labore mollit nisi ex sint occaecat amet ipsum commodo commodo eu.
-
-> Id est Lorem amet eiusmod consequat velit aliquip. Elit sit occaecat ad in. Aute sunt aliquip minim
-> cupidatat dolor incididunt. Sunt labore mollit nisi ex sint occaecat amet ipsum commodo commodo eu.
-> <cite>some person</cite>
-
-Anim laboris culpa ex laboris sint tempor esse reprehenderit est exercitation. Sit proident fugiat dolor exercitation mollit elit id nulla. Eu amet duis id ex ipsum commodo mollit minim labore. Nisi aute esse commodo culpa excepteur fugiat irure pariatur anim duis exercitation eiusmod laboris voluptate. Incididunt do irure dolor ex commodo labore reprehenderit fugiat fugiat. Velit aliquip enim excepteur pariatur.
-
-Deserunt elit sunt fugiat laboris esse Lorem incididunt quis eu eiusmod sit. Laboris enim aliqua Lorem do mollit labore occaecat irure ea veniam Lorem. Veniam sint cupidatat dolor ea duis aliquip qui consequat laborum irure qui ut. Sunt non aute ullamco ex.
+The Memorial site is marked by paving stones inlaid with bronze, and includes 125 trees planted in a single copse that visitors can walk around and within.

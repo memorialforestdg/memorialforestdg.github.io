@@ -3,7 +3,7 @@
 layout: ../../layouts/LocationsLayout.astro
 pageTitle: Castle Douglas
 bannerImage: '../images/ex-tree-planting/AlderTreegrowingoutofTreeTube_Threave.jpg'
-bannerAlt: 'The launching of the forest in Dumfries.'
+bannerAlt: 'The launching of the forest in Castle Douglas.'
 bannerHeight: 350
 flourishClasses: ['--hawthorn', 'dropcap', '--dc-brand-cyan-dk']
 
@@ -13,20 +13,15 @@ flourishClasses: ['--hawthorn', 'dropcap', '--dc-brand-cyan-dk']
 # Sidebar info
 bgColor: '--brand-cyan-dk' # css custom prop
 textColor: '--brand-lt'    # css custom prop
-w3w:  'taco.taco.taco'
-lat: 54.9248355
-lon: -3.9486830
-address: 'Threave Garden & Nature Reserve, Castle Douglas, DG7 1RX'
-website: 'https://www.nts.org.uk/visit/places/threave-garden'
-phone: '01556 502575'
-hours: 'Nature Reserve: dawn–dusk '
-food: "Visitors Centre & Cafe: 10.00–17.00"
-bathrooms: 'Accessible bathroom facilities available in Visitors Centre.'
-accessible: 'Access to the Dispersed Memorial Forest IS/IS NOT wheelchair accessible. Some paths in the gardens are not accessible by wheelchair, due to uneven ground.'
-transport: 'Threave Garden & Estate is a 25 minute walk from Hightae Farm serviced by the 500 and 502 busses.'
-bicycles: 'The A75 IS/IS NOT a cyle friendly road from Castle Douglas, however there ARE/NOT cycle friendly paths on the grounds.'
-parking: 'Accessible parking is available at the visitors Centre.'
-siteInfo: 'Threave Garden & Estate is 1 mile west of Castle Douglas and only a short drive from Dumfries. Threave Garden is just off the A75 and is well-signposted from every direction. Turn onto the B736 from the roundabout and follow the brown signs.The road to the nature reserve (and osprey platform) is directly opposite the B736 off the same roundabout – follow the signs for Kelton Mains or Threave Castle. Once on the grounds the Dispersed Memorial Forest CAN BE FOUND XXXX.'
+w3w:  'allies.taken.premature'
+lat: 54.933848
+lon: -3.959061
+address: 'NTS Threave Nature Reserve, Castle Douglas DG7 1TJ'
+hours: '23 Mar–28 Oct, Fri–Mon, 11.00–15.00'
+parking: 'Parking available.'
+bathrooms: 'Bathroom facilities are adjacent to the car park.'
+accessible: 'Please contact the Community Nature Reserve if access may be a concern for you.'
+siteInfo: 'The Memorial Forest site is at Threave Nature Reserve, a short walk from the main car park and visible as you arrive by car on the right hand side. From the car park, access is via a short path. '
 ---
 
 Mollit cillum sint veniam enim labore amet. Amet irure do enim irure. Elit exercitation consequat enim eiusmod Lorem. Tempor Lorem commodo do adipisicing non et in et ipsum reprehenderit.
