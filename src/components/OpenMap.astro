@@ -188,11 +188,14 @@ const {
           })
           location?.content &&
             marker.bindPopup(location.content, location?.popup)
-          if (location.open) {
-            marker.addTo(map).openPopup()
-          } else {
-            marker.addTo(map)
-          }
+          // This is causing all sorts of weird behaviour, with no popups showing where there should
+          // and on the vist page, the last one is the one that pops up?
+          // if (location.open) {
+          //   console.log('open!')
+          //   marker.addTo(map).openPopup()
+          // } else {
+          marker.addTo(map)
+          // }
         })
       }
       // Center the map
