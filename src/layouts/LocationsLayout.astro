@@ -2,13 +2,16 @@
 import Flourish from '../components/Flourish.astro'
 import OpenMap from '../components/OpenMap.astro'
 import Gallery from '../components/Gallery.astro'
-import {type IconType} from '../components/OpenMap.astro'
 import BaseLayout from './BaseLayout.astro'
+import LocationSidebar from '~components/LocationSidebar.astro'
 import type {ImageMetadata} from 'astro'
 import {type W3WFormat} from '../components/LocationSidebar.astro'
-import mapIcon from '../../public/map-pin-trees.svg'
-import mapIconShadow from '../../public/map-pin-trees-shadow.png'
-import LocationSidebar from '~components/LocationSidebar.astro'
+import {type Location} from '../components/OpenMap.astro'
+import {mapLocations, iconOpts, defaultCenter} from '../js/mapLocations'
+import sluggo from '~js/sluggo'
+
+// locations
+const locations: Location[] = mapLocations
 
 interface Props {
   frontmatter: {
@@ -44,21 +47,20 @@ const {
   lon
 } = Astro.props.frontmatter
 
+// Find the array index of the location id that matches the pageTitle
+const locationIndex = mapLocations.findIndex(
+  (location: Location) => location.id === sluggo(pageTitle)
+)
+
+// Set the popup to open
+mapLocations[locationIndex].open = true
+
 // https://markjames.dev/blog/dynamically-importing-images-astro
 const images = import.meta.glob<{default: ImageMetadata}>(
   '../images/**/*.{png,PNG,jpg,JPG,jpeg,svg,webp,avif}'
 )
 const banner = images[bannerImage] ? await images[bannerImage]() : (null as any)
 const BannerImageMetadata = banner.default as ImageMetadata
-
-const iconOpts: IconType = {
-  iconUrl: mapIcon.src,
-  shadowUrl: mapIconShadow.src,
-  iconSize: [80, 77],
-  shadowSize: [80, 40],
-  shadowAnchor: [0, 8],
-  iconAnchor: [12, 41]
-}
 
 const mapHeight = '350px'
 ---
@@ -73,40 +75,48 @@ const mapHeight = '350px'
   <main id="main">
     <div class="open-map__wrap nt-3 poly-shadow">
       <OpenMap
-        id="map"
-        lat={lat}
-        lon={lon}
+        id={sluggo(pageTitle)}
+        lat={mapLocations[locationIndex].lat}
+        lon={mapLocations[locationIndex].lon}
         height={mapHeight}
         classes="container poly-3 z-0"
         style="@media (max-width: 700px) { width: calc(100% - 4px); }"
         zoom="16"
         controls="true"
-        scrollwheel="true"
-
-        icon={iconOpts}
+        locations={locations}
+        geojson={`../visit/boundry.json`}
+        geostyle={{
+          fillColor: 'green',
+          weight: 2,
+          opacity: 1,
+          color: 'green',
+          fillOpacity: 0.05
+        }}
       />
     </div>
-    <div class="location container stack">
-      <div class="markdown-content">
-        <Flourish classes={flourishClasses}>
-          <slot />
-        </Flourish>
+    <div class="location container">
+      <div class="stack pl-5 pr-5 pt-4">
+        <div class="markdown-content">
+          <Flourish classes={flourishClasses}>
+            <slot />
+          </Flourish>
+        </div>
+        <LocationSidebar
+          {...Astro.props.frontmatter}
+          w3w={Astro.props.frontmatter.w3w as W3WFormat}
+        />
+        <div class="gallery__wrap">
+          <hr />
+          <Gallery
+            collectionId="albums"
+            albumId="foo"
+            galleryWraperClasses={'nt-4'}
+            galleryUlClasses={'pa-0 list flex flex-wrap gap-2 justify-center'}
+            cellLiClasses={'pa-0 ma-0 shadow-hover'}
+            cellClasses={'pa-0 ma-0 bg-brand-purple shadow-hover br1'}
+          />
+        </div>
       </div>
-      <LocationSidebar
-        {...Astro.props.frontmatter}
-        w3w={Astro.props.frontmatter.w3w as W3WFormat}
-      />
-    </div>
-    <div class="gallery__wrap container">
-      <hr />
-      <Gallery
-        collectionId="albums"
-        albumId="foo"
-        galleryWraperClasses={'nt-4'}
-        galleryUlClasses={'pa-0 list flex flex-wrap gap-2 justify-center'}
-        cellLiClasses={'pa-0 ma-0 shadow-hover'}
-        cellClasses={'pa-0 ma-0 bg-brand-purple shadow-hover br1'}
-      />
     </div>
   </main>
 </BaseLayout>
