@@ -4,6 +4,10 @@ pageTitle: Planting the Forest
 bannerImage: '../images/dumfries-launch/planting-dumfries.jpg'
 bannerAlt: 'Image of Katie Anderson the crafting of the markers.'
 flourishClasses: ['--beech', 'dropcap', '--dc-picton-600']
+
+# Gallery info
+collectionId: albums
+albumId: foo
 ---
 
 In March and April 2024, the Remembering Together D&G project planted over 400 trees at five locations across the region as part of The Dispersed Memorial Forest, working alongside local site partners and community groups, as well as individuals and families affected during the COVID19 pandemics.

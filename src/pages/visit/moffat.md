@@ -1,12 +1,14 @@
 ---
 layout: ../../layouts/LocationsLayout.astro
 pageTitle: Moffat
-bannerImage: '../images/ex-tree-planting/Treesplantedlastyear_example_notRTDGplantings.jpg'
+bannerImage: '../images/ImageCredit_tsBeall_IMG_2538.webp'
 bannerAlt: 'The launching of the forest in Dumfries.'
 bannerHeight: 350
 flourishClasses: ['--horsechestnut', 'dropcap', '--dc-brand-orange-dk']
 
 # Gallery info
+collectionId: albums
+albumId: foo
 
 # Sidebar info
 bgColor: '--brand-cyan-dk' # css custom prop

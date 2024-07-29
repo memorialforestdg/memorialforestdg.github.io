@@ -4,6 +4,10 @@ pageTitle: The Story
 bannerImage: '../images/RememberingTogetherWBF22LowRes74_ImageColinTennant.jpg'
 bannerAlt: 'Remembering Together WBF22 High Res57_Image Colin Tennant'
 flourishClasses: ['--alder', 'dropcap', '--dc-cerise-800']
+
+# Gallery info
+collectionId: albums
+albumId: foo
 ---
 
 ## The Dispersed Memorial Forest

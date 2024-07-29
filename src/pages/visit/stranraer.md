@@ -7,7 +7,8 @@ bannerHeight: 350
 flourishClasses: ['--silverbirch', 'dropcap', '--dc-brand-green-dk']
 
 # Gallery info
-
+collectionId: albums
+albumId: foo
 
 # Sidebar info
 bgColor: '--brand-cyan-dk' # css custom prop

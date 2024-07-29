@@ -1,13 +1,14 @@
 ---
 layout: ../../layouts/LocationsLayout.astro
 pageTitle: Sanquhar
-bannerImage: '../images/ex-tree-planting/Treesplantedlastyear_example_notRTDGplantings.jpg'
+bannerImage: '../images/ex-tree-planting/Treesplantedrougly10yearsago_ThreeRoadEndssite2.jpg'
 bannerAlt: 'The launching of the forest in Sanquhar.'
 bannerHeight: 350
 flourishClasses: ['--rowan-berries', 'dropcap', '--dc-brand-red-dk']
 
 # Gallery info
-
+collectionId: albums
+albumId: foo
 
 # Sidebar info
 bgColor: '--brand-cyan-dk' # css custom prop

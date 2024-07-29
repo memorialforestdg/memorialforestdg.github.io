@@ -1,9 +1,13 @@
 ---
 layout: ../../layouts/LocationsIndexLayout.astro
 pageTitle: Visit
-bannerImage: '../images/dispersed-forrest-map.jpg'
+bannerImage: '../images/RememberingTogetherDG_imageGregorAnderson_croppedHorizontal.jpg'
 bannerAlt: 'Image of Katie Anderson the crafting of the markers.'
 flourishClasses: ['--greywillow', 'dropcap', '--dc-cerise-800']
+
+# Gallery info
+collectionId: albums
+albumId: foo
 ---
 
 ## Visiting Dumfries & Galloway's Dispersed Memorial Forest
