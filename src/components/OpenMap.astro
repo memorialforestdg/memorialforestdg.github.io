@@ -192,11 +192,14 @@ const {
             marker.bindPopup(location.content, location?.popup)
           if (location.open) {
             marker.addTo(map).openPopup()
+            mapOptions.center = [location.lat, location.lon]
           } else {
             marker.addTo(map)
           }
         })
       }
+      // Center the map
+      map.panTo(mapOptions.center, zoom)
     }
   }
 
