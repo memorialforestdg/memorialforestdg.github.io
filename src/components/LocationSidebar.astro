@@ -29,6 +29,7 @@ interface Props {
   lat: number
   lon: number
   address?: string
+  partners?: string
   website?: ValidUrl
   phone?: string
   hours?: string
@@ -50,6 +51,7 @@ const {
   address,
   website,
   phone,
+  partners,
   hours,
   food,
   bathrooms,
@@ -130,7 +132,7 @@ const textColorVar = `var(${textColor})`
             {
               address && (
                 <li class="info-item address m">
-                  <Icon name="material-symbols-light:location-on" />
+                  <Icon name="material-symbols-light:location-on-outline" />
                   <div class="item-subject" set:html={address} />
                 </li>
               )
@@ -220,6 +222,14 @@ const textColorVar = `var(${textColor})`
           <li class="info-item bicycles">
             <Icon name="material-symbols-light:directions-bike" />
             <div class="item-subject" set:html={bicycles} />
+          </li>
+        )
+      }
+      {
+        partners && (
+          <li class="info-item partners">
+            <Icon name="material-symbols-light:handshake-outline" />
+            <div class="item-subject" set:html={partners} />
           </li>
         )
       }
