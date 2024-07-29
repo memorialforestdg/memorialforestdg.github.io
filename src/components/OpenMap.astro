@@ -36,12 +36,12 @@ export interface Popup {
 
 export interface Location {
   id: string
-  content: string
+  content?: string
   popup?: Popup
   lat: number
   lon: number
-  open: boolean
-  icon: Icon
+  open?: boolean
+  icon?: Icon
 }
 
 export interface GeoStyle {
