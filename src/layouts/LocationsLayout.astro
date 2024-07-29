@@ -28,6 +28,7 @@ interface Props {
     website?: string
     hours?: string
     address?: string
+    parthers?: string
     food?: string
     bathrooms?: string
     accessible?: string
@@ -73,7 +74,7 @@ const mapHeight = '350px'
   bannerAlt={bannerAlt}
 >
   <main id="main">
-    <div class="open-map__wrap nt-3 poly-shadow">
+    <div class="open-map__wrap nt-3 pb-3 poly-shadow">
       <OpenMap
         id={sluggo(pageTitle)}
         lat={mapLocations[locationIndex].lat}
@@ -81,12 +82,11 @@ const mapHeight = '350px'
         height={mapHeight}
         classes="container poly-3 z-0"
         style="@media (max-width: 700px) { width: calc(100% - 4px); }"
-        zoom="16"
+        zoom="17"
         controls="true"
         locations={locations}
         geojson={`../visit/boundry.json`}
         geostyle={{
-          fillColor: 'green',
           weight: 2,
           opacity: 1,
           color: 'green',
@@ -95,7 +95,7 @@ const mapHeight = '350px'
       />
     </div>
     <div class="location container">
-      <div class="stack pl-5 pr-5 pt-4">
+      <div class="stack pl-5-ns pr-5-ns pt-4-ns">
         <div class="markdown-content">
           <Flourish classes={flourishClasses}>
             <slot />
