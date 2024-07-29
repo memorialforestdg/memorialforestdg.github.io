@@ -1,0 +1,102 @@
+---
+import Flourish from '../components/Flourish.astro'
+import OpenMap from '../components/OpenMap.astro'
+import Gallery from '../components/Gallery.astro'
+import BaseLayout from './BaseLayout.astro'
+import type {ImageMetadata} from 'astro'
+import {mapLocations, iconOpts, defaultCenter} from '../js/mapLocations'
+import {type Location} from '../components/OpenMap.astro'
+
+interface Props {
+  frontmatter: {
+    pageTitle: string
+    bannerImage?: any
+    bannerHeight?: number
+    bannerAlt?: string
+    flourishClasses?: Array<string>
+  }
+}
+
+const {
+  pageTitle,
+  bannerImage,
+  bannerHeight = 350,
+  bannerAlt,
+  flourishClasses
+} = Astro.props.frontmatter
+
+// locations
+const locations: Location[] = mapLocations
+
+// https://markjames.dev/blog/dynamically-importing-images-astro
+const images = import.meta.glob<{default: ImageMetadata}>(
+  '../images/**/*.{png,PNG,jpg,JPG,jpeg,svg,webp,avif}'
+)
+const banner = images[bannerImage] ? await images[bannerImage]() : (null as any)
+const BannerImageMetadata = banner.default as ImageMetadata
+
+const mapHeight = '550px'
+---
+
+<BaseLayout
+  pageTitle={pageTitle}
+  bodyClasses="forest-location"
+  bannerImage={BannerImageMetadata}
+  bannerHeight={bannerHeight}
+  bannerAlt={bannerAlt}
+>
+  <main id="main">
+    <div class="open-map__wrap nt-3 pb-3 poly-shadow">
+      <OpenMap
+        id="map2"
+        lat={defaultCenter[0]}
+        lon={defaultCenter[1]}
+        height={mapHeight}
+        classes="container poly-3 z-0"
+        style="@media (max-width: 700px) { width: calc(100% - 4px); }"
+        zoom="9"
+        controls="true"
+        icon={iconOpts}
+        locations={locations}
+        geojson={`../visit/boundry.json`}
+        geostyle={{
+          fillColor: 'green',
+          weight: 2,
+          opacity: 1,
+          color: 'green',
+          fillOpacity: 0.05
+        }}
+      />
+    </div>
+    <div class="location container stack">
+      <div class="markdown-content pa-5">
+        <Flourish classes={flourishClasses}>
+          <slot />
+        </Flourish>
+      </div>
+    </div>
+    <div class="gallery__wrap container">
+      <hr />
+      <Gallery
+        collectionId="albums"
+        albumId="foo"
+        galleryWraperClasses={'nt-4'}
+        galleryUlClasses={'pa-0 list flex flex-wrap gap-2 justify-center'}
+        cellLiClasses={'pa-0 ma-0 shadow-hover'}
+        cellClasses={'pa-0 ma-0 bg-brand-purple shadow-hover br1'}
+      />
+    </div>
+  </main>
+</BaseLayout>
+
+<style define:vars={{mapHeight, bannerHeight}} is:global>
+  .open-map {
+    background-color: var(--brand-teal-dk);
+  }
+
+  @media (max-width: 550px) {
+    .open-map {
+      --height: calc(var(--mapHeight) * 0.6) !important;
+    }
+  }
+</style>
