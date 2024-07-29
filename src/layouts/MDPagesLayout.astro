@@ -40,18 +40,30 @@ const BannerImage = banner?.default as ImageMetadata
   bannerAlt={bannerAlt}
 >
   <main id="main">
-    <div class="location__page container full-width">
-      <div class="markdown-content location__wrap measure-3 pt-4">
-        <Flourish classes={flourishClasses}>
-          <slot />
-          <hr />
-        </Flourish>
-        <!-- add a gallery if collectionId and albumId are provided -->
-        {
-          collectionId && albumId ? (
-            <Gallery collectionId={collectionId} albumId={albumId} />
-          ) : null
-        }
+    <div class="container stack">
+      <div class="stack pl-5-ns pr-5-ns pt-4-ns">
+        <div class="markdown-content">
+          <Flourish classes={flourishClasses}>
+            <slot />
+            <hr />
+          </Flourish>
+          <div class="gallery__wrap">
+            {
+              collectionId && albumId ? (
+                <Gallery
+                  collectionId={collectionId}
+                  albumId={albumId}
+                  galleryWraperClasses={'nt-4'}
+                  galleryUlClasses={
+                    'pa-0 list flex flex-wrap gap-2 justify-center'
+                  }
+                  cellLiClasses={'pa-0 ma-0 shadow-hover'}
+                  cellClasses={'pa-0 ma-0 bg-brand-purple shadow-hover br1'}
+                />
+              ) : null
+            }
+          </div>
+        </div>
       </div>
     </div>
   </main>
