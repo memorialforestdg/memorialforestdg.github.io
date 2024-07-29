@@ -45,11 +45,11 @@ export interface Location {
 }
 
 export interface GeoStyle {
-  fillColor: string
-  weight: number
-  opacity: number
-  color: string
-  fillOpacity: number
+  fillColor?: string
+  weight?: number
+  opacity?: number
+  color?: string
+  fillOpacity?: number
 }
 
 interface Props {
@@ -96,8 +96,8 @@ const {
     id={id}
     style={style}
     class=`open-map ${classes}`
-    data-lon={lon}
     data-lat={lat}
+    data-lon={lon}
     data-zoom={zoom}
     data-maxzoom={maxzoom}
     data-scrollwheel={scrollwheel}
@@ -120,8 +120,8 @@ const {
     constructor() {
       super()
       const {
-        lat,
-        lon,
+        lat = -3.6107,
+        lon = 55.0691,
         zoom,
         controls,
         maxzoom,
@@ -153,10 +153,8 @@ const {
 
       // Add layer to the map
       map.addLayer(layer)
-      console.log(geojson, geostyle)
       if (geojson) {
         loadBoundry(geojson).then((geojson) => {
-          console.log(geojson)
           if (geostyle) {
             L.geoJSON(geojson[0].geojson, {
               style: JSON.parse(geostyle)
@@ -176,7 +174,7 @@ const {
         : L.icon({iconUrl: iconImg.src})
 
       // Dont alow both a location array and centericon
-      if (centericon && !locations) {
+      if (centericon && !locations && lat && lon) {
         L.marker([lat, lon], {icon: loadIcon}).addTo(map)
       }
 
@@ -192,14 +190,15 @@ const {
             marker.bindPopup(location.content, location?.popup)
           if (location.open) {
             marker.addTo(map).openPopup()
-            mapOptions.center = [location.lat, location.lon]
           } else {
             marker.addTo(map)
           }
         })
       }
       // Center the map
-      map.panTo(mapOptions.center, zoom)
+      map.panTo({lat: mapOptions.center[0], lon: mapOptions.center[1]}, zoom, {
+        animate: true
+      })
     }
   }
 
