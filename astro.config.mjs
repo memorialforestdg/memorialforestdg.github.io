@@ -14,13 +14,14 @@ import icon from 'astro-icon';
 // import { imageService } from "@unpic/astro/service";
 
 import relativeLinks from "astro-relative-links";
-
 import mdx from "@astrojs/mdx";
+
+import playformCompress from "@playform/compress";
 
 // https://astro.build/config
 export default defineConfig({
   // site: 'https://example.com', // We are not setting this as we want to use relative links, and deploy to mutiple domains eg yourname.github.io and yourname.com.
-  integrations: [icon(), relativeLinks(), mdx()],
+  integrations: [icon(), relativeLinks(), mdx(), playformCompress()],
   // robotsTxt(), sitemap(), // prebuild()
   output: 'static',
   experimental: {
