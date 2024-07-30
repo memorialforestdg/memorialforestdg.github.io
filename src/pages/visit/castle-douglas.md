@@ -2,7 +2,7 @@
 # Page info
 layout: ../../layouts/LocationsLayout.astro
 pageTitle: Castle Douglas
-bannerImage: '../images/Remembering Together_Celebration_Threave_72dpi-99(edit).jpg'
+bannerImage: '../images/RememberingTogether_Celebration_Threave_72dpi-99(edit).jpg'
 bannerAlt: 'The launching of the forest in Castle Douglas.'
 bannerHeight: 350
 flourishClasses: ['--hawthorn', 'dropcap', '--dc-brand-cyan-dk']
