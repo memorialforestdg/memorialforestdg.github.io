@@ -1,14 +1,14 @@
 ---
 layout: ../../layouts/LocationsLayout.astro
 pageTitle: Dumfries
-bannerImage: '../images/ex-tree-planting/Treesplantedrougly10yearsago_ThreeRoadEndssite1.jpg'
+bannerImage: '../images/dumfries-launch/RT_Dumfries_Celebration_72dpi-135.jpg'
 bannerAlt: 'The launching of the forest in Dumfries.'
 bannerHeight: 350
 flourishClasses: ['--holly', 'dropcap', '--dc-brand-purple-dk']
 
 # Gallery info
 collectionId: albums
-albumId: foo
+albumId: celebration-dumfries
 
 # Sidebar info
 bgColor: '--brand-cyan-dk' # css custom prop

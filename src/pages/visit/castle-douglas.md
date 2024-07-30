@@ -2,14 +2,14 @@
 # Page info
 layout: ../../layouts/LocationsLayout.astro
 pageTitle: Castle Douglas
-bannerImage: '../images/ex-tree-planting/AlderTreegrowingoutofTreeTube_Threave.jpg'
+bannerImage: '../images/Remembering Together_Celebration_Threave_72dpi-99(edit).jpg'
 bannerAlt: 'The launching of the forest in Castle Douglas.'
 bannerHeight: 350
 flourishClasses: ['--hawthorn', 'dropcap', '--dc-brand-cyan-dk']
 
 # Gallery info
 collectionId: albums
-albumId: foo
+albumId: celebration-castle-douglas
 
 # Sidebar info
 bgColor: '--brand-cyan-dk' # css custom prop
