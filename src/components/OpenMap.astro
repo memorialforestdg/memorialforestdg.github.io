@@ -1,4 +1,11 @@
 ---
+/**
+ * TODO: Props for
+ *  - footer icon text eg "OpenStreetMap, tiles by Humanitarian"
+ *  - max zoom
+ *  - make props object?
+ */
+
 export interface Icon {
   iconUrl: string // the url for the icon
   shadowUrl?: string // the url for the shadow image
@@ -156,7 +163,7 @@ const {
       if (geojson) {
         loadBoundry(geojson).then((geojson) => {
           if (geostyle) {
-            L.geoJSON(geojson[0].geojson, {
+            L.geoJSON(geojson[0]?.geojson, {
               style: JSON.parse(geostyle)
             }).addTo(map)
           }
