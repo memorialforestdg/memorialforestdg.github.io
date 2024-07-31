@@ -13,6 +13,6 @@ export default async function loadBoundry(url: string) {
     const data = await response.json()
     return data
   } catch (error) {
-    console.warn(error)
+    console.warn('OpenMaps component- loadBoundry error:', error)
   }
  }
