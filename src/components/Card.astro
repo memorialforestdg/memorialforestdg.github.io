@@ -1,8 +1,7 @@
 ---
-import {Card as RTCard} from 'accessible-astro-components'
-import {Image} from 'astro:assets'
 import type {ImageMetadata} from 'astro'
 import {getImage} from 'astro:assets'
+
 interface Props {
   url: string
   imgUrl?: string | ImageMetadata
@@ -36,18 +35,57 @@ const imgDesktop = await getImage({
 ---
 
 <div class="card">
-  <header class="card__image">
+  <header class="card__head flex flex-end relative">
     <picture>
       <source media="(max-width: 799px)" srcset={imgMobile.src} />
       <source media="(min-width: 800px)" srcset={imgDesktop.src} />
       <img src={imgDesktop.src} alt={alt} />
     </picture>
-    <h3>
-      <a href={url}>{title}</a>
-    </h3>
+    <div
+      class="card__title absolute flex flex-column align-start justify-end w-100 pa-0 pl-3 pl-5-ns pr-2"
+    >
+      <h3 class="f3 brand-yellow-lt">
+        <a href={url}>{title}</a>
+      </h3>
+    </div>
   </header>
   <div class="card__content">
     <slot />
   </div>
   {footer ? <footer set:html={footer} /> : null}
 </div>
+
+<style is:global>
+  .card {
+    display: grid;
+    gap: 0.5em;
+    margin: 0.5em;
+    padding: 1em;
+    background-color: var(--surface-1);
+    border-radius: 0.25rem;
+    box-shadow: var(--shadow-3);
+  }
+
+  .card__head {
+    background-color: var(--brand-teal);
+  }
+
+  .card__title {
+    width: 100%;
+    background: var(--header-img-gradent);
+  }
+
+  .card__head picture {
+    z-index: 0;
+    max-height: 350px;
+    object-fit: cover;
+    overflow: hidden;
+    inline-size: 100%;
+  }
+
+  .card__content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+  }
+</style>
