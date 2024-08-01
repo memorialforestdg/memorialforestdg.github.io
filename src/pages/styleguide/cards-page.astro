@@ -1,0 +1,27 @@
+---
+import Gallery from '../../components/Gallery.astro'
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import img2 from '../../images/RememberingTogetherDG_imageGregorAnderson_full.jpg'
+import Card from '../../components/Card.astro'
+---
+
+<BaseLayout pageTitle="Test of Cards layout">
+  <main id="main">
+    <div class="container full-width">
+      <h2>Cards layout</h2>
+      <div class="cards__wrap">
+        <ul class="list">
+          <li>
+            <Card
+              title="Card 1"
+              imgUrl={img2}
+              alt="Gregor Anderson"
+              url="https://en.wikipedia.org/wiki/Gregor_Anderson"
+              footer="Footer?">Some Content here</Card
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
