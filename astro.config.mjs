@@ -26,7 +26,6 @@ export default defineConfig({
   // site: 'https://example.com', // We are not setting this as we want to use relative links, and deploy to mutiple domains eg yourname.github.io and yourname.com.
   integrations: [icon(), relativeLinks(), purgecss({
     fontFace: true,
-    variables: true,
     rejectedCss: true,
     content: ["src/**/*.{astro,md,mdx,html}"],
   })],
