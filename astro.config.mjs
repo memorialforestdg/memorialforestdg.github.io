@@ -24,8 +24,8 @@ export default defineConfig({
     inlineStylesheets: 'auto',
   },
   // site: 'https://example.com', // We are not setting this as we want to use relative links, and deploy to mutiple domains eg yourname.github.io and yourname.com.
-  integrations: [icon(), relativeLinks(), purgecss()],
-  // mdx(),  robotsTxt(), sitemap(), prebuild(), playformCompress(),
+  integrations: [icon(), relativeLinks()],
+  // mdx(),  robotsTxt(), sitemap(), prebuild(), playformCompress(), purgecss()
   output: 'static',
   experimental: {
     env: {
