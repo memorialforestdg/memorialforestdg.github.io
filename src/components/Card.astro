@@ -7,17 +7,33 @@ interface Props {
   imgUrl?: string | ImageMetadata
   alt: string
   title: string
+  heading?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
   footer?: string | HTMLElement | HTMLElement[]
   children?: string | HTMLElement | HTMLElement[]
+  wrapClasses?: string
+  headerClasses?: string
+  headingWrapClasses?: string
+  headingClasses?: string
+  footerClasses?: string
+  contentClasses?: string
 }
 
 const {
   url = '#',
-  imgUrl = 'https://fakeimg.pl/640x360',
+  imgUrl,
   alt,
   title,
-  footer
+  heading = 'h3',
+  footer,
+  wrapClasses = '',
+  headerClasses = '',
+  headingWrapClasses = '',
+  headingClasses = '',
+  contentClasses = '',
+  footerClasses = ''
 } = Astro.props
+
+const Heading = heading
 
 const imgMobile = await getImage({
   src: imgUrl,
@@ -29,40 +45,34 @@ const imgMobile = await getImage({
 const imgDesktop = await getImage({
   src: imgUrl,
   format: 'webp',
-  width: 640,
-  height: 360
+  width: 400,
+  height: 100
 })
 ---
 
-<div class="card">
-  <header class="card__head flex flex-end relative">
+<div class=`card ${wrapClasses}`>
+  <header class=`card__head ${headerClasses}`>
     <picture>
       <source media="(max-width: 799px)" srcset={imgMobile.src} />
       <source media="(min-width: 800px)" srcset={imgDesktop.src} />
       <img src={imgDesktop.src} alt={alt} />
     </picture>
     <div
-      class="card__title absolute flex flex-column align-start justify-end w-100 pa-0 pl-3 pl-5-ns pr-2"
+      class=`card__heading--wrap ${headingWrapClasses}`
     >
-      <h3 class="f3 brand-yellow-lt">
+      <Heading class=`card__heading ${headingClasses}`>
         <a href={url}>{title}</a>
-      </h3>
+      </Heading>
     </div>
   </header>
-  <div class="card__content">
+  <div class=`card__content ${contentClasses}`>
     <slot />
   </div>
-  {footer ? <footer set:html={footer} /> : null}
+  {footer ? <footer class=`card__footer ${footerClasses}` set:html={footer} /> : null}
 </div>
 
 <style is:global>
   .card {
-    display: grid;
-    gap: 0.5em;
-    margin: 0.5em;
-    padding: 1em;
-    background-color: var(--surface-1);
-    border-radius: 0.25rem;
     box-shadow: var(--shadow-3);
   }
 
@@ -71,13 +81,13 @@ const imgDesktop = await getImage({
   }
 
   .card__title {
-    width: 100%;
     background: var(--header-img-gradent);
+    inset-block-end: 0;
   }
 
   .card__head picture {
     z-index: 0;
-    max-height: 350px;
+    max-height: 150px;
     object-fit: cover;
     overflow: hidden;
     inline-size: 100%;
