@@ -78,19 +78,19 @@ const imgDesktop = await getImage({
 
   .card__head {
     background-color: var(--brand-teal);
+
+    picture {
+      z-index: 0;
+      max-height: 150px;
+      object-fit: cover;
+      overflow: hidden;
+      inline-size: 100%;
+    }
   }
 
-  .card__title {
+  .card__heading--wrap {
     background: var(--header-img-gradent);
     inset-block-end: 0;
-  }
-
-  .card__head picture {
-    z-index: 0;
-    max-height: 150px;
-    object-fit: cover;
-    overflow: hidden;
-    inline-size: 100%;
   }
 
   .card__content {
