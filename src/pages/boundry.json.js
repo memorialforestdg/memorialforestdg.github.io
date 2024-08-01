@@ -1,5 +1,5 @@
 
-import loadBoundry from '../../js/loadBoundry'
+import loadBoundry from '../js/loadBoundry'
 export async function GET({params}) {
   const data = await loadBoundry('https://nominatim.openstreetmap.org/search.php?county=dumfries&country=UK&state=Scotland&polygon_geojson=1&format=jsonv2')
 
