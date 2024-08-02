@@ -7,6 +7,7 @@ interface Props {
   imgUrl?: string | ImageMetadata
   mobHW?: [number, number]
   deskHW?: [number, number]
+  imgMaxHeight?: string
   mobBkPt?: string
   deskBkPt?: string
   imagePosition?: string
@@ -28,6 +29,7 @@ const {
   imgUrl = '',
   mobHW = [200, 200],
   deskHW = [300, 300],
+  imgMaxHeight = '150px',
   mobBkPt = '(max-width: 799px)',
   deskBkPt = '(min-width: 800px)',
   imagePosition = 'center',
@@ -88,13 +90,9 @@ let imgDesktop: GetImageResult
   {footer ? <footer class=`card__footer ${footerClasses}` set:html={footer} /> : null}
 </div>
 
-<style is:global define:vars={{imagePosition}}>
-  .card {
-    box-shadow: var(--shadow-3);
-  }
-
+<style is:global define:vars={{imagePosition, imgMaxHeight}}>
   .card__head {
-    max-height: 150px;
+    max-height: var(--imgMaxHeight);
     overflow: hidden;
     background-color: var(--brand-teal);
   }
