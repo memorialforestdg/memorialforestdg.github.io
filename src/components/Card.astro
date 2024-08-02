@@ -1,10 +1,15 @@
 ---
-import type {ImageMetadata} from 'astro'
+import type {ImageMetadata, GetImageResult} from 'astro'
 import {getImage} from 'astro:assets'
 
 interface Props {
   url: string
   imgUrl?: string | ImageMetadata
+  mobHW?: [number, number]
+  deskHW?: [number, number]
+  mobBkPt?: string
+  deskBkPt?: string
+  imagePosition?: string
   alt: string
   title: string
   heading?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
@@ -14,13 +19,18 @@ interface Props {
   headerClasses?: string
   headingWrapClasses?: string
   headingClasses?: string
-  footerClasses?: string
   contentClasses?: string
+  footerClasses?: string
 }
 
 const {
   url = '#',
-  imgUrl,
+  imgUrl = '',
+  mobHW = [200, 200],
+  deskHW = [300, 300],
+  mobBkPt = '(max-width: 799px)',
+  deskBkPt = '(min-width: 800px)',
+  imagePosition = 'center',
   alt,
   title,
   heading = 'h3',
@@ -34,29 +44,36 @@ const {
 } = Astro.props
 
 const Heading = heading
+let imgMobile: GetImageResult
+let imgDesktop: GetImageResult
 
-const imgMobile = await getImage({
-  src: imgUrl,
-  format: 'webp',
-  width: 200,
-  height: 200
-})
+  imgMobile = await getImage({
+    src: imgUrl,
+    format: 'webp',
+    width: mobHW[0],
+    height: mobHW[1]
+  })
 
-const imgDesktop = await getImage({
-  src: imgUrl,
-  format: 'webp',
-  width: 400,
-  height: 100
-})
+  imgDesktop = await getImage({
+    src: imgUrl,
+    format: 'webp',
+    width: deskHW[0],
+    height: deskHW[1]
+  })
+
 ---
 
 <div class=`card ${wrapClasses}`>
   <header class=`card__head ${headerClasses}`>
-    <picture>
-      <source media="(max-width: 799px)" srcset={imgMobile.src} />
-      <source media="(min-width: 800px)" srcset={imgDesktop.src} />
-      <img src={imgDesktop.src} alt={alt} />
-    </picture>
+    {
+      imgDesktop && imgMobile ? (
+        <picture>
+          <source media={mobBkPt} srcset={imgMobile.src} />
+          <source media={deskBkPt} srcset={imgDesktop.src} />
+          <img src={imgDesktop.src} alt={alt} />
+        </picture>
+      ): null
+    }
     <div
       class=`card__heading--wrap ${headingWrapClasses}`
     >
@@ -71,25 +88,27 @@ const imgDesktop = await getImage({
   {footer ? <footer class=`card__footer ${footerClasses}` set:html={footer} /> : null}
 </div>
 
-<style is:global>
+<style is:global define:vars={{imagePosition}}>
   .card {
     box-shadow: var(--shadow-3);
   }
 
   .card__head {
+    max-height: 150px;
+    overflow: hidden;
     background-color: var(--brand-teal);
+  }
 
-    picture {
-      z-index: 0;
-      max-height: 150px;
-      object-fit: cover;
-      overflow: hidden;
-      inline-size: 100%;
-    }
+  .card__head picture > * {
+    width: 200%;
+    height: 200%;
+    object-fit: none;
+    object-position: var(--imagePosition);
   }
 
   .card__heading--wrap {
     background: var(--header-img-gradent);
-    inset-block-end: 0;
+
+    /* inset-block-end: 0; */
   }
 </style>

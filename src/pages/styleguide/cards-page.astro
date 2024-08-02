@@ -11,16 +11,17 @@ import Card from '../../components/Card.astro'
     <div class="container full-width">
       <h2>Cards layout</h2>
       <div class="cards__wrap">
-        <ul class="list">
+        <ul class="list pa-0">
           <li>
             <Card
               title="Card 1"
               imgUrl={img1}
-              alt="Gregor Anderson"
+              imagePosition="center 40%"
+              alt="Katie Anderson, and ts Beall"
               url="https://en.wikipedia.org/wiki/Gregor_Anderson"
               footer="Footer?"
-              wrapClasses="grid gap-2 ma-2 bg-surface-1 br2 overflow-hidden"
-              headerClasses="flex flex-end relative bg-brand-teal-dk relative br-2"
+              wrapClasses="relative grid gap-2 ma-2 bg-surface-1 br2 overflow-hidden"
+              headerClasses="relative flex-column flex justify-end bg-brand-teal-dk relative br-2"
               headingWrapClasses="absolute flex flex-column align-start justify-end w-100 pl-3 min-h-25"
               headingClasses="f3 brand-yellow-lt ma-2"
               contentClasses="flex flex-column gap-2 pl-3 pr-3"
@@ -29,13 +30,13 @@ import Card from '../../components/Card.astro'
           </li>
           <li>
             <Card
-              title="Card 1"
+              title="Card 2"
               imgUrl={img2}
               alt="Gregor Anderson"
               url="https://en.wikipedia.org/wiki/Gregor_Anderson"
               footer="Footer?"
               wrapClasses="grid gap-2 ma-2 bg-surface-1 br2 overflow-hidden"
-              headerClasses="flex flex-end relative bg-brand-teal-dk relative br-2"
+              headerClasses="relative flex-column flex justify-end bg-brand-teal-dk relative br-2"
               headingWrapClasses="absolute flex flex-column align-start justify-end w-100 pl-3 min-h-25"
               headingClasses="f3 brand-yellow-lt ma-2"
               contentClasses="pl-3 pr-3"
