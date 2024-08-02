@@ -94,3 +94,7 @@
     filter: none;
   }
 }
+
+.header-img-gradent {
+  background: var(--header-img-gradent);
+}
