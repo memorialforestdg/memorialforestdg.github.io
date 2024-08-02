@@ -7,7 +7,7 @@ interface Props {
   imgUrl?: string | ImageMetadata
   mobHW?: [number, number]
   deskHW?: [number, number]
-  imgMaxHeight?: string
+  headerHeight?: string
   mobBkPt?: string
   deskBkPt?: string
   imagePosition?: string
@@ -29,7 +29,7 @@ const {
   imgUrl = '',
   mobHW = [200, 200],
   deskHW = [300, 300],
-  imgMaxHeight = '150px',
+  headerHeight = '150px',
   mobBkPt = '(max-width: 799px)',
   deskBkPt = '(min-width: 800px)',
   imagePosition = 'center',
@@ -49,7 +49,8 @@ const Heading = heading
 let imgMobile: GetImageResult
 let imgDesktop: GetImageResult
 
-  imgMobile = await getImage({
+if (imgUrl) {
+    imgMobile = await getImage({
     src: imgUrl,
     format: 'webp',
     width: mobHW[0],
@@ -62,6 +63,7 @@ let imgDesktop: GetImageResult
     width: deskHW[0],
     height: deskHW[1]
   })
+}
 
 ---
 
@@ -90,16 +92,30 @@ let imgDesktop: GetImageResult
   {footer ? <footer class=`card__footer ${footerClasses}` set:html={footer} /> : null}
 </div>
 
-<style is:global define:vars={{imagePosition, imgMaxHeight}}>
+<style is:global define:vars={{imagePosition, headerHeight}}>
+  .card {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
   .card__head {
-    max-height: var(--imgMaxHeight);
+    height: var(--headerHeight);
     overflow: hidden;
   }
+
+
 
   .card__head picture > * {
     width: 200%;
     height: 200%;
-    object-fit: none;
+    object-fit: contain;
     object-position: var(--imagePosition);
+  }
+
+  .card__content,
+  .card__footer {
+    box-sizing: border-box; /* Include padding and border in element's total width */
+    width: 100%; /* Ensure footer doesn't overflow the card */
   }
 </style>

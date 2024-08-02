@@ -9,20 +9,20 @@ import Card from '../../components/Card.astro'
 <BaseLayout pageTitle="Test of Cards layout">
   <main id="main">
     <div class="container full-width">
-      <h2>Cards layout</h2>
+      <h2>Cards layout: (grid)</h2>
       <div class="cards__wrap">
-        <ul class="list pa-0">
-          <li>
+        <ul class="list pa-0 grid grid-cols-3">
+          <li class="poly-2">
             <Card
               title="Card 1"
               imgUrl={img1}
               imagePosition="center 40%"
               alt="Katie Anderson, and ts Beall"
-              url="https://en.wikipedia.org/wiki/Gregor_Anderson"
-              footer="Footer?"
-              wrapClasses="relative grid gap-2 ma-2 bg-surface-1 br2 overflow-hidden"
+              url="#"
+              footer="Footer content"
+              wrapClasses="relative grid gap-2 ma-2 bg-surface-1 br2 overflow-hidden shadow-1"
               headerClasses="relative flex-column flex justify-end bg-brand-teal-dk relative br-2"
-              headingWrapClasses="absolute flex flex-column align-start justify-end w-100 pl-3 min-h-25"
+              headingWrapClasses="absolute w-100 pl-3 header-img-gradent"
               headingClasses="f3 brand-yellow-lt ma-2"
               contentClasses="flex flex-column gap-2 pl-3 pr-3"
               footerClasses="pa-0 pl-3 pr-3 pb-3">Some Content here</Card
@@ -33,14 +33,114 @@ import Card from '../../components/Card.astro'
               title="Card 2"
               imgUrl={img2}
               alt="Gregor Anderson"
-              url="https://en.wikipedia.org/wiki/Gregor_Anderson"
-              footer="Footer?"
-              wrapClasses="grid gap-2 ma-2 bg-surface-1 br2 overflow-hidden"
+              url="#"
+              footer="Footer content"
+              wrapClasses="grid gap-2 ma-2 bg-surface-1 br2 overflow-hidden shadow-1"
               headerClasses="relative flex-column flex justify-end bg-brand-teal-dk relative br-2"
-              headingWrapClasses="absolute flex flex-column align-start justify-end w-100 pl-3 min-h-25"
+              headingWrapClasses="absolute w-100 pl-3 header-img-gradent"
               headingClasses="f3 brand-yellow-lt ma-2"
               contentClasses="pl-3 pr-3"
               footerClasses="pa-0 pl-3 pr-3 pb-3">Some Content here</Card
+            >
+          </li>
+          <li>
+            <Card
+              title="card no image"
+              url="#"
+              wrapClasses="grid gap-2 ma-2 bg-surface-1 br2 overflow-hidden shadow-1"
+              headerClasses="relative flex-column flex justify-end bg-brand-teal-dk relative br-2"
+              headingWrapClasses="absolute w-100 pl-3 header-img-gradent"
+              headingClasses="f3 brand-yellow-lt ma-2"
+              contentClasses="pl-3 pr-3"
+              footerClasses="pa-0 pl-3 pr-3 pb-3"
+              >Card without a header image, or any footer content. some more
+              content here.</Card
+            >
+          </li>
+          <li>
+            <Card
+              title="Card 1"
+              imgUrl={img1}
+              imagePosition="center 40%"
+              alt="Katie Anderson, and ts Beall"
+              url="#"
+              footer="Footer content"
+              wrapClasses="relative grid gap-2 ma-2 bg-surface-1 br2 overflow-hidden shadow-1"
+              headerClasses="relative flex-column flex justify-end bg-brand-teal-dk relative br-2"
+              headingWrapClasses="absolute w-100 pl-3 header-img-gradent"
+              headingClasses="f3 brand-yellow-lt ma-2"
+              contentClasses="flex flex-column gap-2 pl-3 pr-3"
+              footerClasses="pa-0 pl-3 pr-3 pb-3">Some Content here</Card
+            >
+          </li>
+          <li>
+            <Card
+              title="Card 2"
+              imgUrl={img2}
+              alt="Gregor Anderson"
+              url="#"
+              footer="Footer content"
+              wrapClasses="grid gap-2 ma-2 bg-surface-1 br2 overflow-hidden shadow-1"
+              headerClasses="relative flex-column flex justify-end bg-brand-teal-dk relative br-2"
+              headingWrapClasses="absolute w-100 pl-3 header-img-gradent"
+              headingClasses="f3 brand-yellow-lt ma-2"
+              contentClasses="pl-3 pr-3"
+              footerClasses="pa-0 pl-3 pr-3 pb-3">Some Content here</Card
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="container full-width">
+      <h2>Cards layout</h2>
+      <p>
+        The last card has the most content so stretches the rest of the cards.
+      </p>
+      <div class="cards__wrap">
+        <ul class="list pa-0">
+          <li>
+            <Card
+              title="Card 1"
+              imgUrl={img1}
+              imagePosition="center 40%"
+              alt="Katie Anderson, and ts Beall"
+              url="#"
+              footer="Footer content"
+              wrapClasses="relative grid gap-2 ma-2 bg-surface-1 br2 overflow-hidden shadow-1"
+              headerClasses="relative flex-column flex justify-end bg-brand-teal-dk relative br-2"
+              headingWrapClasses="absolute w-100 pl-3 header-img-gradent"
+              headingClasses="f3 brand-yellow-lt ma-2"
+              contentClasses="flex flex-column gap-2 pl-3 pr-3"
+              footerClasses="pa-0 pl-3 pr-3 pb-3">Some Content here</Card
+            >
+          </li>
+          <li>
+            <Card
+              title="Card 2"
+              imgUrl={img2}
+              alt="Gregor Anderson"
+              url="#"
+              footer="Footer content"
+              wrapClasses="grid gap-2 ma-2 bg-surface-1 br2 overflow-hidden shadow-1"
+              headerClasses="relative flex-column flex justify-end bg-brand-teal-dk relative br-2"
+              headingWrapClasses="absolute w-100 pl-3 header-img-gradent"
+              headingClasses="f3 brand-yellow-lt ma-2"
+              contentClasses="pl-3 pr-3"
+              footerClasses="pa-0 pl-3 pr-3 pb-3">Some Content here</Card
+            >
+          </li>
+          <li>
+            <Card
+              title="card no image"
+              url="#"
+              wrapClasses="grid gap-2 ma-2 bg-surface-1 br2 overflow-hidden shadow-1"
+              headerClasses="relative flex-column flex justify-end bg-brand-teal-dk relative br-2"
+              headingWrapClasses="absolute w-100 pl-3 header-img-gradent"
+              headingClasses="f3 brand-yellow-lt ma-2"
+              contentClasses="pl-3 pr-3"
+              footerClasses="pa-0 pl-3 pr-3 pb-3"
+              >Card without a header image, or any footer content. some more
+              content here.</Card
             >
           </li>
         </ul>
