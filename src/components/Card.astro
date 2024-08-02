@@ -11,7 +11,7 @@ interface Props {
   mobBkPt?: string
   deskBkPt?: string
   imagePosition?: string
-  alt: string
+  alt?: string
   title: string
   heading?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
   footer?: string | HTMLElement | HTMLElement[]
@@ -33,7 +33,7 @@ const {
   mobBkPt = '(max-width: 799px)',
   deskBkPt = '(min-width: 800px)',
   imagePosition = 'center',
-  alt,
+  alt = '',
   title,
   heading = 'h3',
   footer,
