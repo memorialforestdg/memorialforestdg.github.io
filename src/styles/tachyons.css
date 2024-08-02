@@ -553,6 +553,15 @@ pre {
   --z-9999: 9999;
 }
 
+:where(html) {
+  /* Box Shadows */
+  --shadow-1: 0 0 4px 2px hsla(225, 4%, 20%, 0.2);
+  --shadow-2: 0 0 8px 2px hsla(225, 4%, 20%, 0.2);
+  --shadow-3: 2px 2px 4px 2px hsla(225, 4%, 20%, 0.2);
+  --shadow-4: 2px 2px 8px 0 hsla(225, 4%, 20%, 0.2);
+  --shadow-5: 4px 4px 8px 0 hsla(225, 4%, 20%, 0.2);
+}
+
 /* 5. Modules */
 /*
 
@@ -2180,6 +2189,83 @@ bl-0 {
   }
   bl-0-l {
     border-left-width: 0;
+  }
+}
+/*
+
+  BOX-SHADOW
+  Docs: http://tachyons.io/docs/themes/box-shadow/
+
+ */
+.shadow-1 {
+  box-shadow: var(--shadow-1, 0 0 4px 2px hsla(225, 4%, 20%, 0.2));
+}
+
+.shadow-2 {
+  box-shadow: var(--shadow-2, 0 0 8px 2px hsla(225, 4%, 20%, 0.2));
+}
+
+.shadow-3 {
+  box-shadow: var(--shadow-3, 2px 2px 4px 2px hsla(225, 4%, 20%, 0.2));
+}
+
+.shadow-4 {
+  box-shadow: var(--shadow-4, 2px 2px 8px 0 hsla(225, 4%, 20%, 0.2));
+}
+
+.shadow-5 {
+  box-shadow: var(--shadow-5, 4px 4px 8px 0 hsla(225, 4%, 20%, 0.2));
+}
+
+@media screen and (min-width: 30em) {
+  .shadow-1-ns {
+    box-shadow: var(--shadow-1, 0 0 4px 2px hsla(225, 4%, 20%, 0.2));
+  }
+  .shadow-2-ns {
+    box-shadow: var(--shadow-2, 0 0 8px 2px hsla(225, 4%, 20%, 0.2));
+  }
+  .shadow-3-ns {
+    box-shadow: var(--shadow-3, 2px 2px 4px 2px hsla(225, 4%, 20%, 0.2));
+  }
+  .shadow-4-ns {
+    box-shadow: var(--shadow-4, 2px 2px 8px 0 hsla(225, 4%, 20%, 0.2));
+  }
+  .shadow-5-ns {
+    box-shadow: var(--shadow-5, 4px 4px 8px 0 hsla(225, 4%, 20%, 0.2));
+  }
+}
+@media screen and (min-width: 30em) and (max-width: 60em) {
+  .shadow-1-m {
+    box-shadow: var(--shadow-1, 0 0 4px 2px hsla(225, 4%, 20%, 0.2));
+  }
+  .shadow-2-m {
+    box-shadow: var(--shadow-2, 0 0 8px 2px hsla(225, 4%, 20%, 0.2));
+  }
+  .shadow-3-m {
+    box-shadow: var(--shadow-3, 2px 2px 4px 2px hsla(225, 4%, 20%, 0.2));
+  }
+  .shadow-4-m {
+    box-shadow: var(--shadow-4, 2px 2px 8px 0 hsla(225, 4%, 20%, 0.2));
+  }
+  .shadow-5-m {
+    box-shadow: var(--shadow-5, 4px 4px 8px 0 hsla(225, 4%, 20%, 0.2));
+  }
+}
+@media screen and (min-width: 60em) {
+  .shadow-1-l {
+    box-shadow: var(--shadow-1, 0 0 4px 2px hsla(225, 4%, 20%, 0.2));
+  }
+  .shadow-2-l {
+    box-shadow: var(--shadow-2, 0 0 8px 2px hsla(225, 4%, 20%, 0.2));
+  }
+  .shadow-3-l {
+    box-shadow: var(--shadow-3, 2px 2px 4px 2px hsla(225, 4%, 20%, 0.2));
+  }
+  .shadow-4-l {
+    box-shadow: var(--shadow-4, 2px 2px 8px 0 hsla(225, 4%, 20%, 0.2));
+  }
+  .shadow-5-l {
+    box-shadow: var(--shadow-5, 4px 4px 8px 0 hsla(225, 4%, 20%, 0.2));
   }
 }
 /*
