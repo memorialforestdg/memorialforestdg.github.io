@@ -28,7 +28,7 @@ export default defineConfig({
         greedy: [/*astro*/], // needed for transitions
       },
       content: [
-        process.cwd() + '/src/**/*.{astro}' // Watching astro
+        process.cwd() + '/src/**/*.{astro,html}' // Watching .astro and .html file extensions.
       ],
     })
   ],
