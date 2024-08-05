@@ -8,7 +8,9 @@ export default defineConfig({
     inlineStylesheets: 'auto'
   },
   // site: 'https://example.com', // We are not setting this as we want to deploy to domain mirrors, e.g. yourname.github.io and yourname.com.
-  integrations: [icon(), purgecss()],
+  integrations: [icon(), purgecss({
+    variables: false
+  })],
   output: 'static',
   experimental: {
     env: {
