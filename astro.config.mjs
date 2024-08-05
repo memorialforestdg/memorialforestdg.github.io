@@ -9,8 +9,36 @@ export default defineConfig({
   },
   // site: 'https://example.com', // We are not setting this as we want to deploy to domain mirrors, e.g. yourname.github.io and yourname.com.
   integrations: [icon(), purgecss({
-    variables: false
-  })],
+      fontFace: true,
+      keyframes: false, // needed false for transitions
+      safelist: {
+        // purgecss falsly purges some css
+        standard: [
+          // https://github.com/FullHuman/purgecss/issues/1153
+          /:hover/,
+          // https://github.com/FullHuman/purgecss/issues/978
+          /:where/,
+          /:is/,
+          // https://github.com/FullHuman/purgecss/issues/1197
+          /:not/,
+          // https://github.com/FullHuman/purgecss/issues/1215
+          /:has/,
+        ],
+        greedy: [/*astro*/], // needed for transitions
+      },
+      content: [
+        process.cwd() + '/src/**/*.{astro}' // Watching astro
+      ],
+      extractors: [
+        {
+          // Atomic CSS compatible class extractor
+          extractor: (content) =>
+            content.match(/[a-zA-Z0-9-:/]+/g) || [],
+          extensions: ['astro', 'html']
+        },
+      ]
+    })
+  ],
   output: 'static',
   experimental: {
     env: {
