@@ -46,8 +46,8 @@ const {
 } = Astro.props
 
 const Heading = heading
-let imgMobile: GetImageResult
-let imgDesktop: GetImageResult
+let imgMobile: GetImageResult | undefined
+let imgDesktop: GetImageResult | undefined
 
 if (imgUrl) {
     imgMobile = await getImage({
