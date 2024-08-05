@@ -29,14 +29,6 @@ export default defineConfig({
       content: [
         process.cwd() + '/src/**/*.{astro}' // Watching astro
       ],
-      extractors: [
-        {
-          // Atomic CSS compatible class extractor
-          extractor: (content) =>
-            content.match(/[a-zA-Z0-9-:/]+/g) || [],
-          extensions: ['astro', 'html']
-        },
-      ]
     })
   ],
   output: 'static',
