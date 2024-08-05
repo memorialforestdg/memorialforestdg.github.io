@@ -10,9 +10,10 @@ export default defineConfig({
   // site: 'https://example.com', // We are not setting this as we want to deploy to domain mirrors, e.g. yourname.github.io and yourname.com.
   integrations: [icon(), purgecss({
       fontFace: true,
+      variables: true,
       keyframes: false, // needed false for transitions
       safelist: {
-        // purgecss falsly purges some css
+        // purgecss falsely purges some css
         standard: [
           // https://github.com/FullHuman/purgecss/issues/1153
           /:hover/,
