@@ -32,11 +32,18 @@ const {
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <title>Dispersed Memorial Forest D&G | {pageTitle}</title>
     <meta
       name="description"
       content="Remembering Together D&G - A Community Covid Memorial for Dumfries and Galloway, Scotland."
     />
     <meta name="viewport" content="width=device-width" initial-scale='1.0"/' />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self' memorialforestdg.github.io memorialforestdg.co.uk;
+      img-src 'self' *;
+      frame-src youtube.com www.youtube.com player.vimeo.com www.vimeo.com;"
+    />
     <meta
       name="theme-color"
       content="#414449"
@@ -56,7 +63,6 @@ const {
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="generator" content={Astro.generator} />
-    <title>Dispersed Memorial Forest D&G | {pageTitle}</title>
   </head>
   <body class={`no-js ${bodyClasses} ${sluggo(pageTitle)}`}>
     <Header
