@@ -215,7 +215,9 @@ const {
   customElements.define('open-map', OpenMap)
 </script>
 
-<style define:vars={{width, height}} is:global>
+<style define:vars={{width, height}}>
+  @import url('../styles/leaflet.css');
+
   .leaflet-control-attribution {
     font-size: 10px;
   }
