@@ -6,7 +6,9 @@
  *  - make props object?
  */
 
-import '../styles/leaflet.css'
+// import '../styles/leaflet.css'
+import 'leaflet/dist/leaflet.css'
+
 export interface Icon {
   iconUrl: string // the url for the icon
   shadowUrl?: string // the url for the shadow image
@@ -121,7 +123,6 @@ const {
 
 <script>
   import L from 'leaflet/dist/leaflet'
-  import 'leaflet/dist/leaflet.css'
   import iconImg from 'leaflet/dist/images/marker-icon.png'
   import loadBoundry from '../js/loadBoundry'
   class OpenMap extends HTMLElement {
