@@ -6,6 +6,7 @@
  *  - make props object?
  */
 
+import '../styles/leaflet.css'
 export interface Icon {
   iconUrl: string // the url for the icon
   shadowUrl?: string // the url for the shadow image
@@ -216,8 +217,6 @@ const {
 </script>
 
 <style define:vars={{width, height}}>
-  @import url('../styles/leaflet.css');
-
   .leaflet-control-attribution {
     font-size: 10px;
   }

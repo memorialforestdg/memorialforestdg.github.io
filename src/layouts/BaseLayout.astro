@@ -3,6 +3,10 @@ import Header from '../components/Header.astro'
 import Footer from '../components/Footer.astro'
 import sluggo from '../js/sluggo'
 import CanonicalHead from '../components/CanonicalHead.astro'
+import '../styles/base.css'
+import '../styles/fonts.css'
+import '../styles/typography.css'
+import '../styles/printstyles.css'
 interface Props {
   pageTitle: string
   bodyClasses?: string
@@ -76,11 +80,6 @@ const {
     />
     <slot />
     <Footer />
-    <style is:global>
-      @import url('../styles/fonts.css');
-      @import url('../styles/base.css');
-      @import url('../styles/printstyles.css');
-    </style>
     <script>
       // Remove the 'no-js' class the body when the document is ready
       document.body.classList.remove('no-js')
