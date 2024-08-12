@@ -18,6 +18,7 @@ export default {
         greedy: [/*astro*/], // needed for transitions
       },
       content: [
-        process.cwd() + '/src/**/*.{astro,html,css}'
+        process.cwd() + '/src/**/*.{astro,html,js,ts,md,mdx}',
+        process.cwd() + '/src/styles/**/*.{css}',
       ],
     }
