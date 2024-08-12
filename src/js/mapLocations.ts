@@ -24,7 +24,7 @@ export const mapLocations = [
   {
     id: 'castle-douglas',
     content:
-      'The Dispersed Memorial Forest:<br/> <a href="./castle-douglas.com">Castle Douglas</a> at Threave Nature Reserve.',
+      'The Dispersed Memorial Forest:<br/> <a href="./castle-douglas">Castle Douglas</a> at Threave Nature Reserve.',
     popup: {offset: {x: 30, y: -22}},
     lat: 54.933848,
     lon: -3.959061,
