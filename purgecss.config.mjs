@@ -2,6 +2,8 @@ export default {
       fontFace: true,
       variables: true,
       keyframes: false, // needed false for transitions
+      whitelistPatterns: [/leaflet$/],
+      whitelistPatternsChildren: [/leaflet$/],
       safelist: {
         // purgecss falsely purges some css
         standard: [
