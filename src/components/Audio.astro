@@ -1,0 +1,682 @@
+---
+/**
+ * Custom element based on `audio-tool` by Kevin Logan
+ * https://github.com/kevinlogan94/audio-tool/blob/master/src/audio-tool.js
+ * by way of https://hawkticehurst.com/2023/12/portable-html-web-components/
+ *
+ * This Astro component features progressive enhancement with the native audio element if js is disabled.
+ *
+ *
+ * TODO: add support for download
+ * TODO: show buffer lenght on progress
+ * TODO: if download is true, add download attribute to <audio>
+ * TODO: add support for multiple sources
+ * TODO: add support looping
+ * TODO: add support for mute with autoPlay
+ * TODO: add volume controls
+ * TODO: add volume controls with keyboard
+ * TODO: add support for controls speed
+ * TODO: add support ff rr with keyboard
+ * TODO: add crossorigin support
+ */
+
+import type {ImageMetadata} from 'astro'
+import {getImage} from 'astro:assets'
+
+export interface Config {
+  maxwidth?: string
+  maxheight?: string
+  artwork?: ImageMetadata | null
+  artworkAlt?: string
+  crossorigin?: null | 'anonymous' | 'use-credentials'
+  colors?: {
+    accentColor?: string
+    bgColor?: string
+    progressColor?: string
+    progressColorBg?: string
+    txtColor?: string
+  }
+  controls?: {
+    download?: boolean
+    loop?: boolean
+    mute?: boolean
+    autoPlay?: boolean
+    preload?: 'none' | 'metadata' | 'auto'
+  }
+}
+
+interface Props {
+  src: string
+  title: string
+  config?: Config
+}
+
+// Default configuration values
+const defaultConfig: Config = {
+  maxwidth: '100%',
+  maxheight: '116',
+  artwork: null,
+  artworkAlt: 'Audio Artwork',
+  crossorigin: undefined,
+  colors: {
+    accentColor: '',
+    bgColor: '',
+    progressColor: '',
+    progressColorBg: '',
+    txtColor: ''
+  },
+  controls: {
+    download: false,
+    loop: false,
+    mute: false,
+    autoPlay: false,
+    preload: 'metadata'
+  }
+}
+
+const {src, title = '', config = {}} = Astro.props
+const finalConfig = {...defaultConfig, ...config} as Config
+
+const albumArt = finalConfig.artwork
+  ? await getImage({
+      src: finalConfig.artwork,
+      width: finalConfig.maxheight,
+      height: finalConfig.maxheight,
+      format: 'webp'
+    })
+  : null
+
+const albumArtMarkup = albumArt
+  ? `<img src="${albumArt?.src}" alt="${finalConfig.artworkAlt}" width="${albumArt.attributes?.width}" height="${albumArt.attributes?.height}"/>`
+  : ''
+
+const template = `
+		<div class="left-container">
+      ${albumArtMarkup}
+			<button id="play-btn" aria-label="Play song">
+				<svg id="play-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="35" height="35" fill="currentColor" aria-hidden="true">
+					<path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z"></path>
+				</svg>
+				<svg id="pause-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25" width="30" height="30" fill="currentColor" aria-hidden="true" style="display: none;">
+					<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"></path>
+				</svg>
+			</button>
+		</div>
+		<div class="right-container">
+			<p id="song-title">Song title</p>
+			<div class="audio-bar">
+				<span id="current-time">00:00</span>
+				<progress value="0" max="1"></progress>
+				<span id="total-time">00:00</span>
+			</div>
+		</div>
+	`
+---
+
+<audio-player
+  crossorigin={finalConfig?.crossorigin}
+  src={src}
+  title={title}
+  config={JSON.stringify(config)}
+  auto-play={finalConfig.controls?.autoPlay}
+  loop={finalConfig.controls?.loop}
+  mute={finalConfig.controls?.mute}
+  preload={finalConfig.controls?.preload}
+  class="audio-player no-js"
+  set:html={template}
+>
+  <figure>
+    <figcaption>{title}</figcaption>
+    <audio controls src={src}>
+      <a href={src} download> download </a>
+    </audio>
+  </figure>
+</audio-player>
+
+<script>
+  class Audio extends HTMLElement {
+    audio: HTMLAudioElement | null = null
+    playIcon: HTMLElement | null = null
+    pauseIcon: HTMLElement | null = null
+    playPauseButton: HTMLElement | null = null
+    progressBar: HTMLProgressElement | null = null
+    currentTime: HTMLElement | null = null
+    duration: HTMLElement | null = null
+    songTitle: HTMLElement | null = null
+    playing: boolean = false
+
+    static get observedAttributes() {
+      return [
+        'crossorigin',
+        'src',
+        'title',
+        'preload',
+        'auto-play',
+        'loop',
+        'mute',
+        'config'
+      ]
+    }
+    constructor() {
+      super()
+
+      // Ensure that this.audio is defined before trying to access its attributes
+      this.audio = this.querySelector('audio')
+      if (this.audio) {
+        // Hide base <audio> element, prevents FOUC
+        this.audio.removeAttribute('controls')
+      }
+
+      // Remove 'no-js' class to signify that JavaScript is enabled
+      this.classList.remove('no-js')
+
+      // Query and assign element references
+      this.playIcon = this.querySelector('#play-icon')
+      this.pauseIcon = this.querySelector('#pause-icon')
+      this.playPauseButton = this.querySelector('#play-btn')
+      this.progressBar = this.querySelector('progress')
+      this.currentTime = this.querySelector('#current-time')
+      this.duration = this.querySelector('#total-time')
+      this.songTitle = this.querySelector('#song-title')
+
+      // Initialize state
+      this.playing = false
+
+      // Parse config attribute
+      try {
+        const config = JSON.parse(this.getAttribute('config') || '{}')
+        // You can use the config object here if needed
+      } catch (error) {
+        console.error('Failed to parse config attribute:', error)
+      }
+    }
+
+    connectedCallback() {
+      this.configureAudio()
+      this.checkFileTypeSupport()
+      this.setSongTitle()
+      this.setPlayPauseListener()
+      this.setProgressListener()
+      this.setTimeListener()
+    }
+    attributeChangedCallback(name, oldValue, newValue) {
+      switch (name) {
+        case 'src':
+          if (this.audio) {
+            this.audio.removeEventListener('timeupdate', this.updateTimeHandler)
+            this.audio.removeEventListener(
+              'loadedmetadata',
+              this.metadataTimeHandler
+            )
+          }
+          this.configureAudio()
+          this.checkFileTypeSupport()
+          if (
+            this.audio &&
+            this.playIcon &&
+            this.pauseIcon &&
+            this.playPauseButton
+          ) {
+            this.pauseIcon.style.display = 'none'
+            this.playIcon.style.display = 'block'
+            this.playPauseButton.setAttribute('aria-label', 'Play track')
+            this.audio.pause()
+            this.playing = false
+            this.dispatchEvent(new Event('audiopaused'))
+          }
+          if (this.progressBar) {
+            this.progressBar.value = 0
+          }
+          this.setTimeListener()
+          break
+        case 'title':
+          this.setSongTitle()
+          break
+        default:
+          break
+      }
+    }
+    configureAudio() {
+      if (this.audio && this.hasAttribute('src')) {
+        this.audio.src = this.getAttribute('src') || ''
+      }
+      if (this.audio && this.hasAttribute('preload')) {
+        const preload = this.getAttribute('preload')
+        if (
+          preload === '' ||
+          preload === 'none' ||
+          preload === 'metadata' ||
+          preload === 'auto'
+        ) {
+          this.audio.preload = preload
+        }
+      }
+      if (this.audio && this.hasAttribute('auto-play')) {
+        if (this.getAttribute('auto-play') === 'true') {
+          this.audio.autoplay = true
+          this.audio.load()
+        }
+      }
+    }
+    // checkFileTypeSupport() {
+    //   if (this.audio && this.audio.src) {
+    //     const songFile = this.audio.src
+    //     const fileType = songFile.substring(songFile.lastIndexOf('.') + 1)
+    //     // https://diveintohtml5.info/everything.html#audio-vorbis
+    //     switch (fileType) {
+    //       case 'mp3':
+    //         if (
+    //           !(
+    //             this.audio.canPlayType &&
+    //             this.audio.canPlayType('audio/mpeg;').replace(/no/, '')
+    //           )
+    //         ) {
+    //           this.setUnsupportedMessage(
+    //             "This browser doesn't support MP3 audio files."
+    //           )
+    //         }
+    //         break
+    //       case 'm4a':
+    //         if (
+    //           !(
+    //             this.audio.canPlayType &&
+    //             this.audio
+    //               .canPlayType('audio/mp4; codecs="mp4a.40.2"')
+    //               .replace(/no/, '')
+    //           )
+    //         ) {
+    //           this.setUnsupportedMessage(
+    //             "This browser doesn't support M4A audio files."
+    //           )
+    //         }
+    //         break
+    //       case 'aac':
+    //         if (
+    //           !(
+    //             this.audio.canPlayType &&
+    //             this.audio
+    //               .canPlayType('audio/mp4; codecs="mp4a.40.2"')
+    //               .replace(/no/, '')
+    //           )
+    //         ) {
+    //           this.setUnsupportedMessage(
+    //             "This browser doesn't support AAC audio files."
+    //           )
+    //         }
+    //         break
+    //       case 'wav':
+    //         if (
+    //           !(
+    //             this.audio.canPlayType &&
+    //             this.audio
+    //               .canPlayType('audio/wav; codecs="1"')
+    //               .replace(/no/, '')
+    //           )
+    //         ) {
+    //           this.setUnsupportedMessage(
+    //             "This browser doesn't support WAV audio files."
+    //           )
+    //         }
+    //         break
+    //       case 'ogg':
+    //         if (
+    //           !(
+    //             this.audio.canPlayType &&
+    //             this.audio
+    //               .canPlayType('audio/ogg; codecs="vorbis"')
+    //               .replace(/no/, '')
+    //           )
+    //         ) {
+    //           this.setUnsupportedMessage(
+    //             "This browser doesn't support Vorbis audio files."
+    //           )
+    //         }
+    //         break
+    //       default:
+    //         if (!this.audio.canPlayType('audio/' + fileType)) {
+    //           this.setUnsupportedMessage(
+    //             "This browser doesn't support this audio file"
+    //           )
+    //         }
+    //         break
+    //     }
+    //   }
+    // }
+    checkFileTypeSupport() {
+      if (this.audio && this.audio.src) {
+        const songFile = this.audio.src
+        const fileType = songFile.substring(songFile.lastIndexOf('.') + 1)
+
+        const fileTypeSupportMap = {
+          mp3: 'audio/mpeg',
+          m4a: 'audio/mp4; codecs="mp4a.40.2"',
+          aac: 'audio/mp4; codecs="mp4a.40.2"',
+          wav: 'audio/wav; codecs="1"',
+          ogg: 'audio/ogg; codecs="vorbis"'
+        }
+
+        const mimeType = fileTypeSupportMap[fileType]
+
+        if (mimeType) {
+          if (
+            !(
+              this.audio.canPlayType &&
+              this.audio.canPlayType(mimeType).replace(/no/, '')
+            )
+          ) {
+            this.setUnsupportedMessage(
+              `This browser doesn't support ${fileType.toUpperCase()} audio files.`
+            )
+          }
+        } else {
+          if (!this.audio.canPlayType('audio/' + fileType)) {
+            this.setUnsupportedMessage(
+              "This browser doesn't support this audio file type."
+            )
+          }
+        }
+      }
+    }
+
+    setSongTitle() {
+      if (this.songTitle && this.hasAttribute('title')) {
+        this.songTitle.textContent = this.getAttribute('title')
+      } else if (this.songTitle && this.hasAttribute('src')) {
+        this.songTitle.textContent = this.getAttribute('src')
+      }
+    }
+    setPlayPauseListener() {
+      this.playPauseButton?.addEventListener('click', () => {
+        if (
+          this.pauseIcon &&
+          this.playIcon &&
+          this.playPauseButton &&
+          this.audio
+        ) {
+          if (!this.playing) {
+            this.pauseIcon.style.display = 'block'
+            this.playIcon.style.display = 'none'
+            this.playPauseButton.setAttribute('aria-label', 'Pause song')
+            this.audio.play()
+            this.playing = true
+            this.dispatchEvent(new Event('audioplaying'))
+          } else {
+            this.pauseIcon.style.display = 'none'
+            this.playIcon.style.display = 'block'
+            this.playPauseButton.setAttribute('aria-label', 'Play song')
+            this.audio.pause()
+            this.playing = false
+            this.dispatchEvent(new Event('audiopaused'))
+          }
+        }
+      })
+    }
+    setProgressListener() {
+      this.progressBar?.addEventListener('click', (event) => {
+        if (this.progressBar && this.audio) {
+          let percent = event.offsetX / this.progressBar.offsetWidth
+          this.audio.currentTime = percent * this.audio.duration
+          this.progressBar.value = percent
+        }
+      })
+    }
+    playSong() {
+      if (
+        this.audio &&
+        this.playIcon &&
+        this.pauseIcon &&
+        this.playPauseButton
+      ) {
+        this.pauseIcon.style.display = 'block'
+        this.playIcon.style.display = 'none'
+        this.playPauseButton.setAttribute('aria-label', 'Pause song')
+        this.audio.play()
+        this.playing = true
+        this.dispatchEvent(new Event('audioplaying'))
+      }
+    }
+    setTimeListener() {
+      this.audio?.addEventListener('loadedmetadata', () => {
+        this.metadataTimeHandler()
+      })
+    }
+    metadataTimeHandler() {
+      if (this.audio && this.currentTime && this.duration) {
+        this.currentTime.textContent = `${this.formatTime(
+          this.audio.currentTime
+        )}`
+        this.duration.textContent = `${this.formatTime(this.audio.duration)}`
+        this.audio.addEventListener('timeupdate', () => {
+          this.updateTimeHandler()
+        })
+      }
+    }
+    updateTimeHandler() {
+      if (
+        this.audio &&
+        this.currentTime &&
+        this.duration &&
+        this.progressBar &&
+        this.playIcon &&
+        this.pauseIcon &&
+        this.playPauseButton
+      ) {
+        if (!isNaN(this.audio.currentTime / this.audio.duration)) {
+          this.progressBar.value = this.audio.currentTime / this.audio.duration
+          this.currentTime.textContent = `${this.formatTime(
+            this.audio.currentTime
+          )}`
+          this.duration.textContent = `${this.formatTime(this.audio.duration)}`
+          if (this.audio.currentTime === this.audio.duration) {
+            this.audio.currentTime = 0
+            this.pauseIcon.style.display = 'none'
+            this.playIcon.style.display = 'block'
+            this.playPauseButton.setAttribute('aria-label', 'Play song')
+            this.playing = false
+            this.dispatchEvent(new Event('audiopaused'))
+            this.dispatchEvent(new Event('audiofinished'))
+          }
+        }
+      }
+    }
+    setUnsupportedMessage(message) {
+      if (this.songTitle) {
+        this.songTitle.textContent = message
+      }
+    }
+    formatTime(seconds) {
+      const hours = Math.floor(seconds / 3600)
+      const minutes = Math.floor((seconds % 3600) / 60)
+      const remainingSeconds = Math.floor(seconds % 60)
+      let formattedTime = ''
+      if (hours > 0) {
+        const formattedHours = hours.toString().padStart(2, '0')
+        formattedTime = `${formattedHours}:${minutes
+          .toString()
+          .padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`
+      } else {
+        formattedTime = `${minutes.toString().padStart(2, '0')}:${remainingSeconds
+          .toString()
+          .padStart(2, '0')}`
+      }
+      return formattedTime
+    }
+  }
+  customElements.define('audio-player', Audio)
+</script>
+
+<style
+  define:vars={{
+    maxwidth: finalConfig.maxwidth,
+    maxheight: finalConfig.maxheight,
+    accentColor: finalConfig.colors.accentColor,
+    bgColor: finalConfig.colors.bgColor,
+    progressColor: finalConfig.colors.progressColor,
+    progressColorBg: finalConfig.colors.progressColorBg,
+    txtColor: finalConfig.colors.txtColor
+  }}
+  is:global
+>
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
+  audio-player {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    width: var(--maxwidth, 100%);
+    margin: 0 auto;
+    padding: 0.5rem 2.5rem 0.5rem 0.5rem;
+    color: var(--txtColor, white);
+    background-color: var(--bgColor, rgb(95 85 236 / 50%));
+    border: 2px solid var(--accentColor, rgb(95 85 236));
+    border-radius: 8px;
+    place-items: center start;
+  }
+
+  audio-player button {
+    display: inline-flex;
+    grid-area: 1 / 1 / 2 / 2;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+    min-width: 50px;
+    height: 20%;
+    min-height: 50px;
+    padding: 0.5rem 0;
+    color: var(--txtColor, white);
+    line-height: 0;
+    background-color: var(--accentColor, rgb(95 85 236));
+    border: none;
+    border-radius: 50% !important;
+    cursor: pointer;
+  }
+
+  audio-player button:focus-visible {
+    border-radius: 50%;
+    outline: solid 2px var(--focus-outline);
+    outline-offset: 2px;
+  }
+
+  audio-player button svg {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  audio-player #play-icon {
+    margin-left: 6%;
+  }
+
+  audio-player .audio-bar {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  audio-player progress {
+    display: block;
+    grid-column: 3 / span 10;
+    width: 100%;
+    height: 6px;
+    background-color: var(--progressColorBg, rgb(190 190 190));
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+  }
+
+  audio-player progress::-webkit-progress-bar {
+    height: 6px;
+    background-color: var(--progressColorBg, rgb(190 190 190));
+    border-radius: 100px;
+  }
+
+  audio-player progress::-webkit-progress-value,
+  audio-player progress::-moz-progress-bar {
+    height: 6px;
+    background-color: rgb(122 112 255);
+    border-radius: 100px;
+  }
+
+  audio-player label {
+    display: block;
+    font-size: 1rem;
+  }
+
+  audio-player #song-title {
+    margin: 0;
+    font-weight: 600;
+    font-size: 1rem;
+  }
+
+  audio-player .left-container {
+    position: relative;
+    display: grid;
+    order: 1;
+    width: calc(var(--maxheight, 166) * 1px);
+    height: calc(var(--maxheight, 166) * 1px);
+    place-content: center center;
+    place-items: center center;
+  }
+
+  audio-player .left-container img {
+    display: block;
+    grid-area: 1 / 1 / 2 / 2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    aspect-ratio: 1/1;
+  }
+
+  audio-player .right-container {
+    order: 2;
+    width: 100%;
+    height: auto;
+  }
+
+  audio-player audio {
+  }
+
+  audio-player figure {
+    display: none;
+    opacity: 0;
+    animation-name: fade-in;
+    animation-duration: 0.2s;
+    animation-timing-function: ease-in-out;
+    animation-delay: 2s; /* prevents FOUC when the web-component loads */
+    animation-fill-mode: both;
+  }
+
+  audio-player.no-js {
+    grid-template-columns: 1fr;
+    padding: 0.5rem;
+  }
+
+  audio-player.no-js > * {
+    display: none;
+  }
+
+  audio-player.no-js figure {
+    display: block;
+    inline-size: 100%;
+    opacity: 1;
+  }
+
+  audio-player.no-js figcaption {
+    margin-inline-start: 1rem;
+  }
+
+  audio-player.no-js audio {
+    inline-size: 100%;
+  }
+</style>

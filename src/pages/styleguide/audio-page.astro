@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import Audio from '../../components/Audio.astro'
+
+import mp3 from '../../media/whitenoise-lg.wav'
+import img from '../../images/RememberingTogetherDG_imageGregorAnderson_full.jpg'
+---
+
+<BaseLayout pageTitle="Test of Embeds">
+  <main id="main">
+    <div class="container full-width">
+      <div class="embeds__wrap w-100">
+        <h2>Audio File: single track</h2>
+        <pre
+          class="code">
+import img from '../path/to/image.jpg'
+import mp3 from '../path/to/audio.mp3'
+// For github content:
+// 'https://github.com/memorialforestdg/media-archive/blob/main/media/audio/whitenoise-lg.mp3?raw=true'
+// Redirects to:
+// 'https://raw.githubusercontent.com/memorialforestdg/media-archive/main/media/audio/whitenoise-lg.mp3'
+&lt;Audio src=&#123mp3&#125;
+      title="White Noise"
+      config=&#123;&#123;
+          artwork: img,
+          artworkAlt: 'Audio Artwork',
+          color:&#123;
+            bgColor: '#295661',
+            accentColor: '#5b5be8',
+            progressColor: '#5b5be8',
+          &#125;,
+          controls:&#123;
+            download: true,
+          &#125;
+      &#125;&#125;
+/&gt;
+        </pre>
+        <br />
+        <Audio
+          src={mp3}
+          title="White Noise"
+          config={{
+            artwork: img,
+            artworkAlt: 'Audio Artwork',
+            colors: {
+              bgColor: '#295661',
+              accentColor: '#5b5be8',
+              progressColor: '#5b5be8'
+            },
+            controls: {
+              download: true
+            }
+          }}
+        />
+        <br />
+      </div>
+    </div>
+  </main>
+</BaseLayout>
