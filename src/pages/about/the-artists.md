@@ -12,6 +12,6 @@ flourishClasses: ['--downybirch', 'dropcap', '--dc-munsell-600']
 
 [website](https://katiejanderson.com/) |  [X](https://x.com/KatieJoAnd) | [Instagram](https://www.instagram.com/katie_j_and/)
 
-**dr t s Beall** is a socially-engaged artist and researcher based in Dumfries and Glasgow, working with diverse communities on durational artworks which aim to recover and celebrate underknown histories. For the last decade she has developed projects in both rural and post-industrial urban environments, collaborating with under-represented communities across Scotland and internationally. Her work spans a variety of media including performative events, printed matter, and creative interventions in the public realm.
+**dr ts Beall** is a socially-engaged artist and researcher based in Dumfries and Glasgow, working with diverse communities on durational artworks which aim to recover and celebrate underknown histories. For the last decade she has developed projects in both rural and post-industrial urban environments, collaborating with under-represented communities across Scotland and internationally. Her work spans a variety of media including performative events, printed matter, and creative interventions in the public realm.
 
 [X](https://x.com/tsBeall) |  [Instagram](https://www.instagram.com/tsbeall/)
