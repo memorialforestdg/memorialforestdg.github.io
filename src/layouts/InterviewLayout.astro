@@ -1,0 +1,96 @@
+---
+import Flourish from '../components/Flourish.astro'
+import Gallery from '../components/Gallery.astro'
+import BaseLayout from './BaseLayout.astro'
+import {type ImageMetadata} from 'astro'
+import {type DataEntryMap} from 'astro:content'
+import Audio from '../components/Audio.astro'
+
+interface Props {
+  frontmatter: {
+    pageTitle: string
+    bannerImage?: string
+    bannerHeight?: number
+    bannerAlt?: string
+    flourishClasses?: Array<string>
+    collectionId?: keyof DataEntryMap
+    albumId?: string
+    audioFile?: string
+    audioTitle?: string
+    audioArt?: string
+    audioArtAlt?: string
+  }
+}
+
+const {
+  pageTitle,
+  bannerImage = '',
+  bannerHeight,
+  bannerAlt,
+  flourishClasses,
+  collectionId,
+  albumId,
+  audioFile = '',
+  audioTitle = '',
+  audioArt = '',
+  audioArtAlt = ''
+} = Astro.props.frontmatter
+
+const images = import.meta.glob<{default: ImageMetadata}>(
+  '../images/**/*.{png,PNG,jpg,JPG,jpeg,svg,webp,avif}'
+)
+const media = import.meta.glob('../media/**/*.{mp3,oog}')
+
+const mediaArt = images[audioArt] ? await images[audioArt]() : (null as any)
+const mediaArtImage = mediaArt?.default as ImageMetadata
+
+const banner = images[bannerImage] ? await images[bannerImage]() : (null as any)
+const BannerImage = banner?.default as ImageMetadata
+
+const audio = media[audioFile] ? await media[audioFile]() : (null as any)
+
+const playerConfig = {
+  bgColor: '#295661',
+  accentColor: '#5b5be8',
+  progressColor: '#5b5be8',
+  artwork: mediaArtImage
+}
+---
+
+<BaseLayout
+  pageTitle={pageTitle}
+  bannerImage={BannerImage}
+  bannerHeight={bannerHeight}
+  bannerAlt={bannerAlt}
+>
+  <main id="main">
+    <div class="container stack">
+      <div class="stack pl-5-ns pr-5-ns pt-4-ns">
+        <div class="markdown-content">
+          <Audio src={audio} title={audioTitle} config={playerConfig} />
+          <hr />
+          <Flourish classes={flourishClasses}>
+            <slot />
+          </Flourish>
+          <hr />
+          <div class="gallery__wrap">
+            {
+              collectionId && albumId ? (
+                <Gallery
+                  collectionId={collectionId}
+                  albumId={albumId}
+                  galleryWraperClasses={'nt-4'}
+                  galleryUlClasses={
+                    'pa-0 list flex flex-wrap gap-2 justify-center'
+                  }
+                  cellLiClasses={'pa-0 ma-0 shadow-hover'}
+                  cellClasses={'pa-0 ma-0 bg-brand-purple shadow-hover br1'}
+                />
+              ) : null
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
