@@ -1,0 +1,103 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import SoundCloud from '../../components/SoundCloud.astro'
+---
+
+<BaseLayout pageTitle="Test of Embeds">
+  <main id="main">
+    <div class="container full-width">
+      <div class="embeds__wrap w-100">
+        <h2>SoundCloud: single track</h2>
+        <pre
+          style=" overflow-x: auto;color:#e1e4e8;background-color:#24292e;">
+&lt;SoundCloud
+  oembedUrl="https://soundcloud.com/forss/flickermood"
+  widget="false"
+  config=&#123;&#123;
+    color: '#295661', //  colors NOT working with or without # for oEmbed
+    sharing: false,
+    maxheight: '450' // must be 166 or 450 as a max height for oEmbed
+  &#125;&#125;
+/&gt;
+        </pre>
+        <SoundCloud
+          oembedUrl="https://soundcloud.com/forss/flickermood"
+          config={{
+            color: '#295661', //  colors NOT working with or without # for oEmbed
+            sharing: false,
+            maxheight: '450' // must be 166 or 450 as a max height for oEmbed
+          }}
+        />
+        <br />
+        <pre
+          style=" overflow-x: auto;color:#e1e4e8;background-color:#24292e;">
+&lt;SoundCloud
+  oembedUrl="https://soundcloud.com/forss/flickermood"
+  widget="true"
+  config=&#123;&#123;
+    color: '#295661', //  colors working with or without #
+    sharing: false,
+    maxheight: '450' // must be 166 or 450 as a max height, though 450 looks weird for single tracks with widgets.
+  &#125;&#125;
+/&gt;
+        </pre>
+        <SoundCloud
+          oembedUrl="https://soundcloud.com/forss/flickermood"
+          widget="true"
+          config={{
+            color: '#295661', //  colors NOT working with or without #
+            sharing: false,
+            maxheight: '450' // Higher than 166 is weird for single tracks.
+          }}
+        />
+        <br />
+        <h2>SoundCloud: set</h2>
+        <pre
+          style=" overflow-x: auto;color:#e1e4e8;background-color:#24292e;">
+&lt;SoundCloud oembedUrl="https://soundcloud.com/forss/sets/ecclesia" /&gt;
+        </pre>
+        <SoundCloud oembedUrl="https://soundcloud.com/forss/sets/ecclesia" />
+        <br />
+        <pre
+          style=" overflow-x: auto;color:#e1e4e8;background-color:#24292e;">
+&lt;SoundCloud oembedUrl="https://soundcloud.com/forss/sets/ecclesia" widget="true" /&gt;
+        </pre>
+        <SoundCloud
+          oembedUrl="https://soundcloud.com/forss/sets/ecclesia"
+          widget="true"
+        />
+        <br />
+        <h2>SoundCloud: user</h2>
+        <pre
+          style=" overflow-x: auto;color:#e1e4e8;background-color:#24292e;">
+&lt;SoundCloud oembedUrl="https://soundcloud.com/forss" /&gt;
+        </pre>
+        <SoundCloud oembedUrl="https://soundcloud.com/forss" />
+        <br />
+        <pre
+          style=" overflow-x: auto;color:#e1e4e8;background-color:#24292e;">
+&lt;SoundCloud
+    oembedUrl="https://soundcloud.com/forss"
+    widget="true"
+    config=&#123;&#123;
+      color: '295661',
+      sharing: false,
+      show_artwork: false,
+      maxheight: '650' // arbitrary height
+    &#125;&#125;
+/&gt;
+        </pre>
+        <SoundCloud
+          oembedUrl="https://soundcloud.com/forss"
+          widget="true"
+          config={{
+            color: '295661',
+            sharing: false,
+            show_artwork: false,
+            maxheight: '650' // arbitrary height
+          }}
+        />
+      </div>
+    </div>
+  </main>
+</BaseLayout>
