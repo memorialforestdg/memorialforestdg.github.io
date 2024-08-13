@@ -61,11 +61,14 @@ const {
     />
     <meta
       name="content-security-policy"
-      content="default-src 'self' memorialforestdg.github.io memorialforestdg.co.uk;
-                img-src 'self';
-                style-src 'self' 'unsafe-inline';
-                script-src 'self' 'unsafe-inline';
-                frame-src youtube.com player.vimeo.com www.vimeo.com;"
+      content="default-src 'self' https://memorialforestdg.github.io https://memorialforestdg.co.uk https://github.com/memorialforestdg/ https://raw.githubusercontent.com/memorialforestdg/;
+              img-src 'self';
+              style-src 'self' 'unsafe-inline';
+              script-src 'self' 'unsafe-inline';
+              frame-src youtube.com player.vimeo.com www.vimeo.com;
+              object-src 'none';
+              require-trusted-types-for 'script';
+              upgrade-insecure-requests;"
     />
     <CanonicalHead />
     <meta property="og:type" content="website" />
