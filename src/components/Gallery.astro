@@ -105,6 +105,7 @@ Please provide either an array of astro ImageMetadata OR a valid collectionId & 
 } else {
   imgs = images ?? []
 }
+
 const targetCellHeightPx = targetCellHeight + 'px'
 const targetCellWidthPx =
   cellFormat === 'square' ? targetCellHeightPx : 'inherit'
@@ -170,6 +171,7 @@ const targetCellWidthPx =
   .cell {
     background-color: var(--dominantColor);
     max-block-size: calc(var(--targetCellHeightPx));
+    max-inline-size: var(--targetCellWidthPx);
   }
 
   .pswp__bg {
