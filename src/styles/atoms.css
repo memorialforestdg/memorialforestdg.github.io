@@ -98,3 +98,10 @@
 .header-img-gradent {
   background: var(--header-img-gradent);
 }
+
+pre.code {
+  overflow-x: auto;
+  color:#e1e4e8;
+  white-space: pre-wrap;
+  background-color:#24292e;
+}
