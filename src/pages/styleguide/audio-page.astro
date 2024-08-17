@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import Audio from '../../components/Audio.astro'
 
-import mp3 from '../../media/whitenoise-lg.wav'
+import mp3 from '../../media/whitenoise-lg.mp3'
 import img from '../../images/RememberingTogetherDG_imageGregorAnderson_full.jpg'
 ---
 
@@ -11,6 +11,24 @@ import img from '../../images/RememberingTogetherDG_imageGregorAnderson_full.jpg
     <div class="container full-width">
       <div class="embeds__wrap w-100">
         <h2>Audio File: single track</h2>
+
+        <br />
+        <Audio
+          src={mp3}
+          title="White Noise"
+          config={{
+            artwork: img,
+            artworkAlt: 'Audio Artwork',
+            colors: {
+              accentColor: '#5b5be8',
+              progressColor: '#5b5be8'
+            },
+            controls: {
+              download: true
+            }
+          }}
+        />
+        <br />
         <pre
           class="code">
 import img from '../path/to/image.jpg'
@@ -35,24 +53,6 @@ import mp3 from '../path/to/audio.mp3'
       &#125;&#125;
 /&gt;
         </pre>
-        <br />
-        <Audio
-          src={mp3}
-          title="White Noise"
-          config={{
-            artwork: img,
-            artworkAlt: 'Audio Artwork',
-            colors: {
-              bgColor: '#295661',
-              accentColor: '#5b5be8',
-              progressColor: '#5b5be8'
-            },
-            controls: {
-              download: true
-            }
-          }}
-        />
-        <br />
       </div>
     </div>
   </main>
