@@ -7,17 +7,18 @@
  * This Astro component features progressive enhancement with the native audio element if js is disabled.
  *
  *
- * TODO: add support for download
  * TODO: show buffer length on progress (this.audio.buffered.length)
+ * TODO: add support for download - WIRE UP TO OPTIONS
  * TODO: if download is true, add download attribute to <audio>
- * TODO: add support for multiple sources
- * TODO: add support looping
- * TODO: add support for mute - DONE
- * TODO: add volume controls
+ * TODO: add support looping - - WIRE UP TO OPTIONS
+ * TODO: add support for mute - - WIRE UP TO OPTIONS
+ * TODO: add volume controls - WIRE UP TO OPTIONS
+ * TODO: add support for controls speed (playbackRate = 1.5) - WIRE UP TO OPTIONS (pass an array of ints to build buttons)
+ * TODO: IF ALL MODULES FALSE, then the drawer should be hidden
  * TODO: add volume controls with keyboard (done-platform provides!)
- * TODO: add support for controls speed (playbackRate = 1.5)
  * TODO: add support ff rr with keyboard (done, on progress track)
  * TODO: add crossorigin support
+ * TODO: add support for multiple sources
  * TODO: Set playback speed to cookie or localStore for global.
  */
 
@@ -139,9 +140,9 @@ const playbackSpeedTemplate = `
 const playerControlsTemplate = `
     <div class="player-controls-container">
       <div class="player-controls">
-      ${loopingButtonTemplate}
-      ${downloadButtonTemplate}
-      ${playbackSpeedTemplate}
+        ${loopingButtonTemplate}
+        ${downloadButtonTemplate}
+        ${playbackSpeedTemplate}
       </div>
       <div id="controls-drawer" class="controls-drawer btn" aria-label="Open player controls">
         <svg id="controls-drawer-icon" class="controls-drawer-icon icn" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M12 16a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2"/></svg>
@@ -743,6 +744,7 @@ const playerTemplate = `
     display: grid;
     grid-template-columns: auto 1fr;
     width: var(--maxwidth, 100%);
+    max-height: calc(var(--artworkHeight) * 1px);
     margin: 0 auto;
     overflow: hidden;
     color: var(--txtColor, white);
@@ -793,24 +795,11 @@ const playerTemplate = `
       background 50ms ease-in-out;
   }
 
-  .audio-player .btn svg {
+  .audio-player .btn .icn {
     width: 100%;
     height: 100%;
     margin: 0;
     padding: 0;
-  }
-
-  .audio-player .track-volume-container {
-    display: grid;
-    grid-template-rows: auto 0;
-    width: 100%;
-    height: 100%;
-    transition: 0.3s ease;
-  }
-
-  .audio-player .track-volume-container:focus-within,
-  .audio-player .track-volume-container:hover {
-    grid-template-rows: auto 20px;
   }
 
   .audio-player .track-container {
@@ -821,7 +810,6 @@ const playerTemplate = `
     align-items: center;
     width: 100%;
     height: 100%;
-    border-bottom: 1px solid var(--btnHover, rgb(146 146 146));
   }
 
   .audio-player .time-container {
@@ -878,7 +866,11 @@ const playerTemplate = `
   }
 
   .audio-player .progress-bar::-moz-progress-bar {
+    display: block;
+    height: 100%;
     background-color: var(--accentColor, rgb(95 85 236));
+    border: none;
+    cursor: pointer;
   }
 
   .audio-player .buffer-bar {
@@ -895,8 +887,11 @@ const playerTemplate = `
     display: block;
     grid-column: 1;
     margin: 0;
+    overflow: hidden;
     font-weight: 600;
     font-size: 2rem;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     padding-inline-start: 10px;
   }
 
@@ -941,7 +936,11 @@ const playerTemplate = `
 
   .audio-player .player-controls-container:focus-within,
   .audio-player .player-controls-container:hover {
-    grid-template-columns: 1fr 30px;
+    grid-template-columns: 3fr 30px;
+  }
+
+  .audio-player .player-controls .btn {
+    background-color: var(--btnHover, rgb(146 146 146));
   }
 
   .audio-player .player-controls .speed-btn:hover,
@@ -952,10 +951,6 @@ const playerTemplate = `
     outline: none;
     filter: brightness(0.8);
     transition: filter 0.3s ease;
-  }
-
-  .audio-player .player-controls .btn {
-    background-color: var(--btnHover, rgb(146 146 146));
   }
 
   .audio-player .controls-drawer {
@@ -969,12 +964,18 @@ const playerTemplate = `
 
   .audio-player .player-controls {
     display: grid;
-    grid-template-columns: minmax(48px, 2fr) 1fr;
+    grid-template-columns: minmax(auto, 2fr) 1fr;
     overflow: hidden;
     border-left: 1px solid var(--accentColor, rgb(95 85 236));
   }
 
-  .audio-player .player-controls .download-btn,
+  .audio-player .player-controls .looping-btn .icn {
+    width: 100%;
+    min-width: 20px;
+
+    /* width: clamp(1.5rem, 1.5rem, 2rem); */
+  }
+
   .audio-player .player-controls .looping-btn {
     grid-column: 1;
     width: 100%;
@@ -1028,6 +1029,21 @@ const playerTemplate = `
     background: var(--accentColor, rgb(95 85 236));
   }
 
+  .audio-player .track-volume-container {
+    display: grid;
+    grid-template-rows: auto 3px;
+    width: 100%;
+    height: 100%;
+    transition: 0.3s ease;
+  }
+
+  /* stylelint-disable plugin/no-unsupported-browser-features */
+  .audio-player .track-volume-container:has(.volume-container:hover),
+  .audio-player .track-volume-container:has(.volume-container:focus-within) {
+    grid-template-rows: auto var(--volTrackHeight, 20px);
+  }
+  /* stylelint-enable plugin/no-unsupported-browser-features */
+
   .audio-player .volume-container {
     position: relative;
     display: flex;
@@ -1040,13 +1056,6 @@ const playerTemplate = `
     border: none;
   }
 
-  .audio-player .volume-btn {
-    width: 20px;
-    height: 100%;
-    padding: 0;
-    line-height: 0;
-  }
-
   .audio-player .volume-slider {
     width: 100%;
     height: 100%;
@@ -1056,20 +1065,41 @@ const playerTemplate = `
     appearance: none;
   }
 
+  .audio-player .volume-btn {
+    width: 20px;
+    height: 100%;
+    padding: 0;
+    line-height: 0;
+    background: var(--btnHover, rgb(146 146 146));
+    transition: background 0.2s ease;
+  }
+
+  .audio-player .volume-btn svg {
+    color: var(--btnHover, rgb(146 146 146));
+  }
+
   .audio-player .volume-slider::-webkit-slider-thumb {
-    width: 10px;
-    height: 20px;
+    width: 9px;
+    height: var(--volTrackHeight, 20px);
     background: var(--accentColor, rgb(95 85 236));
+    border: 2px solid var(--btnHover, rgb(146 146 146));
+    border-bottom: 0;
     border-radius: 0;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
     cursor: pointer;
     appearance: none;
   }
 
   .audio-player .volume-slider::-moz-range-thumb {
-    width: 10px;
-    height: 20px;
+    width: 9px;
+    height: var(--volTrackHeight, 20px);
     background: var(--accentColor, rgb(95 85 236));
+    border: 2px solid var(--btnHover, rgb(146 146 146));
+    border-bottom: 0;
     border-radius: 0;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
     cursor: pointer;
     appearance: none;
   }
@@ -1080,6 +1110,35 @@ const playerTemplate = `
 
   .audio-player .volume-slider:focus::-moz-range-thumb {
     border: 2px solid var(--txtColor, white);
+  }
+
+  .audio-player
+    .volume-container:focus-within
+    .volume-slider::-webkit-slider-thumb {
+    border-top: 0;
+  }
+
+  .audio-player
+    .volume-container:focus-within
+    .volume-slider::-moz-range-thumb {
+    border-top: 0;
+  }
+
+  .audio-player .volume-container:hover .volume-btn,
+  .audio-player .volume-container:focus-within .volume-btn {
+    background: var(--accentColor, rgb(95 85 236));
+  }
+
+  .audio-player .volume-container:hover .volume-btn svg,
+  .audio-player .volume-container:focus-within .volume-btn svg {
+    color: currentcolor;
+  }
+
+  .audio-player .volume-container:hover .volume-slider::-moz-range-thumb,
+  .audio-player
+    .volume-container:focus-within
+    .volume-slider::-moz-range-thumb {
+    border: 2px solid var(--btnHover, rgb(146 146 146));
   }
 
   /**
@@ -1117,5 +1176,11 @@ const playerTemplate = `
   audio-player.no-js audio {
     inline-size: 100%;
     display: block;
+  }
+
+  @media (max-width: 550px) {
+    .audio-player .player-controls-container {
+      display: none;
+    }
   }
 </style>
