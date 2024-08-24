@@ -1238,7 +1238,7 @@ const combinedAttrs = {
 
   .controls-drawer-container {
     display: grid;
-    grid-template-columns: 0fr 30px;
+    grid-template-columns: 0 30px;
     justify-content: start;
     justify-content: end;
     height: 100%;
@@ -1281,7 +1281,7 @@ const combinedAttrs = {
   }
 
   .controls-drawer:has(.download-btn, .looping-btn):has(.playback-speed) {
-    grid-template-columns: 0.5fr 0.5fr;
+    grid-template-columns: minmax(0.5fr, 1fr) minmax(0.5fr, 1fr);
   }
 
   .controls-drawer .btn .icn {
@@ -1395,10 +1395,6 @@ const combinedAttrs = {
     transition: background 0.2s ease;
   }
 
-  .volume-btn svg {
-    color: var(--btnHoverColor, hsl(0deg 0% 57%));
-  }
-
   .volume-slider::-webkit-slider-thumb {
     width: 9px;
     height: var(--volTrackHeight, 20px);
@@ -1450,12 +1446,6 @@ const combinedAttrs = {
   .volume-container:hover .volume-btn,
   .volume-container:focus-within .volume-btn {
     background: var(--accentColor, hsl(244deg 80% 63%));
-  }
-
-  .volume-container .volume-btn[aria-pressed='true'] svg,
-  .volume-container:hover .volume-btn svg,
-  .volume-container:focus-within .volume-btn svg {
-    color: currentcolor;
   }
 
   /**
