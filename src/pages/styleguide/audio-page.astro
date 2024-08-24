@@ -20,16 +20,17 @@ import {fade} from 'astro:transitions'
           src={mp3}
           title="White Noise with really long title hey? - http://example.com"
           config={{
+            artwork: img,
+            artworkAlt: 'Audio Artwork',
             preload: 'auto',
             colors: {
-              bgColor: '#295661',
               accentColor: '#5b5be8',
               progressColor: '#5b5be8',
               bufferColor: 'rgb(73 73 73 / 81%)'
             },
             controls: {
               volume: true,
-              volumeStart: 0.35,
+              volumeStart: 0.95,
               download: false,
               loop: true,
               playbackSpeeds: [
