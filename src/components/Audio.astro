@@ -1386,13 +1386,30 @@ const combinedAttrs = {
     appearance: none;
   }
 
-  .volume-btn {
+  .volume-container .volume-btn {
     width: 20px;
     height: 100%;
     padding: 0;
     line-height: 0;
     background: var(--btnHoverColor, hsl(0deg 0% 57%));
     transition: background 0.2s ease;
+  }
+
+  .volume-container .volume-btn .icn {
+    color: var(--btnHoverColor, hsl(0deg 0% 57%));
+  }
+
+  .volume-btn[aria-pressed='true'],
+  .volume-container:hover .volume-btn,
+  .volume-container:focus-within .volume-btn {
+    background: var(--accentColor, hsl(244deg 80% 63%));
+  }
+
+  .volume-container:focus-within .volume-btn .icn,
+  .volume-container .volume-btn[aria-pressed='true'] .icn,
+  .volume-container .volume-container:hover .volume-btn .icn {
+    color: var(--icnColor, var(--txtColor, currnetColor));
+    background: var(--accentColor, hsl(244deg 80% 63%));
   }
 
   .volume-slider::-webkit-slider-thumb {
@@ -1440,12 +1457,6 @@ const combinedAttrs = {
 
   .volume-container:focus-within .volume-slider::-moz-range-thumb {
     border-top: 0;
-  }
-
-  .volume-btn[aria-pressed='true'],
-  .volume-container:hover .volume-btn,
-  .volume-container:focus-within .volume-btn {
-    background: var(--accentColor, hsl(244deg 80% 63%));
   }
 
   /**
