@@ -1,50 +1,49 @@
 ---
 /**
- * Custom element based on `audio-tool` by Kevin Logan
- * https://github.com/kevinlogan94/audio-tool/blob/master/src/audio-tool.js
- * by way of https://hawkticehurst.com/2023/12/portable-html-web-components/
- *
  * This Astro component features progressive enhancement with the native audio element if js is disabled.
  *
+ * Note: auto-play is governed by browser policy, see: https://developer.chrome.com/blog/autoplay/
  *
- * TODO: show buffer length on progress (this.audio.buffered.length)
- * TODO: add support for download - WIRE UP TO OPTIONS
- * TODO: if download is true, add download attribute to <audio>
- * TODO: add support looping - - WIRE UP TO OPTIONS
- * TODO: add support for mute - - WIRE UP TO OPTIONS
- * TODO: add volume controls - WIRE UP TO OPTIONS
- * TODO: add support for controls speed (playbackRate = 1.5) - WIRE UP TO OPTIONS (pass an array of ints to build buttons)
- * TODO: IF ALL MODULES FALSE, then the drawer should be hidden
- * TODO: add volume controls with keyboard (done-platform provides!)
- * TODO: add support ff rr with keyboard (done, on progress track)
- * TODO: add crossorigin support
- * TODO: add support for multiple sources
- * TODO: Set playback speed to cookie or localStore for global.
+ *
+ * TODO: Set playback speed, mute and current volume to localStore.
+ * TODO: support multiple sources files.
+ * TODO: crossorigin support
  */
 
 import type {ImageMetadata} from 'astro'
 import {getImage} from 'astro:assets'
 
 export interface Config {
-  maxwidth?: string
-  artworkHeight?: string
+  autoPlay?: boolean
   artwork?: ImageMetadata | null
   artworkAlt?: string
+  artworkHeight?: string
   crossorigin?: null | 'anonymous' | 'use-credentials'
-  preload?: 'none' | 'metadata' | 'auto'
   colors?: {
     accentColor?: string
+    bgColor?: string
+    btnHoverColor?: string
+    bufferColor?: string
+    icnColor?: string
     txtColor?: string
     progressColor?: string
     progressColorBg?: string
-    btnHover?: string
   }
-  controls?: {
-    download?: boolean
-    loop?: boolean
-    mute?: boolean
-    autoPlay?: boolean
-  }
+  class?: string
+  controls?:
+    | {
+        download?: boolean
+        loop?: boolean
+        playbackSpeeds?: Array<{speed: number; default?: boolean}> | false
+        volume?: boolean
+        volumeStart?: number // between 0 and 1
+      }
+    | false
+  loopOnLoad?: boolean
+  maxwidth?: string
+  muteOnLoad?: boolean
+  preload?: 'none' | 'metadata' | 'auto'
+  title?: ''
 }
 
 interface Props {
@@ -55,25 +54,34 @@ interface Props {
 
 // Default configuration values
 const defaultConfig: Config = {
-  maxwidth: '100%',
-  artworkHeight: '116',
+  title: '',
+  autoPlay: false,
   artwork: null,
+  artworkHeight: '116',
   artworkAlt: 'Audio Artwork',
-  crossorigin: undefined,
-  preload: 'metadata',
+  class: 'no-js',
   colors: {
     accentColor: '',
+    bgColor: '',
+    btnHoverColor: '',
+    bufferColor: '',
+    icnColor: '',
     txtColor: '',
     progressColor: '',
-    progressColorBg: '',
-    btnHover: ''
+    progressColorBg: ''
   },
   controls: {
-    download: false,
+    download: true,
     loop: false,
-    mute: false,
-    autoPlay: false
-  }
+    playbackSpeeds: [{speed: 1, default: true}, {speed: 2}, {speed: 3}],
+    volume: true,
+    volumeStart: 0.3
+  },
+  crossorigin: undefined,
+  loopOnLoad: false,
+  maxwidth: '100%',
+  muteOnLoad: false,
+  preload: 'metadata'
 }
 
 const {src, title = '', config = {}} = Astro.props
@@ -88,103 +96,289 @@ const albumArt = finalConfig.artwork
     })
   : null
 
-const albumArtTemplate = albumArt
-  ? `<img src="${albumArt!.src}" alt="${finalConfig.artworkAlt}" width="${albumArt.attributes!.width}" height="${albumArt.attributes!.height}"/>`
-  : ''
+const autoPlayAttr = finalConfig.autoPlay ? {'auto-play': 'true'} : {}
+const cssClasses = finalConfig.class ? {class: finalConfig.class} : {}
+const preloadAttr = finalConfig.preload ? {preload: finalConfig.preload} : {}
+const downloadAttr =
+  finalConfig.controls && finalConfig.controls?.download
+    ? {download: 'true'}
+    : {}
+const loopAttr =
+  finalConfig.controls && finalConfig?.loopOnLoad ? {loop: 'true'} : {}
+const muteAttr =
+  finalConfig.controls && finalConfig?.muteOnLoad ? {mute: 'true'} : {}
 
-const playButtonTemplate = `
-    <button id="play-btn" class="play-btn btn rounded" aria-label="Play song">
-      <svg class="icn play-icon" id="play-icon" aria-hidden="true" style="display: block;" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M9 15.714V8.287q0-.368.244-.588q.243-.22.568-.22q.102 0 .213.028q.11.027.211.083l5.843 3.733q.186.13.28.298q.093.167.093.379t-.093.379t-.28.298l-5.843 3.733q-.101.055-.213.083t-.213.028q-.326 0-.568-.22T9 15.714"/></svg>
-      <svg class="icn pause-icon" id="pause-icon" aria-hidden="true" style="display: none;" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M15 18q-.402 0-.701-.299T14 17V7q0-.402.299-.701T15 6h1.5q.402 0 .701.299T17.5 7v10q0 .402-.299.701T16.5 18zm-7.5 0q-.402 0-.701-.299T6.5 17V7q0-.402.299-.701T7.5 6H9q.402 0 .701.299T10 7v10q0 .402-.299.701T9 18z"/></svg>
-		</button>`
-
-const trackDetailsTemplate = `
-    <div class="track-container">
-      <label for="progress-bar" id="track-title" class="track-title">Song title</label>
-      <div class="time-container"><span id="current-time">00:00</span> / <span id="total-time">00:00</span></div>
-      <div class="progress-container">
-          <progress id="progress-bar" class="progress-bar" aria-label="Track progress bar"  value="0" max="1" tabindex="0"></progress>
-          <progress id="buffer-bar" class="buffer-bar" value="0" max="1" tabindex="-1"></progress>
-      </div>
-    </div>`
-
-const volumeControlsTemplate = `
-    <div class="volume-container">
-      <button id="volume-mute-btn" class="volume-btn btn" aria-label="Mute">
-        <svg id="volume-on-icon" class="volume-on-icon icn" aria-hidden="true" style="display: block;" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M11.423 14H8.808q-.343 0-.576-.232T8 13.192v-2.384q0-.343.232-.576T8.808 10h2.615l2.685-2.685q.244-.244.568-.112t.324.472v8.65q0 .34-.324.472t-.568-.112z"/></svg>
-        <svg id="volume-mute-icon" class="volume-mute-icon icn" aria-hidden="true" style="display: none;" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="m17.385 12.708l-2.247 2.246q-.14.14-.344.15t-.363-.15t-.16-.354t.16-.354L16.677 12l-2.246-2.246q-.14-.14-.15-.344t.15-.364t.354-.16t.354.16l2.246 2.246l2.246-2.246q.14-.14.344-.15t.364.15t.159.354t-.16.354L18.093 12l2.247 2.246q.14.14.15.344t-.15.364t-.354.16t-.354-.16zM7.73 14H5.116q-.349 0-.578-.23t-.23-.578v-2.384q0-.348.23-.578t.578-.23H7.73l2.685-2.685q.244-.244.568-.116t.324.476v8.65q0 .348-.324.476t-.568-.116z"/></svg>
-      </button>
-      <input type="range" min="0" max="1" step="0.01" class="volume-slider" id="volume-slider">
-    </div>`
-
-const loopingButtonTemplate = `
-    <button id="looping-btn" class="looping-btn btn" aria-label="Loop current track" data-looping="false">
-      <svg id="looping-icon" class="looping-icon icn" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M5.5 17q-2.091 0-3.545-1.454T.5 12.002t1.455-3.546T5.5 7q.823 0 1.58.296t1.374.838l2.123 1.82l-.77.657l-2.01-1.746q-.478-.404-1.074-.634Q6.127 8 5.499 8Q3.842 8 2.67 9.172Q1.5 10.345 1.5 12.003q0 1.659 1.171 2.828T5.499 16q.628 0 1.224-.23q.596-.232 1.073-.636l7.75-7q.598-.561 1.361-.848T18.5 7q2.091 0 3.546 1.454t1.454 3.544t-1.455 3.546T18.5 17q-.829 0-1.573-.306t-1.38-.828l-2.085-1.82l.73-.677l2.012 1.766q.477.427 1.073.646t1.225.219q1.656 0 2.827-1.172q1.171-1.173 1.171-2.831t-1.171-2.828T18.501 8q-.628 0-1.224.23q-.596.232-1.073.636l-7.75 7q-.598.561-1.361.848T5.5 17"/></svg>
-    </button>`
-
-const downloadButtonTemplate = `
-    <a id="download-btn" href="${src}"aria-label="Download song" class="download-btn btn" target="_blank" download><span class="sr-only">download audio</span>
-      <svg id="download-icon" class="download-icon icn" aria-hidden="true xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M12 15.248q-.161 0-.298-.053t-.267-.184l-2.62-2.619q-.146-.146-.152-.344t.152-.363q.166-.166.357-.169q.192-.003.357.163L11.5 13.65V5.5q0-.213.143-.357T12 5t.357.143t.143.357v8.15l1.971-1.971q.146-.146.347-.153t.366.159q.16.165.163.354t-.162.353l-2.62 2.62q-.13.13-.267.183q-.136.053-.298.053M6.616 19q-.691 0-1.153-.462T5 17.384v-1.923q0-.213.143-.356t.357-.144t.357.144t.143.356v1.923q0 .231.192.424t.423.192h10.77q.23 0 .423-.192t.192-.424v-1.923q0-.213.143-.356t.357-.144t.357.144t.143.356v1.923q0 .691-.462 1.153T17.384 19z"/></svg>
-    </a>`
-
-const playbackSpeedTemplate = `
-    <fieldset tabindex="-1" id="playback-speed" class="playback-speed">
-      <input  type="radio" id="playback-speed-1" name="playback-speed" value="1" checked>
-      <label class="speed-btn btn" tabindex="0" for="playback-speed-1">1x</label>
-      <input  type="radio" id="playback-speed-2" name="playback-speed" value="2">
-      <label class="speed-btn btn" tabindex="0" for="playback-speed-2">2x</label>
-      <input  type="radio" id="playback-speed-3" name="playback-speed" value="3">
-      <label class="speed-btn btn" tabindex="0" for="playback-speed-3">3x</label>
-    </fieldset>`
-
-const playerControlsTemplate = `
-    <div class="player-controls-container">
-      <div class="player-controls">
-        ${loopingButtonTemplate}
-        ${downloadButtonTemplate}
-        ${playbackSpeedTemplate}
-      </div>
-      <div id="controls-drawer" class="controls-drawer btn" aria-label="Open player controls">
-        <svg id="controls-drawer-icon" class="controls-drawer-icon icn" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M12 16a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2"/></svg>
-      </div>
-    </div>`
-
-const playerTemplate = `
-  <div class="audio-player">
-		<div class="left-container">
-			${playButtonTemplate}
-      ${albumArtTemplate}
-		</div>
-		<div class="right-container">
-      <div class="track-volume-container">
-      ${trackDetailsTemplate}
-      ${volumeControlsTemplate}
-      </div>
-      ${playerControlsTemplate}
-    </div>
-	</div>`
+const combinedAttrs = {
+  ...autoPlayAttr,
+  ...preloadAttr,
+  ...downloadAttr,
+  ...loopAttr,
+  ...muteAttr,
+  ...cssClasses
+}
 ---
 
 <audio-player
   crossorigin={finalConfig!.crossorigin}
   src={src}
   title={title}
+  {...combinedAttrs}
   config={JSON.stringify(config)}
-  auto-play={finalConfig.controls!.autoPlay}
-  loop={finalConfig.controls!.loop}
-  mute={finalConfig.controls!.mute}
-  preload={finalConfig.preload}
-  class="no-js"
-  set:html={playerTemplate}
 >
-  <figure>
-    <figcaption>{title}</figcaption>
-    <audio controls src={src}>
-      Your browser does not support the audio playback: <a href={src} download
-        >download it instead</a
-      >.
-    </audio>
-  </figure>
+  <slot>
+    <div class="audio-player">
+      <figure class="audio-player__nojs-controls">
+        <figcaption>{title}</figcaption>
+        <audio controls src={src}>
+          Your browser does not support audio playback{
+            finalConfig.controls &&
+              finalConfig.controls?.download &&
+              `:<a href={src} download> download it instead</a>`
+          }.
+        </audio>
+      </figure>
+      <div class="left-container">
+        <button
+          id="play-btn"
+          class="play-btn btn rounded"
+          title="Play track"
+          aria-label="Play track"
+          aria-pressed="false"
+        >
+          <svg
+            class="icn play-icon"
+            id="play-icon"
+            aria-hidden="true"
+            style="display: block;"
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            ><path
+              fill="currentColor"
+              d="M9 15.714V8.287q0-.368.244-.588q.243-.22.568-.22q.102 0 .213.028q.11.027.211.083l5.843 3.733q.186.13.28.298q.093.167.093.379t-.093.379t-.28.298l-5.843 3.733q-.101.055-.213.083t-.213.028q-.326 0-.568-.22T9 15.714"
+            ></path></svg
+          >
+          <svg
+            class="icn pause-icon"
+            id="pause-icon"
+            aria-hidden="true"
+            style="display: none;"
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            ><path
+              fill="currentColor"
+              d="M15 18q-.402 0-.701-.299T14 17V7q0-.402.299-.701T15 6h1.5q.402 0 .701.299T17.5 7v10q0 .402-.299.701T16.5 18zm-7.5 0q-.402 0-.701-.299T6.5 17V7q0-.402.299-.701T7.5 6H9q.402 0 .701.299T10 7v10q0 .402-.299.701T9 18z"
+            ></path></svg
+          >
+        </button>
+        {
+          albumArt && (
+            <img
+              src={albumArt.src}
+              alt={finalConfig.artworkAlt}
+              width={albumArt.attributes!.width}
+              height={albumArt.attributes!.height}
+            />
+          )
+        }
+      </div>
+      <div class="right-container">
+        <div class="track-volume-container">
+          <div class="track-container">
+            <label for="progress-bar" id="track-title" class="track-title"
+              >Song title</label
+            >
+            <div class="time-container">
+              <span id="current-time">00:00</span>
+              /
+              <span id="total-time">00:00</span>
+            </div>
+            <div class="progress-container">
+              <progress
+                id="progress-bar"
+                class="progress-bar"
+                aria-label="Track progress bar"
+                value="0"
+                max="1"
+                tabindex="0"></progress>
+              <progress
+                id="buffer-bar"
+                class="buffer-bar"
+                value="0"
+                max="1"
+                tabindex="-1"></progress>
+            </div>
+          </div>
+          {
+            finalConfig.controls && finalConfig.controls.volume && (
+              <div class="volume-container" title="Volume">
+                <button
+                  id="volume-mute-btn"
+                  class="volume-btn btn"
+                  aria-label="Mute track audio"
+                  title="Mute track audio"
+                >
+                  <svg
+                    id="volume-on-icon"
+                    class="volume-on-icon icn"
+                    aria-hidden="true"
+                    style="display: block;"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M11.423 14H8.808q-.343 0-.576-.232T8 13.192v-2.384q0-.343.232-.576T8.808 10h2.615l2.685-2.685q.244-.244.568-.112t.324.472v8.65q0 .34-.324.472t-.568-.112z"
+                    />
+                  </svg>
+                  <svg
+                    id="volume-mute-icon"
+                    class="volume-mute-icon icn"
+                    aria-hidden="true"
+                    style="display: none;"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="m17.385 12.708l-2.247 2.246q-.14.14-.344.15t-.363-.15t-.16-.354t.16-.354L16.677 12l-2.246-2.246q-.14-.14-.15-.344t.15-.364t.354-.16t.354.16l2.246 2.246l2.246-2.246q.14-.14.344-.15t.364.15t.159.354t-.16.354L18.093 12l2.247 2.246q.14.14.15.344t-.15.364t-.354.16t-.354-.16zM7.73 14H5.116q-.349 0-.578-.23t-.23-.578v-2.384q0-.348.23-.578t.578-.23H7.73l2.685-2.685q.244-.244.568-.116t.324.476v8.65q0 .348-.324.476t-.568-.116z"
+                    />
+                  </svg>
+                </button>
+                <input
+                  type="range"
+                  min="0"
+                  max="1"
+                  step="0.01"
+                  class="volume-slider"
+                  id="volume-slider"
+                  aria-label="Volume slider"
+                  title="Volume slider"
+                  value={finalConfig.controls?.volumeStart || '0.5'}
+                />
+              </div>
+            )
+          }
+        </div>
+        {
+          finalConfig?.controls &&
+            (finalConfig.controls.download ||
+              finalConfig.controls.loop ||
+              finalConfig.controls.playbackSpeeds) && (
+              <div class="controls-drawer-container">
+                <div
+                  class="controls-drawer"
+                  id="controls-drawer"
+                  role="toolbar"
+                >
+                  {finalConfig.controls?.loop && (
+                    <button
+                      id="looping-btn"
+                      class="looping-btn btn"
+                      aria-label="Loop current track"
+                      aria-pressed="false"
+                      title="Loop current track"
+                    >
+                      <svg
+                        id="looping-icon"
+                        class="looping-icon icn"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="32"
+                        height="32"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          fill="currentColor"
+                          d="M5.5 17q-2.091 0-3.545-1.454T.5 12.002t1.455-3.546T5.5 7q.823 0 1.58.296t1.374.838l2.123 1.82l-.77.657l-2.01-1.746q-.478-.404-1.074-.634Q6.127 8 5.499 8Q3.842 8 2.67 9.172Q1.5 10.345 1.5 12.003q0 1.659 1.171 2.828T5.499 16q.628 0 1.224-.23q.596-.232 1.073-.636l7.75-7q.598-.561 1.361-.848T18.5 7q2.091 0 3.546 1.454t1.454 3.544t-1.455 3.546T18.5 17q-.829 0-1.573-.306t-1.38-.828l-2.085-1.82l.73-.677l2.012 1.766q.477.427 1.073.646t1.225.219q1.656 0 2.827-1.172q1.171-1.173 1.171-2.831t-1.171-2.828T18.501 8q-.628 0-1.224.23q-.596.232-1.073.636l-7.75 7q-.598.561-1.361.848T5.5 17"
+                        />
+                      </svg>
+                    </button>
+                  )}
+                  {finalConfig.controls?.download && (
+                    <a
+                      role="button"
+                      id="download-btn"
+                      href={src}
+                      aria-label="Download track"
+                      title="Download track"
+                      class="download-btn btn"
+                      target="_blank"
+                      download
+                    >
+                      <span class="sr-only">download audio</span>
+                      <svg
+                        id="download-icon"
+                        class="download-icon icn"
+                        aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="32"
+                        height="32"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          fill="currentColor"
+                          d="M12 15.248q-.161 0-.298-.053t-.267-.184l-2.62-2.619q-.146-.146-.152-.344t.152-.363q.166-.166.357-.169q.192-.003.357.163L11.5 13.65V5.5q0-.213.143-.357T12 5t.357.143t.143.357v8.15l1.971-1.971q.146-.146.347-.153t.366.159q.16.165.163.354t-.162.353l-2.62 2.62q-.13.13-.267.183q-.136.053-.298.053M6.616 19q-.691 0-1.153-.462T5 17.384v-1.923q0-.213.143-.356t.357-.144t.357.144t.143.356v1.923q0 .231.192.424t.423.192h10.77q.23 0 .423-.192t.192-.424v-1.923q0-.213.143-.356t.357-.144t.357.144t.143.356v1.923q0 .691-.462 1.153T17.384 19z"
+                        />
+                      </svg>
+                    </a>
+                  )}
+                  {finalConfig.controls?.playbackSpeeds && (
+                    <fieldset id="playback-speed" class="playback-speed">
+                      {finalConfig.controls.playbackSpeeds.map((speed) => (
+                        <label
+                          class="speed-btn btn"
+                          for={`playback-speed-${speed.speed}`}
+                          title={`Set playback speed to ${speed.speed}x`}
+                        >
+                          <input
+                            type="radio"
+                            id={`playback-speed-${speed.speed}`}
+                            name="playback-speed"
+                            value={speed.speed}
+                            checked={speed.default}
+                          />
+                          {speed.speed}x
+                        </label>
+                      ))}
+                    </fieldset>
+                  )}
+                </div>
+                <div
+                  role="button"
+                  id="controls-drawer-handle"
+                  class="controls-drawer-handle btn"
+                  aria-label="Open player controls"
+                  title="Open player controls"
+                  tabindex="-1"
+                >
+                  <svg
+                    id="controls-drawer-icon"
+                    class="controls-drawer-icon icn"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      fill="currentColor"
+                      d="M12 16a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2"
+                    />
+                  </svg>
+                </div>
+              </div>
+            )
+        }
+      </div>
+    </div>
+  </slot>
 </audio-player>
 
 <script>
@@ -206,31 +400,25 @@ const playerTemplate = `
     muteButton: HTMLButtonElement | null = null
     volumeSlider: HTMLInputElement | null = null
 
-    playbackSpeedFieldset: HTMLElement | null = null
-    playbackSpeedButton: HTMLInputElement | null = null
-
+    toolbarDrawer: HTMLElement | null = null
     loopingIcon: HTMLElement | null = null
     loopingButton: HTMLButtonElement | null = null
-
     downloadIcon: HTMLElement | null = null
     downloadButton: HTMLButtonElement | null = null
-
-    controlsDrawerIcon: HTMLElement | null = null
-    controlsDrawerButton: HTMLButtonElement | null = null
+    playbackSpeedFieldset: HTMLElement | null = null
 
     config: object | null = null
     playbackSpeed: number = 1
-    playing: boolean = false
 
     static get observedAttributes() {
       return [
         'crossorigin',
-        'src',
         'title',
-        'preload',
-        'auto-play',
         'loop',
         'mute',
+        'auto-play',
+        'preload',
+        'src',
         'config'
       ]
     }
@@ -244,7 +432,7 @@ const playerTemplate = `
         this.audio.removeAttribute('controls')
       }
 
-      // Remove 'no-js' class to signify that JavaScript is enabled
+      // Remove 'no-js' class
       this.classList.remove('no-js')
 
       // Query and assign element references
@@ -263,17 +451,12 @@ const playerTemplate = `
       this.muteButton = this.querySelector('#volume-mute-btn')
       this.volumeSlider = this.querySelector('#volume-slider')
 
+      this.toolbarDrawer = this.querySelector('#controls-drawer')
       this.loopingIcon = this.querySelector('#looping-icon')
       this.loopingButton = this.querySelector('#looping-btn')
-
       this.playbackSpeedFieldset = this.querySelector('#playback-speed')
-
       this.downloadIcon = this.querySelector('#download-icon')
       this.downloadButton = this.querySelector('#download-btn')
-
-      // Initialize state
-      this.playing = false
-      this.looping = false
 
       // Parse config attribute
       try {
@@ -290,9 +473,10 @@ const playerTemplate = `
       this.setSongTitle()
       this.setPlayPauseListener()
       this.setProgressListener()
+      this.setBufferListener()
       this.setProgressKeyboardListener()
       this.setTimeListener()
-      // this.setBufferListener()
+      this.toolbarDrawerArrowsNavigationListener()
       this.setupPlaybackSpeedListener()
       this.setPlaybackLoopListener()
       this.setVolumeMuteListener()
@@ -300,15 +484,17 @@ const playerTemplate = `
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
-      switch (name) {
-        case 'src':
-          this.handleSrcChange()
-          break
-        case 'title':
-          this.setSongTitle()
-          break
-        default:
-          break
+      if (oldValue !== null && oldValue !== newValue) {
+        switch (name) {
+          case 'src':
+            this.handleSrcChange()
+            break
+          case 'title':
+            this.setSongTitle()
+            break
+          default:
+            break
+        }
       }
     }
 
@@ -329,7 +515,6 @@ const playerTemplate = `
     }
 
     updateUIForSrcChange() {
-      console.log('updateUIForSrcChange')
       if (
         !this.audio ||
         !this.playIcon ||
@@ -342,8 +527,9 @@ const playerTemplate = `
       this.pauseIcon.style.display = 'none'
       this.playIcon.style.display = 'block'
       this.playPauseButton.setAttribute('aria-label', 'Play track')
+      this.playPauseButton.setAttribute('aria-pressed', 'false')
+      this.playPauseButton.setAttribute('title', 'Play track')
       this.audio.pause()
-      this.playing = false
       this.dispatchEvent(new Event('audiopaused'))
     }
 
@@ -372,17 +558,43 @@ const playerTemplate = `
         }
       }
 
-      // Set the initial volume
+      // Set the initial volume from the value of the volume slider html
       if (this.volumeSlider) {
         this.audio.volume = parseFloat(this.volumeSlider.value)
       }
 
-      // Set autoplay
+      // Set autoplay on load
       if (this.hasAttribute('auto-play')) {
-        this.audio.autoplay = this.getAttribute('auto-play') === 'true'
+        const autoplayAttr = this.getAttribute('auto-play')
+        this.audio.autoplay = autoplayAttr === 'true'
+
         if (this.audio.autoplay) {
-          this.audio.load()
+          // Ensure the audio element is loaded and ready to play
+          this.audio.addEventListener(
+            'loadedmetadata',
+            () => {
+              this.audio!.load()
+              console.log('Audio is ready, attempting to play...')
+              this.audio!.play().catch((error) => {
+                console.error(
+                  'Autoplay failed due to browser policy or other issue:',
+                  error
+                )
+              })
+            },
+            {once: true} // Only run listner once
+          )
         }
+      }
+
+      // Set looping state on load
+      if (this.hasAttribute('loop') === true) {
+        this.toggleLoopingButton()
+      }
+
+      // Set mute state
+      if (this.hasAttribute('mute') === true) {
+        this.toggleMute()
       }
     }
 
@@ -465,13 +677,17 @@ const playerTemplate = `
       }
       if (this.audio.muted) {
         this.audio.muted = false
-        this.muteButton!.setAttribute('aria-label', 'Mute volume')
+        this.muteButton!.setAttribute('aria-pressed', 'false')
+        this.muteButton!.setAttribute('aria-label', 'Mute tack audio')
+        this.muteButton!.setAttribute('title', 'Mute tack audio')
         this.volumeMuteIcon.style.display = 'none'
         this.volumeOnIcon.style.display = 'block'
         this.dispatchEvent(new Event('audiounmuted'))
       } else {
         this.audio.muted = true
-        this.muteButton!.setAttribute('aria-label', 'Unmute volume')
+        this.muteButton!.setAttribute('aria-pressed', 'true')
+        this.muteButton!.setAttribute('aria-label', 'Unmute track audio')
+        this.muteButton!.setAttribute('title', 'Unmute track audio')
         this.volumeOnIcon.style.display = 'none'
         this.volumeMuteIcon.style.display = 'block'
         this.dispatchEvent(new Event('audiomuted'))
@@ -488,19 +704,21 @@ const playerTemplate = `
         return
       }
 
-      if (!this.playing) {
+      if (this.audio.duration > 0 && this.audio.paused) {
         this.playIcon.style.display = 'none'
         this.pauseIcon.style.display = 'block'
-        this.playPauseButton.setAttribute('aria-label', 'Pause song')
+        this.playPauseButton.setAttribute('aria-pressed', 'true')
+        this.playPauseButton.setAttribute('aria-label', 'Pause track')
+        this.playPauseButton.setAttribute('title', 'Pause track')
         this.audio.play()
-        this.playing = true
         this.dispatchEvent(new Event('audioplaying'))
       } else {
         this.pauseIcon.style.display = 'none'
         this.playIcon.style.display = 'block'
-        this.playPauseButton.setAttribute('aria-label', 'Play song')
+        this.playPauseButton.setAttribute('aria-pressed', 'false')
+        this.playPauseButton.setAttribute('aria-label', 'Play track')
+        this.playPauseButton.setAttribute('title', 'Play track')
         this.audio.pause()
-        this.playing = false
         this.dispatchEvent(new Event('audiopaused'))
       }
     }
@@ -511,6 +729,23 @@ const playerTemplate = `
           let percent = event.offsetX / this.progressBar.offsetWidth
           this.audio.currentTime = percent * this.audio.duration
           this.progressBar.value = percent
+        }
+      })
+    }
+
+    setBufferListener() {
+      if (!this.bufferBar || !this.audio) {
+        return
+      }
+
+      this.audio.addEventListener('progress', () => {
+        const buffered = this.audio!.buffered
+
+        if (buffered.length > 0) {
+          const end = buffered.end(buffered.length - 1)
+          const duration = this.audio!.duration
+          const value = end / duration
+          this.bufferBar!.value = value
         }
       })
     }
@@ -558,6 +793,35 @@ const playerTemplate = `
       })
     }
 
+    toolbarDrawerArrowsNavigationListener() {
+      if (!this.audio || !this.toolbarDrawer) {
+        return
+      }
+      this.toolbarDrawer.addEventListener('keydown', (event) => {
+        const controls = this.toolbarDrawer!.querySelectorAll<HTMLElement>(
+          'button, input, select, a'
+        )
+        const index = Array.from(controls).indexOf(event.target as HTMLElement)
+
+        if (index < 0) {
+          return
+        }
+
+        switch (event.key) {
+          case 'ArrowLeft':
+          case 'ArrowUp':
+            event.preventDefault()
+            controls[(index - 1 + controls.length) % controls.length].focus()
+            break
+          case 'ArrowRight':
+          case 'ArrowDown':
+            event.preventDefault()
+            controls[(index + 1) % controls.length].focus()
+            break
+        }
+      })
+    }
+
     playSong() {
       if (
         this.audio &&
@@ -569,7 +833,6 @@ const playerTemplate = `
         this.playIcon.style.display = 'none'
         this.playPauseButton.setAttribute('aria-label', 'Pause song')
         this.audio.play()
-        this.playing = true
         this.dispatchEvent(new Event('audioplaying'))
       }
     }
@@ -630,8 +893,8 @@ const playerTemplate = `
       this.audio!.currentTime = 0
       this.pauseIcon!.style.display = 'none'
       this.playIcon!.style.display = 'block'
-      this.playPauseButton!.setAttribute('aria-label', 'Play song')
-      this.playing = false
+      this.playPauseButton!.setAttribute('aria-label', 'Play track')
+      this.playPauseButton!.setAttribute('title', 'Play track')
       this.dispatchEvent(new Event('audiopaused'))
       this.dispatchEvent(new Event('audiofinished'))
     }
@@ -646,6 +909,9 @@ const playerTemplate = `
       this.muteButton!.addEventListener('click', () => this.toggleMute())
     }
 
+    /**
+     * Set the playback speed of the audio.
+     */
     setupPlaybackSpeedListener() {
       const playbackSpeedGroup = this.playbackSpeedFieldset!.querySelectorAll(
         'input[name="playback-speed"]'
@@ -654,8 +920,24 @@ const playerTemplate = `
         playbackSpeedGroup.forEach((radio: HTMLInputElement) => {
           radio.addEventListener('change', () => {
             const selectedSpeed = radio.value
-            console.log('Selected playback speed:', selectedSpeed)
             this.audio!.playbackRate = parseFloat(selectedSpeed)
+            this.dispatchEvent(
+              new CustomEvent('audioplaybackspeedchanged', {
+                detail: {speed: radio.value}
+              })
+            )
+          })
+          // Set speed using Enter key
+          radio.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+              radio.checked = true
+              this.audio!.playbackRate = parseFloat(radio.value)
+              this.dispatchEvent(
+                new CustomEvent('audioplaybackspeedchanged', {
+                  detail: {speed: radio.value}
+                })
+              )
+            }
           })
         })
       }
@@ -663,21 +945,25 @@ const playerTemplate = `
 
     setPlaybackLoopListener() {
       this.loopingButton!.addEventListener('click', () => {
-        if (this.audio!.loop) {
-          this.audio!.loop = false
-          this.loopingButton!.setAttribute('aria-label', 'Loop current track')
-          this.loopingButton!.setAttribute('data-looping', 'false')
-          this.dispatchEvent(new Event('audioloopingstopped'))
-        } else {
-          this.audio!.loop = true
-          this.loopingButton!.setAttribute(
-            'aria-label',
-            'Stop current track looping'
-          )
-          this.loopingButton!.setAttribute('data-looping', 'true')
-          this.dispatchEvent(new Event('audioloopingstopped'))
-        }
+        this.toggleLoopingButton()
       })
+    }
+
+    toggleLoopingButton() {
+      if (this.audio!.loop) {
+        this.audio!.loop = false
+        this.loopingButton!.setAttribute('aria-label', 'Loop current track')
+        this.loopingButton!.setAttribute('aria-pressed', 'false')
+        this.dispatchEvent(new Event('audioloopingstopped'))
+      } else {
+        this.audio!.loop = true
+        this.loopingButton!.setAttribute(
+          'aria-label',
+          'Stop current track looping'
+        )
+        this.loopingButton!.setAttribute('aria-pressed', 'true')
+        this.dispatchEvent(new Event('audioloopingstopped'))
+      }
     }
 
     setUnsupportedMessage(message) {
@@ -686,7 +972,10 @@ const playerTemplate = `
       }
     }
 
-    formatTime(seconds) {
+    formatTime(seconds: number) {
+      if (isNaN(seconds)) {
+        return '00:00'
+      }
       const hours = Math.floor(seconds / 3600)
       const minutes = Math.floor((seconds % 3600) / 60)
       const remainingSeconds = Math.floor(seconds % 60)
@@ -711,13 +1000,17 @@ const playerTemplate = `
     maxwidth: finalConfig.maxwidth,
     artworkHeight: finalConfig.artworkHeight,
     accentColor: finalConfig.colors!.accentColor,
+    bgColor: finalConfig.colors!.bgColor,
+    btnHoverColor: finalConfig.colors!.btnHoverColor,
+    bufferColor: finalConfig.colors!.bufferColor,
+    icnColor: finalConfig.colors!.icnColor,
     txtColor: finalConfig.colors!.txtColor,
-    btnHover: finalConfig.colors!.btnHover,
     progressColor: finalConfig.colors!.progressColor,
     progressColorBg: finalConfig.colors!.progressColorBg
   }}
-  is:global
 >
+  /* stylelint-disable plugin/no-low-performance-animation-properties */
+  /* stylelint-disable plugin/no-unsupported-browser-features  */
   .sr-only {
     position: absolute;
     width: 1px;
@@ -744,11 +1037,11 @@ const playerTemplate = `
     display: grid;
     grid-template-columns: auto 1fr;
     width: var(--maxwidth, 100%);
-    max-height: calc(var(--artworkHeight) * 1px);
+    height: calc(var(--artworkHeight) * 1px);
     margin: 0 auto;
     overflow: hidden;
     color: var(--txtColor, white);
-    background-color: var(--progressColor, rgb(190 190 190));
+    background-color: var(--bgColor, hsl(192deg 41% 27%));
     border-radius: 3px;
     place-items: center start;
     box-shadow:
@@ -759,7 +1052,7 @@ const playerTemplate = `
       0 16px 16px hsl(0deg 0% 0% / 7.5%);
   }
 
-  .audio-player .btn {
+  .btn {
     display: block;
     align-items: center;
     justify-content: center;
@@ -767,17 +1060,17 @@ const playerTemplate = `
     padding: 0.5rem;
     color: var(--txtColor, white);
     line-height: 0;
-    background-color: var(--accentColor, rgb(95 85 236));
+    background-color: var(--accentColor, hsl(244deg 80% 63%));
     border: none;
     border-radius: 0;
     cursor: pointer;
   }
 
-  .audio-player .btn.rounded {
+  .btn.rounded {
     border-radius: 50% !important;
   }
 
-  .audio-player .play-btn {
+  .play-btn {
     z-index: 1;
     grid-area: 1 / 1 / 2 / 2;
     width: 20%;
@@ -786,8 +1079,8 @@ const playerTemplate = `
     min-height: 50px;
   }
 
-  .audio-player *:focus,
-  .audio-player *:focus-visible {
+  *:focus,
+  *:focus-visible {
     outline: 2px solid currentcolor;
     outline-offset: -2px;
     transition:
@@ -795,14 +1088,15 @@ const playerTemplate = `
       background 50ms ease-in-out;
   }
 
-  .audio-player .btn .icn {
+  .btn .icn {
     width: 100%;
     height: 100%;
     margin: 0;
     padding: 0;
+    color: var(--icnColor, var(--txtColor, currnetColor));
   }
 
-  .audio-player .track-container {
+  .track-container {
     position: relative;
     display: grid;
     grid-template-columns: auto 1fr auto;
@@ -812,13 +1106,14 @@ const playerTemplate = `
     height: 100%;
   }
 
-  .audio-player .time-container {
+  .time-container {
     padding-inline: 10px;
     z-index: 1;
     grid-column: 1;
+    pointer-events: none;
   }
 
-  .audio-player .progress-container {
+  .progress-container {
     position: absolute;
     z-index: 0;
     display: grid;
@@ -829,13 +1124,13 @@ const playerTemplate = `
     inset: 0;
   }
 
-  .audio-player .progress-container progress {
+  .progress-container progress {
     position: absolute;
     pointer-events: auto;
   }
 
-  .audio-player .buffer-bar,
-  .audio-player .progress-bar {
+  .buffer-bar,
+  .progress-bar {
     display: block;
     width: 100%;
     height: 100%;
@@ -844,11 +1139,11 @@ const playerTemplate = `
     appearance: none; /* Remove default appearance */
   }
 
-  .audio-player .progress-bar {
+  .progress-bar {
     z-index: 1;
   }
 
-  .audio-player .progress-bar::-webkit-progress-bar {
+  .progress-bar::-webkit-progress-bar {
     display: block;
     width: 100%;
     height: 100%;
@@ -857,32 +1152,49 @@ const playerTemplate = `
     cursor: pointer;
   }
 
-  .audio-player .progress-bar::-webkit-progress-value {
+  .progress-bar::-webkit-progress-value {
     display: block;
     height: 100%;
-    background-color: var(--accentColor, rgb(95 85 236));
+    background-color: var(--accentColor, hsl(244deg 80% 63%));
     border: none;
     cursor: pointer;
+    transition: 0.1s ease-in;
   }
 
-  .audio-player .progress-bar::-moz-progress-bar {
+  .progress-bar::-moz-progress-bar {
     display: block;
     height: 100%;
-    background-color: var(--accentColor, rgb(95 85 236));
+    background-color: var(--accentColor, hsl(244deg 80% 63%));
     border: none;
     cursor: pointer;
+    transition: 0.1s ease-in;
   }
 
-  .audio-player .buffer-bar {
+  .buffer-bar {
     z-index: 0;
-    background-color: var(--progressColorBg, rgb(190 190 190));
+    background-color: var(--progressColorBg, hsl(0deg 0% 75%));
+    transition: 0.5s ease;
   }
 
-  .audio-player .buffer-bar::-webkit-progress-bar {
-    background-color: var(--progressColorBg, rgb(190 190 190));
+  .buffer-bar::-webkit-progress-value {
+    display: block;
+    height: 100%;
+    background-color: var(--bufferColor, hsl(0deg 0% 29% / 81%));
+    border: none;
+    transition: 0.5s ease;
+    pointer-events: none;
   }
 
-  .audio-player .track-title {
+  .buffer-bar::-moz-progress-bar {
+    display: block;
+    height: 100%;
+    background-color: var(--bufferColor, hsl(0deg 0% 29% / 81%));
+    border: none;
+    transition: 0.3s ease;
+    pointer-events: none;
+  }
+
+  .track-title {
     z-index: 1;
     display: block;
     grid-column: 1;
@@ -893,9 +1205,10 @@ const playerTemplate = `
     white-space: nowrap;
     text-overflow: ellipsis;
     padding-inline-start: 10px;
+    pointer-events: none;
   }
 
-  .audio-player .left-container {
+  .left-container {
     display: grid;
     order: 1;
     width: calc(var(--artworkHeight, 166) * 1px);
@@ -903,7 +1216,7 @@ const playerTemplate = `
     place-items: center center;
   }
 
-  .audio-player .left-container img {
+  .left-container img {
     display: block;
     grid-area: 1 / 1 / 2 / 2;
     width: 100%;
@@ -912,7 +1225,7 @@ const playerTemplate = `
     aspect-ratio: 1/1;
   }
 
-  .audio-player .right-container {
+  .right-container {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -923,74 +1236,68 @@ const playerTemplate = `
     padding: 0;
   }
 
-  .audio-player .player-controls-container {
+  .controls-drawer-container {
     display: grid;
     grid-template-columns: 0fr 30px;
     justify-content: start;
     justify-content: end;
     height: 100%;
-    background-color: var(--progressColorBg, rgb(190 190 190));
-    transition: 0.3s ease;
+    background-color: var(--progressColorBg, hsl(0deg 0% 75%));
+    transition: 0.5s ease;
     place-items: stretch stretch;
   }
 
-  .audio-player .player-controls-container:focus-within,
-  .audio-player .player-controls-container:hover {
+  .controls-drawer-container:focus-within,
+  .controls-drawer-container:hover {
     grid-template-columns: 3fr 30px;
   }
 
-  .audio-player .player-controls .btn {
-    background-color: var(--btnHover, rgb(146 146 146));
+  .controls-drawer .btn {
+    width: 100%;
+    height: 100%;
+    background-color: var(--btnHoverColor, hsl(0deg 0% 57%));
   }
 
-  .audio-player .player-controls .speed-btn:hover,
-  .audio-player .player-controls .speed-btn:focus,
-  .audio-player .player-controls .btn:hover:not(.controls-drawer),
-  .audio-player .player-controls .btn:focus {
-    background-color: var(--accentColor, rgb(95 85 236));
-    outline: none;
-    filter: brightness(0.8);
-    transition: filter 0.3s ease;
-  }
-
-  .audio-player .controls-drawer {
+  .controls-drawer-handle {
     padding: 5px;
   }
 
-  .audio-player .player-controls-container:hover .controls-drawer {
-    background-color: var(--progressColorBg, rgb(190 190 190));
+  .controls-drawer-container:focus-within .controls-drawer-handle,
+  .controls-drawer-container:hover .controls-drawer-handle {
+    background-color: var(--progressColorBg, hsl(0deg 0% 75%));
     filter: brightness(0.8);
   }
 
-  .audio-player .player-controls {
+  .controls-drawer {
     display: grid;
-    grid-template-columns: minmax(auto, 2fr) 1fr;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
     overflow: hidden;
-    border-left: 1px solid var(--accentColor, rgb(95 85 236));
+    border-left: 1px solid var(--accentColor, hsl(244deg 80% 63%));
   }
 
-  .audio-player .player-controls .looping-btn .icn {
+  .controls-drawer:has(.download-btn):has(.looping-btn) {
+    grid-template-rows: 1fr 1fr;
+  }
+
+  .controls-drawer:has(.download-btn, .looping-btn):has(.playback-speed) {
+    grid-template-columns: 0.5fr 0.5fr;
+  }
+
+  .controls-drawer .btn .icn {
     width: 100%;
-    min-width: 20px;
-
-    /* width: clamp(1.5rem, 1.5rem, 2rem); */
+    min-width: 15px;
   }
 
-  .audio-player .player-controls .looping-btn {
-    grid-column: 1;
-    width: 100%;
-    height: 100%;
+  .controls-drawer:has(.looping-btn) .download-btn {
+    border-top: 1px solid var(--progressColorBg, hsl(0deg 0% 75%));
   }
 
-  .audio-player .player-controls .download-btn {
-    border-top: 1px solid var(--progressColorBg, rgb(190 190 190));
+  .controls-drawer .looping-btn[aria-pressed='true'] {
+    background-color: var(--accentColor, hsl(244deg 80% 63%));
   }
 
-  .audio-player .player-controls .looping-btn[data-looping='true'] {
-    background-color: var(--accentColor, rgb(95 85 236));
-  }
-
-  .audio-player .playback-speed {
+  .controls-drawer .playback-speed {
     display: flex;
     flex-direction: column;
     grid-row: 1 / span 2;
@@ -1000,7 +1307,7 @@ const playerTemplate = `
     border: none;
   }
 
-  .audio-player .playback-speed .speed-btn {
+  .controls-drawer .speed-btn {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1009,42 +1316,56 @@ const playerTemplate = `
     padding: 0.5em;
     font-size: 0.8rem;
     border: none;
-    border-right: 1px solid var(--progressColorBg, rgb(190 190 190));
-    border-left: 1px solid var(--progressColorBg, rgb(190 190 190));
+    border-right: 1px solid var(--progressColorBg, hsl(0deg 0% 75%));
+    border-left: 1px solid var(--progressColorBg, hsl(0deg 0% 75%));
+    outline: none;
     cursor: pointer;
   }
 
-  .audio-player .playback-speed .speed-btn:not(:first-child) {
-    border-top: 1px solid var(--progressColorBg, rgb(190 190 190));
+  .controls-drawer .speed-btn:hover,
+  .controls-drawer .speed-btn:focus,
+  .controls-drawer .btn:focus-within,
+  .controls-drawer .btn:focus,
+  .controls-drawer .btn:hover:not(.controls-drawer-handle) {
+    background-color: var(--accentColor, hsl(244deg 80% 63%));
+    outline: none;
+    filter: brightness(0.8);
+    transition: filter 0.3s ease;
   }
 
-  .audio-player .playback-speed input {
+  .controls-drawer .speed-btn:not(:first-child) {
+    border-top: 1px solid var(--progressColorBg, hsl(0deg 0% 75%));
+  }
+
+  .controls-drawer .speed-btn input {
     position: absolute;
     width: 0;
     height: 0;
     opacity: 0;
   }
 
-  .audio-player .playback-speed input:checked + label {
-    background: var(--accentColor, rgb(95 85 236));
+  .controls-drawer .speed-btn:has(input:checked) {
+    background: var(--accentColor, hsl(244deg 80% 63%));
   }
 
-  .audio-player .track-volume-container {
+  .track-volume-container {
     display: grid;
-    grid-template-rows: auto 3px;
     width: 100%;
     height: 100%;
     transition: 0.3s ease;
   }
 
-  /* stylelint-disable plugin/no-unsupported-browser-features */
-  .audio-player .track-volume-container:has(.volume-container:hover),
-  .audio-player .track-volume-container:has(.volume-container:focus-within) {
+  .track-volume-container:has(.volume-container) {
+    grid-template-rows: auto 3px;
+  }
+
+  .track-volume-container:has(.volume-btn[aria-pressed='true']),
+  .track-volume-container:has(.volume-container:hover),
+  .track-volume-container:has(.volume-container:focus-within) {
     grid-template-rows: auto var(--volTrackHeight, 20px);
   }
-  /* stylelint-enable plugin/no-unsupported-browser-features */
 
-  .audio-player .volume-container {
+  .volume-container {
     position: relative;
     display: flex;
     grid-row: 2;
@@ -1056,33 +1377,33 @@ const playerTemplate = `
     border: none;
   }
 
-  .audio-player .volume-slider {
+  .volume-slider {
     width: 100%;
     height: 100%;
-    background: var(--btnHover, rgb(146 146 146));
+    background: var(--btnHoverColor, hsl(0deg 0% 57%));
     border-radius: 0;
     outline: none;
     appearance: none;
   }
 
-  .audio-player .volume-btn {
+  .volume-btn {
     width: 20px;
     height: 100%;
     padding: 0;
     line-height: 0;
-    background: var(--btnHover, rgb(146 146 146));
+    background: var(--btnHoverColor, hsl(0deg 0% 57%));
     transition: background 0.2s ease;
   }
 
-  .audio-player .volume-btn svg {
-    color: var(--btnHover, rgb(146 146 146));
+  .volume-btn svg {
+    color: var(--btnHoverColor, hsl(0deg 0% 57%));
   }
 
-  .audio-player .volume-slider::-webkit-slider-thumb {
+  .volume-slider::-webkit-slider-thumb {
     width: 9px;
     height: var(--volTrackHeight, 20px);
-    background: var(--accentColor, rgb(95 85 236));
-    border: 2px solid var(--btnHover, rgb(146 146 146));
+    background: var(--accentColor, hsl(244deg 80% 63%));
+    border: 2px solid var(--btnHoverColor, hsl(0deg 0% 57%));
     border-bottom: 0;
     border-radius: 0;
     border-top-left-radius: 3px;
@@ -1091,11 +1412,11 @@ const playerTemplate = `
     appearance: none;
   }
 
-  .audio-player .volume-slider::-moz-range-thumb {
+  .volume-slider::-moz-range-thumb {
     width: 9px;
     height: var(--volTrackHeight, 20px);
-    background: var(--accentColor, rgb(95 85 236));
-    border: 2px solid var(--btnHover, rgb(146 146 146));
+    background: var(--accentColor, hsl(244deg 80% 63%));
+    border: 2px solid var(--btnHoverColor, hsl(0deg 0% 57%));
     border-bottom: 0;
     border-radius: 0;
     border-top-left-radius: 3px;
@@ -1104,82 +1425,81 @@ const playerTemplate = `
     appearance: none;
   }
 
-  .audio-player .volume-slider:focus::-webkit-slider-thumb {
+  .volume-slider:focus::-webkit-slider-thumb {
     border: 2px solid var(--txtColor, white);
   }
 
-  .audio-player .volume-slider:focus::-moz-range-thumb {
+  .volume-slider:focus::-moz-range-thumb {
     border: 2px solid var(--txtColor, white);
   }
 
-  .audio-player
-    .volume-container:focus-within
-    .volume-slider::-webkit-slider-thumb {
+  .volume-container:focus-within .volume-slider::-webkit-slider-thumb {
     border-top: 0;
   }
 
-  .audio-player
-    .volume-container:focus-within
-    .volume-slider::-moz-range-thumb {
+  .volume-container:focus-within .volume-slider::-moz-range-thumb,
+  .volume-container:hover .volume-slider::-moz-range-thumb {
+    border: 2px solid var(--btnHoverColor, hsl(0deg 0% 57%));
+  }
+
+  .volume-container:focus-within .volume-slider::-moz-range-thumb {
     border-top: 0;
   }
 
-  .audio-player .volume-container:hover .volume-btn,
-  .audio-player .volume-container:focus-within .volume-btn {
-    background: var(--accentColor, rgb(95 85 236));
+  .volume-btn[aria-pressed='true'],
+  .volume-container:hover .volume-btn,
+  .volume-container:focus-within .volume-btn {
+    background: var(--accentColor, hsl(244deg 80% 63%));
   }
 
-  .audio-player .volume-container:hover .volume-btn svg,
-  .audio-player .volume-container:focus-within .volume-btn svg {
+  .volume-container .volume-btn[aria-pressed='true'] svg,
+  .volume-container:hover .volume-btn svg,
+  .volume-container:focus-within .volume-btn svg {
     color: currentcolor;
-  }
-
-  .audio-player .volume-container:hover .volume-slider::-moz-range-thumb,
-  .audio-player
-    .volume-container:focus-within
-    .volume-slider::-moz-range-thumb {
-    border: 2px solid var(--btnHover, rgb(146 146 146));
   }
 
   /**
    * No js
    */
-  audio-player figure {
+
+  .audio-player__nojs-controls {
     display: none;
     opacity: 0;
     animation-name: audio-player-fade-in;
     animation-duration: 0.2s;
     animation-timing-function: ease-in-out;
-    animation-delay: 2s; /* prevents FOUC when the web-component loads */
+    animation-delay: 2s; /* Prevents FOUC clash with native audio element when the web-component loads. */
     animation-fill-mode: both;
   }
 
-  audio-player.no-js figure {
+  .no-js .left-container,
+  .no-js .right-container {
+    display: none;
+  }
+
+  .no-js .audio-player__nojs-controls {
     display: block;
     inline-size: 100%;
     opacity: 1;
   }
 
-  audio-player.no-js figcaption {
+  .no-js .audio-player__nojs-controls figcaption {
     margin-inline-start: 1rem;
   }
 
-  audio-player.no-js {
+  .no-js .audio-player {
     grid-template-columns: 1fr;
     padding: 0.5rem;
   }
 
-  audio-player.no-js > * {
-    display: none;
-  }
-
-  audio-player.no-js audio {
+  .no-js .audio-player__nojs-controls audio {
     inline-size: 100%;
     display: block;
   }
 
+  /* Hide controls on very small screens. */
   @media (max-width: 550px) {
-    .audio-player .player-controls-container {
+    .controls-drawer-container {
       display: none;
     }
   }

@@ -2,8 +2,11 @@
 import BaseLayout from '../../layouts/BaseLayout.astro'
 import Audio from '../../components/Audio.astro'
 
-import mp3 from '../../media/whitenoise-lg.mp3'
+// import mp3 from '../../media/whitenoise-lg.mp3'
+const mp3 =
+  'https://raw.githubusercontent.com/memorialforestdg/media-archive/main/media/audio/whitenoise-lg.mp3'
 import img from '../../images/RememberingTogetherDG_imageGregorAnderson_full.jpg'
+import {fade} from 'astro:transitions'
 ---
 
 <BaseLayout pageTitle="Test of Embeds">
@@ -17,14 +20,23 @@ import img from '../../images/RememberingTogetherDG_imageGregorAnderson_full.jpg
           src={mp3}
           title="White Noise with really long title hey? - http://example.com"
           config={{
-            artwork: img,
-            artworkAlt: 'Audio Artwork',
+            preload: 'auto',
             colors: {
+              bgColor: '#295661',
               accentColor: '#5b5be8',
-              progressColor: '#5b5be8'
+              progressColor: '#5b5be8',
+              bufferColor: 'rgb(73 73 73 / 81%)'
             },
             controls: {
-              download: true
+              volume: true,
+              volumeStart: 0.35,
+              download: false,
+              loop: true,
+              playbackSpeeds: [
+                {speed: 1, default: true},
+                {speed: 1.5},
+                {speed: 2}
+              ]
             }
           }}
         />
