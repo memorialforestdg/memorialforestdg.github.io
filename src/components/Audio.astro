@@ -1081,7 +1081,7 @@ const combinedAttrs = {
 
   *:focus,
   *:focus-visible {
-    outline: 2px solid currentcolor;
+    outline: 2px solid var(--txtColor, white);
     outline-offset: -2px;
     transition:
       outline 50ms ease-in-out,
@@ -1384,6 +1384,11 @@ const combinedAttrs = {
     border-radius: 0;
     outline: none;
     appearance: none;
+  }
+
+  .volume-slider:focus,
+  .volume-slider:focus-visible {
+    outline: none;
   }
 
   .volume-container .volume-btn {
