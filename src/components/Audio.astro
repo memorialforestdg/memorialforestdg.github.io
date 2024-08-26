@@ -72,7 +72,7 @@ const defaultConfig: Config = {
   },
   controls: {
     download: true,
-    loop: false,
+    loop: true,
     playbackSpeeds: [{speed: 1, default: true}, {speed: 2}, {speed: 3}],
     volume: true,
     volumeStart: 0.3
@@ -123,7 +123,6 @@ const combinedAttrs = {
   src={src}
   title={title}
   {...combinedAttrs}
-  config={JSON.stringify(config)}
 >
   <slot>
     <div class="audio-player">
@@ -458,14 +457,6 @@ const combinedAttrs = {
       this.playbackSpeedFieldset = this.querySelector('#playback-speed')
       this.downloadIcon = this.querySelector('#download-icon')
       this.downloadButton = this.querySelector('#download-btn')
-
-      // Parse config attribute
-      try {
-        this.config = JSON.parse(this.getAttribute('config') || '{}')
-      } catch (error) {
-        console.error('audio-player: Failed to parse config attribute:', error)
-        this.config = {}
-      }
     }
 
     connectedCallback() {
