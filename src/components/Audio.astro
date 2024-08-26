@@ -530,7 +530,7 @@ const combinedAttrs = {
       this.playPauseButton.setAttribute('aria-pressed', 'false')
       this.playPauseButton.setAttribute('title', 'Play track')
       this.audio.pause()
-      this.dispatchEvent(new Event('audiopaused'))
+      this.dispatchCustomEvent('audiopaused')
     }
 
     resetProgressBar() {
@@ -543,6 +543,10 @@ const combinedAttrs = {
       if (!this.audio) {
         return
       }
+
+      // Set the player id
+      this.playerid = `${Math.random().toString(36).slice(2, 9)}`
+      this.setAttribute('data-player-id', this.playerid)
 
       // Set the audio source
       if (this.hasAttribute('src')) {
@@ -651,6 +655,17 @@ const combinedAttrs = {
       }
     }
 
+    handlePauseIfOtherPlayerIsPlaying() {
+      window.addEventListener('audioplaying', (e: CustomEvent) => {
+        if (!this.audio || e.detail.playerid === this.playerid) {
+          return
+        }
+        if (this.audio.paused) return
+        this.audio.paused
+        this.togglePlayPause()
+      })
+    }
+
     setPlayPauseListener() {
       if (
         !this.audio ||
@@ -682,7 +697,7 @@ const combinedAttrs = {
         this.muteButton!.setAttribute('title', 'Mute tack audio')
         this.volumeMuteIcon.style.display = 'none'
         this.volumeOnIcon.style.display = 'block'
-        this.dispatchEvent(new Event('audiounmuted'))
+        this.dispatchCustomEvent('audiounmuted')
       } else {
         this.audio.muted = true
         this.muteButton!.setAttribute('aria-pressed', 'true')
@@ -690,7 +705,7 @@ const combinedAttrs = {
         this.muteButton!.setAttribute('title', 'Unmute track audio')
         this.volumeOnIcon.style.display = 'none'
         this.volumeMuteIcon.style.display = 'block'
-        this.dispatchEvent(new Event('audiomuted'))
+        this.dispatchCustomEvent('audiomuted')
       }
     }
 
@@ -711,7 +726,7 @@ const combinedAttrs = {
         this.playPauseButton.setAttribute('aria-label', 'Pause track')
         this.playPauseButton.setAttribute('title', 'Pause track')
         this.audio.play()
-        this.dispatchEvent(new Event('audioplaying'))
+        this.dispatchCustomEvent('audioplaying')
       } else {
         this.pauseIcon.style.display = 'none'
         this.playIcon.style.display = 'block'
@@ -719,7 +734,7 @@ const combinedAttrs = {
         this.playPauseButton.setAttribute('aria-label', 'Play track')
         this.playPauseButton.setAttribute('title', 'Play track')
         this.audio.pause()
-        this.dispatchEvent(new Event('audiopaused'))
+        this.dispatchCustomEvent('audiopaused')
       }
     }
 
@@ -833,7 +848,7 @@ const combinedAttrs = {
         this.playIcon.style.display = 'none'
         this.playPauseButton.setAttribute('aria-label', 'Pause song')
         this.audio.play()
-        this.dispatchEvent(new Event('audioplaying'))
+        this.dispatchCustomEvent('audioplaying')
       }
     }
 
@@ -895,8 +910,8 @@ const combinedAttrs = {
       this.playIcon!.style.display = 'block'
       this.playPauseButton!.setAttribute('aria-label', 'Play track')
       this.playPauseButton!.setAttribute('title', 'Play track')
-      this.dispatchEvent(new Event('audiopaused'))
-      this.dispatchEvent(new Event('audiofinished'))
+      this.dispatchCustomEvent('audiopaused')
+      this.dispatchCustomEvent('audiofinished')
     }
 
     setVolumeListener() {
@@ -921,22 +936,18 @@ const combinedAttrs = {
           radio.addEventListener('change', () => {
             const selectedSpeed = radio.value
             this.audio!.playbackRate = parseFloat(selectedSpeed)
-            this.dispatchEvent(
-              new CustomEvent('audioplaybackspeedchanged', {
-                detail: {speed: radio.value}
-              })
-            )
+            this.dispatchCustomEvent('audioplaybackspeedchanged', {
+              speed: radio.value
+            })
           })
           // Set speed using Enter key
           radio.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') {
               radio.checked = true
               this.audio!.playbackRate = parseFloat(radio.value)
-              this.dispatchEvent(
-                new CustomEvent('audioplaybackspeedchanged', {
-                  detail: {speed: radio.value}
-                })
-              )
+              this.dispatchCustomEvent('audioplaybackspeedchanged', {
+                speed: radio.value
+              })
             }
           })
         })
@@ -950,19 +961,22 @@ const combinedAttrs = {
     }
 
     toggleLoopingButton() {
-      if (this.audio!.loop) {
-        this.audio!.loop = false
-        this.loopingButton!.setAttribute('aria-label', 'Loop current track')
-        this.loopingButton!.setAttribute('aria-pressed', 'false')
-        this.dispatchEvent(new Event('audioloopingstopped'))
+      if (!this.audio || !this.loopingButton) {
+        return
+      }
+      if (this.audio.loop) {
+        this.audio.loop = false
+        this.loopingButton.setAttribute('aria-label', 'Loop current track')
+        this.loopingButton.setAttribute('aria-pressed', 'false')
+        this.dispatchCustomEvent('audioloopingstopped')
       } else {
-        this.audio!.loop = true
-        this.loopingButton!.setAttribute(
+        this.audio.loop = true
+        this.loopingButton.setAttribute(
           'aria-label',
           'Stop current track looping'
         )
-        this.loopingButton!.setAttribute('aria-pressed', 'true')
-        this.dispatchEvent(new Event('audioloopingstopped'))
+        this.loopingButton.setAttribute('aria-pressed', 'true')
+        this.dispatchCustomEvent('audioloopingstopped')
       }
     }
 
