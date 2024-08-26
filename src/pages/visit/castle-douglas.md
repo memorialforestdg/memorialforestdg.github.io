@@ -28,3 +28,5 @@ siteInfo: 'The Memorial Forest site is at Threave Nature Reserve, a short walk f
 Mollit cillum sint veniam enim labore amet. Amet irure do enim irure. Elit exercitation consequat enim eiusmod Lorem. Tempor Lorem commodo do adipisicing non et in et ipsum reprehenderit.
 
 Irure officia do dolore cillum ea labore veniam quis ad sint ad non laborum. Duis ipsum velit tempor eiusmod duis. Do aliqua adipisicing do nostrud cillum cupidatat magna anim nisi ad velit excepteur labore.
+
+<!-- <a class="link" href='../events/castle-douglas'><b>See also: </b>Eventsat the Castle Douglas site.</a> -->

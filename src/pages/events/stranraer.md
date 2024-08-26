@@ -25,4 +25,4 @@ Mollit cillum sint veniam enim labore amet. Amet irure do enim irure. Elit exerc
 
 Irure officia do dolore cillum ea labore veniam quis ad sint ad non laborum. Duis ipsum velit tempor eiusmod duis. Do aliqua adipisicing do nostrud cillum cupidatat magna anim nisi ad velit excepteur labore.
 
-<!-- <a class="link" href='../events/stranraer'><b>See also: </b>Events at the Stranraer site.</a> -->
+<a class="link" href='../visit/stranraer'><b>Visit: </b>the Stranraer site.</a>

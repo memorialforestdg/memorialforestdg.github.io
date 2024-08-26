@@ -27,4 +27,4 @@ The Memorial Forest at Moffat site is part of the Moffat Community Nature Reserv
 
 The Memorial site is marked by paving stones inlaid with bronze, and includes 125 trees planted in a single copse that visitors can walk around and within.
 
-<!-- <a class="link" href='../events/moffat'><b>See also: </b>Events at the Moffat site.</a> -->
+<a class="link" href='../visit/moffat'><b>Visit: </b>the Moffat site.</a>

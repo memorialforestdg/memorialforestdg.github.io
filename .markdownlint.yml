@@ -2,3 +2,5 @@ MD033:
   allowed_elements:
     - cite
     - q
+    - a
+    - b
