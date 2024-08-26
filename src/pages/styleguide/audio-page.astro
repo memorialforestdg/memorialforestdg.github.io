@@ -116,6 +116,54 @@ import mp3 from '../path/to/audio.mp3'
             }
           }}
         />
+
+        <br />
+        <h2>Audio File: no artwork, no volume, no controls.</h2>
+        <Audio
+          src={mp3}
+          title="White Noise"
+          config={{
+            preload: 'auto',
+            colors: {
+              accentColor: '#5b5be8',
+              progressColor: '#5b5be8',
+              bufferColor: 'rgb(73 73 73 / 81%)'
+            },
+            controls: false
+          }}
+        />
+        <br />
+        <h2>Audio File: no artwork, no volume, download, loop only.</h2>
+        <Audio
+          src={mp3}
+          title="White Noise"
+          config={{
+            preload: 'auto',
+            colors: {
+              accentColor: '#5b5be8',
+              progressColor: '#5b5be8',
+              bufferColor: 'rgb(73 73 73 / 81%)'
+            },
+            controls: {volume: false, download: true, loop: true}
+          }}
+        />
+
+        <br />
+        <h2>Audio File: muteOnLoad</h2>
+        <Audio
+          src={mp3}
+          title="White Noise with really long title hey? - http://example.com"
+          config={{
+            artworkAlt: 'Audio Artwork',
+            preload: 'auto',
+            muteOnLoad: true,
+            colors: {
+              accentColor: '#5b5be8',
+              progressColor: '#5b5be8',
+              bufferColor: 'rgb(73 73 73 / 81%)'
+            }
+          }}
+        />
       </div>
     </div>
   </main>
