@@ -409,6 +409,7 @@ const combinedAttrs = {
 
     config: object | null = null
     playbackSpeed: number = 1
+    playerid: string | null = null
 
     static get observedAttributes() {
       return [
@@ -472,6 +473,7 @@ const combinedAttrs = {
       this.checkFileTypeSupport()
       this.setSongTitle()
       this.setPlayPauseListener()
+      this.handlePauseIfOtherPlayerIsPlaying()
       this.setProgressListener()
       this.setBufferListener()
       this.setProgressKeyboardListener()
@@ -481,6 +483,12 @@ const combinedAttrs = {
       this.setPlaybackLoopListener()
       this.setVolumeMuteListener()
       this.setVolumeListener()
+    }
+
+    dispatchCustomEvent(eventName: string, detail: object = {}) {
+      const details = {...detail, playerid: this.playerid}
+      const event = new CustomEvent(eventName, {detail: details})
+      window.dispatchEvent(event)
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
@@ -915,19 +923,28 @@ const combinedAttrs = {
     }
 
     setVolumeListener() {
-      this.volumeSlider!.addEventListener('input', () => {
+      if (!this.audio || !this.volumeSlider) {
+        return
+      }
+      this.volumeSlider.addEventListener('input', () => {
         this.audio!.volume = parseFloat(this.volumeSlider!.value)
       })
     }
 
     setVolumeMuteListener() {
-      this.muteButton!.addEventListener('click', () => this.toggleMute())
+      if (!this.audio || !this.muteButton) {
+        return
+      }
+      this.muteButton.addEventListener('click', () => this.toggleMute())
     }
 
     /**
      * Set the playback speed of the audio.
      */
     setupPlaybackSpeedListener() {
+      if (!this.audio || !this.playbackSpeedFieldset) {
+        return
+      }
       const playbackSpeedGroup = this.playbackSpeedFieldset!.querySelectorAll(
         'input[name="playback-speed"]'
       )
@@ -955,7 +972,10 @@ const combinedAttrs = {
     }
 
     setPlaybackLoopListener() {
-      this.loopingButton!.addEventListener('click', () => {
+      if (!this.audio || !this.loopingButton) {
+        return
+      }
+      this.loopingButton.addEventListener('click', () => {
         this.toggleLoopingButton()
       })
     }
