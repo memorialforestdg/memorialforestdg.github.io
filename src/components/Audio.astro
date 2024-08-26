@@ -75,7 +75,7 @@ const defaultConfig: Config = {
     loop: true,
     playbackSpeeds: [{speed: 1, default: true}, {speed: 2}, {speed: 3}],
     volume: true,
-    volumeStart: 0.3
+    volumeStart: 0.5
   },
   crossorigin: undefined,
   loopOnLoad: false,
@@ -408,7 +408,7 @@ const combinedAttrs = {
 
     config: object | null = null
     playbackSpeed: number = 1
-    playerid: string | null = null
+    playerID: string
 
     static get observedAttributes() {
       return [
@@ -425,6 +425,20 @@ const combinedAttrs = {
     constructor() {
       super()
 
+      // Set the player id
+      this.playerID = `player-${Math.random().toString(36).slice(2, 9)}`
+      this.setAttribute('data-player-id', this.playerID)
+      // rename all element IDs to include the player ID prefix
+      const elements = this.querySelectorAll('*')
+      for (const el of elements) {
+        if (el.id) {
+          el.id = `${this.playerID}-${el.id}`
+        }
+        if (el.getAttribute('for')) {
+          el.setAttribute('for', `${this.playerID}-${el.getAttribute('for')}`)
+        }
+      }
+
       // Ensure that this.audio is defined before trying to access its attributes
       this.audio = this.querySelector('audio')
       if (this.audio) {
@@ -436,27 +450,33 @@ const combinedAttrs = {
       this.classList.remove('no-js')
 
       // Query and assign element references
-      this.progressBar = this.querySelector('#progress-bar')
-      this.bufferBar = this.querySelector('#buffer-bar')
-      this.currentTime = this.querySelector('#current-time')
-      this.duration = this.querySelector('#total-time')
-      this.songTitle = this.querySelector('#track-title')
+      this.progressBar = this.querySelector(`#${this.playerID}-progress-bar`)
+      this.bufferBar = this.querySelector(`#${this.playerID}-buffer-bar`)
+      this.currentTime = this.querySelector(`#${this.playerID}-current-time`)
+      this.duration = this.querySelector(`#${this.playerID}-total-time`)
+      this.songTitle = this.querySelector(`#${this.playerID}-track-title`)
 
-      this.playIcon = this.querySelector('#play-icon')
-      this.pauseIcon = this.querySelector('#pause-icon')
-      this.playPauseButton = this.querySelector('#play-btn')
+      this.playIcon = this.querySelector(`#${this.playerID}-play-icon`)
+      this.pauseIcon = this.querySelector(`#${this.playerID}-pause-icon`)
+      this.playPauseButton = this.querySelector(`#${this.playerID}-play-btn`)
 
-      this.volumeOnIcon = this.querySelector('#volume-on-icon')
-      this.volumeMuteIcon = this.querySelector('#volume-mute-icon')
-      this.muteButton = this.querySelector('#volume-mute-btn')
-      this.volumeSlider = this.querySelector('#volume-slider')
+      this.volumeOnIcon = this.querySelector(`#${this.playerID}-volume-on-icon`)
+      this.volumeMuteIcon = this.querySelector(
+        `#${this.playerID}-volume-mute-icon`
+      )
+      this.muteButton = this.querySelector(`#${this.playerID}-volume-mute-btn`)
+      this.volumeSlider = this.querySelector(`#${this.playerID}-volume-slider`)
 
-      this.toolbarDrawer = this.querySelector('#controls-drawer')
-      this.loopingIcon = this.querySelector('#looping-icon')
-      this.loopingButton = this.querySelector('#looping-btn')
-      this.playbackSpeedFieldset = this.querySelector('#playback-speed')
-      this.downloadIcon = this.querySelector('#download-icon')
-      this.downloadButton = this.querySelector('#download-btn')
+      this.toolbarDrawer = this.querySelector(
+        `#${this.playerID}-controls-drawer`
+      )
+      this.loopingIcon = this.querySelector(`#${this.playerID}-looping-icon`)
+      this.loopingButton = this.querySelector(`#${this.playerID}-looping-btn`)
+      this.playbackSpeedFieldset = this.querySelector(
+        `#${this.playerID}-playback-speed`
+      )
+      this.downloadIcon = this.querySelector(`#${this.playerID}-download-icon`)
+      this.downloadButton = this.querySelector(`#${this.playerID}-download-btn`)
     }
 
     connectedCallback() {
@@ -477,7 +497,7 @@ const combinedAttrs = {
     }
 
     dispatchCustomEvent(eventName: string, detail: object = {}) {
-      const details = {...detail, playerid: this.playerid}
+      const details = {...detail, playerID: this.playerID}
       const event = new CustomEvent(eventName, {detail: details})
       window.dispatchEvent(event)
     }
@@ -542,10 +562,6 @@ const combinedAttrs = {
       if (!this.audio) {
         return
       }
-
-      // Set the player id
-      this.playerid = `${Math.random().toString(36).slice(2, 9)}`
-      this.setAttribute('data-player-id', this.playerid)
 
       // Set the audio source
       if (this.hasAttribute('src')) {
@@ -656,7 +672,7 @@ const combinedAttrs = {
 
     handlePauseIfOtherPlayerIsPlaying() {
       window.addEventListener('audioplaying', (e: CustomEvent) => {
-        if (!this.audio || e.detail.playerid === this.playerid) {
+        if (!this.audio || e.detail.playerID === this.playerID) {
           return
         }
         if (this.audio.paused) return
@@ -931,6 +947,7 @@ const combinedAttrs = {
 
     /**
      * Set the playback speed of the audio.
+     * Note min-max values https://stackoverflow.com/a/32320020/362445
      */
     setupPlaybackSpeedListener() {
       if (!this.audio || !this.playbackSpeedFieldset) {
