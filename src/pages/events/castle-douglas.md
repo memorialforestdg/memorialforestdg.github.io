@@ -7,7 +7,7 @@ bannerAlt: 'The launching of the forest in Castle Douglas.'
 bannerHeight: 350
 flourishClasses: ['--hawthorn', 'dropcap', '--dc-brand-cyan-dk']
 
-# Planting Galler
+# Planting Gallery
 plantingCollectionId: albums
 plantingAlbumId: celebration-castle-douglas
 
