@@ -4,7 +4,6 @@
  *
  * Note: auto-play is governed by browser policy, see: https://developer.chrome.com/blog/autoplay/
  *
- *
  * TODO: Set playback speed, mute and current volume to localStore.
  * TODO: support multiple sources files.
  * TODO: crossorigin support
@@ -337,13 +336,22 @@ const combinedAttrs = {
                           for={`playback-speed-${speed.speed}`}
                           title={`Set playback speed to ${speed.speed}x`}
                         >
-                          <input
-                            type="radio"
-                            id={`playback-speed-${speed.speed}`}
-                            name="playback-speed"
-                            value={speed.speed}
-                            checked={speed.default}
-                          />
+                          {speed?.default ? (
+                            <input
+                              type="radio"
+                              id={`playback-speed-${speed.speed}`}
+                              name="playback-speed"
+                              value={speed.speed}
+                              checked
+                            />
+                          ) : (
+                            <input
+                              type="radio"
+                              id={`playback-speed-${speed.speed}`}
+                              name="playback-speed"
+                              value={speed.speed}
+                            />
+                          )}
                           {speed.speed}x
                         </label>
                       ))}
@@ -582,30 +590,6 @@ const combinedAttrs = {
         this.audio.volume = parseFloat(this.volumeSlider.value)
       }
 
-      // Set autoplay on load
-      if (this.hasAttribute('auto-play')) {
-        const autoplayAttr = this.getAttribute('auto-play')
-        this.audio.autoplay = autoplayAttr === 'true'
-
-        if (this.audio.autoplay) {
-          // Ensure the audio element is loaded and ready to play
-          this.audio.addEventListener(
-            'loadedmetadata',
-            () => {
-              this.audio!.load()
-              console.log('Audio is ready, attempting to play...')
-              this.audio!.play().catch((error) => {
-                console.error(
-                  'Autoplay failed due to browser policy or other issue:',
-                  error
-                )
-              })
-            },
-            {once: true} // Only run listner once
-          )
-        }
-      }
-
       // Set looping state on load
       if (this.hasAttribute('loop') === true) {
         this.toggleLoopingButton()
@@ -614,6 +598,30 @@ const combinedAttrs = {
       // Set mute state
       if (this.hasAttribute('mute') === true) {
         this.toggleMute()
+      }
+
+      // Set autoplay on load
+      if (this.hasAttribute('auto-play')) {
+        const autoplayAttr = this.getAttribute('auto-play')
+        this.audio.autoplay = autoplayAttr === 'true'
+      }
+
+      if (this.audio.autoplay) {
+        // Ensure the audio element is loaded and ready to play
+        this.audio.addEventListener(
+          'loadedmetadata',
+          () => {
+            this.audio!.load()
+            console.log('Audio is ready, attempting to play...')
+            this.audio!.play().catch((error) => {
+              console.error(
+                'Autoplay failed due to browser policy or other issue:',
+                error
+              )
+            })
+          },
+          {once: true} // Only run listner once
+        )
       }
     }
 
@@ -958,7 +966,20 @@ const combinedAttrs = {
       )
       if (playbackSpeedGroup) {
         playbackSpeedGroup.forEach((radio: HTMLInputElement) => {
-          radio.addEventListener('change', () => {
+          // set speed to checked button
+          if (radio.hasAttribute('checked') || radio.checked) {
+            radio.checked = true
+            console.log(radio.value)
+            this.audio!.playbackRate = parseFloat(radio.value)
+          } else {
+            console.log('not-checked', radio)
+          }
+
+          radio.addEventListener('change', (e) => {
+            if ((e.target as HTMLElement)?.id !== radio.id) {
+              return
+            }
+
             const selectedSpeed = radio.value
             this.audio!.playbackRate = parseFloat(selectedSpeed)
             this.dispatchCustomEvent('audioplaybackspeedchanged', {
@@ -967,6 +988,9 @@ const combinedAttrs = {
           })
           // Set speed using Enter key
           radio.addEventListener('keydown', (e) => {
+            if ((e.target as HTMLElement)?.id !== radio.id) {
+              return
+            }
             if (e.key === 'Enter') {
               radio.checked = true
               this.audio!.playbackRate = parseFloat(radio.value)
@@ -1386,7 +1410,8 @@ const combinedAttrs = {
     opacity: 0;
   }
 
-  .controls-drawer .speed-btn:has(input:checked) {
+  .controls-drawer .speed-btn:has(input:checked),
+  .controls-drawer .speed-btn:has(input[checked]) {
     background: var(--accentColor, hsl(244deg 80% 63%));
   }
 
