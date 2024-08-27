@@ -3,7 +3,7 @@ import type {ImageMetadata, GetImageResult} from 'astro'
 import {getImage} from 'astro:assets'
 
 interface Props {
-  url: string
+  url?: string
   imgUrl?: string | ImageMetadata
   mobHW?: [number, number]
   deskHW?: [number, number]
@@ -25,7 +25,7 @@ interface Props {
 }
 
 const {
-  url = '#',
+  url = '',
   imgUrl = '',
   mobHW = [200, 200],
   deskHW = [300, 300],
@@ -82,7 +82,7 @@ if (imgUrl) {
       class=`card__heading--wrap ${headingWrapClasses}`
     >
       <Heading class=`card__heading ${headingClasses}`>
-        <a href={url}>{title}</a>
+        {url ? <a href={url}>{title}</a> : title}
       </Heading>
     </div>
   </header>
@@ -103,7 +103,6 @@ if (imgUrl) {
     height: var(--headerHeight);
     overflow: hidden;
   }
-
 
 
   .card__head picture > * {
