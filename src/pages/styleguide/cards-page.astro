@@ -11,7 +11,7 @@ import Card from '../../components/Card.astro'
       <h2>Cards layout: (grid)</h2>
       <div class="cards__wrap">
         <ul class="list pa-0 grid grid-cols-3">
-          <li class="poly-2">
+          <li>
             <Card
               title="Card 1"
               imgUrl={img1}
@@ -55,6 +55,19 @@ import Card from '../../components/Card.astro'
               >Card without a header image, or any footer content. some more
               content here.</Card
             >
+          </li>
+          <li>
+            <Card
+              title="card no body"
+              imgUrl={img1}
+              url="#"
+              wrapClasses="grid ma-2 bg-surface-1 br2 overflow-hidden shadow-1"
+              headerClasses="relative flex-column flex justify-end bg-brand-teal-dk relative br-2"
+              headingWrapClasses="absolute w-100 pl-3 header-img-gradent"
+              headingClasses="f3 brand-yellow-lt ma-2"
+              contentClasses=""
+              footerClasses=""
+            />
           </li>
           <li>
             <Card
@@ -140,6 +153,32 @@ import Card from '../../components/Card.astro'
               footerClasses="pa-0 pl-3 pr-3 pb-3"
               >Card without a header image, or any footer content. some more
               content here.</Card
+            >
+          </li>
+          <li>
+            <Card
+              title="card no body"
+              imgUrl={img2}
+              url="#"
+              wrapClasses="grid ma-2 bg-surface-1 br2 overflow-hidden shadow-1"
+              headerClasses="relative flex-column flex justify-end bg-brand-teal-dk relative br-2"
+              headingWrapClasses="absolute w-100 pl-3 header-img-gradent"
+              headingClasses="f3 brand-yellow-lt ma-2"
+              contentClasses=""
+              footerClasses=""
+            />
+          </li>
+          <li>
+            <Card
+              title="Card: no link"
+              imgUrl={img2}
+              wrapClasses="grid ma-2 bg-surface-1 br2 overflow-hidden shadow-1"
+              headerClasses="relative flex-column flex justify-end bg-brand-teal-dk relative br-2"
+              headingWrapClasses="absolute w-100 pl-3 header-img-gradent"
+              headingClasses="f3 brand-yellow-lt ma-2"
+              contentClasses="pl-3 pr-3"
+              footerClasses="pa-0 pl-3 pr-3 pb-3"
+              >Card with a header image but no header link.</Card
             >
           </li>
         </ul>
