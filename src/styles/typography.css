@@ -34,13 +34,13 @@ h6 {
 a {
   color: var(--brand-cyan-dk);
   letter-spacing: 0;
+  text-decoration: underline;
 }
 
-a:hover,
-a:focus {
-  font-weight: 500;
-  letter-spacing: -0.007ch;
+.link {
+  text-decoration: underline;
 }
+
 
 strong a:hover,
 strong a:focus {
