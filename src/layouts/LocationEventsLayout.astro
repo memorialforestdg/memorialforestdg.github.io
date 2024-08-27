@@ -103,8 +103,8 @@ const mapHeight = '350px'
                   galleryUlClasses={
                     'pa-0 list flex flex-wrap gap-2 justify-center'
                   }
-                  cellLiClasses={'pa-0 ma-0 shadow-hover'}
-                  cellClasses={'pa-0 ma-0 bg-brand-purple shadow-hover br1'}
+                  cellLiClasses={'pa-0 ma-0 shadow-hover grow'}
+                  cellClasses={'pa-0 ma-0 bg-brand-purple br1'}
                   cellFormat="square"
                 />
               </div>
@@ -122,8 +122,8 @@ const mapHeight = '350px'
                   galleryUlClasses={
                     'pa-0 list flex flex-wrap gap-2 justify-center'
                   }
-                  cellLiClasses={'pa-0 ma-0 shadow-hover'}
-                  cellClasses={'pa-0 ma-0 bg-brand-purple shadow-hover br1'}
+                  cellLiClasses={'pa-0 ma-0 shadow-hover grow'}
+                  cellClasses={'pa-0 ma-0 bg-brand-purple br1'}
                   cellFormat="square"
                 />
               </div>
@@ -135,6 +135,13 @@ const mapHeight = '350px'
 </BaseLayout>
 
 <style define:vars={{mapHeight, bannerHeight}} is:global>
+  .gallery .cell_li:hover,
+  .gallery .cell_li:focus-within {
+    border-radius: 3px;
+    outline: 2px dotted var(--brand-cyan-dk, black);
+    transition: outline 0.1s ease;
+  }
+
   .open-map {
     background-color: var(--brand-teal-dk);
   }
@@ -144,4 +151,5 @@ const mapHeight = '350px'
       --height: calc(var(--mapHeight) * 0.6) !important;
     }
   }
+
 </style>
