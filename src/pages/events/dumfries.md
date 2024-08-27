@@ -6,7 +6,7 @@ bannerAlt: 'The launching of the forest in Dumfries.'
 bannerHeight: 350
 flourishClasses: ['--holly', 'dropcap', '--dc-brand-purple-dk']
 
-# Planting Galler
+# Planting Gallery
 plantingCollectionId: albums
 plantingAlbumId: celebration-dumfries
 
