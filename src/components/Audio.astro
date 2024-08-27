@@ -3,6 +3,8 @@
  * This Astro component features progressive enhancement with the native audio element if js is disabled.
  *
  * Note: auto-play is governed by browser policy, see: https://developer.chrome.com/blog/autoplay/
+ * TODO: IOS support for volume controls? Mute works as expected.
+ * TODO: See notes in setupPlaybackSpeedListener re client side UUID generation and the radio name grouping issues.
  *
  * TODO: Set playback speed, mute and current volume to localStore.
  * TODO: support multiple sources files.
@@ -436,14 +438,18 @@ const combinedAttrs = {
       // Set the player id
       this.playerID = `player-${Math.random().toString(36).slice(2, 9)}`
       this.setAttribute('data-player-id', this.playerID)
+
       // rename all element IDs to include the player ID prefix
       const elements = this.querySelectorAll('*')
       for (const el of elements) {
         if (el.id) {
-          el.id = `${this.playerID}-${el.id}`
+          el.id = `${el.id}-${this.playerID}`
         }
         if (el.getAttribute('for')) {
-          el.setAttribute('for', `${this.playerID}-${el.getAttribute('for')}`)
+          el.setAttribute('for', `${el.getAttribute('for')}-${this.playerID}`)
+        }
+        if (el.getAttribute('name')) {
+          el.setAttribute('name', `${el.getAttribute('name')}-${this.playerID}`)
         }
       }
 
@@ -458,33 +464,33 @@ const combinedAttrs = {
       this.classList.remove('no-js')
 
       // Query and assign element references
-      this.progressBar = this.querySelector(`#${this.playerID}-progress-bar`)
-      this.bufferBar = this.querySelector(`#${this.playerID}-buffer-bar`)
-      this.currentTime = this.querySelector(`#${this.playerID}-current-time`)
-      this.duration = this.querySelector(`#${this.playerID}-total-time`)
-      this.songTitle = this.querySelector(`#${this.playerID}-track-title`)
+      this.progressBar = this.querySelector(`#progress-bar-${this.playerID}`)
+      this.bufferBar = this.querySelector(`#buffer-bar-${this.playerID}`)
+      this.currentTime = this.querySelector(`#current-time-${this.playerID}`)
+      this.duration = this.querySelector(`#total-time-${this.playerID}`)
+      this.songTitle = this.querySelector(`#track-title-${this.playerID}`)
 
-      this.playIcon = this.querySelector(`#${this.playerID}-play-icon`)
-      this.pauseIcon = this.querySelector(`#${this.playerID}-pause-icon`)
-      this.playPauseButton = this.querySelector(`#${this.playerID}-play-btn`)
+      this.playIcon = this.querySelector(`#play-icon-${this.playerID}`)
+      this.pauseIcon = this.querySelector(`#pause-icon-${this.playerID}`)
+      this.playPauseButton = this.querySelector(`#play-btn-${this.playerID}`)
 
-      this.volumeOnIcon = this.querySelector(`#${this.playerID}-volume-on-icon`)
+      this.volumeOnIcon = this.querySelector(`#volume-on-icon-${this.playerID}`)
       this.volumeMuteIcon = this.querySelector(
-        `#${this.playerID}-volume-mute-icon`
+        `#volume-mute-icon-${this.playerID}`
       )
-      this.muteButton = this.querySelector(`#${this.playerID}-volume-mute-btn`)
-      this.volumeSlider = this.querySelector(`#${this.playerID}-volume-slider`)
+      this.muteButton = this.querySelector(`#volume-mute-btn-${this.playerID}`)
+      this.volumeSlider = this.querySelector(`#volume-slider-${this.playerID}`)
 
       this.toolbarDrawer = this.querySelector(
-        `#${this.playerID}-controls-drawer`
+        `#controls-drawer-${this.playerID}`
       )
-      this.loopingIcon = this.querySelector(`#${this.playerID}-looping-icon`)
-      this.loopingButton = this.querySelector(`#${this.playerID}-looping-btn`)
+      this.loopingIcon = this.querySelector(`#looping-icon-${this.playerID}`)
+      this.loopingButton = this.querySelector(`#looping-btn-${this.playerID}`)
       this.playbackSpeedFieldset = this.querySelector(
-        `#${this.playerID}-playback-speed`
+        `#playback-speed-${this.playerID}`
       )
-      this.downloadIcon = this.querySelector(`#${this.playerID}-download-icon`)
-      this.downloadButton = this.querySelector(`#${this.playerID}-download-btn`)
+      this.downloadIcon = this.querySelector(`#download-icon-${this.playerID}`)
+      this.downloadButton = this.querySelector(`#download-btn-${this.playerID}`)
     }
 
     connectedCallback() {
@@ -962,26 +968,27 @@ const combinedAttrs = {
         return
       }
       const playbackSpeedGroup = this.playbackSpeedFieldset!.querySelectorAll(
-        'input[name="playback-speed"]'
+        `input[name="playback-speed-${this.playerID}"]`
       )
       if (playbackSpeedGroup) {
+        console.log(playbackSpeedGroup)
+
         playbackSpeedGroup.forEach((radio: HTMLInputElement) => {
-          // set speed to checked button
-          if (radio.hasAttribute('checked') || radio.checked) {
+          // Im not sure why we need to force the browser into the correct state
+          // If we dont do this however, only the last player on the page will have playback speed set correctly.
+          // I suspect that the browser is parsing the radio buttons from the slot markup before we've have had a chance to rename them with a UUID.
+          // If that is the case, we could move the UUID functionality into the Astro generation, and only do it in the web-compoent if the value has not been set.
+          // When setting the UUID client side, we'd still have to do this step.
+          if (radio.defaultChecked) {
             radio.checked = true
-            console.log(radio.value)
             this.audio!.playbackRate = parseFloat(radio.value)
-          } else {
-            console.log('not-checked', radio)
           }
 
           radio.addEventListener('change', (e) => {
             if ((e.target as HTMLElement)?.id !== radio.id) {
               return
             }
-
-            const selectedSpeed = radio.value
-            this.audio!.playbackRate = parseFloat(selectedSpeed)
+            this.audio!.playbackRate = parseFloat(radio.value)
             this.dispatchCustomEvent('audioplaybackspeedchanged', {
               speed: radio.value
             })
@@ -1410,8 +1417,7 @@ const combinedAttrs = {
     opacity: 0;
   }
 
-  .controls-drawer .speed-btn:has(input:checked),
-  .controls-drawer .speed-btn:has(input[checked]) {
+  .controls-drawer .speed-btn:has(input:checked) {
     background: var(--accentColor, hsl(244deg 80% 63%));
   }
 
