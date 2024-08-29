@@ -3,8 +3,9 @@
  * This Astro component features progressive enhancement with the native audio element if js is disabled.
  *
  * Note: auto-play is governed by browser policy, see: https://developer.chrome.com/blog/autoplay/
- * TODO: IOS support for volume controls? Mute works as expected.
+ * TODO: IOS support for volume control? Mute works as expected, but playback volume doesn't.
  * TODO: See notes in setupPlaybackSpeedListener re client side UUID generation and the radio name grouping issues.
+ *        - add prop for UUID and set data-player-id based on this.
  *
  * TODO: Set playback speed, mute and current volume to localStore.
  * TODO: support multiple sources files.
@@ -435,21 +436,25 @@ const combinedAttrs = {
     constructor() {
       super()
 
-      // Set the player id
+      // // Set the player id
       this.playerID = `player-${Math.random().toString(36).slice(2, 9)}`
       this.setAttribute('data-player-id', this.playerID)
 
       // rename all element IDs to include the player ID prefix
       const elements = this.querySelectorAll('*')
       for (const el of elements) {
-        if (el.id) {
-          el.id = `${el.id}-${this.playerID}`
+        const idAttr = el.id
+        const forAttr = el.getAttribute('for')
+        const nameAttr = el.getAttribute('name')
+
+        if (idAttr) {
+          el.id = `${idAttr}-${this.playerID}`
         }
-        if (el.getAttribute('for')) {
-          el.setAttribute('for', `${el.getAttribute('for')}-${this.playerID}`)
+        if (forAttr) {
+          el.setAttribute('for', `${forAttr}-${this.playerID}`)
         }
-        if (el.getAttribute('name')) {
-          el.setAttribute('name', `${el.getAttribute('name')}-${this.playerID}`)
+        if (nameAttr) {
+          el.setAttribute('name', `${nameAttr}-${this.playerID}`)
         }
       }
 
@@ -495,11 +500,11 @@ const combinedAttrs = {
 
     connectedCallback() {
       this.configureAudio()
+      this.setProgressListener()
       this.checkFileTypeSupport()
       this.setSongTitle()
       this.setPlayPauseListener()
       this.handlePauseIfOtherPlayerIsPlaying()
-      this.setProgressListener()
       this.setBufferListener()
       this.setProgressKeyboardListener()
       this.setTimeListener()
@@ -508,68 +513,6 @@ const combinedAttrs = {
       this.setPlaybackLoopListener()
       this.setVolumeMuteListener()
       this.setVolumeListener()
-    }
-
-    dispatchCustomEvent(eventName: string, detail: object = {}) {
-      const details = {...detail, playerID: this.playerID}
-      const event = new CustomEvent(eventName, {detail: details})
-      window.dispatchEvent(event)
-    }
-
-    attributeChangedCallback(name, oldValue, newValue) {
-      if (oldValue !== null && oldValue !== newValue) {
-        switch (name) {
-          case 'src':
-            this.handleSrcChange()
-            break
-          case 'title':
-            this.setSongTitle()
-            break
-          default:
-            break
-        }
-      }
-    }
-
-    handleSrcChange() {
-      if (this.audio) {
-        this.audio.removeEventListener('timeupdate', this.updateTimeHandler)
-        this.audio.removeEventListener(
-          'loadedmetadata',
-          this.metadataTimeHandler
-        )
-      }
-
-      this.configureAudio()
-      this.checkFileTypeSupport()
-      this.updateUIForSrcChange()
-      this.resetProgressBar()
-      this.setTimeListener()
-    }
-
-    updateUIForSrcChange() {
-      if (
-        !this.audio ||
-        !this.playIcon ||
-        !this.pauseIcon ||
-        !this.playPauseButton
-      ) {
-        return
-      }
-
-      this.pauseIcon.style.display = 'none'
-      this.playIcon.style.display = 'block'
-      this.playPauseButton.setAttribute('aria-label', 'Play track')
-      this.playPauseButton.setAttribute('aria-pressed', 'false')
-      this.playPauseButton.setAttribute('title', 'Play track')
-      this.audio.pause()
-      this.dispatchCustomEvent('audiopaused')
-    }
-
-    resetProgressBar() {
-      if (this.progressBar) {
-        this.progressBar.value = 0
-      }
     }
 
     configureAudio() {
@@ -664,6 +607,68 @@ const combinedAttrs = {
             )
           }
         }
+      }
+    }
+
+    dispatchCustomEvent(eventName: string, detail: object = {}) {
+      const details = {...detail, playerID: this.playerID}
+      const event = new CustomEvent(eventName, {detail: details})
+      window.dispatchEvent(event)
+    }
+
+    attributeChangedCallback(name, oldValue, newValue) {
+      if (oldValue !== null && oldValue !== newValue) {
+        switch (name) {
+          case 'src':
+            this.handleSrcChange()
+            break
+          case 'title':
+            this.setSongTitle()
+            break
+          default:
+            break
+        }
+      }
+    }
+
+    handleSrcChange() {
+      if (this.audio) {
+        this.audio.removeEventListener('timeupdate', this.updateTimeHandler)
+        this.audio.removeEventListener(
+          'loadedmetadata',
+          this.metadataTimeHandler
+        )
+      }
+
+      this.configureAudio()
+      this.checkFileTypeSupport()
+      this.updateUIForSrcChange()
+      this.resetProgressBar()
+      this.setTimeListener()
+    }
+
+    updateUIForSrcChange() {
+      if (
+        !this.audio ||
+        !this.playIcon ||
+        !this.pauseIcon ||
+        !this.playPauseButton
+      ) {
+        return
+      }
+
+      this.pauseIcon.style.display = 'none'
+      this.playIcon.style.display = 'block'
+      this.playPauseButton.setAttribute('aria-label', 'Play track')
+      this.playPauseButton.setAttribute('aria-pressed', 'false')
+      this.playPauseButton.setAttribute('title', 'Play track')
+      this.audio.pause()
+      this.dispatchCustomEvent('audiopaused')
+    }
+
+    resetProgressBar() {
+      if (this.progressBar) {
+        this.progressBar.value = 0
       }
     }
 
@@ -971,14 +976,10 @@ const combinedAttrs = {
         `input[name="playback-speed-${this.playerID}"]`
       )
       if (playbackSpeedGroup) {
-        console.log(playbackSpeedGroup)
-
         playbackSpeedGroup.forEach((radio: HTMLInputElement) => {
-          // Im not sure why we need to force the browser into the correct state
-          // If we dont do this however, only the last player on the page will have playback speed set correctly.
-          // I suspect that the browser is parsing the radio buttons from the slot markup before we've have had a chance to rename them with a UUID.
-          // If that is the case, we could move the UUID functionality into the Astro generation, and only do it in the web-compoent if the value has not been set.
-          // When setting the UUID client side, we'd still have to do this step.
+          // As we are passing the radio buttons in via a slot,
+          // the browser has already parsed this markup and identified the radio groups based on the name ID (which at this point has not been set).
+          // To refresh this we refresh the associations by manually setting the checked state.
           if (radio.defaultChecked) {
             radio.checked = true
             this.audio!.playbackRate = parseFloat(radio.value)
