@@ -4,7 +4,7 @@
  *
  * Note: auto-play is governed by browser policy, see: https://developer.chrome.com/blog/autoplay/
  * TODO: IOS support for volume control? Mute works as expected, but playback volume doesn't.
- * TODO: See notes in setupPlaybackSpeedListener re client side UUID generation and the radio name grouping issues.
+ * TODO: See notes in setupSpeedChangeListener re client side UUID generation and the radio name grouping issues.
  *        - add prop for UUID and set data-player-id based on this.
  *
  * TODO: Set playback speed, mute and current volume to localStore.
@@ -436,7 +436,7 @@ const combinedAttrs = {
     constructor() {
       super()
 
-      // // Set the player id
+      // Set the player id
       this.playerID = `player-${Math.random().toString(36).slice(2, 9)}`
       this.setAttribute('data-player-id', this.playerID)
 
@@ -499,23 +499,23 @@ const combinedAttrs = {
     }
 
     connectedCallback() {
-      this.configureAudio()
-      this.setProgressListener()
+      this.configureAudioSettings()
+      this.setProgressChangeListener()
       this.checkFileTypeSupport()
-      this.setSongTitle()
-      this.setPlayPauseListener()
-      this.handlePauseIfOtherPlayerIsPlaying()
-      this.setBufferListener()
-      this.setProgressKeyboardListener()
-      this.setTimeListener()
-      this.toolbarDrawerArrowsNavigationListener()
-      this.setupPlaybackSpeedListener()
+      this.setAudioTitle()
+      this.setPlaybackChangeListener()
+      this.handlePauseOnOtherPlayback()
+      this.setBufferChangeListener()
+      this.setProgressKeyboardHandler()
+      this.setTimeUpdateListener()
+      this.handleToolbarNavigation()
+      this.setupSpeedChangeListener()
       this.setPlaybackLoopListener()
-      this.setVolumeMuteListener()
-      this.setVolumeListener()
+      this.setMuteChangeListener()
+      this.setVolumeChangeListener()
     }
 
-    configureAudio() {
+    configureAudioSettings() {
       if (!this.audio) {
         return
       }
@@ -541,12 +541,12 @@ const combinedAttrs = {
 
       // Set looping state on load
       if (this.hasAttribute('loop') === true) {
-        this.toggleLoopingButton()
+        this.toggleLoopingState()
       }
 
       // Set mute state
       if (this.hasAttribute('mute') === true) {
-        this.toggleMute()
+        this.toggleMuteState()
       }
 
       // Set autoplay on load
@@ -596,13 +596,13 @@ const combinedAttrs = {
               this.audio.canPlayType(mimeType).replace(/no/, '')
             )
           ) {
-            this.setUnsupportedMessage(
+            this.setDisplayErrorMessage(
               `This browser doesn't support ${fileType.toUpperCase()} audio files.`
             )
           }
         } else {
           if (!this.audio.canPlayType('audio/' + fileType)) {
-            this.setUnsupportedMessage(
+            this.setDisplayErrorMessage(
               "This browser doesn't support this audio file type."
             )
           }
@@ -620,10 +620,10 @@ const combinedAttrs = {
       if (oldValue !== null && oldValue !== newValue) {
         switch (name) {
           case 'src':
-            this.handleSrcChange()
+            this.handleSourceChange()
             break
           case 'title':
-            this.setSongTitle()
+            this.setAudioTitle()
             break
           default:
             break
@@ -631,23 +631,23 @@ const combinedAttrs = {
       }
     }
 
-    handleSrcChange() {
+    handleSourceChange() {
       if (this.audio) {
-        this.audio.removeEventListener('timeupdate', this.updateTimeHandler)
+        this.audio.removeEventListener('timeupdate', this.handleTimeUpdate)
         this.audio.removeEventListener(
           'loadedmetadata',
-          this.metadataTimeHandler
+          this.handleMetadataTime
         )
       }
 
-      this.configureAudio()
+      this.configureAudioSettings()
       this.checkFileTypeSupport()
-      this.updateUIForSrcChange()
+      this.updateUiForSourceChange()
       this.resetProgressBar()
-      this.setTimeListener()
+      this.setTimeUpdateListener()
     }
 
-    updateUIForSrcChange() {
+    updateUiForSourceChange() {
       if (
         !this.audio ||
         !this.playIcon ||
@@ -677,7 +677,7 @@ const combinedAttrs = {
      * If the 'title' attribute is not present, it sets the title based on the file name
      * of the 'src' attribute.
      */
-    setSongTitle() {
+    setAudioTitle() {
       if (this.songTitle && this.hasAttribute('title')) {
         // Set the title based on the 'title' attribute
         this.songTitle.textContent = this.getAttribute('title')
@@ -689,18 +689,18 @@ const combinedAttrs = {
       }
     }
 
-    handlePauseIfOtherPlayerIsPlaying() {
+    handlePauseOnOtherPlayback() {
       window.addEventListener('audioplaying', (e: CustomEvent) => {
         if (!this.audio || e.detail.playerID === this.playerID) {
           return
         }
         if (this.audio.paused) return
         this.audio.paused
-        this.togglePlayPause()
+        this.togglePlaybackState()
       })
     }
 
-    setPlayPauseListener() {
+    setPlaybackChangeListener() {
       if (
         !this.audio ||
         !this.playPauseButton ||
@@ -711,11 +711,11 @@ const combinedAttrs = {
       }
 
       this.playPauseButton.addEventListener('click', () =>
-        this.togglePlayPause()
+        this.togglePlaybackState()
       )
     }
 
-    toggleMute() {
+    toggleMuteState() {
       if (
         !this.audio ||
         !this.volumeMuteIcon ||
@@ -743,7 +743,7 @@ const combinedAttrs = {
       }
     }
 
-    togglePlayPause() {
+    togglePlaybackState() {
       if (
         !this.audio ||
         !this.playIcon ||
@@ -772,7 +772,7 @@ const combinedAttrs = {
       }
     }
 
-    setProgressListener() {
+    setProgressChangeListener() {
       this.progressBar!.addEventListener('click', (event) => {
         if (this.progressBar && this.audio) {
           let percent = event.offsetX / this.progressBar.offsetWidth
@@ -782,7 +782,7 @@ const combinedAttrs = {
       })
     }
 
-    setBufferListener() {
+    setBufferChangeListener() {
       if (!this.bufferBar || !this.audio) {
         return
       }
@@ -806,7 +806,7 @@ const combinedAttrs = {
      *  - ArrowDown / ArrowUp: do nothing
      *  - Space / Enter: toggle play/pause
      */
-    setProgressKeyboardListener() {
+    setProgressKeyboardHandler() {
       if (!this.progressBar || !this.audio) {
         return
       }
@@ -836,13 +836,13 @@ const combinedAttrs = {
           case 'Space':
           case 'Enter':
             event.preventDefault()
-            this.togglePlayPause()
+            this.togglePlaybackState()
             break
         }
       })
     }
 
-    toolbarDrawerArrowsNavigationListener() {
+    handleToolbarNavigation() {
       if (!this.audio || !this.toolbarDrawer) {
         return
       }
@@ -871,7 +871,7 @@ const combinedAttrs = {
       })
     }
 
-    playSong() {
+    playAudio() {
       if (
         this.audio &&
         this.playIcon &&
@@ -886,25 +886,25 @@ const combinedAttrs = {
       }
     }
 
-    setTimeListener() {
+    setTimeUpdateListener() {
       this.audio!.addEventListener('loadedmetadata', () => {
-        this.metadataTimeHandler()
+        this.handleMetadataTime()
       })
     }
 
-    metadataTimeHandler() {
+    handleMetadataTime() {
       if (this.audio && this.currentTime && this.duration) {
         this.currentTime.textContent = `${this.formatTime(
           this.audio.currentTime
         )}`
         this.duration.textContent = `${this.formatTime(this.audio.duration)}`
         this.audio.addEventListener('timeupdate', () => {
-          this.updateTimeHandler()
+          this.handleTimeUpdate()
         })
       }
     }
 
-    updateTimeHandler() {
+    handleTimeUpdate() {
       if (
         !this.audio ||
         !this.currentTime ||
@@ -922,10 +922,10 @@ const combinedAttrs = {
       }
 
       this.updateProgressBar()
-      this.updateTimeDisplays()
+      this.updateTimeDisplay()
 
       if (this.audio.currentTime === this.audio.duration) {
-        this.handleAudioEnd()
+        this.handleAudioCompletion()
       }
     }
 
@@ -933,12 +933,12 @@ const combinedAttrs = {
       this.progressBar!.value = this.audio!.currentTime / this.audio!.duration
     }
 
-    updateTimeDisplays() {
+    updateTimeDisplay() {
       this.currentTime!.textContent = `${this.formatTime(this.audio!.currentTime)}`
       this.duration!.textContent = `${this.formatTime(this.audio!.duration)}`
     }
 
-    handleAudioEnd() {
+    handleAudioCompletion() {
       this.audio!.currentTime = 0
       this.pauseIcon!.style.display = 'none'
       this.playIcon!.style.display = 'block'
@@ -948,7 +948,7 @@ const combinedAttrs = {
       this.dispatchCustomEvent('audiofinished')
     }
 
-    setVolumeListener() {
+    setVolumeChangeListener() {
       if (!this.audio || !this.volumeSlider) {
         return
       }
@@ -957,18 +957,18 @@ const combinedAttrs = {
       })
     }
 
-    setVolumeMuteListener() {
+    setMuteChangeListener() {
       if (!this.audio || !this.muteButton) {
         return
       }
-      this.muteButton.addEventListener('click', () => this.toggleMute())
+      this.muteButton.addEventListener('click', () => this.toggleMuteState())
     }
 
     /**
      * Set the playback speed of the audio.
      * Note min-max values https://stackoverflow.com/a/32320020/362445
      */
-    setupPlaybackSpeedListener() {
+    setupSpeedChangeListener() {
       if (!this.audio || !this.playbackSpeedFieldset) {
         return
       }
@@ -979,7 +979,7 @@ const combinedAttrs = {
         playbackSpeedGroup.forEach((radio: HTMLInputElement) => {
           // As we are passing the radio buttons in via a slot,
           // the browser has already parsed this markup and identified the radio groups based on the name ID (which at this point has not been set).
-          // To refresh this we refresh the associations by manually setting the checked state.
+          // We refresh the associations by manually setting the checked state.
           if (radio.defaultChecked) {
             radio.checked = true
             this.audio!.playbackRate = parseFloat(radio.value)
@@ -1016,11 +1016,11 @@ const combinedAttrs = {
         return
       }
       this.loopingButton.addEventListener('click', () => {
-        this.toggleLoopingButton()
+        this.toggleLoopingState()
       })
     }
 
-    toggleLoopingButton() {
+    toggleLoopingState() {
       if (!this.audio || !this.loopingButton) {
         return
       }
@@ -1040,7 +1040,7 @@ const combinedAttrs = {
       }
     }
 
-    setUnsupportedMessage(message) {
+    setDisplayErrorMessage(message) {
       if (this.songTitle) {
         this.songTitle.textContent = message
       }
