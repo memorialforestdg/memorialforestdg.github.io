@@ -1,8 +1,8 @@
 ---
 layout: ../../layouts/MDPagesLayout.astro
-pageTitle: Tree of Rremembrance
+pageTitle: Tree of Remembrance
 bannerImage: '../images/ImageCredit_tsBeall_IMG_2538.webp'
-bannerAlt: 'Ribbons being tied to the Tree of Rremembrance.'
+bannerAlt: 'Ribbons being tied to the Tree of Remembrance.'
 flourishClasses: ['--englishoak', 'dropcap', '--dc-sienna-700']
 
 collectionId: albums
