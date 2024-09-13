@@ -1,0 +1,45 @@
+---
+interface Props {
+  // breadcrumbs an array of objecs with the following properties : crumb, url
+  breadcrumbs: Array<{crumb: string; url: string}>
+}
+
+const {breadcrumbs} = Astro.props
+---
+
+<nav aria-label="Breadcrumb" class="breadcrumbs">
+  <ol>
+    {
+      breadcrumbs.map((breadcrumb, index) =>
+        index === breadcrumbs.length - 1 ? (
+          <li>
+            <a href="" aria-current="page">
+              {breadcrumb.crumb}
+            </a>
+          </li>
+        ) : (
+          <li>
+            <a href={breadcrumb.url}>{breadcrumb.crumb}</a> /
+          </li>
+        )
+      )
+    }
+  </ol>
+</nav>
+<style>
+  ol {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.2rem;
+    margin: 0;
+    padding: var(--spacing-1) var(--spacing-2);
+    list-style: none;
+    background-color: var(--jet-200);
+    border-radius: 3px;
+  }
+
+  li {
+    margin: 0;
+    padding: 0;
+  }
+</style>
