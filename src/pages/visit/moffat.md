@@ -18,9 +18,11 @@ lat: 55.319197
 lon: -3.43987
 address: 'Moffat Community Nature Reserve, Moffat DG10 9SF'
 website: 'https://visitmoffat.co.uk/explore-moffat/moffat-community-nature-reserve'
-hours: 'The reserve is open every day from 8.00am to 8.00pm. Entry is free.'
-siteInfo: 'The Memorial Forest is accessible via a 10 minute walk from the Nature Reserve car park. The ground is rough in some places, and those with access concerns can also drive to the Memorial site by driving rather than walking the access road. To drive in: rather than parking in the car park, turn left just before the car park and access through a vehicle gate (please close the gate behind you). Drive straight for 2 minutes, the memorial planting site will be on your right, marked by a paving stones. <br/><br/>
-The postcode for the Community Nature Reserve is DG10 9SF, and is signposted off the A701. Find the reserve by following the brown signs for the Community Nature Reserve from the A701 between Moffat and the M74.'
+hours: 'Open every day from dawn to dusk.'
+siteInfo: 'The Community Nature Reserve is signposted off the A701. Follow the brown signs for Community Nature Reserve from the A701, as you are driving between Moffat and the M74.<br><br>
+The Memorial Forest planting site is accessible via a short walk of 300 metres (5-10 minutes) from the Nature Reserve car park. The ground is rough in some places. Those with access concerns can drive to the Memorial rather than walking along the access road. <br><br>To drive to the Memorial site: rather than parking in the car park, turn left just before the car park onto the access road. You will see a vehicle gate just ahead (please close the gate behind you). Drive straight for 2 minutes – the Memorial site will be on your right, and is marked by paving stones.'
+partners: 'Moffat Community Nature Reserve'
+tickets: 'Entrance is Free'
 ---
 
 The Memorial Forest at Moffat site is part of the Moffat Community Nature Reserve, once a working quarry and now a haven for wildlife and a wonderful place to explore for local people and visitors to Moffat. The old weigh-bridge is now part of a wildflower meadow, and the sand pits have become wildlife pools.

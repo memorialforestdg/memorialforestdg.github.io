@@ -26,15 +26,22 @@ export const mapLocations = [
     content:
       'The Dispersed Memorial Forest:<br/> <a href="./castle-douglas">Castle Douglas</a> at Threave Nature Reserve.',
     popup: {offset: {x: 30, y: -22}},
-    lat: 54.933848,
-    lon: -3.959061,
+    lat: 55.050628,
+    lon: -3.594138,
     open: false,
     icon: iconOpts
   },
   {
     id: 'dumfries',
-    content:
-      'The Dispersed Memorial Forest:<br/> <a href="./dumfries">Dumfries</a>, a XXkm walking trail between Mountainhall Three Roads End and Bankend Road, on the Crichton Estate.',
+    content: `The Dispersed Memorial Forest, <a href="./dumfries">Dumfries</a>, Crichton Memorial Church.<br><br> In Dumfries, trees were planted at six locations to create an aproximate one hour walking loop, reflecting the one hour of exercise allowed during the first Lockdown, Spring 2020:
+      <ul>
+        <li>Crichton Memorial Church</li>
+        <li>Easterbrook Hall</li>
+        <li>Dudgeon House</li>
+        <li>Monreith House</li>
+        <li>Occupational Health at NHS Mountainhall Treatment Centre</li>
+        <li>Three Road Ends at Mountainhall Treatment Centre</li>
+      </ul>`,
     popup: {offset: {x: 30, y: -22}},
     lat: 55.057851,
     lon: -3.601577,

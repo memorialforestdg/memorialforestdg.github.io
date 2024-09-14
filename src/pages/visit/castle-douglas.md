@@ -17,16 +17,22 @@ textColor: '--brand-lt'    # css custom prop
 w3w:  'allies.taken.premature'
 lat: 54.933848
 lon: -3.959061
+website: 'https://www.nts.org.uk/visit/places/threave-garden/planning-your-visit'
+partners: National Trust for Scotland
 address: 'NTS Threave Nature Reserve, Castle Douglas DG7 1TJ'
-hours: '23 Mar–28 Oct, Fri–Mon, 11.00–15.00'
+tickets: 'Entrance is Free'
+hours: 'Every Day, Dawn to Dusk'
 parking: 'Parking available.'
-bathrooms: 'Bathroom facilities are adjacent to the car park.'
-accessible: 'Please contact the Community Nature Reserve if access may be a concern for you.'
-siteInfo: 'The Memorial Forest site is at Threave Nature Reserve, a short walk from the main car park and visible as you arrive by car on the right hand side. From the car park, access is via a short path. '
+bathrooms: 'Restroom facilities are adjacent to the car park.'
+accessible: 'The Memorial Forest site is a short walk from the main Nature Reserve car park, visible as you arrive by car on the right hand side. From the car park, access is via a level gravel path. Please visit the <a href="https://www.nts.org.uk/visit/places/threave-garden/planning-your-visit">Threave Nature Reserve</a> website or contact them on <a href="tel:01556502575">01556 502575</a> for more information.'
+siteInfo: '<b>Please note that the Memorial Forest is at Threave NATURE RESERVE, which is different from Threave GARDEN AND ESTATE. Entry to the Nature Reserve is free.</b><br/>
+Threave Nature Reserve is just off the A75 and well-signposted from every direction. The road to the nature reserve is directly opposite the B736 roundabout – follow the signs for Kelton Mains or Threave Castle.'
 ---
 
-Mollit cillum sint veniam enim labore amet. Amet irure do enim irure. Elit exercitation consequat enim eiusmod Lorem. Tempor Lorem commodo do adipisicing non et in et ipsum reprehenderit.
+Fifty trees have been planted at Threave Nature Reserve as part of The Dispersed Memorial Forest. They are accompanied by a bench made of Dalbeattie granite and oak, with a bronze inset.
 
-Irure officia do dolore cillum ea labore veniam quis ad sint ad non laborum. Duis ipsum velit tempor eiusmod duis. Do aliqua adipisicing do nostrud cillum cupidatat magna anim nisi ad velit excepteur labore.
+The planting site is just off the walking path connecting the Nature Reserve to Castle Douglas, and the site was chosen to  encourage visitors to stop and reflect. A variety of native species which suit the landscape were chosen to complement and support NTS Threave’s wider Landscape Restoration Project.
 
-<!-- <a class="link" href='../events/castle-douglas'><b>See also: </b>Eventsat the Castle Douglas site.</a> -->
+__Please note that the Memorial Forest site is part of Threave NATURE RESERVE, which is different from Threave GARDEN AND ESTATE. See detailed information below. <br>Entry to the Nature Reserve is free.__
+
+<a class="link" href='../events/castle-douglas'><b>See also: </b>Events at the Castle Douglas site.</a>

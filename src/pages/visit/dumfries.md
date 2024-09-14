@@ -13,18 +13,32 @@ albumId: celebration-dumfries
 # Sidebar info
 bgColor: '--brand-cyan-dk' # css custom prop
 textColor: '--brand-lt'    # css custom prop
-w3w:  'crisper.string.springing'
-lat: 55.057851
-lon: -3.601577
-address: 'Crichton Estate Bankend Rd, Dumfries DG1 4ZE </br> Mountainhall Treatment Centre, Bankend Rd, Dumfries DG1 4AP'
-hours: 'dawn–dusk'
-siteInfo: '<b>Finding Mountainhall Three Roads End:</b> <br/>
-  The Three Road Ends site is accessible via a short path from the bottom of the large main car park.<br/>
-  <b>Finding Mountainhall Occupational Health / Helipad site:</b><br/>To Follow.'
+w3w:  'sparkles.parading.trusts'
+lat: -3.594138
+lon: 55.050628
+address: 'Crichton Memorial Church, The Crichton, Dumfries DG1 4ZZ'
+website: 'https://www.crichton.co.uk/'
+hours: 'Always open'
+tickets: 'Entrance is Free'
+partners: The Crichton Trust and NHS Dumfries and Galloway
+parking: 'Free car parking is available near The Crichton Memorial Church and at the main car park at NHS Mountainhall Treatment Centre.'
+bathrooms: 'Public restrooms are available in Crichton Central Cafe, and Mountainhall Treatment Centre during regular business hours.'
+accessible: '– Plantings at The Crichton are close to main pathways. The Crichton Memorial Church planting site will potentially be the easiest to access for wheelchair users. <br> – The site at Mountainhall Occupational Health is directly alongside an accessible pathway just behind the Occupational Health Department, near a bench dedicated to NHS Staff. Please note this pathway is on a steep incline. <br>– The Three Road Ends location at Mountainhall requires walking along an uneven grassy pathway and is not suitable for wheelchair users.'
+# siteInfo: '<b>Finding Mountainhall Three Roads End:</b> <br/>
+#   The Three Road Ends site is accessible via a short path from the bottom of the large main car park.<br/>
+#   <b>Finding Mountainhall Occupational Health / Helipad site:</b><br/>To Follow.'
 ---
 
-Mollit cillum sint veniam enim labore amet. Amet irure do enim irure. Elit exercitation consequat enim eiusmod Lorem. Tempor Lorem commodo do adipisicing non et in et ipsum reprehenderit.
+In Dumfries, more than 125 trees are planted at six locations across The Crichton Trust and NHS Mountainhall. Altogether, the six plantings create a walking loop which takes approximately one hour to walk, reflecting the one hour for exercise which was allowed during the first Lockdown in the Spring of 2020.
 
-Irure officia do dolore cillum ea labore veniam quis ad sint ad non laborum. Duis ipsum velit tempor eiusmod duis. Do aliqua adipisicing do nostrud cillum cupidatat magna anim nisi ad velit excepteur labore.
+Each of the six plantings is accompanied by a sandstone marker, and each marker has been inscribed with handwritten stories of loss and resilience gathered on postcards during Phase One of the project, when the idea for the forest was being co-designed.
+The six plantings in Dumfries can be found at:
 
-<!-- <a class="link" href='../events/dumfries'><b>See also: </b>Events at the Dumfries site.</a> -->
+- Crichton Memorial Church
+- Easterbrook Hall
+- Dudgeon House
+- Monreith House
+- Occupational Health at NHS Mountainhall Treatment Centre
+- Three Road Ends at Mountainhall Treatment Centre
+
+<a class="link" href='../events/dumfries'><b>See also: </b>Events at Dumfries sites.</a>

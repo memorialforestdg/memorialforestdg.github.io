@@ -16,13 +16,18 @@ textColor: '--brand-lt'    # css custom prop
 w3w:  'bearable.scars.blazed'
 lat: 54.89962
 lon: -5.020083
-address: 'Galloway Community Hospital, Stranraer DG9 7DQ'
-hours: '24 hours a day / 7 days a week including holidays'
-siteInfo: 'The Stranraer Memorial Forest site is located within the Community Garden, behind the Galloway Community Hospital car park. It is enclosed behind a wooden fence that surrounds the Community Garden, and not visible from the car park or hospital entrance. Members of the public are most welcome to enter the garden by the gate on the site entrance at any time  (ROAD NAME HERE) and visit the memorial at any time.'
+address: 'Community Garden at Galloway Community Hospital, Stranraer DG9 7DQ'
+
+siteInfo: 'The Stranraer Memorial Forest is planted within a Community Garden, located behind the Galloway Community Hospital car park. It is enclosed behind a wooden fence that surrounds the garden and is not visible from the car park. Members of the public are most welcome to enter the garden by the side gate at any time to visit the memorial.'
+hours: 'Open every day including holidays, dawn to dusk'
+tickets: 'Entrance is Free'
+partners: 'NHS Dumfries and Galloway'
+website: 'https://www.nhsinform.scot/scotlands-service-directory/hospitals/8915%201dng1116'
+accessible: 'The site in Stranraer is located near to the main car park, and currently accessed through a small grassy path which involves a short incline. There are plans for paved access in the near future.'
 ---
 
-Mollit cillum sint veniam enim labore amet. Amet irure do enim irure. Elit exercitation consequat enim eiusmod Lorem. Tempor Lorem commodo do adipisicing non et in et ipsum reprehenderit.
+The Dispersed Memorial Forest site in Stranraer is on the grounds of the Galloway Community Hospital. It features a small cluster of native tree species alongside a sandstone and bronze marker. The marker is inscribed with stories of loss and resilience gathered from across the region, including handwritten sentences from NHS staff in Stranraer.
 
-Irure officia do dolore cillum ea labore veniam quis ad sint ad non laborum. Duis ipsum velit tempor eiusmod duis. Do aliqua adipisicing do nostrud cillum cupidatat magna anim nisi ad velit excepteur labore.
+The Community Garden is maintained by volunteers of Stranraer Incredible Edibles, and members of the public are encouraged to pick their own vegetables from the garden while they visit. The garden is an initiative of the D&G Health Board Endowment Fund.
 
-<!-- <a class="link" href='../events/stranraer'><b>See also: </b>Events at the Stranraer site.</a> -->
+<a class="link" href='../events/stranraer'><b>See also: </b>Events at the Stranraer site.</a>
