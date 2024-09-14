@@ -33,6 +33,7 @@ interface Props {
   website?: ValidUrl
   phone?: string
   hours?: string
+  tickets?: string
   food?: string
   bathrooms?: string
   accessible?: string
@@ -54,6 +55,7 @@ const {
   phone,
   partners,
   hours,
+  tickets,
   food,
   bathrooms,
   accessible,
@@ -61,7 +63,7 @@ const {
   bicycles,
   parking,
   siteInfo,
-  locProviso = `–– Please note opening times and access information may change. Please visit the site partner website listed above or phone ahead for updated information.`
+  locProviso = `Please note opening times and access information may change. Please visit the site partner website listed above or phone ahead for updated information.`
 } = Astro.props as ValidUrl
 
 // Validate w3w format
@@ -112,9 +114,10 @@ const textColorVar = `var(${textColor})`
             <strong>Google Maps:</strong>
             <a
               class="di-underline-hover"
-              href={`https://www.google.com/maps/dir/?api=1&destination=${lat},${lon}`}
-              target="_blank">{lat}, {lon}</a
-            >
+              href={`https://www.google.com/maps/dir/?api=1&destination=${lon}+${lat}`}
+              target="_blank"
+              >{lon}, {lat}
+            </a>
             <Icon name="material-symbols-light:open-in-new" />
           </li>
           <!-- <li class="open-street-map">
@@ -171,11 +174,20 @@ const textColorVar = `var(${textColor})`
           </ul>
         </address>
       </li>
+
       {
         hours && (
           <li class="info-item hours">
             <Icon name="material-symbols-light:nest-clock-farsight-analog-outline" />
             <div class="item-subject" set:html={hours} />
+          </li>
+        )
+      }
+      {
+        tickets && (
+          <li class="info-item tickets">
+            <Icon name="ion:ticket" />
+            <div class="item-subject" set:html={tickets} />
           </li>
         )
       }
@@ -241,8 +253,16 @@ const textColorVar = `var(${textColor})`
             <Icon name="material-symbols-light:info-outline" />
             <div class="item-subject">
               <span set:html={siteInfo} />
-              <br />
-              <i class="f6 dib mt-2 word-wrap" set:html={locProviso} />
+            </div>
+          </li>
+        )
+      }
+      {
+        siteInfo && (
+          <li class="info-item proviso">
+            <Icon name="material-symbols-light:release-alert-outline-rounded" />
+            <div class="item-subject">
+              <i class="f6 dib word-wrap" set:html={locProviso} />
             </div>
           </li>
         )
