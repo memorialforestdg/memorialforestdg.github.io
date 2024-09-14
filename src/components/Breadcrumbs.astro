@@ -1,25 +1,52 @@
 ---
 interface Props {
-  // breadcrumbs an array of objecs with the following properties : crumb, url
-  breadcrumbs: Array<{crumb: string; url: string}>
+  // ID and aria-label of the nav, defaults to "Breadcrumbs"
+  id?: string
+  // currentPage is the url of the current page
+  currentPage?: typeof Astro.url
+  // crumbs is an array of objecs with the following properties : crumb, url
+  crumbs?: Array<{text: string; url: string}>
 }
 
-const {breadcrumbs} = Astro.props
+let {id = 'Breadcrumbs', crumbs = [], currentPage} = Astro.props
+if (!currentPage) currentPage = Astro.url
+if (!currentPage?.pathname) return
+if (currentPage.pathname === '/') return
+let currentPath = '/'
+
+if (crumbs.length === 0) {
+  const paths = currentPage.pathname.split('/').slice(1)
+  crumbs.push({text: 'Home', url: currentPath})
+  if (paths.length === 0) return
+  paths.map((path) => {
+    currentPath += `${path}/`
+    if (path === '') return
+    crumbs.push({
+      text: path
+        .replace(/-/g, ' ')
+        .split(' ')
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' '),
+      url: currentPath
+    })
+  })
+}
 ---
 
-<nav aria-label="Breadcrumb" class="breadcrumbs">
+<nav aria-label="breadcrumbs" class="breadcrumbs" id={id} aria-label={id}>
   <ol>
     {
-      breadcrumbs.map((breadcrumb, index) =>
-        index === breadcrumbs.length - 1 ? (
-          <li>
-            <a href="" aria-current="page">
-              {breadcrumb.crumb}
+      crumbs.map((breadcrumb, index) =>
+        index === crumbs.length - 1 ? (
+          <li class="breadcrumb is-active">
+            <a href={breadcrumb.url} aria-current="page">
+              {breadcrumb.text}
             </a>
           </li>
         ) : (
-          <li>
-            <a href={breadcrumb.url}>{breadcrumb.crumb}</a> /
+          <li class="breadcrumb">
+            <a href={breadcrumb.url}>{breadcrumb.text}</a>
+            <span aria-hidden="true"> ≻ </span>
           </li>
         )
       )
@@ -34,7 +61,7 @@ const {breadcrumbs} = Astro.props
     margin: 0;
     padding: var(--spacing-1) var(--spacing-2);
     list-style: none;
-    background-color: var(--jet-200);
+    background-color: var(--jet-100);
     border-radius: 3px;
   }
 
