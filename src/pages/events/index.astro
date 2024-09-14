@@ -1,7 +1,9 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro'
-import Flourish from '../../components/Flourish.astro'
-import Card from '../../components/Card.astro'
+import BaseLayout from '~layouts/BaseLayout.astro'
+import Breadcrumbs from '~components/Breadcrumbs.astro'
+import Card from '~components/Card.astro'
+import Flourish from '~components/Flourish.astro'
+
 import bannerImage from '../../images/RememberingTogetherDG_imageGregorAnderson_croppedHorizontal.jpg'
 import castledouglas from '../../images/RememberingTogether_Celebration_Threave_72dpi-99(edit).jpg'
 import dumfries from '../../images/RT_Dumfries_Celebration_72dpi-135.jpg'
@@ -17,6 +19,7 @@ const flourishClasses = ['--greywillow', 'dropcap', '--dc-cerise-800']
   <main id="main">
     <div class="container stack">
       <div class="stack pl-5-ns pr-5-ns pt-4-ns">
+        <Breadcrumbs />
         <h2>The Dispersed Memorial Forest: Planting & Events</h2>
         <Flourish classes={flourishClasses}>
           <p>
