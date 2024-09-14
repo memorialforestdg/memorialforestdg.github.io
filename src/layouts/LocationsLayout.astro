@@ -1,15 +1,16 @@
 ---
-import Flourish from '../components/Flourish.astro'
-import OpenMap from '../components/OpenMap.astro'
-import Gallery from '../components/Gallery.astro'
 import BaseLayout from './BaseLayout.astro'
+import Breadcrumbs from '~components/Breadcrumbs.astro'
+import Flourish from '~components/Flourish.astro'
+import Gallery from '~components/Gallery.astro'
 import LocationSidebar from '~components/LocationSidebar.astro'
+import OpenMap from '~components/OpenMap.astro'
+import sluggo from '~js/sluggo'
 import type {ImageMetadata} from 'astro'
 import {type DataEntryMap} from 'astro:content'
-import {type W3WFormat} from '../components/LocationSidebar.astro'
-import {type Location} from '../components/OpenMap.astro'
-import {mapLocations} from '../js/mapLocations'
-import sluggo from '~js/sluggo'
+import {type W3WFormat} from '~components/LocationSidebar.astro'
+import {type Location} from '~components/OpenMap.astro'
+import {mapLocations} from '~js/mapLocations'
 
 // locations
 const locations: Location[] = mapLocations
@@ -104,6 +105,7 @@ const mapHeight = '350px'
     </div>
     <div class="location container">
       <div class="stack pl-5-ns pr-5-ns pt-4-ns">
+        <Breadcrumbs />
         <div class="markdown-content">
           <Flourish classes={flourishClasses}>
             <slot />
