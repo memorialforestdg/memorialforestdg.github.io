@@ -6,8 +6,19 @@ import Breadcrumbs from '~components/Breadcrumbs.astro'
 <BaseLayout pageTitle="Test of Breadcrumbs">
   <main id="main">
     <div class="container full-width">
-      <h2>Breadcrumbs</h2>
+      <h2>Breadcrumbs without any params</h2>
       <Breadcrumbs />
+      <h2>With currentPage Astro.url object</h2>
+      <Breadcrumbs id="my-breadcrumbs" currentPage={Astro.url} />
+      <h2>Using crumbs array</h2>
+      <Breadcrumbs
+        id="my-breadcrumbs-2"
+        crumbs={[
+          {text: 'Home', url: '/'},
+          {text: 'Page 1', url: '/page-1'},
+          {text: 'Page 2', url: '/page-2'}
+        ]}
+      />
     </div>
   </main>
 </BaseLayout>
