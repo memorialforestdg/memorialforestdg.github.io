@@ -40,6 +40,7 @@ interface Props {
   bicycles?: string
   parking?: string
   siteInfo?: string
+  locProviso?: string
 }
 
 const {
@@ -59,7 +60,8 @@ const {
   transport,
   bicycles,
   parking,
-  siteInfo
+  siteInfo,
+  locProviso = `–– Please note opening times and access information may change. Please visit the site partner website listed above or phone ahead for updated information.`
 } = Astro.props as ValidUrl
 
 // Validate w3w format
@@ -240,11 +242,7 @@ const textColorVar = `var(${textColor})`
             <div class="item-subject">
               <span set:html={siteInfo} />
               <br />
-              <i class="f6 dib mt-2 word-wrap">
-                –– Opening and access times subject to change without notice;
-                where possible visit the website or phone ahead to avoid
-                dissappointment.
-              </i>
+              <i class="f6 dib mt-2 word-wrap" set:html={locProviso} />
             </div>
           </li>
         )
