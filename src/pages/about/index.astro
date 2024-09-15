@@ -1,147 +1,161 @@
 ---
+import BaseLayout from '~layouts/BaseLayout.astro'
+import Breadcrumbs from '~components/Breadcrumbs.astro'
+import Card from '~components/Card.astro'
 import Flourish from '~components/Flourish.astro'
-import Gallery from '~components/Gallery.astro'
-import BaseLayout from '~/layouts/BaseLayout.astro'
-import BannerImage from '../../images/RememberingTogetherWBF22LowRes74_ImageColinTennant.jpg'
-const pageTitle = 'The Story&colon; D&G’s Covid Memorial'
-const bannerAlt =
-  'Remembering Together Phase 1 Workshop, image by Colin Tennant'
-const flourishClasses = ['--alder', 'dropcap', '--dc-cerise-800']
-const collectionId = 'albums'
-const albumId = 'foo'
 
-// inset gallery
-import img1 from '../../images/ImageCredit_tsBeall_IMG_2538.webp'
-import img2 from '../../images/dispersed-forrest-map.jpg'
-import img3 from '../../images/RT-road-signage.jpg'
-import img4 from '../../images/AlderTreegrowingoutofTreeTube_Threave.jpg'
+import bannerImage from '../../images/RememberingTogetherDG_imageGregorAnderson_croppedHorizontal.jpg'
+import theStoryImage from '../../images/RememberingTogetherDG_imageGregorAnderson_croppedHorizontal.jpg'
+import phase1image from '../../images/RememberingTogetherWBF22LowRes57__ImageColinTennant.jpg'
+import phase2image from '../../images/planting-dumfriees-2.jpg'
+import plantingImage from '../../images/planting-dumfries.jpg'
+import artistsImage from '../../images/RememberingTogetherWBF22LowRes51_ImageColinTennant-horiz.jpg'
+import partnersImage from '../../images/RT_Dumfries_Celebration_72dpi-126.jpg'
+const bannerAlt =
+  'Ribbon image of Remembering Together D&G event, with memory ribbons fluttering in the wind and event visitors gating arround a table in the background.'
+const flourishClasses = ['--greywillow', 'dropcap', '--dc-cerise-800']
 ---
 
-<BaseLayout
-  pageTitle={pageTitle}
-  bannerImage={BannerImage}
-  bannerAlt={bannerAlt}
->
+<BaseLayout pageTitle="About" bannerImage={bannerImage} bannerAlt={bannerAlt}>
   <main id="main">
     <div class="container stack">
       <div class="stack pl-5-ns pr-5-ns pt-4-ns">
-        <div class="markdown-content">
-          <Flourish classes={flourishClasses}>
-            <p>
-              The Covid Memorial for Scotland’s Dumfries and Galloway is a
-              memorial forest, planted across the region in five locations: <a
-                href="../visit/castle-douglas">Castle Douglas</a
-              >, <a href="../visit/dumfries">Dumfries</a>, <a
-                href="../visit/moffat">Moffat</a
-              >, <a href="../visit/sanquhar">Sanquhar</a>, and <a
-                href="../visit/stranraer">Stranraer</a
-              >. Over 400 native trees were planted as a way to remember and
-              honour each person who died from COVID-19 in the region.
-              Additional trees were planted to represent other types of loss,
-              and the ways communities came together over the pandemic.
-            </p>
-          </Flourish>
-          <i>The Memorial Forest</i>
-          is part of Scotland-wide project, <a
-            href="https://www.rememberingtogether.scot/">Remembering Together</a
-          >, which worked between 2022-24 to co-create memorials to honour those
-          we lost, mark what has changed in our lives, and preserve the best of
-          what we learned and created together during the Covid pandemic.
-          Artists and creative organisations were commissioned in each of
-          Scotland’s 32 local authority areas.
-
-          <Gallery
-            images={[img1, img2, img3, img4]}
-            galleryWraperClasses={'m3 pa-2 bt bb b--desert-300'}
-            targetCellHeight={130}
-            cellFormat={'square'}
-            galleryUlClasses={'pa-0 list flex flex-wrap gap-2 justify-center'}
-            cellLiClasses={'pa-0 ma-0 shadow-hover grow'}
-            cellClasses={'pa-0 ma-0 bg-brand-purple br1'}
-          />
-
+        <Breadcrumbs />
+        <Flourish classes={flourishClasses}>
           <p>
-            In Dumfries & Galloway, <a href="../about/the-artists/"
-              >commissioned artists</a
-            > t s Beall and Katie Anderson worked with communities to collaboratively
-            design and plant <i>The Dispersed Memorial Forest</i> across the region.
-            The artists began working with communities in 2022, exploring how to
-            remember and honour those impacted by Covid. Between July-December 2022
-            (<a href="./phase-1">Phase 1</a>), the artists brought a sculptural
-            ‘<a href="">Tree of Remembrance</a>’ to public events across D&G,
-            and hosted postcard-making workshops and conversational events with
-            community groups –– including NHS staff, unpaid carers, young
-            people, and New Scots. These activities were designed to encourage
-            people to share their experiences, and to help decide the shape of
-            D&G’s Covid Memorial.
+            The following pages tell the story of The Dispersed Memorial Forest,
+            its genisis, and the communities and partners who made it possible:
           </p>
-
-          <p>
-            In workshops and conversations during <a href="./phase-1">Phase 1</a
-            >, the artists spoke to over 800 people from towns and communities
-            across the region. Through those conversations, three key elements
-            for the memorial emerged: <i>The Dispersed Memorial Forest</i>, a
-            series of <a href="">Tree Planting and Community Gathering events</a
-            >, and an <a href="">Archive</a> sharing stories of loss and resilience
-            from across the region. The artists asked what people wanted to remember
-            about lockdown, and what they wished they could forget, or let go of.
-            Some of their answers, collected as a series of <a href=""
-              >postcards</a
-            > and
-            <a href="">ribbons</a>, are inscribed into the <a href=""
-              >sculptural markers</a
-            > that are installed on each forest site.
-          </p>
-
-          <p>
-            <h3>Partners & Funders</h3>
-            <i>Remembering Together D&G</i> was commissioned by <a
-              href="https://www.greenspacescotland.org.uk/"
-              >Greenspace Scotland</a
-            >
-            <a
-              href="https://dgunlimited.org/"
-              rel="noopener noreferrer nofollow">DG Unlimited</a
-            > and <a href="https://www.dumgal.gov.uk/"
-              >Dumfries & Galloway Council</a
-            > with funding from the
-            <a href="https://www.gov.scot/">Scottish Government</a>.
-          </p>
-          <p>
-            Site Partners for <i>The Dispersed Memorial Forest</i> include <a
-              href="">NHS Dumfries and Galloway</a
-            > (at GCH in Stranraer, and Mountainhall Treatment Centre in Dumfries),
-            <a href="">NTS Threave Estate and Gardens</a> in Castle Douglas, <a
-              href="">Moffat Community Nature Reserve</a
-            >, <a href="">Sanquhar Community Council</a>, and <a href=""
-              >The Crichton Estate</a
-            > in Dumfries.
-          </p>
-          <br />
-          <b
-            >Learn more about the project: <a href="./phase-1">Phase 1</a> and <a
-              href="">Phase 2</a
-            >.</b
+        </Flourish>
+        <div class="cards__wrap">
+          <ul class="flex flex-wrap justify-center list pa-0">
+            <li class="grow card_wrap">
+              <a href="./the-story">
+                <Card
+                  title="The Story"
+                  imgUrl={theStoryImage}
+                  alt=""
+                  headerHeight="150px"
+                  imagePosition="center 17%"
+                  alt="Katie Anderson, and ts Beall"
+                  wrapClasses="relative grid ma-2 bg-surface-1 br2 overflow-hidden shadow-1 link  "
+                  headerClasses="relative flex-column flex justify-end bg-brand-teal-dk relative br-2"
+                  headingWrapClasses="absolute w-100 pl-3 header-img-gradent"
+                  headingClasses="f3 brand-yellow-lt ma-2"
+                />
+              </a>
+            </li>
+            <li class="grow card_wrap">
+              <a href="./phase-1">
+                <Card
+                  title="Phase 1"
+                  imgUrl={phase1image}
+                  alt=""
+                  headerHeight="150px"
+                  imagePosition="center 17%"
+                  wrapClasses="grid ma-2 bg-surface-1 br2 overflow-hidden shadow-1"
+                  headerClasses="relative flex-column flex justify-end bg-brand-teal-dk relative br-2"
+                  headingWrapClasses="absolute w-100 pl-3 header-img-gradent"
+                  headingClasses="f3 brand-yellow-lt ma-2"
+                />
+              </a>
+            </li>
+            <li class="grow card_wrap">
+              <a href="./phase-2">
+                <Card
+                  title="Phase 2"
+                  imgUrl={phase2image}
+                  alt=""
+                  headerHeight="150px"
+                  imagePosition="center 17%"
+                  wrapClasses="grid ma-2 bg-surface-1 br2 overflow-hidden shadow-1"
+                  headerClasses="relative flex-column flex justify-end bg-brand-teal-dk relative br-2"
+                  headingWrapClasses="absolute w-100 pl-3 header-img-gradent"
+                  headingClasses="f3 brand-yellow-lt ma-2"
+                />
+              </a>
+            </li>
+            <li class="grow card_wrap">
+              <a href="./planting-the-forest">
+                <Card
+                  title="Planting the Forest"
+                  imgUrl={plantingImage}
+                  alt=""
+                  headerHeight="150px"
+                  imagePosition="center 17%"
+                  wrapClasses="grid ma-2 bg-surface-1 br2 overflow-hidden shadow-1"
+                  headerClasses="relative flex-column flex justify-end bg-brand-teal-dk relative br-2"
+                  headingWrapClasses="absolute w-100 pl-3 header-img-gradent"
+                  headingClasses="f3 brand-yellow-lt ma-2"
+                />
+              </a>
+            </li>
+            <li class="grow card_wrap">
+              <a href="./partners-funders">
+                <Card
+                  title="Partners & Funders"
+                  imgUrl={partnersImage}
+                  alt=""
+                  headerHeight="150px"
+                  imagePosition="center 17%"
+                  wrapClasses="grid ma-2 bg-surface-1 br2 overflow-hidden shadow-1"
+                  headerClasses="relative flex-column flex justify-end bg-brand-teal-dk relative br-2"
+                  headingWrapClasses="absolute w-100 pl-3 header-img-gradent"
+                  headingClasses="f3 brand-yellow-lt ma-2"
+                />
+              </a>
+            </li>
+            <li class="grow card_wrap">
+              <a href="./the-artists">
+                <Card
+                  title="The Artists"
+                  imgUrl={artistsImage}
+                  alt=""
+                  headerHeight="150px"
+                  imagePosition="center 10%"
+                  wrapClasses="grid ma-2 bg-surface-1 br2 overflow-hidden shadow-1"
+                  headerClasses="relative flex-column flex justify-end bg-brand-teal-dk relative br-2"
+                  headingWrapClasses="absolute w-100 pl-3 header-img-gradent"
+                  headingClasses="f3 brand-yellow-lt ma-2"
+                />
+              </a>
+            </li>
+          </ul>
+        </div>
+        <hr />
+        <p>
+          <b>Visiting:</b>
+          <a href="../visit/" class="link"
+            >Follow this link to learn how you can visit the Dispersed Memorial
+            Forest.</a
           >
-          <hr />
-        </div>
-        <div class="gallery__wrap">
-          {
-            collectionId && albumId ? (
-              <Gallery
-                collectionId={collectionId}
-                albumId={albumId}
-                galleryWraperClasses={'nt-4'}
-                galleryUlClasses={
-                  'pa-0 list flex flex-wrap gap-2 justify-center'
-                }
-                cellLiClasses={'pa-0 ma-0 shadow-hover grow'}
-                cellClasses={'pa-0 ma-0 bg-brand-purple br1'}
-              />
-            ) : null
-          }
-        </div>
+        </p>
       </div>
     </div>
   </main>
 </BaseLayout>
+<style is:global>
+  .card__wrap:focus-within {
+    outline: 1px solid #000;
+  }
+
+  @media (max-width: 800px) {
+    .card {
+      width: 250px;
+      max-width: 100%;
+    }
+
+    .card__head picture,
+    .card__head picture > * {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  @media (max-width: 300px) {
+    .card {
+      width: 100%;
+    }
+  }
+</style>
