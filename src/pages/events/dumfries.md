@@ -19,4 +19,4 @@ Mollit cillum sint veniam enim labore amet. Amet irure do enim irure. Elit exerc
 
 Irure officia do dolore cillum ea labore veniam quis ad sint ad non laborum. Duis ipsum velit tempor eiusmod duis. Do aliqua adipisicing do nostrud cillum cupidatat magna anim nisi ad velit excepteur labore.
 
-<a class="link" href='../visit/dumfires'><b>Visit: </b>the Dumfires site.</a>
+<a class="link" href='/visit/dumfries'><b>Visit: </b>the Dumfires site.</a>
