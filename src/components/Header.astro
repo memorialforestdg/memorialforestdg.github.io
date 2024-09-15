@@ -72,7 +72,7 @@ const {title, bannerImage, bannerHeight = 576, bannerAlt, maintenice} = Astro.pr
           )
         }
         <div class="header__title absolute flex flex-column align-start justify-end w-100 pa-0 pl-3 pl-5-ns pr-2">
-          <h1 class="f1-ns f2 brand-yellow-lt">{title}</h1>
+          <h1 class="f1-ns f2 brand-yellow-lt" set:html={title} />
         </div>
       </div>
     </div>
