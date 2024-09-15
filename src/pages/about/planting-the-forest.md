@@ -14,7 +14,7 @@ In March and April 2024, the Remembering Together D&G project planted over 400 t
 
 The Tree Planting events were led by the artists and <a href="https://www.treesurv.co.uk/">TreeSurv</a>, an organisation specialising in the planting of native woodlands who were brought on as consultants. Events were hosted at each of the five sites selected during the <a href="./phase-1">Phase 1</a> of the project:
 
-- <a>Dumfries, with trees planted across The Crichton and NHS Mountainhall Treatment Centre</a>
+- <a href="../events/dumfries">Dumfries, with trees planted across The Crichton and NHS Mountainhall Treatment Centre</a>
 - <a href="../events/moffat">Moffat Community Nature Reserve</a>
 - <a href="../events/castle-douglas">Threave Nature Reserve at Castle Douglas</a>
 - <a href="../events/sanquhar">Bell Crescent Playing Field in Sanquhar</a>
