@@ -8,7 +8,7 @@ flourishClasses: ['--rowan-berries', 'dropcap', '--dc-brand-red-dk']
 
 # Gallery info
 # collectionId: albums
-# albumId: celebration-sanquhar
+# albumId: sanquhar_visit
 
 # Sidebar info
 bgColor: '--brand-cyan-dk' # css custom prop

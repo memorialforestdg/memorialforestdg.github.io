@@ -9,7 +9,7 @@ flourishClasses: ['--hawthorn', 'dropcap', '--dc-brand-cyan-dk']
 
 # Gallery info
 # collectionId: albums
-# albumId: celebration-castle-douglas
+# albumId: castle_douglas_visit
 
 # Sidebar info
 bgColor: '--brand-cyan-dk' # css custom prop

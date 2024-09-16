@@ -7,8 +7,8 @@ bannerHeight: 350
 flourishClasses: ['--silverbirch', 'dropcap', '--dc-brand-green-dk']
 
 # Gallery info#
-collectionId: albums
-albumId: celebration_stranraer
+# collectionId: albums
+# albumId: stranraer_visit
 
 # Sidebar info
 bgColor: '--brand-cyan-dk' # css custom prop
