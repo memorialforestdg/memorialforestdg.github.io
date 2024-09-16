@@ -114,9 +114,10 @@ const textColorVar = `var(${textColor})`
             <strong>Google Maps:</strong>
             <a
               class="di-underline-hover"
-              href={`https://www.google.com/maps/dir/?api=1&destination=${lon}+${lat}`}
+              href={`https://www.google.com/maps/dir/?api=1&destination=${lat}+${lon}`}
               target="_blank"
-              >{lon}, {lat}
+            >
+              {lat}, {lon}
             </a>
             <Icon name="material-symbols-light:open-in-new" />
           </li>
