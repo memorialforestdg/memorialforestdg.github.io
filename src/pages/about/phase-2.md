@@ -16,7 +16,7 @@ The proposal for The Dispersed Memorial Forest was co-created with communities a
 
 <a href="https://www.treesurv.co.uk/">TreeSurv</a>, a D&G-based organisation specialising in planting native woodlands, were brought on as advisors. TreeSurv staff visited each of the five Memorial Forest sites with the artists, met with site partners and local community members, and recommended native tree species to plant at each site. Local community members were consulted on the types of trees they preferred, and this was taken into consideration when deciding what species to plant on each site.
 
-Tree Planting Events were hosted at each of the five locations (more on <a href="./planting-the-forest">Planting the Forest</a> here, or visit each location’s <a href="../events/">Event Page</a>). After the trees were planted, sculptural markers were co-designed with local communities, and fabricated and installed.
+Tree Planting Events were hosted at each of the five locations (more on <a href="./planting-the-forest">Planting the Forest</a> here). After the trees were planted, sculptural markers were co-designed with local communities, and fabricated and installed.
 
 ## Community Gathering Events
 
