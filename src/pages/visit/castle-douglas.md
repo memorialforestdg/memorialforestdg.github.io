@@ -14,9 +14,9 @@ flourishClasses: ['--hawthorn', 'dropcap', '--dc-brand-cyan-dk']
 # Sidebar info
 bgColor: '--brand-cyan-dk' # css custom prop
 textColor: '--brand-lt'    # css custom prop
-w3w:  'allies.taken.premature'
-lat: 54.933848
-lon: -3.959061
+w3w: 'cares.poem.sundial'
+lat: 55.050628
+lon: -3.594138
 website: 'https://www.nts.org.uk/visit/places/threave-garden/planning-your-visit'
 partners: National Trust for Scotland
 address: 'NTS Threave Nature Reserve, Castle Douglas DG7 1TJ'
