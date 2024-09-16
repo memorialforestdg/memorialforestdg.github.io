@@ -1,14 +1,14 @@
 ---
 layout: ../../layouts/LocationsLayout.astro
 pageTitle: Moffat
-bannerImage: '../images/RememberingTogether_Celebration_Moffat_72dpi-138.jpg'
+bannerImage: '../images/remembering_together_celebration_moffat_72dpi-16.jpg'
 bannerAlt: 'The launching of the forest in Dumfries.'
-bannerHeight: 350
+bannerHeight: 550
 flourishClasses: ['--horsechestnut', 'dropcap', '--dc-brand-orange-dk']
 
 # Gallery info
 collectionId: albums
-albumId: celebration-moffat
+albumId: moffat_visit
 
 # Sidebar info
 bgColor: '--brand-cyan-dk' # css custom prop

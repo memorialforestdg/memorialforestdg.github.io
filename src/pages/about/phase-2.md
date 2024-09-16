@@ -7,17 +7,19 @@ flourishClasses: ['--apple', 'dropcap', '--dc-purpureus-600']
 
 # Gallery info
 collectionId: albums
-albumId: foo
+albumId: phase_2
 ---
 
-Mollit cillum sint veniam enim labore amet. Amet irure do enim irure. Elit exercitation consequat enim eiusmod Lorem. Tempor Lorem commodo do adipisicing non et in et ipsum reprehenderit.
+The proposal for The Dispersed Memorial Forest was co-created with communities across the region in Phase 1 of the <i>Remembering Together D&G project</i>, June-December 2022. As the Covid Memorial for D&G, it included the creation of a <i>Dispersed Memorial Forest</i>, hosting community events to allow opportunities for shared reflection, and the creation of an archive which recorded stories of loss and resilience from people across the region.
 
-Irure officia do dolore cillum ea labore veniam quis ad sint ad non laborum. Duis ipsum velit tempor eiusmod duis. Do aliqua adipisicing do nostrud cillum cupidatat magna anim nisi ad velit excepteur labore.
+<a href="./phase-2">Phase 2</a> began in July 2023, and <a href="./the-artists">artists t s Beall and Katie Anderson</a> were recommissioned to co-design and deliver the memorial project. The artists hosted further conversations and workshops across D&G, building on earlier collaborations. The workshops and activities were designed to share information about the memorial project, and to help decide the locations for the Memorial Forest. Five sites were identified in Dumfries, Castle Douglas, Moffat, Sanquhar, and Stranraer, as the artists were keen to ensure that the forest was spread across (or ‘dispersed’) across D&G, so that people across the entire region would be able to visit the memorial.
 
-Qui elit consequat enim nostrud veniam incididunt aliquip voluptate qui ex culpa. In est aliquip ut pariatur. Voluptate aute excepteur cillum magna proident id minim voluptate duis. Incididunt sint nulla sunt culpa consequat enim aute excepteur sint sit est irure. Cillum sint consectetur laboris laborum irure sint excepteur fugiat ut. Qui incididunt exercitation eu ad sit laborum voluptate eiusmod amet est id proident.
+<a href="https://www.treesurv.co.uk/">TreeSurv</a>, a D&G-based organisation specialising in planting native woodlands, were brought on as advisors. TreeSurv staff visited each of the five Memorial Forest sites with the artists, met with site partners and local community members, and recommended native tree species to plant at each site. Local community members were consulted on the types of trees they preferred, and this was taken into consideration when deciding what species to plant on each site.
 
-Id est Lorem amet eiusmod consequat velit aliquip. Elit sit occaecat ad in. Aute sunt aliquip minim cupidatat dolor incididunt. Sunt labore mollit nisi ex sint occaecat amet ipsum commodo commodo eu.
+Tree Planting Events were hosted at each of the five locations (more on <a href="./planting-the-forest">Planting the Forest</a> here, or visit each location’s <a href="../events/">Event Page</a>). After the trees were planted, sculptural markers were co-designed with local communities, and fabricated and installed.
 
-Anim laboris culpa ex laboris sint tempor esse reprehenderit est exercitation. Sit proident fugiat dolor exercitation mollit elit id nulla. Eu amet duis id ex ipsum commodo mollit minim labore. Nisi aute esse commodo culpa excepteur fugiat irure pariatur anim duis exercitation eiusmod laboris voluptate. Incididunt do irure dolor ex commodo labore reprehenderit fugiat fugiat. Velit aliquip enim excepteur pariatur.
+## Community Gathering Events
 
-Deserunt elit sunt fugiat laboris esse Lorem incididunt quis eu eiusmod sit. Laboris enim aliqua Lorem do mollit labore occaecat irure ea veniam Lorem. Veniam sint cupidatat dolor ea duis aliquip qui consequat laborum irure qui ut. Sunt non aute ullamco ex.
+To mark the opening for each of the sites, the project hosted a series of Community Gathering Events at each location in June 2024, with activities including walks, sharing stories, music and food. The project’s artists worked alongside local community partners and individuals to create unique events for each site, inviting guest speakers, musicians, and local businesses to support activities.
+
+The events allowed an opportunity for reflection, and for communities to come together  – both key themes identified during Phase 1 of the project. The opportunity to share stories allowed individuals to speak about their experiences, and to have them documented and heard. Events were created with, and attended by,  primary school children, care home staff and residents, NHS staff and their families, local choirs and musicians, and  other local groups and individuals.

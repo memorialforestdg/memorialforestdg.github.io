@@ -1,14 +1,15 @@
 ---
 layout: ../../layouts/LocationsLayout.astro
 pageTitle: Dumfries
-bannerImage: '../images/RT_Dumfries_Celebration_72dpi-135.jpg'
+# bannerImage: '../images/RT_Dumfries_Celebration_72dpi-135.jpg'
+bannerImage: '../images/remembering_together_dumfries_celebration_72dpi-38.jpg'
 bannerAlt: 'The launching of the forest in Dumfries.'
 bannerHeight: 350
 flourishClasses: ['--holly', 'dropcap', '--dc-brand-purple-dk']
 
 # Gallery info
 collectionId: albums
-albumId: celebration-dumfries
+albumId: dumfries_gathering
 
 # Sidebar info
 bgColor: '--brand-cyan-dk' # css custom prop
@@ -41,4 +42,4 @@ The six plantings in Dumfries can be found at:
 - Occupational Health at NHS Mountainhall Treatment Centre
 - Three Road Ends at Mountainhall Treatment Centre
 
-<a class="link" href='../events/dumfries'><b>See also: </b>Events at Dumfries sites.</a>
+<!-- <a class="link" href='../events/dumfries'><b>See also: </b>Events at Dumfries sites.</a> -->

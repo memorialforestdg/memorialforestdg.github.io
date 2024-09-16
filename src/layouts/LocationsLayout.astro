@@ -69,6 +69,7 @@ locationsCopy[locationIndex].open = true
 const images = import.meta.glob<{default: ImageMetadata}>(
   '../images/**/*.{png,PNG,jpg,JPG,jpeg,svg,webp,avif}'
 )
+// Banner must be in the images folder.
 const banner = images[bannerImage] ? await images[bannerImage]() : (null as any)
 const BannerImageMetadata = banner.default as ImageMetadata
 

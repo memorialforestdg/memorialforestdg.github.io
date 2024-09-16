@@ -7,8 +7,8 @@ bannerHeight: 350
 flourishClasses: ['--rowan-berries', 'dropcap', '--dc-brand-red-dk']
 
 # Gallery info
-collectionId: albums
-albumId: celebration-sanquhar
+# collectionId: albums
+# albumId: celebration-sanquhar
 
 # Sidebar info
 bgColor: '--brand-cyan-dk' # css custom prop
@@ -28,4 +28,4 @@ The Memorial Forest in Sanquhar is located at Bell Crescent Park, a playing fiel
 
 This site includes a small cluster of trees and a beautiful oak bench. Under the bench are sandstone paving stones, and a bronze inset with handwriting gathered during Phase One, “Lockdown Loneliness and Recovering Together.“
 
-<a class="link" href='../events/sanquhar'><b>See also: </b>Events at the Sanquhar site.</a>
+<!-- <a class="link" href='../events/sanquhar'><b>See also: </b>Events at the Sanquhar site.</a> -->

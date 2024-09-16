@@ -8,8 +8,8 @@ bannerHeight: 350
 flourishClasses: ['--hawthorn', 'dropcap', '--dc-brand-cyan-dk']
 
 # Gallery info
-collectionId: albums
-albumId: celebration-castle-douglas
+# collectionId: albums
+# albumId: celebration-castle-douglas
 
 # Sidebar info
 bgColor: '--brand-cyan-dk' # css custom prop
@@ -35,4 +35,4 @@ The planting site is just off the walking path connecting the Nature Reserve to 
 
 __Please note that the Memorial Forest site is part of Threave NATURE RESERVE, which is different from Threave GARDEN AND ESTATE. See detailed information below. <br>Entry to the Nature Reserve is free.__
 
-<a class="link" href='../events/castle-douglas'><b>See also: </b>Events at the Castle Douglas site.</a>
+<!-- <a class="link" href='../events/castle-douglas'><b>See also: </b>Events at the Castle Douglas site.</a> -->

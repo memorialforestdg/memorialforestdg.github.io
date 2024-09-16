@@ -6,9 +6,9 @@ bannerAlt: 'The launching of the forest in Stranraer.'
 bannerHeight: 350
 flourishClasses: ['--silverbirch', 'dropcap', '--dc-brand-green-dk']
 
-# Gallery info
-collectionId: albums
-albumId: celebration-stranraer
+# Gallery info#
+ collectionId: albums
+# albumId: celebration-stranraer
 
 # Sidebar info
 bgColor: '--brand-cyan-dk' # css custom prop
@@ -30,4 +30,4 @@ The Dispersed Memorial Forest site in Stranraer is on the grounds of the Gallowa
 
 The Community Garden is maintained by volunteers of Stranraer Incredible Edibles, and members of the public are encouraged to pick their own vegetables from the garden while they visit. The garden is an initiative of the D&G Health Board Endowment Fund.
 
-<a class="link" href='../events/stranraer'><b>See also: </b>Events at the Stranraer site.</a>
+<!-- <a class="link" href='../events/stranraer'><b>See also: </b>Events at the Stranraer site.</a> -->

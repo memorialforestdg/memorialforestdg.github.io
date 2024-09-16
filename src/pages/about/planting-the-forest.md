@@ -7,7 +7,7 @@ flourishClasses: ['--beech', 'dropcap', '--dc-picton-600']
 
 # Gallery info
 collectionId: albums
-albumId: foo
+albumId: forest_planting
 ---
 
 In March and April 2024, the Remembering Together D&G project planted over 400 trees at five locations across the region as part of The Dispersed Memorial Forest, working with local partners and community groups, alongside individuals and families impacted by the COVID-19 pandemic.
