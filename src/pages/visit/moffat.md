@@ -23,9 +23,10 @@ siteInfo: 'The Community Nature Reserve is signposted off the A701. Follow the b
 The Memorial Forest planting site is accessible via a short walk of 300 metres (5-10 minutes) from the Nature Reserve car park. The ground is rough in some places. Those with access concerns can drive to the Memorial rather than walking along the access road. <br><br>To drive to the Memorial site: rather than parking in the car park, turn left just before the car park onto the access road. You will see a vehicle gate just ahead (please close the gate behind you). Drive straight for 2 minutes – the Memorial site will be on your right, and is marked by paving stones.'
 partners: 'Moffat Community Nature Reserve'
 tickets: 'Entrance is Free'
+locProviso: '– Please note opening times and access information may change. Please visit the site partner website listed above for updated information.'
 ---
 
-The Memorial Forest at Moffat site is part of the Moffat Community Nature Reserve, once a working quarry and now a haven for wildlife and a wonderful place to explore for local people and visitors to Moffat. The old weigh-bridge is now part of a wildflower meadow, and the sand pits have become wildlife pools.
+The Memorial Forest at Moffat is part of the Moffat Community Nature Reserve, once a working quarry and now a haven for wildlife and a wonderful place to explore for local people and visitors to alike. The old weigh-bridge is now part of a wildflower meadow, and the sand pits have become wildlife pools.
 
 The Memorial site is marked by paving stones inlaid with bronze, and includes 125 trees planted in a single copse that visitors can walk around and within.
 
