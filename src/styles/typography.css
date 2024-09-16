@@ -7,7 +7,7 @@
   font-size: var(--fluid-base);
   font-family: var(--sans);
   font-style: normal;
-  line-height: 1.5;
+  line-height: 1.6;
   font-display: swap;
   text-rendering: optimizelegibility;
   -webkit-font-smoothing: antialiased;
@@ -57,13 +57,14 @@ ul,
 ol {
   margin-block: var(--spacing-2) var(--spacing-2);
   font-weight: normal;
-  font-size: 1rem;
+  font-size: 1.1rem;
   font-family: var(--body);
   font-style: normal;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 p {
+  text-wrap: unset; /* reset to default */
   text-wrap: pretty;
   word-break: auto-phrase;
   hyphens: auto;
