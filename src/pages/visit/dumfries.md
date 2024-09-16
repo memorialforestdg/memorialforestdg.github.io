@@ -9,7 +9,7 @@ flourishClasses: ['--holly', 'dropcap', '--dc-brand-purple-dk']
 
 # Gallery info
 collectionId: albums
-albumId: dumfries_gathering
+albumId: dumfries_visit
 
 # Sidebar info
 bgColor: '--brand-cyan-dk' # css custom prop
