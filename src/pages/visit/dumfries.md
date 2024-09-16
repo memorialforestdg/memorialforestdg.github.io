@@ -15,8 +15,8 @@ albumId: dumfries_visit
 bgColor: '--brand-cyan-dk' # css custom prop
 textColor: '--brand-lt'    # css custom prop
 w3w:  'sparkles.parading.trusts'
-lat: -3.594138
-lon: 55.050628
+lat: 55.050628
+lon: -3.594138
 address: 'Crichton Memorial Church, The Crichton, Dumfries DG1 4ZZ'
 website: 'https://www.crichton.co.uk/'
 hours: 'Always open'
