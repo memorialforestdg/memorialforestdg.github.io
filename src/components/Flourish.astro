@@ -65,7 +65,7 @@ const cssProps = await Promise.all(
       .join('.')
       .toLocaleLowerCase()
 
-    const avifImage = await generateImage(image, 'avif', opts)
+    // const avifImage = await generateImage(image, 'avif', opts)
     const webpImage = await generateImage(image, 'webp', opts)
     const pngImage = await generateImage(image, 'png', opts)
 
