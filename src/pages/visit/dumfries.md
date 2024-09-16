@@ -6,7 +6,6 @@ bannerImage: '../images/remembering_together_dumfries_celebration_72dpi-38.jpg'
 bannerAlt: 'The launching of the forest in Dumfries.'
 bannerHeight: 350
 flourishClasses: ['--holly', 'dropcap', '--dc-brand-purple-dk']
-
 # Gallery info
 collectionId: albums
 albumId: dumfries_visit
@@ -25,14 +24,11 @@ partners: The Crichton Trust and NHS Dumfries and Galloway
 parking: 'Free car parking is available near The Crichton Memorial Church and at the main car park at NHS Mountainhall Treatment Centre.'
 bathrooms: 'Public restrooms are available in Crichton Central Cafe, and Mountainhall Treatment Centre during regular business hours.'
 accessible: '– Plantings at The Crichton are close to main pathways. The Crichton Memorial Church planting site will potentially be the easiest to access for wheelchair users. <br> – The site at Mountainhall Occupational Health is directly alongside an accessible pathway just behind the Occupational Health Department, near a bench dedicated to NHS Staff. Please note this pathway is on a steep incline. <br>– The Three Road Ends location at Mountainhall requires walking along an uneven grassy pathway and is not suitable for wheelchair users.'
-# siteInfo: '<b>Finding Mountainhall Three Roads End:</b> <br/>
-#   The Three Road Ends site is accessible via a short path from the bottom of the large main car park.<br/>
-#   <b>Finding Mountainhall Occupational Health / Helipad site:</b><br/>To Follow.'
 ---
 
 In Dumfries, more than 125 trees are planted at six locations across The Crichton Trust and NHS Mountainhall. Altogether, the six plantings create a walking loop which takes approximately one hour to walk, reflecting the one hour for exercise which was allowed during the first Lockdown in the Spring of 2020.
 
-Each of the six plantings is accompanied by a sandstone marker, and each marker has been inscribed with handwritten stories of loss and resilience gathered on postcards during Phase One of the project, when the idea for the forest was being co-designed.
+Each of the six plantings is accompanied by a sandstone marker, and each marker has been inscribed with handwritten stories of loss and resilience gathered on postcards during Phase 1 of the project, when the idea for the forest was being co-designed.
 The six plantings in Dumfries can be found at:
 
 - Crichton Memorial Church
