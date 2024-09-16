@@ -64,7 +64,7 @@ const {
   parking,
   siteInfo,
   locProviso = `Please note opening times and access information may change. Please visit the site partner website listed above or phone ahead for updated information.`
-} = Astro.props as ValidUrl
+} = Astro.props
 
 // Validate w3w format
 if (!isValidW3WFormat(w3w)) {
@@ -259,7 +259,7 @@ const textColorVar = `var(${textColor})`
         )
       }
       {
-        siteInfo && (
+        locProviso && (
           <li class="info-item proviso">
             <Icon name="material-symbols-light:release-alert-outline-rounded" />
             <div class="item-subject">
