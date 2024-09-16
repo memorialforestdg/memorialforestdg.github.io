@@ -4,13 +4,15 @@ import relativeLinks from 'astro-relative-links';
 import purgecss from "astro-purgecss";
 import purgeOpts from './purgecss.config.mjs'
 import { getCurrentNonce } from "./src/js/getCurrentNonce";
+import removeOriginalImages from "./src/intergrations/removeOriginalImages";
+// import prebuild from "./src/intergrations/prebuild"; //prebuild()
 
 export default defineConfig({
   build: {
     inlineStylesheets: 'auto'
   },
   // site: 'https://example.com', // We are not setting this as we want to deploy to domain mirrors, e.g. yourname.github.io and yourname.com.
-  integrations: [icon(), relativeLinks(), purgecss(purgeOpts)],
+  integrations: [icon(), relativeLinks(), purgecss(purgeOpts), removeOriginalImages],
   output: 'static',
   experimental: {
     env: {
