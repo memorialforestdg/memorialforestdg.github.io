@@ -104,13 +104,19 @@ if (imgUrl) {
     overflow: hidden;
   }
 
-  .card__head picture > * {
+  /* .card__head picture > * {
     width: 200%;
     height: 200%;
     min-height: var(--headerHeight);
     object-fit: contain;
     object-position: var(--imagePosition);
+  } */
+
+  .card__head picture > * {
+    min-height: var(--headerHeight);
+    object-fit: cover;
   }
+
 
   .card__content,
   .card__footer {
