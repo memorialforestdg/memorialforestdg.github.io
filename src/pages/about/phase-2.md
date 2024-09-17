@@ -23,3 +23,5 @@ Tree Planting Events were hosted at each of the five locations (more on <a href=
 To mark the opening for each of the sites, the project hosted a series of Community Gathering Events at each location in June 2024, with activities including walks, sharing stories, music and food. The project’s artists worked alongside local community partners and individuals to create unique events for each site, inviting guest speakers, musicians, and local businesses to support activities.
 
 The events allowed an opportunity for reflection, and for communities to come together  – both key themes identified during Phase 1 of the project. The opportunity to share stories allowed individuals to speak about their experiences, and to have them documented and heard. Events were created with, and attended by,  primary school children, care home staff and residents, NHS staff and their families, local choirs and musicians, and  other local groups and individuals.
+
+<b>Learn more about the project:</b> <a href="../../about/phase-1">Phase 1</a>

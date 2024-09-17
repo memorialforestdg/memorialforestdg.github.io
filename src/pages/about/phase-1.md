@@ -3,7 +3,7 @@ layout: ../../layouts/MDPagesLayout.astro
 pageTitle: 'Phase 1: Conversations'
 bannerImage: '../images/RememberingTogetherWBF22LowRes57__ImageColinTennant.jpg'
 bannerAlt: 'Image of workshop guest.'
-flourishClasses: ['--aspen', 'dropcap', '--dc-candlelight-600']
+flourishClasses: ['--aspen', 'dropcap', '--dc-forest-700']
 
 # Gallery info
 collectionId: albums
