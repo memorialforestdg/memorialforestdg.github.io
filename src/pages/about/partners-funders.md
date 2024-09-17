@@ -10,7 +10,7 @@ More information about the national _Remembering Together_ project, and details 
 [https://www.rememberingtogether.scot/](https://www.rememberingtogether.scot/)
 <br><br>
 
-_Remembering Together Dumfries and Galloway_ was commissioned by <a href="https://www.greenspacescotland.org.uk/" rel="noopener noreferrer nofollow">Greenspace Scotland</a>, <a href="https://dgunlimited.org/">DG Unlimited</a>, and <a href="https://www.dumgal.gov.uk/">Dumfries & Galloway Council</a> with funding from the <a href="https://www.gov.scot/">Scottish Government</a>.
+__Remembering Together Dumfries and Galloway__ was commissioned by <a href="https://www.greenspacescotland.org.uk/" rel="noopener noreferrer nofollow">Greenspace Scotland</a>, <a href="https://dgunlimited.org/">DG Unlimited</a>, and <a href="https://www.dumgal.gov.uk/">Dumfries & Galloway Council</a> with funding from the <a href="https://www.gov.scot/">Scottish Government</a>.
 <br><br>
 
 <h2>Site & Community Partners</h2>
