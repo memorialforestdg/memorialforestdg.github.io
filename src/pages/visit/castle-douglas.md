@@ -15,8 +15,8 @@ albumId: castle_douglas_visit
 bgColor: '--brand-cyan-dk' # css custom prop
 textColor: '--brand-lt'    # css custom prop
 w3w: 'cares.poem.sundial'
-lat: 55.050628
-lon: -3.594138
+lat: 54.933013
+lon: -3.95709
 website: 'https://www.nts.org.uk/visit/places/threave-garden/planning-your-visit'
 partners: National Trust for Scotland
 address: 'NTS Threave Nature Reserve, Castle Douglas DG7 1TJ'
