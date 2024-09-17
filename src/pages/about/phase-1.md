@@ -17,4 +17,4 @@ In workshops and conversations, the artists spoke to approximately 835 people fr
 
 From all of these events, activities, and conversations, three key elements for the memorial emerged: <i>The Dispersed Memorial Forest</i>, a series of Tree Planting and Community Gathering events, and an Archive sharing stories of loss and resilience from across the region. The artists asked what people wanted to remember about lockdown, and what they wished they could forget or let go off. Some of their answers, collected as a series of postcards, are inscribed into the sculptural markers that are installed on each forest site.
 
-<b>Learn more about the project: <a href="./phase-2">Phase 2</a>.</b>
+<b>Learn more about the project:</b> <a href="../../about/phase-2">Phase 2</a>

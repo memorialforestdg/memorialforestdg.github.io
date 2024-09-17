@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro'
 import Hero from '../components/Hero.astro'
 import Card from '~components/Card.astro'
 
-import visitImage from '../images/AlderTreegrowingoutofTreeTube_Threave2.jpg'
+import visitImage from '../images/RememberingTogether_Celebration_Moffat_72dpi-138.jpg'
 import aboutImage from '../images/MarkerProduction/makeing-the-markers-003.jpg'
 import platningImage from '../images/planting-dumfries.jpg'
 import storiesImage from '../images/postcards.webp'
@@ -57,7 +57,7 @@ const heroText = `<p>Welcome to home and the online archive for the Dispersed Me
                 title="Visit"
                 imgUrl={visitImage}
                 alt=""
-                headerHeight="150px"
+                headerHeight="240px"
                 imagePosition="center 90%"
                 alt="Katie Anderson, and ts Beall"
                 wrapClasses="link mw-5 grid ma-2 bg-surface-1 br2 overflow-hidden shadow-1"
@@ -73,7 +73,7 @@ const heroText = `<p>Welcome to home and the online archive for the Dispersed Me
                 title="About"
                 imgUrl={aboutImage}
                 alt=""
-                headerHeight="150px"
+                headerHeight="240px"
                 imagePosition="center 20"
                 alt="Katie Anderson, and ts Beall"
                 wrapClasses="link mw-5 grid ma-2 bg-surface-1 br2 overflow-hidden shadow-1"
@@ -89,7 +89,7 @@ const heroText = `<p>Welcome to home and the online archive for the Dispersed Me
                 title="Planting"
                 imgUrl={platningImage}
                 alt=""
-                headerHeight="150px"
+                headerHeight="240px"
                 imagePosition="center 20"
                 alt=""
                 wrapClasses="link mw-5 grid ma-2 bg-surface-1 br2 overflow-hidden shadow-1"
@@ -105,7 +105,7 @@ const heroText = `<p>Welcome to home and the online archive for the Dispersed Me
                 title="Stories"
                 imgUrl={storiesImage}
                 alt=""
-                headerHeight="150px"
+                headerHeight="240px"
                 imagePosition="center 17%"
                 alt="Katie Anderson, and ts Beall"
                 wrapClasses="link mw-5 grid ma-2 bg-surface-1 br2 overflow-hidden shadow-1"
@@ -120,3 +120,8 @@ const heroText = `<p>Welcome to home and the online archive for the Dispersed Me
     </div>
   </main>
 </BaseLayout>
+<style is:global>
+  .cards__wrap li {
+    width: 300px;
+  }
+</style>
