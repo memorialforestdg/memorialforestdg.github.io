@@ -26,7 +26,7 @@ bathrooms: 'Public restrooms are available in Crichton Central Cafe, and Mountai
 accessible: '– Plantings at The Crichton are close to main pathways. The Crichton Memorial Church planting site will potentially be the easiest to access for wheelchair users. <br> – The site at Mountainhall Occupational Health is directly alongside an accessible pathway just behind the Occupational Health Department, near a bench dedicated to NHS Staff. Please note this pathway is on a steep incline. <br>– The Three Road Ends location at Mountainhall requires walking along an uneven grassy pathway and is not suitable for wheelchair users.'
 ---
 
-In Dumfries, more than 125 trees are planted at six locations across The Crichton Trust and NHS Mountainhall. Altogether, the six plantings create a walking loop which takes approximately one hour to walk, reflecting the one hour for exercise which was allowed during the first Lockdown in the Spring of 2020.
+__In Dumfries, more than 125 trees are planted___ at six locations across The Crichton Trust and NHS Mountainhall. Altogether, the six plantings create a walking loop which takes approximately one hour to walk, reflecting the one hour for exercise which was allowed during the first Lockdown in the Spring of 2020.
 
 Each of the six plantings is accompanied by a sandstone marker, and each marker has been inscribed with handwritten stories of loss and resilience gathered on postcards during Phase 1 of the project, when the idea for the forest was being co-designed.
 The six plantings in Dumfries can be found at:

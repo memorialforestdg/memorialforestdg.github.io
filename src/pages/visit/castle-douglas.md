@@ -29,7 +29,7 @@ siteInfo: '<b>Please note that the Memorial Forest is at Threave NATURE RESERVE,
 Threave Nature Reserve is just off the A75 and well-signposted from every direction. The road to the nature reserve is directly opposite the B736 roundabout – follow the signs for Kelton Mains or Threave Castle.'
 ---
 
-Fifty trees have been planted at Threave Nature Reserve as part of <i>The Dispersed Memorial Forest</i>. They are accompanied by a bench made of Dalbeattie granite and oak, with a bronze inset.
+__Fifty trees have been planted at Threave Nature Reserve__ as part of <i>The Dispersed Memorial Forest</i>. They are accompanied by a bench made of Dalbeattie granite and oak, with a bronze inset.
 
 The planting site is just off the walking path connecting the Nature Reserve to Castle Douglas, and the site was chosen to  encourage visitors to stop and reflect. A variety of native species which suit the landscape were chosen to complement and support NTS Threave’s wider Landscape Restoration Project.
 
