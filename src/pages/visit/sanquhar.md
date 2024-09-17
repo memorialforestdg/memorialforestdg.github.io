@@ -21,7 +21,7 @@ siteInfo: 'The park is in Sanquhar DG4 6AL, near the junction of Bell Crescent a
 hours: 'Always Open'
 tickets: 'Entrance is Free'
 partners: 'Dumfries & Galloway Council'
-access: 'The public park is grass covered and without pathways. It is a short distance from a public bus stop on Deer Park Avenue. The memorial site is located on a rise and given the lack of pathways, wheelchair access may prove difficult.'
+accessible: 'The public park is grass covered and without pathways. It is a short distance from a public bus stop on Deer Park Avenue. The memorial site is located on a rise and given the lack of pathways, wheelchair access may prove difficult.'
 locProviso: 'Please note opening times and access information may change.'
 ---
 __The Memorial Forest in Sanquhar__ is located at Bell Crescent Park, a playing field and public park located in a residential area. It is bordered by a popular footpath which is part of the <a href="https://dgtrails.org/southern-upland-way/">Southern Upland Way</a> walking route, and has a spectacular view of the area, including nearby Sanquhar Castle.
