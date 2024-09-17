@@ -4,7 +4,7 @@ pageTitle: Partners & Funders
 flourishClasses: ['--alder', 'dropcap', '--dc-cerise-800']
 ---
 
-_The Dispersed Memorial Forest_ is part of the Scotland-wide project, [Remembering Together](https://www.rememberingtogether.scot/), which worked between 2022-24 to co-create memorials to honour those we lost, mark what has changed in our lives, and preserve the best of what we learned and created together during the Covid pandemic. Artists and creative organisations were commissioned in each of Scotland’s 32 local authority areas.
+__The Dispersed Memorial Forest__ is part of the Scotland-wide project, [Remembering Together](https://www.rememberingtogether.scot/), which worked between 2022-24 to co-create memorials to honour those we lost, mark what has changed in our lives, and preserve the best of what we learned and created together during the Covid pandemic. Artists and creative organisations were commissioned in each of Scotland’s 32 local authority areas.
 
 More information about the national _Remembering Together_ project, and details on the Community Covid Memorials which have been co-created across Scotland, is available at:
 [https://www.rememberingtogether.scot/](https://www.rememberingtogether.scot/)

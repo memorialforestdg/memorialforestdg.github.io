@@ -9,7 +9,7 @@ flourishClasses: ['--aspen', 'dropcap', '--dc-candlelight-600']
 collectionId: albums
 albumId: phase_1
 ---
-In Dumfries and Galloway, commissioned artists t s Beall and Katie Anderson worked with communities to collaboratively design and plant <i>The Dispersed Memorial Forest</i> across the region. The artists began working with communities in 2022, exploring how to remember and honour those impacted by Covid. Between July-December 2022 (Phase 1), the artists brought a sculptural <i>Tree of Remembrance</i> to seven public events across D&G, including <i>Wigton Book Festival</i>, <i>Stranraer Unexpected Garden Festival</i>, <i>The Kirkcudbright Light Festival</i>, and the <i>Dumfries Rood Fair</i>.
+__In Dumfries and Galloway__, commissioned artists t s Beall and Katie Anderson worked with communities to collaboratively design and plant <i>The Dispersed Memorial Forest</i> across the region. The artists began working with communities in 2022, exploring how to remember and honour those impacted by Covid. Between July-December 2022 (Phase 1), the artists brought a sculptural <i>Tree of Remembrance</i> to seven public events across D&G, including <i>Wigton Book Festival</i>, <i>Stranraer Unexpected Garden Festival</i>, <i>The Kirkcudbright Light Festival</i>, and the <i>Dumfries Rood Fair</i>.
 
 The artists also hosted more intimate postcard-making workshops and conversational events with community groups – including NHS staff, young people with special needs, New Scots, unpaid carers, and others who were not well represented through the larger public events.  These activities were designed to encourage people to share their experiences, and to help decide the shape of D&G’s Covid Memorial.
 

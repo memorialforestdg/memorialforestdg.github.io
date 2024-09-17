@@ -10,7 +10,7 @@ collectionId: albums
 albumId: forest_planting
 ---
 
-In March and April 2024, the <i>Remembering Together D&G</i> project planted over 400 trees at five locations across the region as part of <i>The Dispersed Memorial Forest</i>, working with local partners and community groups, alongside individuals and families impacted by the COVID-19 pandemic.
+__In March and April 2024, the <i>Remembering Together D&G</i> project__ planted over 400 trees at five locations across the region as part of <i>The Dispersed Memorial Forest</i>, working with local partners and community groups, alongside individuals and families impacted by the COVID-19 pandemic.
 
 ## Tree Planting Events
 
