@@ -1,18 +1,18 @@
 ---
 layout: ../../layouts/LocationEventsLayout.astro
 pageTitle: Sanquhar
-bannerImage: '../images/RT_Sanquhar-Celebration_72dpi-22.webp'
+bannerImage: '../images/RT_Sanquhar-Celebration_72dpi-22.jpg'
 bannerAlt: 'The launching of the forest in Sanquhar.'
 bannerHeight: 350
 flourishClasses: ['--rowan-berries', 'dropcap', '--dc-brand-red-dk']
 
 # Planting Gallery
 plantingCollectionId: albums
-plantingAlbumId: celebration-sanquhar
+plantingAlbumId: sanquhar_planting
 
 # Launch Gallery
 launchCollectionId: albums
-launchAlbumId: celebration-sanquhar
+launchAlbumId: sanquhar_gathering
 ---
 
 Mollit cillum sint veniam enim labore amet. Amet irure do enim irure. Elit exercitation consequat enim eiusmod Lorem. Tempor Lorem commodo do adipisicing non et in et ipsum reprehenderit.

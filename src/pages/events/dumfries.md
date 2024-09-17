@@ -8,11 +8,11 @@ flourishClasses: ['--holly', 'dropcap', '--dc-brand-purple-dk']
 
 # Planting Gallery
 plantingCollectionId: albums
-plantingAlbumId: celebration-dumfries
+plantingAlbumId: dumfries_planting
 
 # Launch Gallery
 launchCollectionId: albums
-launchAlbumId: celebration-dumfries
+launchAlbumId: dumfries_gathering
 ---
 
 Mollit cillum sint veniam enim labore amet. Amet irure do enim irure. Elit exercitation consequat enim eiusmod Lorem. Tempor Lorem commodo do adipisicing non et in et ipsum reprehenderit.

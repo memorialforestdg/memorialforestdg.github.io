@@ -9,11 +9,11 @@ flourishClasses: ['--hawthorn', 'dropcap', '--dc-brand-cyan-dk']
 
 # Planting Gallery
 plantingCollectionId: albums
-plantingAlbumId: celebration-castle-douglas
+plantingAlbumId: castle_douglas_planting
 
 # Launch Gallery
 launchCollectionId: albums
-launchAlbumId: celebration-castle-douglas
+launchAlbumId: castle_douglas_gathering
 ---
 
 Mollit cillum sint veniam enim labore amet. Amet irure do enim irure. Elit exercitation consequat enim eiusmod Lorem. Tempor Lorem commodo do adipisicing non et in et ipsum reprehenderit.

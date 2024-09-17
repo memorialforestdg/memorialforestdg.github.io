@@ -8,11 +8,11 @@ flourishClasses: ['--horsechestnut', 'dropcap', '--dc-brand-orange-dk']
 
 # Planting Gallery
 plantingCollectionId: albums
-plantingAlbumId: celebration-moffat
+plantingAlbumId: moffat_visit
 
 # Launch Gallery
 launchCollectionId: albums
-launchAlbumId: celebration-moffat
+launchAlbumId: moffat_visit
 
 ---
 
