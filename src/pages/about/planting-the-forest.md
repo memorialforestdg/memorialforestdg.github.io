@@ -14,7 +14,7 @@ __In March and April 2024, the <i>Remembering Together D&G</i> project__ planted
 
 ## Tree Planting Events
 
-The Tree Planting events were led by the artists and <a href="https://www.treesurv.co.uk/">TreeSurv</a>, an organisation specialising in the planting of native woodlands who were brought on as consultants. Events were hosted at each of the five sites selected during the <a href="../about/phase-1">Phase 1</a> of the project:
+The Tree Planting events were led by the artists and <a href="https://www.treesurv.co.uk/">TreeSurv</a>, an organisation specialising in the planting of native woodlands who were brought on as consultants. Events were hosted at each of the five sites selected during the <a href="../../about/phase-1">Phase 1</a> of the project:
 
 - Dumfries, with trees planted across The Crichton and NHS Mountainhall Treatment Centre
 - Moffat Community Nature Reserve
