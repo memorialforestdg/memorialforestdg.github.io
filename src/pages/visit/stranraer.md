@@ -1,14 +1,14 @@
 ---
 layout: ../../layouts/LocationsLayout.astro
 pageTitle: Stranraer
-bannerImage: '../images/RememberingTogether_Celebration_Stranraer_72dpi-127.jpg'
+bannerImage: '../images/stranraer-visit-banner.jpg'
 bannerAlt: 'The launching of the forest in Stranraer.'
 bannerHeight: 350
 flourishClasses: ['--silverbirch', 'dropcap', '--dc-brand-green-dk']
 
 # Gallery info#
-# collectionId: albums
-# albumId: stranraer_visit
+collectionId: albums
+albumId: stranraer_visit
 
 # Sidebar info
 bgColor: '--brand-cyan-dk' # css custom prop
