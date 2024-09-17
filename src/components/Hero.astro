@@ -4,7 +4,6 @@ import {link} from 'fs'
 interface Props {
   title?: string
   titleClasses?: Array<string>
-  Heading?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
   text?: string
   wrapperClasses?: Array<string>
   innerClasses?: Array<string>
@@ -20,7 +19,6 @@ const lipsum = `Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ullam 
 
 const {
   title = 'Hero Text',
-  Heading = 'h1',
   titleClasses = ['f3'],
   text = lipsum,
   wrapperClasses = ['full-width'],
@@ -38,7 +36,7 @@ const {
         {
           title && (
             <header>
-              <Heading class={titleClasses.join(' ')} set:html={title} />
+              <div class={titleClasses.join(' ')} set:html={title} />
             </header>
           )
         }
