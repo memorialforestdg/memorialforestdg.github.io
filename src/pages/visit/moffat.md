@@ -26,7 +26,7 @@ tickets: 'Entrance is Free'
 locProviso: '– Please note opening times and access information may change. Please visit the site partner website listed above for updated information.'
 ---
 
-__The Memorial Forest in Moffat__ is part of the Moffat Community Nature Reserve, once a working quarry and now a haven for wildlife and a wonderful place to explore for local people and visitors to alike. The old weigh-bridge is now part of a wildflower meadow, and the sand pits have become wildlife pools.
+__The Memorial Forest in Moffat__ is part of the Moffat Community Nature Reserve, once a working quarry and now a haven for wildlife and a wonderful place to explore for local people and visitors alike. The old weigh-bridge is now part of a wildflower meadow, and the sand pits have become wildlife pools.
 
 The Memorial site is marked by paving stones inlaid with bronze, and includes 125 trees planted in a single copse that visitors can walk around and within.
 
