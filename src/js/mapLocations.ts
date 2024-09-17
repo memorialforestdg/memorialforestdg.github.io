@@ -24,7 +24,7 @@ export const mapLocations = [
   {
     id: 'castle-douglas',
     content:
-      'The Dispersed Memorial Forest:<br/> <a href="./visit/castle-douglas">Castle Douglas</a> at Threave Nature Reserve.',
+      'The Dispersed Memorial Forest:<br/> <a href="../../visit/castle-douglas">Castle Douglas</a> at Threave Nature Reserve.',
     popup: {offset: {x: 30, y: -22}},
     lat: 54.933013,
     lon: -3.95709,
@@ -33,7 +33,7 @@ export const mapLocations = [
   },
   {
     id: 'dumfries',
-    content: `The Dispersed Memorial Forest, <a href="./visit/dumfries">Dumfries</a>, Crichton Memorial Church.<br><br> In Dumfries, trees were planted at six locations to create an aproximate one hour walking loop, reflecting the one hour of exercise allowed during the first Lockdown, Spring 2020:
+    content: `The Dispersed Memorial Forest, <a href="../../visit/dumfries">Dumfries</a>, Crichton Memorial Church.<br><br> In Dumfries, trees were planted at six locations to create an aproximate one hour walking loop, reflecting the one hour of exercise allowed during the first Lockdown, Spring 2020:
       <ul>
         <li>Crichton Memorial Church</li>
         <li>Easterbrook Hall</li>
@@ -51,7 +51,7 @@ export const mapLocations = [
   {
     id: 'moffat',
     content:
-      'The Dispersed Memorial Forest:<br/> <a href="./visit/moffat">Moffat</a> at the Moffat Community Nature Reserve.',
+      'The Dispersed Memorial Forest:<br/> <a href="../../visit/moffat">Moffat</a> at the Moffat Community Nature Reserve.',
     popup: {offset: {x: 30, y: -22}},
     lat: 55.319197,
     lon: -3.43987,
@@ -61,7 +61,7 @@ export const mapLocations = [
   {
     id: 'sanquhar',
     content:
-      'The Dispersed Memorial Forest:<br/> <a href="./visit/sanquhar">Sanquhar</a>, near the junction of Bell Crescent and Deer Park Avenue.',
+      'The Dispersed Memorial Forest:<br/> <a href="../../visit/sanquhar">Sanquhar</a>, near the junction of Bell Crescent and Deer Park Avenue.',
     popup: {offset: {x: 30, y: -22}},
     lat: 55.363505,
     lon: -3.923666,
@@ -71,7 +71,7 @@ export const mapLocations = [
   {
     id: 'stranraer',
     content:
-      'The Dispersed Memorial Forest:<br/> <a href="./visit/stranraer">Stranraer</a> is found within the Community Garden, behind the Galloway Community Hospital car park.',
+      'The Dispersed Memorial Forest:<br/> <a href="../../visit/stranraer">Stranraer</a> is found within the Community Garden, behind the Galloway Community Hospital car park.',
     popup: {offset: {x: 30, y: -22}},
     lat: 54.89962,
     lon: -5.020083,
