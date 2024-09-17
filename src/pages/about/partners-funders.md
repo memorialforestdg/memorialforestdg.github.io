@@ -13,7 +13,7 @@ More information about the national _Remembering Together_ project, and details 
 __Remembering Together Dumfries and Galloway__ was commissioned by <a href="https://www.greenspacescotland.org.uk/" rel="noopener noreferrer nofollow">Greenspace Scotland</a>, <a href="https://dgunlimited.org/">DG Unlimited</a>, and <a href="https://www.dumgal.gov.uk/">Dumfries & Galloway Council</a> with funding from the <a href="https://www.gov.scot/">Scottish Government</a>.
 <br><br>
 
-<h2>Site & Community Partners</h2>
+<h2>Site and Community Partners</h2>
 
 Community Partners for each site are listed below, with profound thanks:
 
@@ -33,9 +33,10 @@ _Working with [Moffat Community Nature Reserve](https://www.facebook.com/profile
 Site Partners: Wheatley Group (Site Owner), Dumfries and Galloway Council<br>
 _Working with [Sanquhar Enterprise](https://sanquharenterprisecompany.co.uk/), Sanquhar Community Council, [A' the Airts](https://atheairts.org.uk/), Sanquhar Primary School, and individual community members._
 
-- __Stranraer: Galloway Community Hospital__, Stranraer<br>
+- __Stranraer: Galloway Community Hospital__<br>
 Site Partners: NHS Dumfries and Galloway, The Dumfries and Galloway Health Board Endowment Fund<br>
 _Working with [Incredible Edibles Stranraer](https://www.facebook.com/groups/765364053649833/?locale=en_GB) (GCH Community Garden Volunteers), [D&G Carers Stranraer](https://www.dgalcarers.co.uk/), [Unexpected Gardens Stranraer](https://www.facebook.com/UnexpectedGardenStranraer/), and individual NHS staff and community members_
+<br><br>
 
 ## Funding
 
