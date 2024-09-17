@@ -32,12 +32,12 @@ const flourishClasses = ['--greywillow', 'dropcap', '--dc-cerise-800']
         <div class="cards__wrap">
           <ul class="flex flex-wrap justify-center list pa-0">
             <li class="grow card_wrap">
-              <a href="./the-story">
+              <a href="../the-story">
                 <Card
                   title="The Story"
                   imgUrl={theStoryImage}
                   alt=""
-                  headerHeight="150px"
+                  headerHeight="200px"
                   imagePosition="center 17%"
                   alt="Katie Anderson, and ts Beall"
                   wrapClasses="relative grid ma-2 bg-surface-1 br2 overflow-hidden shadow-1 link  "
@@ -53,7 +53,7 @@ const flourishClasses = ['--greywillow', 'dropcap', '--dc-cerise-800']
                   title="Phase 1"
                   imgUrl={phase1image}
                   alt=""
-                  headerHeight="150px"
+                  headerHeight="200px"
                   imagePosition="center 17%"
                   wrapClasses="grid ma-2 bg-surface-1 br2 overflow-hidden shadow-1"
                   headerClasses="relative flex-column flex justify-end bg-brand-teal-dk relative br-2"
@@ -68,7 +68,7 @@ const flourishClasses = ['--greywillow', 'dropcap', '--dc-cerise-800']
                   title="Phase 2"
                   imgUrl={phase2image}
                   alt=""
-                  headerHeight="150px"
+                  headerHeight="200px"
                   imagePosition="center 17%"
                   wrapClasses="grid ma-2 bg-surface-1 br2 overflow-hidden shadow-1"
                   headerClasses="relative flex-column flex justify-end bg-brand-teal-dk relative br-2"
@@ -83,7 +83,7 @@ const flourishClasses = ['--greywillow', 'dropcap', '--dc-cerise-800']
                   title="Planting the Forest"
                   imgUrl={plantingImage}
                   alt=""
-                  headerHeight="150px"
+                  headerHeight="200px"
                   imagePosition="center 17%"
                   wrapClasses="grid ma-2 bg-surface-1 br2 overflow-hidden shadow-1"
                   headerClasses="relative flex-column flex justify-end bg-brand-teal-dk relative br-2"
@@ -98,7 +98,7 @@ const flourishClasses = ['--greywillow', 'dropcap', '--dc-cerise-800']
                   title="Partners & Funders"
                   imgUrl={partnersImage}
                   alt=""
-                  headerHeight="150px"
+                  headerHeight="200px"
                   imagePosition="center 17%"
                   wrapClasses="grid ma-2 bg-surface-1 br2 overflow-hidden shadow-1"
                   headerClasses="relative flex-column flex justify-end bg-brand-teal-dk relative br-2"
@@ -113,7 +113,7 @@ const flourishClasses = ['--greywillow', 'dropcap', '--dc-cerise-800']
                   title="The Artists"
                   imgUrl={artistsImage}
                   alt=""
-                  headerHeight="150px"
+                  headerHeight="200px"
                   imagePosition="center 1%"
                   wrapClasses="grid ma-2 bg-surface-1 br2 overflow-hidden shadow-1"
                   headerClasses="relative flex-column flex justify-end bg-brand-teal-dk relative br-2"
@@ -136,7 +136,11 @@ const flourishClasses = ['--greywillow', 'dropcap', '--dc-cerise-800']
     </div>
   </main>
 </BaseLayout>
-<style is:global>
+<style>
+  .cards__wrap li {
+    max-width: 300px;
+  }
+
   .card__wrap:focus-within {
     outline: 1px solid #000;
   }
