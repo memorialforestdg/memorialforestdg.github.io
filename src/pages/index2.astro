@@ -5,6 +5,7 @@ import Card from '~components/Card.astro'
 
 import visitImage from '../images/AlderTreegrowingoutofTreeTube_Threave2.jpg'
 import aboutImage from '../images/MarkerProduction/makeing-the-markers-003.jpg'
+import platningImage from '../images/planting-dumfries.jpg'
 import storiesImage from '../images/postcards.webp'
 
 const pageTitle = 'A Community Covid Memorial'
@@ -36,7 +37,7 @@ const heroText = `<p>Welcome to home and the online archive for the Dispersed Me
         title={heroTitle}
         text={heroText}
         titleClasses={['f3', 'ma-0']}
-        linkText="Come Visit!"
+        linkText="Visit the Memorial"
         linkHref="../visit/"
         linkClasses={[
           'btn',
@@ -53,7 +54,7 @@ const heroText = `<p>Welcome to home and the online archive for the Dispersed Me
           <li>
             <a href="../visit/">
               <Card
-                title="Visit the Dispersed Memorial Forest"
+                title="Visit"
                 imgUrl={visitImage}
                 alt=""
                 headerHeight="150px"
@@ -63,20 +64,13 @@ const heroText = `<p>Welcome to home and the online archive for the Dispersed Me
                 headerClasses="flex-column flex justify-end bg-brand-teal-dk relative br-2"
                 headingWrapClasses="absolute w-100 pl-1 pl-2-ns pl-3-l header-img-gradent"
                 headingClasses="f3 brand-yellow-lt ma-2"
-                ><div class="pa-3 h-20">
-                  <p>
-                    Directions and details on how to visit Dispersed Memorial
-                    Forest sites in Dumfries, Castle Douglas, Moffat, Sanquhar,
-                    and Stranraer.
-                  </p>
-                </div></Card
-              >
+              />
             </a>
           </li>
           <li>
             <a href="../about/">
               <Card
-                title="About the project"
+                title="About"
                 imgUrl={aboutImage}
                 alt=""
                 headerHeight="150px"
@@ -86,17 +80,26 @@ const heroText = `<p>Welcome to home and the online archive for the Dispersed Me
                 headerClasses="relative flex-column flex justify-end bg-brand-teal-dk relative br-2"
                 headingWrapClasses="absolute w-100 pl-1 pl-2-ns pl-3-l header-img-gradent"
                 headingClasses="f3 brand-yellow-lt ma-2"
-                ><div class="pa-3 h-20">
-                  <p>
-                    Learn about the genisis of the Dispersed Memorial Forest,
-                    the Artists who made it, its planting, and its partners and
-                    funders.
-                  </p>
-                </div></Card
-              >
+              />
             </a>
           </li>
           <li>
+            <a href="../about/planting-the-forest/">
+              <Card
+                title="Planting"
+                imgUrl={platningImage}
+                alt=""
+                headerHeight="150px"
+                imagePosition="center 20"
+                alt=""
+                wrapClasses="link mw-5 grid ma-2 bg-surface-1 br2 overflow-hidden shadow-1"
+                headerClasses="relative flex-column flex justify-end bg-brand-teal-dk relative br-2"
+                headingWrapClasses="absolute w-100 pl-1 pl-2-ns pl-3-l header-img-gradent"
+                headingClasses="f3 brand-yellow-lt ma-2"
+              />
+            </a>
+          </li>
+          <!-- <li>
             <a href="../stories/">
               <Card
                 title="Stories"
@@ -109,18 +112,11 @@ const heroText = `<p>Welcome to home and the online archive for the Dispersed Me
                 headerClasses="relative flex-column flex justify-end bg-brand-teal-dk relative br-2"
                 headingWrapClasses="absolute w-100 pl-1 pl-2-ns pl-3-l header-img-gradent"
                 headingClasses="f3 brand-yellow-lt ma-2"
-                ><div class="pa-3 h-3">
-                  <p>
-                    Interviews with community members about their Covid and
-                    Lockdown experiences, as well as images and media from the
-                    project.
-                  </p>
-                </div></Card
-              >
+              />
             </a>
-          </li>
+        </li>-->
         </ul>
       </div>
     </div>
-  </main></BaseLayout
->
+  </main>
+</BaseLayout>
