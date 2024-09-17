@@ -8,12 +8,11 @@
     display: inline-block;
     float: inline-start;
     color: var(--brand-cyan-dk);
+     font-weight: normal;
     font-size: clamp(2rem, 2.5rlh, 2.5rlh);
     font-family: var(--serif);
-    margin-block: -1rem -1rem;
+    font-style: normal;
+    margin-block: -1rem;
     padding-block: 0;
     padding-inline: 0.05ch;
   }
-
-
-
