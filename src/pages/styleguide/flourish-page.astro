@@ -1,0 +1,249 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import img1 from '../../images/RememberingTogetherWBF22HighRes51_ImageColinTennant.jpg'
+import img2 from '../../images/RememberingTogetherDG_imageGregorAnderson_full.jpg'
+import Card from '../../components/Flourish.astro'
+import Flourish from '../../components/Flourish.astro'
+---
+
+<BaseLayout pageTitle="Test of Flourish & Dropcap">
+  <main id="main">
+    <div class="container full-width">
+      <div class="wrap pl-4 pr-4">
+        <h2>Flourish</h2>
+        <p class="f6">
+          The Flourish component works hand in hand with a set of syles, using
+          the <code>.dropcap</code> class. This will uses CSS to dropcap the first
+          letter in the first <code>p</code> tag it encounters.
+        </p>
+        <h3>Flourish Classes</h3>
+        <p class="f6 bt">
+          <code>.dropcap</code> also has a set of CSS custom properties that are
+          a subset of our brand colors. These are prefixed
+          <code>--dc-color-name</code>, and can be used to add color to your
+          drop cap charecter.
+        </p>
+        <section>
+          <h3>Flourish Use</h3>
+          <div class="bt">
+            <pre><code>&lt;Flourish classes=&#x7b;['--rowan-leaves', 'dropcap', '--dc-brand-purple-dk']&#x7b;&gt;
+  &lt;p&gt;Some text...&lt;/p&gt;
+&lt;/Flourish&gt;</code></pre>
+          </div>
+        </section>
+
+        <section class="grid">
+          <h3>Flourish Properties</h3>
+          <div class="grid pa-0 grid-cols-3 pb-4 bt">
+            <ul class="list f7">
+              <li><code>--alder</code></li>
+              <li><code>--apple</code></li>
+              <li><code>--aspen</code></li>
+              <li><code>--beech</code></li>
+              <li><code>--downybirch</code></li>
+              <li><code>--englishoak</code></li>
+              <li><code>--fieldmaple</code></li>
+            </ul>
+            <ul class="list f7">
+              <li><code>--greywillow</code></li>
+              <li><code>--hawthorn</code></li>
+              <li><code>--holly</code></li>
+              <li><code>--horsechestnut</code></li>
+              <li><code>--rowan-berries</code></li>
+              <li><code>--rowan-leaves</code></li>
+              <li><code>--silverbirch</code></li>
+            </ul>
+          </div>
+        </section>
+        <section>
+          <h3>Horisontal Rules</h3>
+          <div class="bt">
+            <p class="f6">
+              Currently if you include a horisontal rule in the markup from a
+              flourish component, it will be rendered, using the <code
+                >.dropcap .dk-color-name</code
+              > as an accent color. This only works when the the horisontal rule
+              is passed into the Flourish component.
+            </p>
+            <div class="w-50 center mt-4 mb-4 b">
+              <Flourish classes={['--alder', 'dropcap', '--dc-brand-red-dk']}>
+                <p>
+                  Alder: Lorem occaecat cillum ad laboris eu sit officia ex
+                  exercitation.
+                </p>
+                <hr />
+              </Flourish>
+            </div>
+          </div>
+          <section>
+            <h3>Flourish Examples</h3>
+            <ul class="list bt pt-5 grid grid-cols-2 gap-5">
+              <li>
+                <Flourish
+                  classes={['--alder', 'dropcap', '--dc-brand-purple-dk']}
+                >
+                  <p>
+                    Alder: Lorem occaecat cillum ad laboris eu sit officia ex
+                    exercitation.
+                  </p>
+                </Flourish>
+              </li>
+              <li>
+                <Flourish
+                  classes={['--apple', 'dropcap', '--dc-brand-purple-dk']}
+                >
+                  <p>
+                    Apple: Lorem occaecat cillum ad laboris eu sit officia ex
+                    exercitation.
+                  </p>
+                </Flourish>
+              </li>
+              <li>
+                <Flourish
+                  classes={['--aspen', 'dropcap', '--dc-brand-purple-dk']}
+                >
+                  <p>
+                    Aspen: Lorem occaecat cillum ad laboris eu sit officia ex
+                    exercitation.
+                  </p>
+                </Flourish>
+              </li>
+              <li>
+                <Flourish
+                  classes={['--beech', 'dropcap', '--dc-brand-purple-dk']}
+                >
+                  <p>
+                    Beech: Lorem occaecat cillum ad laboris eu sit officia ex
+                    exercitation.
+                  </p>
+                </Flourish>
+              </li>
+              <li>
+                <Flourish
+                  classes={['--downybirch', 'dropcap', '--dc-brand-purple-dk']}
+                >
+                  <p>
+                    Downybirch: Lorem occaecat cillum ad laboris eu sit officia
+                    ex exercitation.
+                  </p>
+                </Flourish>
+              </li>
+              <li>
+                <Flourish
+                  classes={['--englishoak', 'dropcap', '--dc-brand-purple-dk']}
+                >
+                  <p>
+                    Englishoak: Lorem occaecat cillum ad laboris eu sit officia
+                    ex exercitation.
+                  </p>
+                </Flourish>
+              </li>
+              <li>
+                <Flourish
+                  classes={['--fieldmaple', 'dropcap', '--dc-brand-purple-dk']}
+                >
+                  <p>
+                    Fieldmaple: Lorem occaecat cillum ad laboris eu sit officia
+                    ex exercitation.
+                  </p>
+                </Flourish>
+              </li>
+              <li>
+                <Flourish
+                  classes={['--greywillow', 'dropcap', '--dc-brand-purple-dk']}
+                >
+                  <p>
+                    Greywillow: Lorem occaecat cillum ad laboris eu sit officia
+                    ex exercitation.
+                  </p>
+                </Flourish>
+              </li>
+              <li>
+                <Flourish
+                  classes={['--hawthorn', 'dropcap', '--dc-brand-purple-dk']}
+                >
+                  <p>
+                    Hawthorn: Lorem occaecat cillum ad laboris eu sit officia ex
+                    exercitation.
+                  </p>
+                </Flourish>
+              </li>
+              <li>
+                <Flourish
+                  classes={['--holly', 'dropcap', '--dc-brand-purple-dk']}
+                >
+                  <p>
+                    Holly: Lorem occaecat cillum ad laboris eu sit officia ex
+                    exercitation.
+                  </p>
+                </Flourish>
+              </li>
+              <li>
+                <Flourish
+                  classes={['--holly', 'dropcap', '--dc-brand-purple-dk']}
+                >
+                  <p>
+                    Holly: Lorem occaecat cillum ad laboris eu sit officia ex
+                    exercitation.
+                  </p>
+                </Flourish>
+              </li>
+              <li>
+                <Flourish
+                  classes={[
+                    '--horsechestnut',
+                    'dropcap',
+                    '--dc-brand-purple-dk'
+                  ]}
+                >
+                  <p>
+                    Horsechestnut: Lorem occaecat cillum ad laboris eu sit
+                    officia ex exercitation.
+                  </p>
+                </Flourish>
+              </li>
+              <li>
+                <Flourish
+                  classes={[
+                    '--rowan-berries',
+                    'dropcap',
+                    '--dc-brand-purple-dk'
+                  ]}
+                >
+                  <p>
+                    Rowan-berries: Lorem occaecat cillum ad laboris eu sit
+                    officia ex exercitation.
+                  </p>
+                </Flourish>
+              </li>
+              <li>
+                <Flourish
+                  classes={[
+                    '--rowan-leaves',
+                    'dropcap',
+                    '--dc-brand-purple-dk'
+                  ]}
+                >
+                  <p>
+                    Rowan-leaves: Lorem occaecat cillum ad laboris eu sit
+                    officia ex exercitation.
+                  </p>
+                </Flourish>
+              </li>
+              <li>
+                <Flourish
+                  classes={['--silverbirch', 'dropcap', '--dc-brand-purple-dk']}
+                >
+                  <p>
+                    Silverbirch: Lorem occaecat cillum ad laboris eu sit officia
+                    ex exercitation.
+                  </p>
+                </Flourish>
+              </li>
+            </ul>
+          </section>
+        </section>
+      </div>
+    </div>
+  </main>
+</BaseLayout>

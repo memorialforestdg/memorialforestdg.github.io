@@ -5,7 +5,7 @@ pageTitle: Dumfries
 bannerImage: '../images/remembering_together_dumfries_celebration_72dpi-38.jpg'
 bannerAlt: 'The launching of the forest in Dumfries.'
 bannerHeight: 350
-flourishClasses: ['--holly', 'dropcap', '--dc-brand-purple-dk']
+flourishClasses: ['--rowan-leaves', 'dropcap', '--dc-brand-purple-dk']
 # Gallery info
 collectionId: albums
 albumId: dumfries_visit
