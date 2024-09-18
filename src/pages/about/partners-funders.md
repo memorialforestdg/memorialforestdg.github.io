@@ -19,7 +19,7 @@ Community Partners for each site are listed below, with profound thanks:
 
 - __Castle Douglas: NTS Threave Nature Reserve__<br>
 Site Partner: National Trust for Scotland<br>
-_Working with [Castle Douglas Development Forum (CDDF)](https://www.castledouglas.info/) and [Castle Douglas Community Council](https://www.castledouglas.info/community-development/)._
+_Working with [Castle Douglas Development Forum (CDDF](https://www.castledouglas.info/))_
 
 - __Dumfries: The Crichton Estate and NHS Mountainhall Treatment Centre__<br>
 Site Partners: The Crichton Trust and NHS Dumfries and Galloway<br>
