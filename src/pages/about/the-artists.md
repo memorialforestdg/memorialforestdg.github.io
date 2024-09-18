@@ -17,4 +17,4 @@ __dr t s Beall__ is a socially-engaged artist and researcher based in Dumfries a
 
 __Katie Anderson__ is a public artist, working across sculpture, installation, sound, lettering, and participatory practice based from her home and studio near Annan. Her practice as an artist is about establishing projects alongside, and as part of, communities – creating work that has its foundations in a sense of place.
 
-<a href="https://katiejanderson.com/" target="_blank">website</a> |  <a href="https://x.com/KatieJoAnd" target="_blank">X</a> | <a href="https://www.instagram.com/katie_j_and/" target="_blank">Instagram</a>
+<a href="https://katiejanderson.com/" target="_blank">website</a> | <a href="https://www.instagram.com/katie_j_and/" target="_blank">Instagram</a>

@@ -10,7 +10,7 @@ collectionId: albums
 albumId: phase_2
 ---
 
-__The proposal for _The Dispersed Memorial Forest_ was co-created__ with communities across the region in Phase 1 of the <i>Remembering Together D&G project</i>, June-December 2022. As the Covid Memorial for D&G, it included the creation of a <i>Dispersed Memorial Forest</i>, hosting community events to allow opportunities for shared reflection, and the creation of an archive which recorded stories of loss and resilience from people across the region.
+__The proposal for _The Dispersed Memorial Forest_ was co-created__ with communities across the region in <a href="../../about/phase-1">Phase 1</a> of the <i>Remembering Together D&G project</i>, June-December 2022. As the Covid Memorial for D&G, it included the creation of a <i>Dispersed Memorial Forest</i>, hosting community events to allow opportunities for shared reflection, and the creation of an archive which recorded stories of loss and resilience from people across the region.
 
 Phase 2 began in July 2023, and <a href="../the-artists">Artists t s Beall and Katie Anderson</a> were recommissioned to co-design and deliver the memorial project. The artists hosted further conversations and workshops across D&G, building on earlier collaborations. The workshops and activities were designed to share information about the memorial project, and to help decide the locations for the Memorial Forest. Five sites were identified in Dumfries, Castle Douglas, Moffat, Sanquhar, and Stranraer, as the artists were keen to ensure that the forest was spread across (or ‘dispersed’) across D&G, so that people across the entire region would be able to visit the memorial.
 

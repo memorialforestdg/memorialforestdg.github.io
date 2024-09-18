@@ -33,6 +33,4 @@ __Fifty trees have been planted at Threave Nature Reserve__ as part of <i>The Di
 
 The planting site is just off the walking path connecting the Nature Reserve to Castle Douglas, and the site was chosen to  encourage visitors to stop and reflect. A variety of native species which suit the landscape were chosen to complement and support NTS Threave’s wider Landscape Restoration Project.
 
-__Please note that the Memorial Forest site is part of Threave NATURE RESERVE, which is different from Threave GARDEN AND ESTATE. See detailed information below. <br>Entry to the Nature Reserve is free.__
-
 <!-- <a class="link" href='../events/castle-douglas'><b>See also: </b>Events at the Castle Douglas site.</a> -->
