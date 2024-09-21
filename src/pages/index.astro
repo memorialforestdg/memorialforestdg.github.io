@@ -30,7 +30,8 @@ const heroText = `<p>Welcome to home and the online archive for the Dispersed Me
         innerClasses={[
           'bg-brand-purple-dk',
           'brand-lt',
-          'ma-3',
+          'ma-0',
+          'ma-3-ns',
           'pt-4',
           'pb-5'
         ]}
@@ -121,7 +122,14 @@ const heroText = `<p>Welcome to home and the online archive for the Dispersed Me
   </main>
 </BaseLayout>
 <style is:global>
-  .cards__wrap li {
+  .cards__wrap .card {
     width: 300px;
+  }
+
+  @media screen and (max-width: 450px) {
+    .cards__wrap .card {
+      min-width: 100%;
+      margin-inline: auto;
+    }
   }
 </style>
