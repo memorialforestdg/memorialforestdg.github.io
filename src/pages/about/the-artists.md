@@ -14,7 +14,7 @@ __Remembering Together Dumfries and Galloway__ commissioned two artists to co-cr
 __dr t s Beall__ is a socially-engaged artist and researcher based in Dumfries and Glasgow, working with diverse communities on durational artworks which aim to recover and celebrate underknown histories. For the last decade she has developed projects in both rural and post-industrial urban environments, collaborating with under-represented communities across Scotland, and internationally. Her work spans a variety of media including performative events, printed matter, and creative interventions in the public realm.
 <br><br>
 
-<a href="https://stillstatic.tv/" target="_blank">website</a> | <a href="https://x.com/tsBeall" target="_blank">X</a> |  <a href="https://www.instagram.com/tsbeall/" target="_blank">Instagram</a>
+<a href="https://stillstatic.tv/" target="_blank">website</a> | <a href="https://x.com/tsBeall" target="_blank">X</a> |  <a href="https://www.instagram.com/tsbeall/" target="_blank">Instagram</a> | <a href="https://www.linkedin.com/in/tsbeall/" target="_blank">LinkedIn</a>
 <br><br>
 
 <div class="bt pt-3 w-100 b--black-o-20"></div>
@@ -27,8 +27,8 @@ __Katie Anderson__ is a public artist, working across sculpture, installation, s
 
 ## Thanks
 
-The Artists would like to thank everyone involved in the co-creation of The Dispersed Memorial Forest, including: our Site and Community Partners, members of the project’s Steering Group, Remembering Together staff at greenspace Scotland, and the community groups and organisations across D&G who worked with us to host workshops, conversations, and public events.
+The Artists would like to thank everyone involved in the co-creation of _The Dispersed Memorial Forest_, including: our Site and Community Partners, members of the project’s Steering Group, Remembering Together staff at greenspace Scotland, and the community groups and organisations across D&G who worked with us to host workshops, conversations, and public events.
 
-Special thanks – and with the utmost respect – to everyone who shared their experiences during the pandemic, and stories of loss and resilience. The conversations, ideas, postcards, Tree of Remembrance ribbons shared with us during workshops and public events collaboratively shaped the Memorial Forest.
+Special thanks – and with the utmost respect – to everyone who shared their experiences during the pandemic, and stories of loss and resilience. The conversations, ideas, postcards, _Tree of Remembrance_ ribbons shared with us during workshops and public events collaboratively shaped the Memorial Forest.
 
 The Memorial Forest has been co-created by you, and would not be possible without your voices, stories, and generous contributions. It has been an honour and a privilege to develop, shape, and deliver D&G’s Covid memorial alongside so many others.

@@ -18,19 +18,19 @@ __Remembering Together Dumfries and Galloway__ was commissioned by <a href="http
 Community Partners for each site are listed below, with profound thanks:
 
 - __Castle Douglas: NTS Threave Nature Reserve__<br>
-Site Partner: National Trust for Scotland<br>
-_Working with [Castle Douglas Development Forum (CDDF](https://www.castledouglas.info/))_
+Site Partner: [National Trust for Scotland](https://www.nts.org.uk/)<br>
+_Working with [Castle Douglas Development Forum (CDDF](https://www.castledouglas.info/castle-douglas-development-forum/)) and Castle Douglas Community Council_
 
 - __Dumfries: The Crichton Estate and NHS Mountainhall Treatment Centre__<br>
-Site Partners: The Crichton Trust and NHS Dumfries and Galloway<br>
-_Working with [Dumfries Climate Kitchen](https://climatekitchen.co.uk/) volunteers, [The People’s Project](https://www.thepeoplesprojects.org.uk/) volunteers, Dumfries and Galloway Health Board Endowment Fund, and individual NHS staff and community members._
+Site Partners: [The Crichton Trust](https://www.crichton.co.uk/) and [NHS Dumfries and Galloway](https://www.nhsdg.co.uk/)<br>
+_Working with [Dumfries Climate Kitchen](https://climatekitchen.co.uk/) volunteers, [The People’s Project](https://www.thepeoplesprojects.org.uk/) volunteers, [Dumfries and Galloway Health Board Endowment Fund](https://dghbef.org/), and individual NHS staff and community members._
 
 - __Moffat: Moffat Community Nature Reserve__<br>
-Site Partner: Moffat Community Nature Reserve<br>
-_Working with [Moffat Community Nature Reserve](https://www.facebook.com/profile.php?id=100064786416143&sk=about) and their volunteers, [Borders Forest Trust](https://bordersforesttrust.org/) and their volunteers, and individual community members._
+Site Partner: [Moffat Community Nature Reserve](https://www.facebook.com/profile.php?id=100064786416143&sk=about)<br>
+_Working with Moffat Community Nature Reserve volunteers, [Borders Forest Trust](https://bordersforesttrust.org/) and their volunteers, and individual community members._
 
 - __Sanquhar: Bell Crescent Park__<br>
-Site Partners: Wheatley Group (Site Owner), Dumfries and Galloway Council<br>
+Site Partners: Dumfries and Galloway Council and Wheatley Group<br>
 _Working with [Sanquhar Enterprise](https://sanquharenterprisecompany.co.uk/), Sanquhar Community Council, [A' the Airts](https://atheairts.org.uk/), Sanquhar Primary School, and individual community members._
 
 - __Stranraer: Galloway Community Hospital__<br>
