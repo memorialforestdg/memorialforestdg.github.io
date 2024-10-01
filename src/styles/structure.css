@@ -5,6 +5,12 @@
 
 }
 
+.markdown-content img {
+  display: block;
+  height: auto;
+  max-inline-size: 100%;
+}
+
 /* Chrome overscroll bg-color */
 html::before {
 	position: fixed;
