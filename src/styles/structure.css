@@ -5,7 +5,7 @@
 
 }
 
-.markdown-content img {
+.markdown-content img:not(.gallery img)  {
   display: block;
   height: auto;
   max-inline-size: 100%;
