@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/MDPagesLayout.astro
 pageTitle: COVID interviews
-bannerImage: '../images/HandwritingShortlists/handwriting-extract.png'
+bannerImage: '../images/banners/interviews-banner.png'
 bannerAlt: 'Some postcards.'
 flourishClasses: ['--englishoak', 'dropcap', '--dc-sienna-700']
 ---

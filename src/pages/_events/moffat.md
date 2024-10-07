@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/LocationEventsLayout.astro
 pageTitle: Moffat
-bannerImage: '../images/RememberingTogether_Celebration_Moffat_72dpi-138.jpg'
+bannerImage: '../images/banners/moffat-events-banner.jpg'
 bannerAlt: 'The launching of the forest in Dumfries.'
 bannerHeight: 350
 flourishClasses: ['--horsechestnut', 'dropcap', '--dc-brand-orange-dk']

@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/LocationsLayout.astro
 pageTitle: Sanquhar
-bannerImage: '../images/sanquhar-visit-banner.jpg'
+bannerImage: '../images/banners/sanquhar-visit-banner.jpg'
 bannerAlt: 'The launching of the forest in Sanquhar.'
 bannerHeight: 350
 flourishClasses: ['--rowan-berries', 'dropcap', '--dc-brand-red-dk']

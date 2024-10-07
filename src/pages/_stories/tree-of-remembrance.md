@@ -1,12 +1,12 @@
 ---
 layout: ../../layouts/MDPagesLayout.astro
 pageTitle: Tree of Remembrance
-bannerImage: '../images/ImageCredit_tsBeall_IMG_2538.webp'
+bannerImage: '../images/banners/tree-banner.webp'
 bannerAlt: 'Ribbons being tied to the Tree of Remembrance.'
 flourishClasses: ['--englishoak', 'dropcap', '--dc-sienna-700']
 
 collectionId: albums
-albumId: tree-of-remembrance
+albumId: tree_of_remembrance
 ---
 
 __Mollit cillum sint veniam enim labore amet.__ Amet irure do enim irure. Elit exercitation consequat enim eiusmod Lorem. Tempor Lorem commodo do adipisicing non et in et ipsum reprehenderit.

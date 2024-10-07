@@ -4,8 +4,8 @@ import Breadcrumbs from '~components/Breadcrumbs.astro'
 import Card from '~components/Card.astro'
 import Flourish from '~components/Flourish.astro'
 
-import bannerImage from '../../images/RememberingTogetherDG_imageGregorAnderson_croppedHorizontal.jpg'
-import postards from '../../images/postcards.webp'
+import bannerImage from '../../images/banners/stories-banner.jpg'
+import postards from '../../images/banners/postcards-banner.webp'
 import dumfries from '../../images/RememberingTogetherDG_imageGregorAnderson_croppedHorizontal.jpg'
 import moffat from '../../images/RT_Dumfries_Celebration_72dpi-126.jpg'
 const bannerAlt =
@@ -24,16 +24,20 @@ const flourishClasses = ['--greywillow', 'dropcap', '--dc-cerise-800']
         <Breadcrumbs />
         <Flourish classes={flourishClasses}>
           <p>
-            <b>Visit the following pages to learn more</b> about the Dispersed Memorial
-            Forest Phase 1 tools and techniques used to cocreate the Dispersed Memorial
-            Forest, and hear interviews from community members about thier expreices
-            during the Covid Lockdowns:
+            <b>In creating the Covid Memorial for D&G</b>, a Community Archive
+            has been developed. It includes stories of loss and resilience
+            gathered throughout the project – from small notes and postcards
+            handed in at events, to longer interviews held with individuals and
+            groups who were involved in different aspects of co-creating the
+            Memorial in 2022 (<a href="../../about/phase-1">Phase 1</a>) and
+            2023–24 (<a href="../../about/phase-2">Phase 2</a>). Some of these
+            objects and stories are available through the links below.
           </p>
         </Flourish>
         <div class="cards__wrap">
           <ul class="flex flex-wrap justify-center list pa-0">
             <li class="grow card_wrap">
-              <a href="./castle-douglas">
+              <a href="./postcards">
                 <Card
                   title="Postcards"
                   imgUrl={postards}
@@ -48,8 +52,8 @@ const flourishClasses = ['--greywillow', 'dropcap', '--dc-cerise-800']
                 />
               </a>
             </li>
-            <li class="grow card_wrap">
-              <a href="./dumfries">
+            <!-- <li class="grow card_wrap">
+              <a href="./tree-of-remembrance">
                 <Card
                   title="Tree of Rememberance"
                   imgUrl={dumfries}
@@ -62,8 +66,8 @@ const flourishClasses = ['--greywillow', 'dropcap', '--dc-cerise-800']
                   headingClasses="f3 brand-yellow-lt ma-2"
                 />
               </a>
-            </li>
-            <li class="grow card_wrap">
+            </li> -->
+            <!-- <li class="grow card_wrap">
               <a href="./moffat">
                 <Card
                   title="Covid Interviews"
@@ -77,7 +81,7 @@ const flourishClasses = ['--greywillow', 'dropcap', '--dc-cerise-800']
                   headingClasses="f3 brand-yellow-lt ma-2"
                 />
               </a>
-            </li>
+            </li> -->
           </ul>
         </div>
         <hr />

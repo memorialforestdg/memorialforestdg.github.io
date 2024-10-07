@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/LocationEventsLayout.astro
 pageTitle: Stranraer
-bannerImage: '../images/RememberingTogether_Celebration_Stranraer_72dpi-127.jpg'
+bannerImage: '../images/stranraer-events-banner.jpg'
 bannerAlt: 'The launching of the forest in Stranraer.'
 bannerHeight: 350
 flourishClasses: ['--silverbirch', 'dropcap', '--dc-brand-green-dk']

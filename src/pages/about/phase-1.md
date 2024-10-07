@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/MDPagesLayout.astro
 pageTitle: 'Phase 1: Conversations'
-bannerImage: '../images/RememberingTogetherWBF22LowRes57__ImageColinTennant.jpg'
+bannerImage: '../images/banners/phase-1-banner.jpg'
 bannerAlt: 'Image of workshop guest.'
 flourishClasses: ['--aspen', 'dropcap', '--dc-forest-700']
 

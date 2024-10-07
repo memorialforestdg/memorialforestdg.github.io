@@ -2,7 +2,7 @@
 layout: ../../layouts/LocationsLayout.astro
 pageTitle: Dumfries
 # bannerImage: '../images/RT_Dumfries_Celebration_72dpi-135.jpg'
-bannerImage: '../images/remembering_together_dumfries_celebration_72dpi-38.jpg'
+bannerImage: '../images/banners/dumfries-visit-banner.jpg'
 bannerAlt: 'The launching of the forest in Dumfries.'
 bannerHeight: 350
 flourishClasses: ['--rowan-leaves', 'dropcap', '--dc-brand-purple-dk']
