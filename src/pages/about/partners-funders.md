@@ -42,4 +42,4 @@ _Working with [Incredible Edibles Stranraer](https://www.facebook.com/groups/765
 
 _Remembering Together D&G_ was funded by the Scottish Government. It is part of Scotland-wide project, [Remembering Together](https://www.rememberingtogether.scot/), which worked between 2022-24 to co-create community Covid memorials in each of Scotland’s 32 local authority areas.
 
-Some of the trees planted in the Memorial Forest were purchased with the support of the [South of Scotland Tree Planting Grant Scheme](https://dgwoodlands.org.uk/dumfries-and-galloway-tree-planting-grant-scheme/).
+Some of the trees planted in the Memorial Forest were purchased with the support of the [Dumfries & Galloway Tree Planting Grant Scheme](https://dgwoodlands.org.uk/dumfries-and-galloway-tree-planting-grant-scheme/).
