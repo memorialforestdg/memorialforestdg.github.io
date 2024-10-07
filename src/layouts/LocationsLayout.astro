@@ -22,6 +22,8 @@ interface Props {
     bannerHeight?: number
     bannerAlt?: string
     flourishClasses?: Array<string>
+    mapZoom?: string
+    offset?: [number, number]
     w3w: string
     lat: number
     lon: number
@@ -48,8 +50,8 @@ const {
   bannerHeight = 350,
   bannerAlt,
   flourishClasses,
-  lat,
-  lon,
+  mapZoom = '16',
+  offset,
   collectionId,
   albumId
 } = Astro.props.frontmatter
@@ -92,7 +94,8 @@ const mapHeight = '350px'
         height={mapHeight}
         classes="container poly-3 z-0"
         style="@media (max-width: 700px) { width: calc(100% - 4px); }"
-        zoom="16"
+        zoom={mapZoom}
+        offset={offset}
         controls="true"
         locations={locationsCopy}
         geojson={`../../boundry.json`}
@@ -100,7 +103,7 @@ const mapHeight = '350px'
           weight: 2,
           opacity: 1,
           color: 'green',
-          fillOpacity: 0.05
+          fillOpacity: 0.0
         }}
       />
     </div>

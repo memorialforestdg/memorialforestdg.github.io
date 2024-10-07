@@ -10,6 +10,10 @@ flourishClasses: ['--rowan-leaves', 'dropcap', '--dc-brand-purple-dk']
 collectionId: albums
 albumId: dumfries_visit
 
+# Map over rides
+mapZoom: '14'
+offset: [0, -40]
+
 # Sidebar info
 bgColor: '--brand-cyan-dk' # css custom prop
 textColor: '--brand-lt'    # css custom prop
@@ -33,11 +37,11 @@ __In Dumfries, more than 125 trees are planted__ at six locations across The Cri
 Each of the six plantings is accompanied by a sandstone marker, and each marker has been inscribed with handwritten stories of loss and resilience gathered on postcards during [Phase 1](../../about/phase-1) of the project, when the idea for the forest was being co-designed.
 The six plantings in Dumfries can be found at:
 
-1. __[Crichton Memorial Church](https://maps.app.goo.gl/LMnXBvnKiYz8yxRy8)__
-2. __[Easterbrook Hall](https://maps.app.goo.gl/MVZcmx5A92bUCNLv5)__
-3. __[Dudgeon House](https://maps.app.goo.gl/jKqA3PfyY3NnQEmw7)__
-4. __[Monreith House](https://maps.app.goo.gl/EzfoExevsjgoY6DH9)__
-5. __[Occupational Health at NHS Mountainhall Treatment Centre](https://maps.app.goo.gl/hsu6XgyoipbkRTRD6)__
-6. __[Three Road Ends at Mountainhall Treatment Centre](https://maps.app.goo.gl/hCNMzrVqzsymcRLV8?g_st=iw)__
+1. <a href="https://maps.app.goo.gl/LMnXBvnKiYz8yxRy8" target="_blank">Crichton Memorial Church</a>
+2. <a href="https://maps.app.goo.gl/MVZcmx5A92bUCNLv5" target="_blank">Easterbrook Hall</a>
+3. <a href="https://maps.app.goo.gl/jKqA3PfyY3NnQEmw7" target="_blank">Dudgeon House</a>
+4. <a href="https://maps.app.goo.gl/EzfoExevsjgoY6DH9" target="_blank">Monreith House</a>
+5. <a href="https://maps.app.goo.gl/hsu6XgyoipbkRTRD6" target="_blank">Occupational Health at NHS Mountainhall Treatment Centre</a>
+6. <a href="https://maps.app.goo.gl/hCNMzrVqzsymcRLV8?g_st=iw" target="_blank">Three Road Ends at Mountainhall Treatment Centre</a>
 
 <!-- <a class="link" href='../events/dumfries'><b>See also: </b>Events at Dumfries sites.</a> -->

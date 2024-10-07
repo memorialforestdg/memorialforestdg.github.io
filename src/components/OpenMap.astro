@@ -75,6 +75,7 @@ interface Props {
   controls?: 'true'
   icon?: Icon
   centericon?: 'true'
+  offset?: [number, number]
   locations?: Location[]
   geojson?: string // Url for a Geo JSON Object that defines the shape of map feature eg, a county or a city boundaries
   geostyle?: GeoStyle // An Object that defines the geojson object styles
@@ -94,6 +95,7 @@ const {
   controls = true,
   icon,
   centericon,
+  offset,
   locations,
   geojson,
   geostyle
@@ -107,6 +109,7 @@ const {
     class=`open-map ${classes}`
     data-lat={lat}
     data-lon={lon}
+    data-offset={JSON.stringify(offset)}
     data-zoom={zoom}
     data-maxzoom={maxzoom}
     data-scrollwheel={scrollwheel}
@@ -138,7 +141,8 @@ const {
         centericon,
         locations,
         geojson,
-        geostyle
+        geostyle,
+        offset
       } = this.dataset
 
       const id = this.id
@@ -147,8 +151,10 @@ const {
         zoom,
         maxZoom: maxzoom,
         scrollWheelZoom: scrollwheel,
-        zoomControl: controls
+        zoomControl: controls,
+        offset: offset
       }
+
       const map = L.map(id, mapOptions)
       const layer = new L.TileLayer(
         'https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
@@ -206,10 +212,12 @@ const {
           // }
         })
       }
-      // Center the map
-      map.panTo({lat: mapOptions.center[0], lon: mapOptions.center[1]}, zoom, {
-        animate: true
-      })
+      // Draw the map
+      map.setView({lat: mapOptions.center[0], lon: mapOptions.center[1]}, zoom)
+      mapOptions.offset &&
+        map.panBy(JSON.parse(mapOptions?.offset), {
+          animate: false
+        })
     }
   }
 
@@ -222,7 +230,7 @@ const {
   }
 
   .leaflet-popup-content > * {
-    font-size: 1.08333em;
+    font-size: 1.0833em;
     line-height: 1.3;
   }
 

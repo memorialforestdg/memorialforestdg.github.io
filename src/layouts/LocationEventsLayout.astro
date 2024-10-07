@@ -17,6 +17,8 @@ interface Props {
     bannerHeight?: number
     bannerAlt?: string
     flourishClasses?: Array<string>
+    mapZoom?: string
+    offset?: [number, number]
     plantingCollectionId?: keyof DataEntryMap
     plantingAlbumId?: string
     launchCollectionId?: keyof DataEntryMap
@@ -30,6 +32,8 @@ const {
   bannerHeight = 350,
   bannerAlt,
   flourishClasses,
+  mapZoom = '16',
+  offset,
   plantingCollectionId,
   plantingAlbumId,
   launchCollectionId,
@@ -81,7 +85,7 @@ const mapHeight = '350px'
           weight: 2,
           opacity: 1,
           color: 'green',
-          fillOpacity: 0.05
+          fillOpacity: 0.00
         }}
       />
     </div>
