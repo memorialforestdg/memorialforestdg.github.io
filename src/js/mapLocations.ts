@@ -1,12 +1,11 @@
 import { type Icon } from '../components/OpenMap.astro'
-import mapIcon from '../../public/map-pin-trees.svg'
-import mapIconShadow from '../../public/map-pin-trees-shadow.png'
-
+import treeGroupIcon from '../../public/pins/trees-group.svg'
+import treeGroupIconShadow from '../../public/pins/shadows-group.png'
 
 // Icon
 export const iconOpts: Icon = {
-  iconUrl: mapIcon.src,
-  shadowUrl: mapIconShadow.src,
+  iconUrl: treeGroupIcon.src,
+  shadowUrl: treeGroupIconShadow.src,
   iconSize: [80, 77],
   shadowSize: [80, 40],
   shadowAnchor: [0, 8],
