@@ -71,7 +71,7 @@ export const mapLocations = [
     id: 'dumfries',
     content: `<p>The Dispersed Memorial Forest in <a href="../../visit/dumfries">Dumfries</a> was planted at six locations to create an aproximate one hour walking loop, reflecting the one hour of exercise allowed during the first Lockdown, Spring 2020:</p>
       <ol>
-        <li>Crichton Memorial Church (this pin)</li>
+        <li><b>Crichton Memorial Church (this pin)</b></li>
         <li>Easterbrook Hall</li>
         <li>Dudgeon House</li>
         <li>Monreith House</li>
@@ -89,7 +89,7 @@ export const mapLocations = [
     content: `<p>The Dispersed Memorial Forest in <a href="../../visit/dumfries">Dumfries</a> was planted at six locations to create an aproximate one hour walking loop, reflecting the one hour of exercise allowed during the first Lockdown, Spring 2020:</p>
       <ol>
         <li>Crichton Memorial Church</li>
-        <li>Easterbrook Hall (this pin)</li>
+        <li><b>Easterbrook Hall (this pin)</b></li>
         <li>Dudgeon House</li>
         <li>Monreith House</li>
         <li>Occupational Health at NHS Mountainhall Treatment Centre</li>
@@ -107,7 +107,7 @@ export const mapLocations = [
       <ol>
         <li>Crichton Memorial Church</li>
         <li>Easterbrook Hall</li>
-        <li>Dudgeon House (this pin)</li>
+        <li><b>Dudgeon House (this pin)</b></li>
         <li>Monreith House</li>
         <li>Occupational Health at NHS Mountainhall Treatment Centre</li>
         <li>Three Road Ends at Mountainhall Treatment Centre</li>
@@ -125,7 +125,7 @@ export const mapLocations = [
         <li>Crichton Memorial Church</li>
         <li>Easterbrook Hall</li>
         <li>Dudgeon House</li>
-        <li>Monreith House (this pin)</li>
+        <li><b>Monreith House (this pin)</b></li>
         <li>Occupational Health at NHS Mountainhall Treatment Centre</li>
         <li>Three Road Ends at Mountainhall Treatment Centre</li>
       </ol>`,
@@ -133,7 +133,7 @@ export const mapLocations = [
     lat: 55.055452,
     lon: -3.599129,
     open: false,
-    icon: treeCOpts
+    icon: treeBOpts
   },
   {
     id: 'dumfries-mountainhall-treatment-centre-nhs',
@@ -143,7 +143,7 @@ export const mapLocations = [
         <li>Easterbrook Hall</li>
         <li>Dudgeon House</li>
         <li>Monreith House</li>
-        <li>Occupational Health at NHS Mountainhall Treatment Centre (this pin)</li>
+        <li><b>Occupational Health at NHS Mountainhall Treatment Centre (this pin)</b></li>
         <li>Three Road Ends at Mountainhall Treatment Centre</li>
       </ol>`,
     popup: {offset: {x: 30, y: -22}},
@@ -161,7 +161,7 @@ export const mapLocations = [
         <li>Dudgeon House</li>
         <li>Monreith House</li>
         <li>Occupational Health at NHS Mountainhall Treatment Centre</li>
-        <li>Three Road Ends at Mountainhall Treatment Centre (this pin)</li>
+        <li><b>Three Road Ends at Mountainhall Treatment Centre (this pin)</b></li>
       </ol>`,
     popup: {offset: {x: 30, y: -22}},
     lat: 55.05742,
