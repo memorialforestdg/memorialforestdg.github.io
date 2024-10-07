@@ -1,5 +1,3 @@
-
-
 /**
  * Fetches data from the specified URL and returns the first item's geojson.
  *
