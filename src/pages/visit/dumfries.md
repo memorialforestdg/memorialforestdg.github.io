@@ -24,6 +24,7 @@ address: 'Crichton Memorial Church, The Crichton, Dumfries DG1 4ZZ'
 website: 'https://www.crichton.co.uk/'
 hours: 'Always open'
 tickets: 'Entrance is Free'
+locProviso: 'Opening times and access information may change. Please visit the site partner website listed above or phone ahead for updated information.'
 partners: The Crichton Trust and NHS Dumfries and Galloway
 parking: 'Free car parking is available near The Crichton Memorial Church and at the main car park at NHS Mountainhall Treatment Centre.'
 bathrooms: 'Public restrooms are available in Crichton Central Cafe, and Mountainhall Treatment Centre during regular business hours.'
