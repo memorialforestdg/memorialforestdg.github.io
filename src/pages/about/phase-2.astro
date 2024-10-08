@@ -1,0 +1,151 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro'
+import BannerImage from '../../images/RememberingTogetherWBF22LowRes74_ImageColinTennant.jpg'
+import Breadcrumbs from '~components/Breadcrumbs.astro'
+import Flourish from '~components/Flourish.astro'
+import Gallery from '~components/Gallery.astro'
+const pageTitle = 'Phase 2: A Dispersed Memorial Forest'
+const bannerAlt =
+  'Remembering Together Phase 1 Workshop, image by Colin Tennant'
+const flourishClasses = ['--apple', 'dropcap', '--dc-purpureus-600']
+const collectionId = 'albums'
+const albumId = 'phase_2'
+
+// inset gallery
+// import img1 from '../../images/4-rememberingtogetherdg_whatdoyouwanttoremember_imagetsbeall_unexpected_garden.jpg'
+// import img2 from '../../images/RememberingTogetherDG_Stranraer_10-09-2022_imagetsBeall_09.jpg'
+// import img3 from '../../images/RememberingTogetherWBF22LowRes57__ImageColinTennant.jpg'
+// import img4 from '../../images/3-RememberingTogetherDG_A-Nurses-Wish_Postcard_imagetsBeall.jpg'
+
+// import img5 from '../../images/RememberingTogetherDG_TreePlanting_STRANRAER_72dpi-106.jpg'
+// import img6 from '../../images/2-RememberingTogetherDG_Stranraer_Leanne-and-May_10092022_imageGregor.jpg'
+// import img7 from '../../images/RememberingTogetherDG_TreePlanting_STRANRAER_72dpi-3.jpg'
+// import img8 from '../../images/planting-dumfries.jpg'
+---
+
+<BaseLayout
+  pageTitle={pageTitle}
+  bannerImage={BannerImage}
+  bannerAlt={bannerAlt}
+>
+  <main id="main">
+    <div class="container stack">
+      <div class="stack pl-5-ns pr-5-ns pt-4-ns">
+        <Breadcrumbs />
+        <div class="markdown-content">
+          <Flourish classes={flourishClasses}>
+            <p>
+              <b
+                >The proposal <i>The Dispersed Memorial Forest</i> was co-created</b
+              >with communities across the region in <a
+                href="../../about/phase-1">Phase 1</a
+              > of the <i>Remembering Together D&G project</i>, June-December
+              2022. As the Covid Memorial for D&G, it included the creation of a <i
+                >Dispersed Memorial Forest</i
+              >, hosting community events to allow opportunities for shared
+              reflection, and the creation of an Community Archive which
+              recorded stories of loss and resilience from people across the
+              region.
+            </p>
+
+            <p>
+              Phase 2 began in July 2023, and <a href="../the-artists"
+                >Artists t s Beall and Katie Anderson</a
+              > were recommissioned to co-design and deliver the memorial project.
+              The artists hosted further conversations and workshops across D&G,
+              building on earlier collaborations. The workshops and activities were
+              designed to share information about the memorial project, and to help
+              decide the locations for the Memorial Forest. Five sites were identified
+              in Dumfries, Castle Douglas, Moffat, Sanquhar, and Stranraer, as the
+              artists were keen to ensure that the forest was spread across (or ‘dispersed’)
+              across D&G, so that people across the entire region would be able to
+              visit the memorial.
+            </p>
+
+            <!-- <Gallery
+              images={[img1, img2, img3, img4]}
+              galleryWraperClasses={'m3 pa-2 bt bb b--desert-300'}
+              targetCellHeight={180}
+              cellFormat={'square'}
+              galleryUlClasses={'pa-0 list flex flex-wrap gap-2 justify-center'}
+              cellLiClasses={'pa-0 ma-0 shadow-hover grow'}
+              cellClasses={'pa-0 ma-0 bg-brand-purple br1'}
+            /> -->
+
+            <p>
+              <a href="https://www.treesurv.co.uk/">TreeSurv</a>, a D&G-based
+              organisation specialising in planting native woodlands, were
+              brought on as advisors. TreeSurv staff visited each of the five
+              Memorial Forest sites with the artists, met with site partners and
+              local community members, and recommended native tree species to
+              plant at each site. Local community members were consulted on the
+              types of trees they preferred, and this was taken into
+              consideration when deciding what species to plant on each site.
+            </p>
+            <p>
+              Tree Planting Events were hosted at each of the five locations
+              (learn more about <a href="../planting-the-forest"
+                >Planting the Forest</a
+              >). After the trees were planted, sculptural markers were
+              co-designed with local communities, and fabricated and installed.
+            </p>
+
+            <!-- <Gallery
+              images={[img5, img6, img7, img8]}
+              galleryWraperClasses={'m3 pa-2 bt bb b--desert-300'}
+              targetCellHeight={180}
+              cellFormat={'square'}
+              galleryUlClasses={'pa-0 list flex flex-wrap gap-2 justify-center'}
+              cellLiClasses={'pa-0 ma-0 shadow-hover grow'}
+              cellClasses={'pa-0 ma-0 bg-brand-purple br1'}
+            /> -->
+
+            <h2>Community Gathering Events</h2>
+            <p>
+              To mark the opening for each of the sites, the project hosted a
+              series of Community Gathering Events at each location in June
+              2024, with activities including walks, sharing stories, music and
+              food. The project’s artists worked alongside local community
+              partners and individuals to create unique events for each site,
+              inviting guest speakers, musicians, and local businesses to
+              support activities.
+            </p>
+
+            <p>
+              The events allowed an opportunity for reflection, and for
+              communities to come together – both key themes identified during
+              Phase 1 of the project. The opportunity to share stories allowed
+              individuals to speak about their experiences, and to have them
+              documented and heard. Events were created with, and attended by,
+              primary school children, care home staff and residents, NHS staff
+              and their families, local choirs and musicians, and other local
+              groups and individuals.
+            </p>
+
+            <p>
+              <b>Learn more about the project:</b>
+              <a href="../../about/phase-1">Phase 1</a>.
+            </p>
+            <hr />
+          </Flourish>
+          <div class="gallery__wrap">
+            {
+              collectionId && albumId ? (
+                <Gallery
+                  collectionId={collectionId}
+                  albumId={albumId}
+                  galleryWraperClasses={'nt-4'}
+                  galleryUlClasses={
+                    'pa-0 list flex flex-wrap gap-2 justify-center'
+                  }
+                  cellLiClasses={'pa-0 ma-0 shadow-hover grow'}
+                  cellClasses={'pa-0 ma-0 bg-brand-purple br1'}
+                />
+              ) : null
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</BaseLayout>

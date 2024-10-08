@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Hero from '../components/Hero.astro'
+
+const pageTitle = 'A Community Covid Memorial'
+const bannerAlt =
+  'Shallow of focus image of Remembering Together D&G event, with memory ribbons fluttering in the wind and event visitors gatehring arround a table in the background.'
+import bannerImage from '../images/RememberingTogetherDG_imageGregorAnderson_croppedHorizontal.jpg'
+const heroTitle =
+  '<h2 class="mt-0">The Dispersed Memorial Forest</h2><h3>A Community Covid Memorial for <span class="nowrap-ns">Dumfries & Galloway</span></h3>'
+const heroText = `<p>Welcome to our future site and online archive.</p>
+<p>This site will launch in early September.</p>
+<p>More information about the project, and the Covid Memorial Forest sites in Dumfries, Castle Douglas, Moffat, Sanquhar, and Stranraer is available at:</p>`
+---
+
+<BaseLayout
+  pageTitle={pageTitle}
+  bannerImage={bannerImage}
+  bannerAlt={bannerAlt}
+  maintenice={true}
+>
+  <main id="main">
+    <div class="container full-width">
+      <Hero
+        wrapperClasses={['poly-1', 'mt-5', 'mb-4', 'pa-0', 'pl-1', 'pr-1']}
+        innerClasses={[
+          'bg-brand-purple-dk',
+          'brand-lt',
+          'ma-3',
+          'pb-5',
+          'pt-4'
+        ]}
+        title={heroTitle}
+        text={heroText}
+        titleClasses={['f3', 'ma-0']}
+        linkText="rememberingtogether.scot"
+        linkHref="https://rememberingtogether.scot/dumfries-galloway"
+        linkClasses={[
+          'btn',
+          'bg-forest-50',
+          'hover-bg-forest-900',
+          'dib',
+          'mt-3'
+        ]}
+      />
+    </div>
+  </main>
+</BaseLayout>
