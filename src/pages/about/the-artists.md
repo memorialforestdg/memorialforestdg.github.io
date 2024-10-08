@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/MDPagesLayout.astro
 pageTitle: The Artists
-bannerImage: '../images/banners/artists-banner.jpg'
+bannerImage: '../images/banners/artists-banner-3.jpg'
 bannerAlt: 'Remembering Together artists for Dumfries & Galloway, (left to right) Katie Anderson, and Dr. t s Beall (Tara).'
 flourishClasses: ['--downybirch', 'dropcap', '--dc-munsell-600']
 ---

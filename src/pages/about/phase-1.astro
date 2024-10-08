@@ -12,9 +12,10 @@ const collectionId = 'albums'
 const albumId = 'phase_1'
 
 // inset gallery
-import img1 from '../../images/how-should-we-remember.jpg'
-import img2 from '../../images/remembering_together_wbf22_high_res64_image_colin_tennant.jpg'
-import img3 from '../../images/RememberingTogetherDG_imageGregorAnderson_full.jpg'
+import img1 from '../../images/1_phase_1_page_image_1852.jpg'
+import img2 from '../../images/2_phase_1_image_1841.jpg'
+import img3 from '../../images/3_remembering_together_wbf22_colin_tennant.jpg'
+import img4 from '../../images/4_phase_1_page.jpg'
 ---
 
 <BaseLayout
@@ -29,18 +30,20 @@ import img3 from '../../images/RememberingTogetherDG_imageGregorAnderson_full.jp
         <div class="markdown-content">
           <Flourish classes={flourishClasses}>
             <p>
-              <b>In Dumfries and Galloway</b>, commissioned artists t s Beall
-              and Katie Anderson worked with communities to collaboratively
-              design and plant <i>The Dispersed Memorial Forest</i> across the region.
-              The artists began working with communities in 2022, exploring how to
-              remember and honour those impacted by Covid. Between July-December
-              2022 (Phase 1), the artists brought a sculptural <i
-                >Tree of Remembrance</i
-              > to seven public events across D&G, including <i
-                >Wigton Book Festival</i
-              >, <i>Stranraer Unexpected Garden Festival</i>, <i
-                >The Kirkcudbright Light Festival</i
-              >, and the <i>Dumfries Rood Fair</i>.
+              <b>In Dumfries and Galloway</b>, Commissioned <a
+                href="../../about/the-artists/"
+                >Artists t s Beall and Katie Anderson</a
+              > worked with communities to collaboratively design and plant <i
+                >The Dispersed Memorial Forest</i
+              > across the region. The artists began working with communities in
+              2022, exploring how to remember and honour those impacted by Covid.
+              Between July-December 2022 (Phase 1), the artists brought a sculptural
+              <i>Tree of Remembrance</i> to seven public events across D&G, including
+              <i>Wigton Book Festival</i>, <i
+                >Stranraer Unexpected Garden Festival</i
+              >, <i>The Kirkcudbright Light Festival</i>, and the <i
+                >Dumfries Rood Fair</i
+              >.
             </p>
 
             <p>
@@ -53,8 +56,9 @@ import img3 from '../../images/RememberingTogetherDG_imageGregorAnderson_full.jp
               Covid Memorial.
             </p>
             <Gallery
-              images={[img1, img2, img3]}
+              images={[img1, img2, img3, img4]}
               galleryWraperClasses={'m3 pa-2 bt bb b--desert-300'}
+              cellFormat={'square'}
               targetCellHeight={180}
               galleryUlClasses={'pa-0 list flex flex-wrap gap-2 justify-center'}
               cellLiClasses={'pa-0 ma-0 shadow-hover grow'}

@@ -6,7 +6,7 @@ flourishClasses: ['--fieldmaple', 'dropcap', '--dc-teal-800']
 
 ## Thank you
 
-[The Artists](the-artists) would like to thank everyone involved in the co-creation of _The Dispersed Memorial Forest_, including: our Site and Community Partners, members of the project’s Steering Group, Remembering Together staff at Greenspace Scotland, [TreeSurv](https://www.treesurv.co.uk/), and the community groups and organisations across D&G who worked with us to host workshops, conversations, and public events.
+[The Artists](../../about/the-artists) would like to thank everyone involved in the co-creation of _The Dispersed Memorial Forest_, including: our Site and Community Partners, members of the project’s Steering Group, Remembering Together staff at Greenspace Scotland, [TreeSurv](https://www.treesurv.co.uk/), and the community groups and organisations across D&G who worked with us to host workshops, conversations, and public events.
 
 Special thanks – and with the utmost respect – to everyone who shared their experiences during the pandemic, and stories of loss and resilience. The conversations, ideas, postcards, _Tree of Remembrance_ ribbons shared with us during workshops and public events collaboratively shaped the Memorial Forest.
 

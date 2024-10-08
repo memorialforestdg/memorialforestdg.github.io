@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/MDPagesLayout.astro
 pageTitle: Planting the Forest
-bannerImage: '../images/planting-banner.jpg'
+bannerImage: '../images/banners/planting-banner.jpg'
 bannerAlt: 'Image of Katie Anderson the crafting of the markers.'
 flourishClasses: ['--beech', 'dropcap', '--dc-picton-600']
 
