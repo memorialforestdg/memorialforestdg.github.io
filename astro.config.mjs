@@ -12,7 +12,7 @@ export default defineConfig({
     inlineStylesheets: 'auto'
   },
   // site: 'https://example.com', // We are not setting this as we want to deploy to domain mirrors, e.g. yourname.github.io and yourname.com.
-  integrations: [icon(), relativeLinks(), purgecss(purgeOpts)],
+  integrations: [icon(), relativeLinks(), purgecss(purgeOpts), (await import("@playform/compress")).default()],
   output: 'static',
   experimental: {
     env: {
