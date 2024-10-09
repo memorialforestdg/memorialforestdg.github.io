@@ -5,7 +5,6 @@ import purgecss from "astro-purgecss";
 import purgeOpts from './purgecss.config.mjs'
 import { getCurrentNonce } from "./src/js/getCurrentNonce";
 import { shield } from '@kindspells/astro-shield'
-// import removeOriginalImages from "./src/intergrations/removeOriginalImages"; // removeOriginalImages
 // import prebuild from "./src/intergrations/prebuild"; //prebuild()
 
 export default defineConfig({
@@ -13,7 +12,8 @@ export default defineConfig({
     inlineStylesheets: 'auto'
   },
   // site: 'https://example.com', // We are not setting this as we want to deploy to domain mirrors, e.g. yourname.github.io and yourname.com.
-  integrations: [shield({}), icon(), relativeLinks(), purgecss(purgeOpts), (await import("@playform/compress")).default()],
+  // Using @playform/compress for general compression (images html etc.), but useing prugecss first for CSS purge & minification.
+  integrations: [icon(), relativeLinks(), purgecss(purgeOpts), (await import("@playform/compress")).default()],
   output: 'static',
   experimental: {
     env: {
