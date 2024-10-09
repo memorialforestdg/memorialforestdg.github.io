@@ -1,5 +1,5 @@
 export default {
-      fontFace: true,
+      fontFace: false,
       variables: true,
       keyframes: false, // false for astro transitions
       safelist: {
