@@ -6,7 +6,6 @@ module.exports = {
       removeDuplicatedProperties: true,
       removeDuplicatedValues: false
     }),
-    // require('cssnano')({ preset: 'default' }),
     require('postcss-preset-env')({
       features: {}
     }),
