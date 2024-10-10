@@ -4,7 +4,6 @@ import relativeLinks from 'astro-relative-links';
 import purgecss from "astro-purgecss";
 import purgeOpts from './purgecss.config.mjs'
 import { getCurrentNonce } from "./src/js/getCurrentNonce";
-import { shield } from '@kindspells/astro-shield'
 // import prebuild from "./src/intergrations/prebuild"; //prebuild()
 
 export default defineConfig({
