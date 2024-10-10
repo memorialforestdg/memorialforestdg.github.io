@@ -12,7 +12,10 @@ export default defineConfig({
   },
   // site: 'https://example.com', // We are not setting this as we want to deploy to domain mirrors, e.g. yourname.github.io and yourname.com.
   // Using @playform/compress for general compression (images html etc.), but useing prugecss first for CSS purge & minification.
-  integrations: [icon(), relativeLinks(), purgecss(purgeOpts), (await import("@playform/compress")).default()],
+  integrations: [icon(), relativeLinks(), purgecss(purgeOpts), (await import("@playform/compress")).default(
+    {CSS:
+      { restructure: false }}
+  )],
   output: 'static',
   experimental: {
     env: {
