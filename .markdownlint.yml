@@ -1,10 +1,6 @@
 MD033:
   allowed_elements:
     - cite
-    - abbr
-    - code
     - q
     - a
     - b
-    - i
-
