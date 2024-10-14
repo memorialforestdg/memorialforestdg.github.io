@@ -11,7 +11,7 @@ module.exports = {
   ],
   rules: {
     // browserslist supported
-    "media-feature-range-notation": null, // prevent @media (width <= 1280px)  as upported
+    "media-feature-range-notation": null, // prevent @media (width <= 1280px)  as supported
     "plugin/no-unsupported-browser-features": [true, {
       ignore: ["rem", "css-nesting", "css-blank-pseudo", "css-prefers-color-scheme", "css-mediaqueries"],
       ignorePartialSupport: true,
