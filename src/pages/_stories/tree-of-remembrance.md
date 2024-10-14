@@ -1,22 +1,19 @@
 ---
 layout: ../../layouts/MDPagesLayout.astro
 pageTitle: Tree of Remembrance
-bannerImage: '../images/banners/tree-banner.webp'
+bannerImage: '../images/banners/tree-of-rememberance-banner.jpg'
 bannerAlt: 'Ribbons being tied to the Tree of Remembrance.'
-flourishClasses: ['--englishoak', 'dropcap', '--dc-sienna-700']
+flourishClasses: ['--englishoak', 'dropcap', '--dc-brand-orange-dk']
 
 collectionId: albums
 albumId: tree_of_remembrance
 ---
 
-__Mollit cillum sint veniam enim labore amet.__ Amet irure do enim irure. Elit exercitation consequat enim eiusmod Lorem. Tempor Lorem commodo do adipisicing non et in et ipsum reprehenderit.
 
-Irure officia do dolore cillum ea labore veniam quis ad sint ad non laborum. Duis ipsum velit tempor eiusmod duis. Do aliqua adipisicing do nostrud cillum cupidatat magna anim nisi ad velit excepteur labore.
+__In co-creating the memorial__, [Commissioned Artists t s Beall and Katie Anderson](../../about/the-artists) worked with communities across Dumfries and Galloway. Over five months in 2022 ([Phase 1](../../about/phase-1)), the Artists brought a sculptural Tree of Remembrance to large public events across D&G, including the Wigtown Book Festival, Stranraer Dandelion Harvest Festival, Kirkcudbright Festival of Light, Castle Douglas Cycling Event, and the Dumfries Rood Fair.
 
-Qui elit consequat enim nostrud veniam incididunt aliquip voluptate qui ex culpa. In est aliquip ut pariatur. Voluptate aute excepteur cillum magna proident id minim voluptate duis. Incididunt sint nulla sunt culpa consequat enim aute excepteur sint sit est irure. Cillum sint consectetur laboris laborum irure sint excepteur fugiat ut. Qui incididunt exercitation eu ad sit laborum voluptate eiusmod amet est id proident.
+The _Tree of Remembrance_ was designed to evoke Scottish ‘Clootie Trees’ or ‘Clootie Wells’, where the ritual of tying a ribbon or piece of cloth forms a gesture of honouring, healing, and remembrance. This action is echoed around the world in many cultures (also called wishing trees or gift trees), and was felt to be a suitable starting point for Phase 1, considering what shape the Covid Memorial for D&G might take. Over seven public events, more than 95 ribbons were tied to the _Tree of Remembrance_ and donated to the project.
 
-Id est Lorem amet eiusmod consequat velit aliquip. Elit sit occaecat ad in. Aute sunt aliquip minim cupidatat dolor incididunt. Sunt labore mollit nisi ex sint occaecat amet ipsum commodo commodo eu.
+The stories shared as ribbons on the _Tree of Remembrance_ were central to the collaborative process that shaped D&G’s Covid memorial. Some of the handwritten messages from the ribbons have been inscribed onto sandstone markers which are part of _The Dispersed Memorial Forest_.
 
-Anim laboris culpa ex laboris sint tempor esse reprehenderit est exercitation. Sit proident fugiat dolor exercitation mollit elit id nulla. Eu amet duis id ex ipsum commodo mollit minim labore. Nisi aute esse commodo culpa excepteur fugiat irure pariatur anim duis exercitation eiusmod laboris voluptate. Incididunt do irure dolor ex commodo labore reprehenderit fugiat fugiat. Velit aliquip enim excepteur pariatur.
-
-Deserunt elit sunt fugiat laboris esse Lorem incididunt quis eu eiusmod sit. Laboris enim aliqua Lorem do mollit labore occaecat irure ea veniam Lorem. Veniam sint cupidatat dolor ea duis aliquip qui consequat laborum irure qui ut. Sunt non aute ullamco ex.
+Over 150 handwritten postcards and _Tree of Remembrance_ ribbons have been donated to the D&G Council’s [Heritage Service](https://www.dumgal.gov.uk/article/24609/Heritage-Service) and are available to view by appointment. Several postcards and ribbons have been donated to [University of Stirling Archives](https://collections.stir.ac.uk/) as part of the national [Remembering Together](https://www.rememberingtogether.scot/) project. These are also available to view by appointment, alongside objects from other Covid Memorial projects across Scotland.

@@ -18,3 +18,5 @@ The workshop included block printing, and three questions which the artists used
 - Within D&G, how should we collectively remember the pandemic?
 
 The conversations and ideas shared during postcard-making workshops were central to the collaborative process that shaped _The Dispersed Memorial Forest_. Many of the handwritten stories from the postcards have been inscribed onto the sculptural markers which are part of the Memorial.
+
+Over 150 handwritten postcards and _Tree of Remembrance_ ribbons have been donated to the D&G Council’s [Heritage Service](https://www.dumgal.gov.uk/article/24609/Heritage-Service) and are available to view by appointment. Several postcards and ribbons have been donated to [University of Stirling Archives](https://collections.stir.ac.uk/) as part of the national [Remembering Together](https://www.rememberingtogether.scot/) project. These are also available to view by appointment, alongside objects from other Covid Memorial projects across Scotland.
