@@ -10,7 +10,8 @@ import { getCurrentNonce } from './src/js/getCurrentNonce'
 
 export default defineConfig({
   build: {
-    inlineStylesheets: 'auto'
+    inlineStylesheets: 'auto',
+    compressHTML: true,
   },
   output: 'static',
   // site: 'https://example.com', // We are not setting this as we want to deploy to domain mirrors, e.g. yourname.github.io and yourname.com.
@@ -18,9 +19,9 @@ export default defineConfig({
   integrations: [icon(), relativeLinks(), purgecss(purgeOpts),
     compress({
       CSS: true,
-      HTML: false, // breaks forest maps
-      Image: false,
-      JavaScript: false,
+      HTML: false,       // Provided by astro > 2.5
+      Image: false,      // very slow process
+      JavaScript: false, // Breaks leafletjs pages.
       SVG: true
     }),
     compressor({ gzip: false, brotli: true }) // brotli as gh-pages supports gzip https://github.com/orgs/community/discussions/21655
