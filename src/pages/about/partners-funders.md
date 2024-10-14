@@ -1,6 +1,7 @@
 ---
 layout: ../../layouts/MDPagesLayout.astro
 pageTitle: Partners & Funders
+bannerImage: '../images/banners/partners-banner.jpg'
 flourishClasses: ['--alder', 'dropcap', '--dc-cerise-800']
 ---
 
