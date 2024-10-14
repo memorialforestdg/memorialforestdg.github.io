@@ -19,8 +19,8 @@ export default defineConfig({
     compress({
       CSS: true,
       HTML: false, // breaks forest maps
-      Image: true,
-      JavaScript: true,
+      Image: false,
+      JavaScript: false,
       SVG: true
     }),
     compressor({ gzip: false, brotli: true }) // brotli as gh-pages supports gzip https://github.com/orgs/community/discussions/21655
