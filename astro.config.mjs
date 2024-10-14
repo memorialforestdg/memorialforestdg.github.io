@@ -3,9 +3,8 @@ import icon from 'astro-icon';
 import relativeLinks from 'astro-relative-links'
 import purgecss from 'astro-purgecss'
 import purgeOpts from './purgecss.config.mjs'
-// import compress from '@playform/compress'
+import compress from '@playform/compress'
 import compressor from 'astro-compressor'
-import min from 'astro-min';
 import { getCurrentNonce } from './src/js/getCurrentNonce'
 // import prebuild from "./src/intergrations/prebuild"; //prebuild()
 
@@ -17,14 +16,14 @@ export default defineConfig({
   // site: 'https://example.com', // We are not setting this as we want to deploy to domain mirrors, e.g. yourname.github.io and yourname.com.
   // Using @playform/compress for general compression (images html etc.), but useing prugecss first for CSS purge & minification.
   integrations: [icon(), relativeLinks(), purgecss(purgeOpts),
-    min(), // html, css, js, svg minification
-    // compress({
-    //   CSS: false,
-    //   HTML: false,
-    //   Image: true, // '@playform/compress' breaks our css vars, but is excelent at compressing images
-    //   JavaScript: false,
-    //   SVG: false}),
-    compressor() // gzip & brotli compression
+    compress({
+      CSS: true,
+      HTML: false, // breaks forest maps
+      Image: true,
+      JavaScript: true,
+      SVG: true
+    }),
+    compressor({ gzip: false, brotli: true }) // brotli as gh-pages supports gzip https://github.com/orgs/community/discussions/21655
   ],
 
   experimental: {
