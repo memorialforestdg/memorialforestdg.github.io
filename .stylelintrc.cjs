@@ -5,6 +5,7 @@ module.exports = {
     "stylelint-config-rational-order",
   ],
   plugins: [
+    "stylelint-prettier",
     "stylelint-high-performance-animation",
     "stylelint-no-unsupported-browser-features",
     "stylelint-selector-bem-pattern"
@@ -15,6 +16,7 @@ module.exports = {
     "plugin/no-unsupported-browser-features": [true, {
       ignore: ["rem", "css-nesting", "css-blank-pseudo", "css-prefers-color-scheme", "css-mediaqueries"],
       ignorePartialSupport: true,
+      "prettier/prettier": true
     }],
     // custom properties allow both camel and kebab-case
     "custom-property-pattern": "^(--)?[a-z][a-zA-Z0-9]*((-)?[a-zA-Z0-9]+)*$",
