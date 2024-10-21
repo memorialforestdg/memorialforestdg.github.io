@@ -1,13 +1,14 @@
 import eslintPluginAstro from 'eslint-plugin-astro'
 
 // eslint.config.js
-import js from "@eslint/js";
+import js from '@eslint/js'
 
 export default [
   // add more generic rule sets here, such as:
   js.configs.recommended,
   ...eslintPluginAstro.configs.recommended,
   {
+    globals.process: 'readonly',
     ignores: [
       '**/temp.js',
       'config/*',
@@ -17,13 +18,12 @@ export default [
       'build',
       'src/js/vendor',
       '**/node_modules',
-      '.stylelintrc.*',
+      '.stylelintrc.*'
     ],
     rules: {
-    //   override/add rules settings here, such as:
-      "astro/no-set-html-directive": "error",
+      //   override/add rules settings here, such as:
+      'astro/no-set-html-directive': 'error',
       'no-unused-vars': ['error', { argsIgnorePattern: '^typedefs' }],
-      'no-useless-assignment': 'error',
       'no-useless-concat': 'error',
       'no-useless-return': 'error',
       'no-var': 'error',
@@ -39,7 +39,13 @@ export default [
       'prefer-template': 'error',
       'require-yield': 'error',
       'rest-spread-spacing': 'error',
-      'sort-imports': 'error',
+      'sort-imports': [
+        'error',
+        {
+          ignoreCase: true,
+          ignoreDeclarationSort: true
+        }
+      ],
       'sort-keys': 'error',
       'sort-vars': 'error'
     }
