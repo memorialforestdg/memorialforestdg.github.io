@@ -1,18 +1,24 @@
 ---
 // Conditionally put canonical link in the head
-// Relies on PUBLIC_CANNONICAL set in both .env for dev, and in .github/workflows/astro.yml for deploy.
+// Relies on PUBLIC_CANONICAL, PUBLIC_MIRROR as defined in .github/workflows/astro.yml for deploy.
 
-import {PUBLIC_CANONICAL} from 'astro:env/server'
-const canonical = PUBLIC_CANONICAL + Astro.url.pathname
+import {PUBLIC_CANONICAL, PUBLIC_MIRROR} from 'astro:env/server'
+
+let canonical = PUBLIC_CANONICAL && PUBLIC_CANONICAL + Astro.url.pathname
+let mirror = PUBLIC_MIRROR && PUBLIC_MIRROR + Astro.url.pathname
 ---
 
 <>
   {
-    import.meta.env?.SITE === PUBLIC_CANONICAL && (
+    import.meta.env?.SITE === PUBLIC_CANONICAL ? (
       <>
-        <!-- Canonical Link -->
-        <link rel="canonical" href={canonical} />
+        <link rel="alternate" href={mirror} />
         <meta property="og:url" content={canonical} />
+      </>
+    ) : (
+      <>
+        <link rel="canonical" href={canonical} />
+        <meta property="og:url" content={mirror} />
       </>
     )
   }
