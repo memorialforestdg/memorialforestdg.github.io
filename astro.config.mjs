@@ -8,7 +8,7 @@ import purgecss from 'astro-purgecss'
 import relativeLinks from 'astro-relative-links'
 import purgeOpts from './purgecss.config.mjs'
 import sitemap from '@astrojs/sitemap'
-import webmanifest from './src/js/webmanifest'
+// import webmanifest from './src/js/webmanifest'
 import robotsTxt from 'astro-robots-txt'
 
 // import { getCurrentNonce } from './src/js/getCurrentNonce'
