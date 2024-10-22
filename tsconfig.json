@@ -3,9 +3,14 @@
   "compilerOptions": {
     "strictNullChecks": true,
     "allowJs": true,
-    "baseUrl":".",
-    "paths":{
-      "~*":["src/*"]
-    }
+    "baseUrl": ".",
+    "paths": {
+      "~*": ["src/*"]
+    },
+    "types": [
+      "astro/client",
+      "vite-plugin-pwa/vanillajs",
+      "vite-plugin-pwa/info"
+    ]
   }
 }
