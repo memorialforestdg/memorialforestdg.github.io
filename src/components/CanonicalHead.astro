@@ -2,10 +2,10 @@
 // Conditionally put canonical link in the head
 // Relies on PUBLIC_CANONICAL, PUBLIC_MIRROR as defined in .github/workflows/astro.yml for deploy.
 
-import {PUBLIC_CANONICAL, PUBLIC_MIRROR} from 'astro:env/server'
+import { PUBLIC_CANONICAL, PUBLIC_MIRROR } from "astro:env/server";
 
-let canonical = PUBLIC_CANONICAL && PUBLIC_CANONICAL + Astro.url.pathname
-let mirror = PUBLIC_MIRROR && PUBLIC_MIRROR + Astro.url.pathname
+const canonical = PUBLIC_CANONICAL && PUBLIC_CANONICAL + Astro.url.pathname;
+const mirror = PUBLIC_MIRROR && PUBLIC_MIRROR + Astro.url.pathname;
 ---
 
 <>

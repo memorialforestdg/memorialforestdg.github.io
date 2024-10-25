@@ -1,35 +1,35 @@
 ---
 interface Props {
   // ID and aria-label of the nav, defaults to "Breadcrumbs"
-  id?: string
+  id?: string;
   // currentPage is the url of the current page
-  currentPage?: typeof Astro.url
+  currentPage?: typeof Astro.url;
   // crumbs is an array of objecs with the following properties : crumb, url
-  crumbs?: Array<{text: string; url: string}>
+  crumbs?: Array<{ text: string; url: string }>;
 }
 
-let {id = 'Breadcrumbs', crumbs = [], currentPage} = Astro.props
-if (!currentPage) currentPage = Astro.url
-if (!currentPage?.pathname) return
-if (currentPage.pathname === '/') return
-let currentPath = '/'
+let { id = "Breadcrumbs", crumbs = [], currentPage } = Astro.props;
+if (!currentPage) currentPage = Astro.url;
+if (!currentPage?.pathname) return;
+if (currentPage.pathname === "/") return;
+let currentPath = "/";
 
 if (crumbs.length === 0) {
-  const paths = currentPage.pathname.split('/').slice(1)
-  crumbs.push({text: 'Home', url: currentPath})
-  if (paths.length === 0) return
+  const paths = currentPage.pathname.split("/").slice(1);
+  crumbs.push({ text: "Home", url: currentPath });
+  if (paths.length === 0) return;
   paths.map((path) => {
-    currentPath += `${path}/`
-    if (path === '') return
+    currentPath += `${path}/`;
+    if (path === "") return;
     crumbs.push({
       text: path
-        .replace(/-/g, ' ')
-        .split(' ')
+        .replace(/-/g, " ")
+        .split(" ")
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(' '),
-      url: currentPath
-    })
-  })
+        .join(" "),
+      url: currentPath,
+    });
+  });
 }
 ---
 
@@ -48,7 +48,7 @@ if (crumbs.length === 0) {
             <a href={breadcrumb.url}>{breadcrumb.text}</a>
             <span aria-hidden="true"> ≻ </span>
           </li>
-        )
+        ),
       )
     }
   </ol>

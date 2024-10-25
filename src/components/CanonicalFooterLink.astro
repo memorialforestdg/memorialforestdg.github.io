@@ -2,7 +2,7 @@
 // Conditionally put a link to cannonical mirror in the footer.
 // Relies on PUBLIC_CANONICAL set in both .env for dev, and in .github/workflows/astro.yml for deploy.
 
-import {PUBLIC_CANONICAL} from 'astro:env/server'
+import { PUBLIC_CANONICAL } from "astro:env/server";
 ---
 
 <>
@@ -11,13 +11,13 @@ import {PUBLIC_CANONICAL} from 'astro:env/server'
       <li class="ml-1">
         <span class="dn di-m" aira-hidden>
           |
-        </span>{' '}
-        mirror:{' '}
+        </span>{" "}
+        mirror:{" "}
         <a
           href={PUBLIC_CANONICAL}
           class="sans di-underline-hover burnt-sienna-1"
         >
-          {PUBLIC_CANONICAL?.replace(/^https:\/\//, '')}
+          {PUBLIC_CANONICAL?.replace(/^https:\/\//, "")}
         </a>
       </li>
     )

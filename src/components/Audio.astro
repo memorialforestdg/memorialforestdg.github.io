@@ -7,108 +7,110 @@
  * TODO: See notes in setupSpeedChangeListener re client side UUID generation and the radio name grouping issues.
  *        - add prop for UUID and set data-player-id based on this.
  *
+ * TODO: progressColor is not being used.
+ *
  * TODO: Set playback speed, mute and current volume to localStore.
  * TODO: support multiple sources files.
  * TODO: crossorigin support
  */
 
-import type {ImageMetadata} from 'astro'
-import {getImage} from 'astro:assets'
+import type { ImageMetadata } from "astro";
+import { getImage } from "astro:assets";
 
 export interface Config {
-  autoPlay?: boolean
-  artwork?: ImageMetadata | null
-  artworkAlt?: string
-  artworkHeight?: string
-  crossorigin?: null | 'anonymous' | 'use-credentials'
+  autoPlay?: boolean;
+  artwork?: ImageMetadata | null;
+  artworkAlt?: string;
+  artworkHeight?: string;
+  crossorigin?: null | "anonymous" | "use-credentials";
   colors?: {
-    accentColor?: string
-    bgColor?: string
-    btnHoverColor?: string
-    bufferColor?: string
-    icnColor?: string
-    txtColor?: string
-    progressColor?: string
-    progressColorBg?: string
-  }
-  class?: string
+    accentColor?: string;
+    bgColor?: string;
+    btnHoverColor?: string;
+    bufferColor?: string;
+    icnColor?: string;
+    txtColor?: string;
+    progressColor?: string;
+    progressColorBg?: string;
+  };
+  class?: string;
   controls?:
     | {
-        download?: boolean
-        loop?: boolean
-        playbackSpeeds?: Array<{speed: number; default?: boolean}> | false
-        volume?: boolean
-        volumeStart?: number // between 0 and 1
+        download?: boolean;
+        loop?: boolean;
+        playbackSpeeds?: Array<{ speed: number; default?: boolean }> | false;
+        volume?: boolean;
+        volumeStart?: number; // between 0 and 1
       }
-    | false
-  loopOnLoad?: boolean
-  maxwidth?: string
-  muteOnLoad?: boolean
-  preload?: 'none' | 'metadata' | 'auto'
-  title?: ''
+    | false;
+  loopOnLoad?: boolean;
+  maxwidth?: string;
+  muteOnLoad?: boolean;
+  preload?: "none" | "metadata" | "auto";
+  title?: "";
 }
 
 interface Props {
-  src: string
-  title: string
-  config?: Config
+  src: string;
+  title: string;
+  config?: Config;
 }
 
 // Default configuration values
 const defaultConfig: Config = {
-  title: '',
-  autoPlay: false,
   artwork: null,
-  artworkHeight: '116',
-  artworkAlt: 'Audio Artwork',
-  class: 'no-js',
+  artworkAlt: "Audio Artwork",
+  artworkHeight: "116",
+  autoPlay: false,
+  class: "no-js",
   colors: {
-    accentColor: '',
-    bgColor: '',
-    btnHoverColor: '',
-    bufferColor: '',
-    icnColor: '',
-    txtColor: '',
-    progressColor: '',
-    progressColorBg: ''
+    accentColor: "",
+    bgColor: "",
+    btnHoverColor: "",
+    bufferColor: "",
+    icnColor: "",
+    progressColor: "",
+    progressColorBg: "",
+    txtColor: "",
   },
   controls: {
     download: true,
     loop: true,
-    playbackSpeeds: [{speed: 1, default: true}, {speed: 2}, {speed: 3}],
+    playbackSpeeds: [{ default: true, speed: 1 }, { speed: 2 }, { speed: 3 }],
     volume: true,
-    volumeStart: 0.5
+    volumeStart: 0.5,
   },
   crossorigin: undefined,
   loopOnLoad: false,
-  maxwidth: '100%',
+  maxwidth: "100%",
   muteOnLoad: false,
-  preload: 'metadata'
-}
+  preload: "metadata",
+  title: "",
+};
 
-const {src, title = '', config = {}} = Astro.props
-const finalConfig = {...defaultConfig, ...config} as Config
+const { src, title = "", config = {} } = Astro.props;
+const finalConfig = { ...defaultConfig, ...config } as Config;
 
 const albumArt = finalConfig.artwork
   ? await getImage({
+      format: "webp",
+      height: finalConfig.artworkHeight,
       src: finalConfig.artwork,
       width: finalConfig.artworkHeight,
-      height: finalConfig.artworkHeight,
-      format: 'webp'
     })
-  : null
+  : null;
 
-const autoPlayAttr = finalConfig.autoPlay ? {'auto-play': 'true'} : {}
-const cssClasses = finalConfig.class ? {class: finalConfig.class} : {}
-const preloadAttr = finalConfig.preload ? {preload: finalConfig.preload} : {}
+const autoPlayAttr = finalConfig.autoPlay ? { "auto-play": "true" } : {};
+const cssClasses = finalConfig.class ? { class: finalConfig.class } : {};
+const preloadAttr = finalConfig.preload ? { preload: finalConfig.preload } : {};
 const downloadAttr =
   finalConfig.controls && finalConfig.controls?.download
-    ? {download: 'true'}
-    : {}
+    ? { download: "true" }
+    : {};
 const loopAttr =
-  finalConfig.controls && finalConfig?.loopOnLoad ? {loop: 'true'} : {}
+  finalConfig.controls && finalConfig?.loopOnLoad ? { loop: "true" } : {};
 const muteAttr =
-  finalConfig.controls && finalConfig?.muteOnLoad ? {mute: 'true'} : {}
+  finalConfig.controls && finalConfig?.muteOnLoad ? { mute: "true" } : {};
 
 const combinedAttrs = {
   ...autoPlayAttr,
@@ -116,8 +118,8 @@ const combinedAttrs = {
   ...downloadAttr,
   ...loopAttr,
   ...muteAttr,
-  ...cssClasses
-}
+  ...cssClasses,
+};
 ---
 
 <audio-player
@@ -262,7 +264,7 @@ const combinedAttrs = {
                   id="volume-slider"
                   aria-label="Volume slider"
                   title="Volume slider"
-                  value={finalConfig.controls?.volumeStart || '0.5'}
+                  value={finalConfig.controls?.volumeStart || "0.5"}
                 />
               </div>
             )
@@ -393,258 +395,262 @@ const combinedAttrs = {
 
 <script>
   class Audio extends HTMLElement {
-    audio: HTMLAudioElement | null = null
+    audio: HTMLAudioElement | null = null;
 
-    progressBar: HTMLProgressElement | null = null
-    bufferBar: HTMLProgressElement | null = null
-    currentTime: HTMLElement | null = null
-    duration: HTMLElement | null = null
-    songTitle: HTMLElement | null = null
+    progressBar: HTMLProgressElement | null = null;
+    bufferBar: HTMLProgressElement | null = null;
+    currentTime: HTMLElement | null = null;
+    duration: HTMLElement | null = null;
+    songTitle: HTMLElement | null = null;
 
-    playIcon: HTMLElement | null = null
-    pauseIcon: HTMLElement | null = null
-    playPauseButton: HTMLButtonElement | null = null
+    playIcon: HTMLElement | null = null;
+    pauseIcon: HTMLElement | null = null;
+    playPauseButton: HTMLButtonElement | null = null;
 
-    volumeMuteIcon: HTMLElement | null = null
-    volumeOnIcon: HTMLElement | null = null
-    muteButton: HTMLButtonElement | null = null
-    volumeSlider: HTMLInputElement | null = null
+    volumeMuteIcon: HTMLElement | null = null;
+    volumeOnIcon: HTMLElement | null = null;
+    muteButton: HTMLButtonElement | null = null;
+    volumeSlider: HTMLInputElement | null = null;
 
-    toolbarDrawer: HTMLElement | null = null
-    loopingIcon: HTMLElement | null = null
-    loopingButton: HTMLButtonElement | null = null
-    downloadIcon: HTMLElement | null = null
-    downloadButton: HTMLButtonElement | null = null
-    playbackSpeedFieldset: HTMLElement | null = null
+    toolbarDrawer: HTMLElement | null = null;
+    loopingIcon: HTMLElement | null = null;
+    loopingButton: HTMLButtonElement | null = null;
+    downloadIcon: HTMLElement | null = null;
+    downloadButton: HTMLButtonElement | null = null;
+    playbackSpeedFieldset: HTMLElement | null = null;
 
-    config: object | null = null
-    playbackSpeed: number = 1
-    playerID: string
+    config: object | null = null;
+    playbackSpeed: number = 1;
+    playerID: string;
 
     static get observedAttributes() {
       return [
-        'crossorigin',
-        'title',
-        'loop',
-        'mute',
-        'auto-play',
-        'preload',
-        'src',
-        'config'
-      ]
+        "crossorigin",
+        "title",
+        "loop",
+        "mute",
+        "auto-play",
+        "preload",
+        "src",
+        "config",
+      ];
     }
     constructor() {
-      super()
+      super();
 
       // Set the player id
-      this.playerID = `player-${Math.random().toString(36).slice(2, 9)}`
-      this.setAttribute('data-player-id', this.playerID)
+      this.playerID = `player-${Math.random().toString(36).slice(2, 9)}`;
+      this.setAttribute("data-player-id", this.playerID);
 
       // rename all element IDs to include the player ID prefix
-      const elements = this.querySelectorAll('*')
+      const elements = this.querySelectorAll("*");
       for (const el of elements) {
-        const idAttr = el.id
-        const forAttr = el.getAttribute('for')
-        const nameAttr = el.getAttribute('name')
+        const idAttr = el.id;
+        const forAttr = el.getAttribute("for");
+        const nameAttr = el.getAttribute("name");
 
         if (idAttr) {
-          el.id = `${idAttr}-${this.playerID}`
+          el.id = `${idAttr}-${this.playerID}`;
         }
         if (forAttr) {
-          el.setAttribute('for', `${forAttr}-${this.playerID}`)
+          el.setAttribute("for", `${forAttr}-${this.playerID}`);
         }
         if (nameAttr) {
-          el.setAttribute('name', `${nameAttr}-${this.playerID}`)
+          el.setAttribute("name", `${nameAttr}-${this.playerID}`);
         }
       }
 
       // Ensure that this.audio is defined before trying to access its attributes
-      this.audio = this.querySelector('audio')
+      this.audio = this.querySelector("audio");
       if (this.audio) {
         // Hide base <audio> element, prevents FOUC
-        this.audio.removeAttribute('controls')
+        this.audio.removeAttribute("controls");
       }
 
       // Remove 'no-js' class
-      this.classList.remove('no-js')
+      this.classList.remove("no-js");
 
       // Query and assign element references
-      this.progressBar = this.querySelector(`#progress-bar-${this.playerID}`)
-      this.bufferBar = this.querySelector(`#buffer-bar-${this.playerID}`)
-      this.currentTime = this.querySelector(`#current-time-${this.playerID}`)
-      this.duration = this.querySelector(`#total-time-${this.playerID}`)
-      this.songTitle = this.querySelector(`#track-title-${this.playerID}`)
+      this.progressBar = this.querySelector(`#progress-bar-${this.playerID}`);
+      this.bufferBar = this.querySelector(`#buffer-bar-${this.playerID}`);
+      this.currentTime = this.querySelector(`#current-time-${this.playerID}`);
+      this.duration = this.querySelector(`#total-time-${this.playerID}`);
+      this.songTitle = this.querySelector(`#track-title-${this.playerID}`);
 
-      this.playIcon = this.querySelector(`#play-icon-${this.playerID}`)
-      this.pauseIcon = this.querySelector(`#pause-icon-${this.playerID}`)
-      this.playPauseButton = this.querySelector(`#play-btn-${this.playerID}`)
+      this.playIcon = this.querySelector(`#play-icon-${this.playerID}`);
+      this.pauseIcon = this.querySelector(`#pause-icon-${this.playerID}`);
+      this.playPauseButton = this.querySelector(`#play-btn-${this.playerID}`);
 
-      this.volumeOnIcon = this.querySelector(`#volume-on-icon-${this.playerID}`)
+      this.volumeOnIcon = this.querySelector(
+        `#volume-on-icon-${this.playerID}`,
+      );
       this.volumeMuteIcon = this.querySelector(
-        `#volume-mute-icon-${this.playerID}`
-      )
-      this.muteButton = this.querySelector(`#volume-mute-btn-${this.playerID}`)
-      this.volumeSlider = this.querySelector(`#volume-slider-${this.playerID}`)
+        `#volume-mute-icon-${this.playerID}`,
+      );
+      this.muteButton = this.querySelector(`#volume-mute-btn-${this.playerID}`);
+      this.volumeSlider = this.querySelector(`#volume-slider-${this.playerID}`);
 
       this.toolbarDrawer = this.querySelector(
-        `#controls-drawer-${this.playerID}`
-      )
-      this.loopingIcon = this.querySelector(`#looping-icon-${this.playerID}`)
-      this.loopingButton = this.querySelector(`#looping-btn-${this.playerID}`)
+        `#controls-drawer-${this.playerID}`,
+      );
+      this.loopingIcon = this.querySelector(`#looping-icon-${this.playerID}`);
+      this.loopingButton = this.querySelector(`#looping-btn-${this.playerID}`);
       this.playbackSpeedFieldset = this.querySelector(
-        `#playback-speed-${this.playerID}`
-      )
-      this.downloadIcon = this.querySelector(`#download-icon-${this.playerID}`)
-      this.downloadButton = this.querySelector(`#download-btn-${this.playerID}`)
+        `#playback-speed-${this.playerID}`,
+      );
+      this.downloadIcon = this.querySelector(`#download-icon-${this.playerID}`);
+      this.downloadButton = this.querySelector(
+        `#download-btn-${this.playerID}`,
+      );
     }
 
     connectedCallback() {
-      this.configureAudioSettings()
-      this.setProgressChangeListener()
-      this.checkFileTypeSupport()
-      this.setAudioTitle()
-      this.setPlaybackChangeListener()
-      this.handlePauseOnOtherPlayback()
-      this.setBufferChangeListener()
-      this.setProgressKeyboardHandler()
-      this.setTimeUpdateListener()
-      this.handleToolbarNavigation()
-      this.setupSpeedChangeListener()
-      this.setPlaybackLoopListener()
-      this.setMuteChangeListener()
-      this.setVolumeChangeListener()
+      this.configureAudioSettings();
+      this.setProgressChangeListener();
+      this.checkFileTypeSupport();
+      this.setAudioTitle();
+      this.setPlaybackChangeListener();
+      this.handlePauseOnOtherPlayback();
+      this.setBufferChangeListener();
+      this.setProgressKeyboardHandler();
+      this.setTimeUpdateListener();
+      this.handleToolbarNavigation();
+      this.setupSpeedChangeListener();
+      this.setPlaybackLoopListener();
+      this.setMuteChangeListener();
+      this.setVolumeChangeListener();
     }
 
     configureAudioSettings() {
       if (!this.audio) {
-        return
+        return;
       }
 
       // Set the audio source
-      if (this.hasAttribute('src')) {
-        this.audio.src = this.getAttribute('src') || ''
+      if (this.hasAttribute("src")) {
+        this.audio.src = this.getAttribute("src") || "";
       }
 
       // Set the preload attribute
-      if (this.hasAttribute('preload')) {
-        const preload = this.getAttribute('preload')
-        const validPreloadValues = ['none', 'metadata', 'auto', '', null]
+      if (this.hasAttribute("preload")) {
+        const preload = this.getAttribute("preload");
+        const validPreloadValues = ["none", "metadata", "auto", "", null];
         if (preload !== null && validPreloadValues.includes(preload)) {
-          this.audio.preload = preload as HTMLAudioElement['preload']
+          this.audio.preload = preload as HTMLAudioElement["preload"];
         }
       }
 
       // Set the initial volume from the value of the volume slider html
       if (this.volumeSlider) {
-        this.audio.volume = parseFloat(this.volumeSlider.value)
+        this.audio.volume = parseFloat(this.volumeSlider.value);
       }
 
       // Set looping state on load
-      if (this.hasAttribute('loop') === true) {
-        this.toggleLoopingState()
+      if (this.hasAttribute("loop") === true) {
+        this.toggleLoopingState();
       }
 
       // Set mute state
-      if (this.hasAttribute('mute') === true) {
-        this.toggleMuteState()
+      if (this.hasAttribute("mute") === true) {
+        this.toggleMuteState();
       }
 
       // Set autoplay on load
-      if (this.hasAttribute('auto-play')) {
-        const autoplayAttr = this.getAttribute('auto-play')
-        this.audio.autoplay = autoplayAttr === 'true'
+      if (this.hasAttribute("auto-play")) {
+        const autoplayAttr = this.getAttribute("auto-play");
+        this.audio.autoplay = autoplayAttr === "true";
       }
 
       if (this.audio.autoplay) {
         // Ensure the audio element is loaded and ready to play
         this.audio.addEventListener(
-          'loadedmetadata',
+          "loadedmetadata",
           () => {
-            this.audio!.load()
-            console.log('Audio is ready, attempting to play...')
+            this.audio!.load();
+            console.log("Audio is ready, attempting to play...");
             this.audio!.play().catch((error) => {
               console.error(
-                'Autoplay failed due to browser policy or other issue:',
-                error
-              )
-            })
+                "Autoplay failed due to browser policy or other issue:",
+                error,
+              );
+            });
           },
-          {once: true} // Only run listner once
-        )
+          { once: true }, // Only run listner once
+        );
       }
     }
 
     checkFileTypeSupport() {
       if (this.audio && this.audio.src) {
-        const songFile = this.audio.src
-        const fileType = songFile.substring(songFile.lastIndexOf('.') + 1)
+        const songFile = this.audio.src;
+        const fileType = songFile.substring(songFile.lastIndexOf(".") + 1);
 
         const fileTypeSupportMap = {
-          mp3: 'audio/mpeg',
+          mp3: "audio/mpeg",
           m4a: 'audio/mp4; codecs="mp4a.40.2"',
           aac: 'audio/mp4; codecs="mp4a.40.2"',
           wav: 'audio/wav; codecs="1"',
-          ogg: 'audio/ogg; codecs="vorbis"'
-        }
+          ogg: 'audio/ogg; codecs="vorbis"',
+        };
 
-        const mimeType = fileTypeSupportMap[fileType]
+        const mimeType = fileTypeSupportMap[fileType];
 
         if (mimeType) {
           if (
             !(
               this.audio.canPlayType &&
-              this.audio.canPlayType(mimeType).replace(/no/, '')
+              this.audio.canPlayType(mimeType).replace(/no/, "")
             )
           ) {
             this.setDisplayErrorMessage(
-              `This browser doesn't support ${fileType.toUpperCase()} audio files.`
-            )
+              `This browser doesn't support ${fileType.toUpperCase()} audio files.`,
+            );
           }
         } else {
-          if (!this.audio.canPlayType('audio/' + fileType)) {
+          if (!this.audio.canPlayType(`audio/${fileType}`)) {
             this.setDisplayErrorMessage(
-              "This browser doesn't support this audio file type."
-            )
+              "This browser doesn't support this audio file type.",
+            );
           }
         }
       }
     }
 
     dispatchCustomEvent(eventName: string, detail: object = {}) {
-      const details = {...detail, playerID: this.playerID}
-      const event = new CustomEvent(eventName, {detail: details})
-      window.dispatchEvent(event)
+      const details = { ...detail, playerID: this.playerID };
+      const event = new CustomEvent(eventName, { detail: details });
+      window.dispatchEvent(event);
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
       if (oldValue !== null && oldValue !== newValue) {
         switch (name) {
-          case 'src':
-            this.handleSourceChange()
-            break
-          case 'title':
-            this.setAudioTitle()
-            break
+          case "src":
+            this.handleSourceChange();
+            break;
+          case "title":
+            this.setAudioTitle();
+            break;
           default:
-            break
+            break;
         }
       }
     }
 
     handleSourceChange() {
       if (this.audio) {
-        this.audio.removeEventListener('timeupdate', this.handleTimeUpdate)
+        this.audio.removeEventListener("timeupdate", this.handleTimeUpdate);
         this.audio.removeEventListener(
-          'loadedmetadata',
-          this.handleMetadataTime
-        )
+          "loadedmetadata",
+          this.handleMetadataTime,
+        );
       }
 
-      this.configureAudioSettings()
-      this.checkFileTypeSupport()
-      this.updateUiForSourceChange()
-      this.resetProgressBar()
-      this.setTimeUpdateListener()
+      this.configureAudioSettings();
+      this.checkFileTypeSupport();
+      this.updateUiForSourceChange();
+      this.resetProgressBar();
+      this.setTimeUpdateListener();
     }
 
     updateUiForSourceChange() {
@@ -654,21 +660,21 @@ const combinedAttrs = {
         !this.pauseIcon ||
         !this.playPauseButton
       ) {
-        return
+        return;
       }
 
-      this.pauseIcon.style.display = 'none'
-      this.playIcon.style.display = 'block'
-      this.playPauseButton.setAttribute('aria-label', 'Play track')
-      this.playPauseButton.setAttribute('aria-pressed', 'false')
-      this.playPauseButton.setAttribute('title', 'Play track')
-      this.audio.pause()
-      this.dispatchCustomEvent('audiopaused')
+      this.pauseIcon.style.display = "none";
+      this.playIcon.style.display = "block";
+      this.playPauseButton.setAttribute("aria-label", "Play track");
+      this.playPauseButton.setAttribute("aria-pressed", "false");
+      this.playPauseButton.setAttribute("title", "Play track");
+      this.audio.pause();
+      this.dispatchCustomEvent("audiopaused");
     }
 
     resetProgressBar() {
       if (this.progressBar) {
-        this.progressBar.value = 0
+        this.progressBar.value = 0;
       }
     }
 
@@ -678,26 +684,26 @@ const combinedAttrs = {
      * of the 'src' attribute.
      */
     setAudioTitle() {
-      if (this.songTitle && this.hasAttribute('title')) {
+      if (this.songTitle && this.hasAttribute("title")) {
         // Set the title based on the 'title' attribute
-        this.songTitle.textContent = this.getAttribute('title')
-      } else if (this.songTitle && this.hasAttribute('src')) {
+        this.songTitle.textContent = this.getAttribute("title");
+      } else if (this.songTitle && this.hasAttribute("src")) {
         // Set the title based on the file name of the 'src' attribute
-        const src = this.getAttribute('src')
-        const fileName = src!.substring(src!.lastIndexOf('/') + 1)
-        this.songTitle.textContent = fileName || ''
+        const src = this.getAttribute("src");
+        const fileName = src!.substring(src!.lastIndexOf("/") + 1);
+        this.songTitle.textContent = fileName || "";
       }
     }
 
     handlePauseOnOtherPlayback() {
-      window.addEventListener('audioplaying', (e: CustomEvent) => {
+      window.addEventListener("audioplaying", (e: CustomEvent) => {
         if (!this.audio || e.detail.playerID === this.playerID) {
-          return
+          return;
         }
-        if (this.audio.paused) return
-        this.audio.paused
-        this.togglePlaybackState()
-      })
+        if (this.audio.paused) return;
+        this.audio.paused;
+        this.togglePlaybackState();
+      });
     }
 
     setPlaybackChangeListener() {
@@ -707,12 +713,12 @@ const combinedAttrs = {
         !this.playIcon ||
         !this.pauseIcon
       ) {
-        return
+        return;
       }
 
-      this.playPauseButton.addEventListener('click', () =>
-        this.togglePlaybackState()
-      )
+      this.playPauseButton.addEventListener("click", () =>
+        this.togglePlaybackState(),
+      );
     }
 
     toggleMuteState() {
@@ -722,24 +728,24 @@ const combinedAttrs = {
         !this.volumeOnIcon ||
         !this.muteButton
       ) {
-        return
+        return;
       }
       if (this.audio.muted) {
-        this.audio.muted = false
-        this.muteButton!.setAttribute('aria-pressed', 'false')
-        this.muteButton!.setAttribute('aria-label', 'Mute tack audio')
-        this.muteButton!.setAttribute('title', 'Mute tack audio')
-        this.volumeMuteIcon.style.display = 'none'
-        this.volumeOnIcon.style.display = 'block'
-        this.dispatchCustomEvent('audiounmuted')
+        this.audio.muted = false;
+        this.muteButton!.setAttribute("aria-pressed", "false");
+        this.muteButton!.setAttribute("aria-label", "Mute tack audio");
+        this.muteButton!.setAttribute("title", "Mute tack audio");
+        this.volumeMuteIcon.style.display = "none";
+        this.volumeOnIcon.style.display = "block";
+        this.dispatchCustomEvent("audiounmuted");
       } else {
-        this.audio.muted = true
-        this.muteButton!.setAttribute('aria-pressed', 'true')
-        this.muteButton!.setAttribute('aria-label', 'Unmute track audio')
-        this.muteButton!.setAttribute('title', 'Unmute track audio')
-        this.volumeOnIcon.style.display = 'none'
-        this.volumeMuteIcon.style.display = 'block'
-        this.dispatchCustomEvent('audiomuted')
+        this.audio.muted = true;
+        this.muteButton!.setAttribute("aria-pressed", "true");
+        this.muteButton!.setAttribute("aria-label", "Unmute track audio");
+        this.muteButton!.setAttribute("title", "Unmute track audio");
+        this.volumeOnIcon.style.display = "none";
+        this.volumeMuteIcon.style.display = "block";
+        this.dispatchCustomEvent("audiomuted");
       }
     }
 
@@ -750,53 +756,53 @@ const combinedAttrs = {
         !this.pauseIcon ||
         !this.playPauseButton
       ) {
-        return
+        return;
       }
 
       if (this.audio.duration > 0 && this.audio.paused) {
-        this.playIcon.style.display = 'none'
-        this.pauseIcon.style.display = 'block'
-        this.playPauseButton.setAttribute('aria-pressed', 'true')
-        this.playPauseButton.setAttribute('aria-label', 'Pause track')
-        this.playPauseButton.setAttribute('title', 'Pause track')
-        this.audio.play()
-        this.dispatchCustomEvent('audioplaying')
+        this.playIcon.style.display = "none";
+        this.pauseIcon.style.display = "block";
+        this.playPauseButton.setAttribute("aria-pressed", "true");
+        this.playPauseButton.setAttribute("aria-label", "Pause track");
+        this.playPauseButton.setAttribute("title", "Pause track");
+        this.audio.play();
+        this.dispatchCustomEvent("audioplaying");
       } else {
-        this.pauseIcon.style.display = 'none'
-        this.playIcon.style.display = 'block'
-        this.playPauseButton.setAttribute('aria-pressed', 'false')
-        this.playPauseButton.setAttribute('aria-label', 'Play track')
-        this.playPauseButton.setAttribute('title', 'Play track')
-        this.audio.pause()
-        this.dispatchCustomEvent('audiopaused')
+        this.pauseIcon.style.display = "none";
+        this.playIcon.style.display = "block";
+        this.playPauseButton.setAttribute("aria-pressed", "false");
+        this.playPauseButton.setAttribute("aria-label", "Play track");
+        this.playPauseButton.setAttribute("title", "Play track");
+        this.audio.pause();
+        this.dispatchCustomEvent("audiopaused");
       }
     }
 
     setProgressChangeListener() {
-      this.progressBar!.addEventListener('click', (event) => {
+      this.progressBar!.addEventListener("click", (event) => {
         if (this.progressBar && this.audio) {
-          let percent = event.offsetX / this.progressBar.offsetWidth
-          this.audio.currentTime = percent * this.audio.duration
-          this.progressBar.value = percent
+          const percent = event.offsetX / this.progressBar.offsetWidth;
+          this.audio.currentTime = percent * this.audio.duration;
+          this.progressBar.value = percent;
         }
-      })
+      });
     }
 
     setBufferChangeListener() {
       if (!this.bufferBar || !this.audio) {
-        return
+        return;
       }
 
-      this.audio.addEventListener('progress', () => {
-        const buffered = this.audio!.buffered
+      this.audio.addEventListener("progress", () => {
+        const { buffered } = this.audio!;
 
         if (buffered.length > 0) {
-          const end = buffered.end(buffered.length - 1)
-          const duration = this.audio!.duration
-          const value = end / duration
-          this.bufferBar!.value = value
+          const end = buffered.end(buffered.length - 1);
+          const { duration } = this.audio!;
+          const value = end / duration;
+          this.bufferBar!.value = value;
         }
-      })
+      });
     }
 
     /**
@@ -808,67 +814,67 @@ const combinedAttrs = {
      */
     setProgressKeyboardHandler() {
       if (!this.progressBar || !this.audio) {
-        return
+        return;
       }
 
-      this.progressBar.addEventListener('keydown', (event) => {
-        const step = 5 // seconds to advance or rewind
+      this.progressBar.addEventListener("keydown", (event) => {
+        const step = 5; // seconds to advance or rewind
         switch (event.key) {
-          case 'MediaTrackNext':
-          case 'ArrowRight':
+          case "MediaTrackNext":
+          case "ArrowRight":
             this.audio!.currentTime = Math.min(
               this.audio!.currentTime + step,
-              this.audio!.duration
-            )
-            break
-          case 'MediaTrackPrevious':
-          case 'ArrowLeft':
+              this.audio!.duration,
+            );
+            break;
+          case "MediaTrackPrevious":
+          case "ArrowLeft":
             this.audio!.currentTime = Math.max(
               this.audio!.currentTime - step,
-              0
-            )
-            break
-          case 'ArrowDown':
-          case 'ArrowUp':
-            event.preventDefault()
-            break
-          case ' ':
-          case 'Space':
-          case 'Enter':
-            event.preventDefault()
-            this.togglePlaybackState()
-            break
+              0,
+            );
+            break;
+          case "ArrowDown":
+          case "ArrowUp":
+            event.preventDefault();
+            break;
+          case " ":
+          case "Space":
+          case "Enter":
+            event.preventDefault();
+            this.togglePlaybackState();
+            break;
         }
-      })
+      });
     }
 
     handleToolbarNavigation() {
       if (!this.audio || !this.toolbarDrawer) {
-        return
+        return;
       }
-      this.toolbarDrawer.addEventListener('keydown', (event) => {
+      this.toolbarDrawer.addEventListener("keydown", (event) => {
         const controls = this.toolbarDrawer!.querySelectorAll<HTMLElement>(
-          'button, input, select, a'
-        )
-        const index = Array.from(controls).indexOf(event.target as HTMLElement)
+          "button, input, select, a",
+        );
+        const index = Array.from(controls).indexOf(event.target as HTMLElement);
 
         if (index < 0) {
-          return
+          return;
         }
 
         switch (event.key) {
-          case 'ArrowLeft':
-          case 'ArrowUp':
-            event.preventDefault()
-            controls[(index - 1 + controls.length) % controls.length].focus()
-            break
-          case 'ArrowRight':
-          case 'ArrowDown':
-            event.preventDefault()
-            controls[(index + 1) % controls.length].focus()
-            break
+          case "ArrowLeft":
+          case "ArrowUp":
+            event.preventDefault();
+            controls[(index - 1 + controls.length) % controls.length].focus();
+            break;
+          case "ArrowRight":
+          case "ArrowDown":
+            event.preventDefault();
+            controls[(index + 1) % controls.length].focus();
+            break;
         }
-      })
+      });
     }
 
     playAudio() {
@@ -878,29 +884,29 @@ const combinedAttrs = {
         this.pauseIcon &&
         this.playPauseButton
       ) {
-        this.pauseIcon.style.display = 'block'
-        this.playIcon.style.display = 'none'
-        this.playPauseButton.setAttribute('aria-label', 'Pause song')
-        this.audio.play()
-        this.dispatchCustomEvent('audioplaying')
+        this.pauseIcon.style.display = "block";
+        this.playIcon.style.display = "none";
+        this.playPauseButton.setAttribute("aria-label", "Pause song");
+        this.audio.play();
+        this.dispatchCustomEvent("audioplaying");
       }
     }
 
     setTimeUpdateListener() {
-      this.audio!.addEventListener('loadedmetadata', () => {
-        this.handleMetadataTime()
-      })
+      this.audio!.addEventListener("loadedmetadata", () => {
+        this.handleMetadataTime();
+      });
     }
 
     handleMetadataTime() {
       if (this.audio && this.currentTime && this.duration) {
         this.currentTime.textContent = `${this.formatTime(
-          this.audio.currentTime
-        )}`
-        this.duration.textContent = `${this.formatTime(this.audio.duration)}`
-        this.audio.addEventListener('timeupdate', () => {
-          this.handleTimeUpdate()
-        })
+          this.audio.currentTime,
+        )}`;
+        this.duration.textContent = `${this.formatTime(this.audio.duration)}`;
+        this.audio.addEventListener("timeupdate", () => {
+          this.handleTimeUpdate();
+        });
       }
     }
 
@@ -914,54 +920,54 @@ const combinedAttrs = {
         !this.pauseIcon ||
         !this.playPauseButton
       ) {
-        return
+        return;
       }
 
       if (isNaN(this.audio.currentTime / this.audio.duration)) {
-        return
+        return;
       }
 
-      this.updateProgressBar()
-      this.updateTimeDisplay()
+      this.updateProgressBar();
+      this.updateTimeDisplay();
 
       if (this.audio.currentTime === this.audio.duration) {
-        this.handleAudioCompletion()
+        this.handleAudioCompletion();
       }
     }
 
     updateProgressBar() {
-      this.progressBar!.value = this.audio!.currentTime / this.audio!.duration
+      this.progressBar!.value = this.audio!.currentTime / this.audio!.duration;
     }
 
     updateTimeDisplay() {
-      this.currentTime!.textContent = `${this.formatTime(this.audio!.currentTime)}`
-      this.duration!.textContent = `${this.formatTime(this.audio!.duration)}`
+      this.currentTime!.textContent = `${this.formatTime(this.audio!.currentTime)}`;
+      this.duration!.textContent = `${this.formatTime(this.audio!.duration)}`;
     }
 
     handleAudioCompletion() {
-      this.audio!.currentTime = 0
-      this.pauseIcon!.style.display = 'none'
-      this.playIcon!.style.display = 'block'
-      this.playPauseButton!.setAttribute('aria-label', 'Play track')
-      this.playPauseButton!.setAttribute('title', 'Play track')
-      this.dispatchCustomEvent('audiopaused')
-      this.dispatchCustomEvent('audiofinished')
+      this.audio!.currentTime = 0;
+      this.pauseIcon!.style.display = "none";
+      this.playIcon!.style.display = "block";
+      this.playPauseButton!.setAttribute("aria-label", "Play track");
+      this.playPauseButton!.setAttribute("title", "Play track");
+      this.dispatchCustomEvent("audiopaused");
+      this.dispatchCustomEvent("audiofinished");
     }
 
     setVolumeChangeListener() {
       if (!this.audio || !this.volumeSlider) {
-        return
+        return;
       }
-      this.volumeSlider.addEventListener('input', () => {
-        this.audio!.volume = parseFloat(this.volumeSlider!.value)
-      })
+      this.volumeSlider.addEventListener("input", () => {
+        this.audio!.volume = parseFloat(this.volumeSlider!.value);
+      });
     }
 
     setMuteChangeListener() {
       if (!this.audio || !this.muteButton) {
-        return
+        return;
       }
-      this.muteButton.addEventListener('click', () => this.toggleMuteState())
+      this.muteButton.addEventListener("click", () => this.toggleMuteState());
     }
 
     /**
@@ -970,117 +976,117 @@ const combinedAttrs = {
      */
     setupSpeedChangeListener() {
       if (!this.audio || !this.playbackSpeedFieldset) {
-        return
+        return;
       }
       const playbackSpeedGroup = this.playbackSpeedFieldset!.querySelectorAll(
-        `input[name="playback-speed-${this.playerID}"]`
-      )
+        `input[name="playback-speed-${this.playerID}"]`,
+      );
       if (playbackSpeedGroup) {
         playbackSpeedGroup.forEach((radio: HTMLInputElement) => {
           // As we are passing the radio buttons in via a slot,
           // the browser has already parsed this markup and identified the radio groups based on the name ID (which at this point has not been set).
           // We refresh the associations by manually setting the checked state.
           if (radio.defaultChecked) {
-            radio.checked = true
-            this.audio!.playbackRate = parseFloat(radio.value)
+            radio.checked = true;
+            this.audio!.playbackRate = parseFloat(radio.value);
           }
 
-          radio.addEventListener('change', (e) => {
+          radio.addEventListener("change", (e) => {
             if ((e.target as HTMLElement)?.id !== radio.id) {
-              return
+              return;
             }
-            this.audio!.playbackRate = parseFloat(radio.value)
-            this.dispatchCustomEvent('audioplaybackspeedchanged', {
-              speed: radio.value
-            })
-          })
+            this.audio!.playbackRate = parseFloat(radio.value);
+            this.dispatchCustomEvent("audioplaybackspeedchanged", {
+              speed: radio.value,
+            });
+          });
           // Set speed using Enter key
-          radio.addEventListener('keydown', (e) => {
+          radio.addEventListener("keydown", (e) => {
             if ((e.target as HTMLElement)?.id !== radio.id) {
-              return
+              return;
             }
-            if (e.key === 'Enter') {
-              radio.checked = true
-              this.audio!.playbackRate = parseFloat(radio.value)
-              this.dispatchCustomEvent('audioplaybackspeedchanged', {
-                speed: radio.value
-              })
+            if (e.key === "Enter") {
+              radio.checked = true;
+              this.audio!.playbackRate = parseFloat(radio.value);
+              this.dispatchCustomEvent("audioplaybackspeedchanged", {
+                speed: radio.value,
+              });
             }
-          })
-        })
+          });
+        });
       }
     }
 
     setPlaybackLoopListener() {
       if (!this.audio || !this.loopingButton) {
-        return
+        return;
       }
-      this.loopingButton.addEventListener('click', () => {
-        this.toggleLoopingState()
-      })
+      this.loopingButton.addEventListener("click", () => {
+        this.toggleLoopingState();
+      });
     }
 
     toggleLoopingState() {
       if (!this.audio || !this.loopingButton) {
-        return
+        return;
       }
       if (this.audio.loop) {
-        this.audio.loop = false
-        this.loopingButton.setAttribute('aria-label', 'Loop current track')
-        this.loopingButton.setAttribute('aria-pressed', 'false')
-        this.dispatchCustomEvent('audioloopingstopped')
+        this.audio.loop = false;
+        this.loopingButton.setAttribute("aria-label", "Loop current track");
+        this.loopingButton.setAttribute("aria-pressed", "false");
+        this.dispatchCustomEvent("audioloopingstopped");
       } else {
-        this.audio.loop = true
+        this.audio.loop = true;
         this.loopingButton.setAttribute(
-          'aria-label',
-          'Stop current track looping'
-        )
-        this.loopingButton.setAttribute('aria-pressed', 'true')
-        this.dispatchCustomEvent('audioloopingstopped')
+          "aria-label",
+          "Stop current track looping",
+        );
+        this.loopingButton.setAttribute("aria-pressed", "true");
+        this.dispatchCustomEvent("audioloopingstopped");
       }
     }
 
     setDisplayErrorMessage(message) {
       if (this.songTitle) {
-        this.songTitle.textContent = message
+        this.songTitle.textContent = message;
       }
     }
 
     formatTime(seconds: number) {
       if (isNaN(seconds)) {
-        return '00:00'
+        return "00:00";
       }
-      const hours = Math.floor(seconds / 3600)
-      const minutes = Math.floor((seconds % 3600) / 60)
-      const remainingSeconds = Math.floor(seconds % 60)
+      const hours = Math.floor(seconds / 3600);
+      const minutes = Math.floor((seconds % 3600) / 60);
+      const remainingSeconds = Math.floor(seconds % 60);
 
-      const formattedMinutes = minutes.toString().padStart(2, '0')
-      const formattedSeconds = remainingSeconds.toString().padStart(2, '0')
+      const formattedMinutes = minutes.toString().padStart(2, "0");
+      const formattedSeconds = remainingSeconds.toString().padStart(2, "0");
 
       if (hours > 0) {
-        const formattedHours = hours.toString().padStart(2, '0')
-        return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`
+        const formattedHours = hours.toString().padStart(2, "0");
+        return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
       } else {
-        return `${formattedMinutes}:${formattedSeconds}`
+        return `${formattedMinutes}:${formattedSeconds}`;
       }
     }
   }
 
-  customElements.define('audio-player', Audio)
+  customElements.define("audio-player", Audio);
 </script>
 
 <style
   define:vars={{
-    maxwidth: finalConfig.maxwidth,
-    artworkHeight: finalConfig.artworkHeight,
     accentColor: finalConfig.colors!.accentColor,
+    artworkHeight: finalConfig.artworkHeight,
     bgColor: finalConfig.colors!.bgColor,
     btnHoverColor: finalConfig.colors!.btnHoverColor,
     bufferColor: finalConfig.colors!.bufferColor,
     icnColor: finalConfig.colors!.icnColor,
+    maxwidth: finalConfig.maxwidth,
+    // progressColor: finalConfig.colors!.progressColor,
+    progressColorBg: finalConfig.colors!.progressColorBg,
     txtColor: finalConfig.colors!.txtColor,
-    progressColor: finalConfig.colors!.progressColor,
-    progressColorBg: finalConfig.colors!.progressColorBg
   }}
 >
   /* stylelint-disable plugin/no-low-performance-animation-properties */
@@ -1367,7 +1373,7 @@ const combinedAttrs = {
     border-top: 1px solid var(--progressColorBg, hsl(0deg 0% 75%));
   }
 
-  .controls-drawer .looping-btn[aria-pressed='true'] {
+  .controls-drawer .looping-btn[aria-pressed="true"] {
     background-color: var(--accentColor, hsl(244deg 80% 63%));
   }
 
@@ -1433,7 +1439,7 @@ const combinedAttrs = {
     grid-template-rows: auto 3px;
   }
 
-  .track-volume-container:has(.volume-btn[aria-pressed='true']),
+  .track-volume-container:has(.volume-btn[aria-pressed="true"]),
   .track-volume-container:has(.volume-container:hover),
   .track-volume-container:has(.volume-container:focus-within) {
     grid-template-rows: auto var(--volTrackHeight, 20px);
@@ -1478,7 +1484,7 @@ const combinedAttrs = {
     color: var(--btnHoverColor, hsl(0deg 0% 57%));
   }
 
-  .volume-btn[aria-pressed='true'],
+  .volume-btn[aria-pressed="true"],
   .volume-container:hover .volume-btn,
   .volume-container:focus-within .volume-btn {
     background: var(--accentColor, hsl(244deg 80% 63%));
@@ -1486,7 +1492,7 @@ const combinedAttrs = {
 
   .volume-container:hover .volume-btn .icn,
   .volume-container:focus-within .volume-btn .icn,
-  .volume-container .volume-btn[aria-pressed='true'] .icn,
+  .volume-container .volume-btn[aria-pressed="true"] .icn,
   .volume-container .volume-container:hover .volume-btn .icn {
     color: var(--icnColor, var(--txtColor, currnetColor));
     background: var(--accentColor, hsl(244deg 80% 63%));

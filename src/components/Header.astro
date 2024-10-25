@@ -1,5 +1,7 @@
 ---
+
 import {Image} from 'astro:assets'
+import type {ImageMetadata} from 'astro'
 import Logo from '../images/logos/rt-logo-v5-omgsvg.svg'
 import PrimaryNav from './PrimaryNav.astro'
 import SkipToContent from './SkipToContent.astro'
@@ -35,16 +37,16 @@ const {title, bannerImage, bannerHeight = 576, bannerAlt, maintenice} = Astro.pr
           ></a
         >
         <div class="header__right nt-4 flex">
-          <SkipToContent classArray={['self-end mr-3 link brand-lt ttu f5 di-underline-hover']} />
+          <SkipToContent classArray={['self-end mr-3 link brand-lt f3 di-underline-hover']} />
           {
             !maintenice && (
               <a
-                class="nav__toggle di-underline-hover link items-center justify-center ma-0 pa-0 f4 brand-lt pointer bg-none"
+                class="nav__toggle di-underline-hover link items-center justify-center ma-0 pa-0 f3 brand-lt pointer bg-none"
                 href="/browse"
                 >Menu</a
               >
               <button
-                class="nav__toggle button-reset di-underline-hover items-center justify-center ma-0 pa-0 f4 brand-lt pointer bg-transparent"
+                class="nav__toggle button-reset di-underline-hover items-center justify-center ma-0 pa-0 f3 brand-lt pointer bg-transparent"
                 aria-label="Show navigation menu"
                 aria-controls="navigation-menu"
                 aria-expanded="false"
@@ -224,8 +226,9 @@ const {title, bannerImage, bannerHeight = 576, bannerAlt, maintenice} = Astro.pr
     overflow: hidden;
   }
 
-  body.no-js .nav__drawer,
-  .nav__drawer:not([tn-hidden]) {
+  .nav__drawer:not([tn-hidden]),
+  body.no-js .nav__drawer
+   {
     grid-template-rows: 1fr;
   }
 

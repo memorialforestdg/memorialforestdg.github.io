@@ -1,114 +1,115 @@
 ---
-import {Picture} from 'astro:assets'
-import Logger from '../js/logger.js'
+import { Picture } from "astro:assets";
+import Logger from "../js/logger.js";
+import type { ImageMetadata } from "astro";
 
 import {
-  getCollection,
   type CollectionEntry,
-  type DataEntryMap
-} from 'astro:content'
-import {z} from 'zod'
-import {imageExifMetadata} from '../schemas.js'
+  type DataEntryMap,
+  getCollection,
+} from "astro:content";
+import { z } from "zod";
+import { imageExifMetadata } from "../schemas.js";
 import {
+  extractImageData,
+  // extrapolateImageDims,
   getAlbumImages,
-  extrapolateImageDims,
-  extractImageData
-} from '../js/imageToolkit.js'
+} from "../js/imageToolkit.js";
 
-type ImageExifMetadata = z.infer<typeof imageExifMetadata>
+type ImageExifMetadata = z.infer<typeof imageExifMetadata>;
 
 interface MetaPool extends Array<ImageExifMetadata> {}
 
 interface Props {
-  images?: Array<ImageMetadata>
-  albumId?: string
-  collectionId?: keyof DataEntryMap
-  galleryWraperClasses?: string
-  galleryUlClasses?: string
-  cellLiClasses?: string
-  cellLinkClasses?: string
-  cellClasses?: string
-  cellFormat?: null | 'square'
-  targetCellHeight?: number
-  targetModalImageLongDim?: number
-  ramdomize?: boolean
+  images?: Array<ImageMetadata>;
+  albumId?: string;
+  collectionId?: keyof DataEntryMap;
+  galleryWraperClasses?: string;
+  galleryUlClasses?: string;
+  cellLiClasses?: string;
+  cellLinkClasses?: string;
+  cellClasses?: string;
+  cellFormat?: null | "square";
+  targetCellHeight?: number;
+  targetModalImageLongDim?: number;
+  ramdomize?: boolean;
 }
 
 const {
   images,
   collectionId,
   albumId,
-  galleryWraperClasses = '',
-  galleryUlClasses = '',
-  cellLiClasses = '',
-  cellLinkClasses = '',
-  cellClasses = '',
+  galleryWraperClasses = "",
+  galleryUlClasses = "",
+  cellLiClasses = "",
+  cellLinkClasses = "",
+  cellClasses = "",
   cellFormat = null,
   targetCellHeight = 180,
   targetModalImageLongDim = 1100,
-  ramdomize = false
-} = Astro.props
+  ramdomize = false,
+} = Astro.props;
 
-let metaPool: MetaPool | null
-let imgs: Array<ImageMetadata> | [] = []
-let collection: CollectionEntry<keyof DataEntryMap>
+let metaPool: MetaPool | null;
+let imgs: Array<ImageMetadata> | [] = [];
+let collection: CollectionEntry<keyof DataEntryMap>;
 
 if (!images && !collectionId) {
   throw new Error(
-    'No images or collectionId provided. Please provide either an array of astro ImageMetadata or the name of a valid collection.'
-  )
+    "No images or collectionId provided. Please provide either an array of astro ImageMetadata or the name of a valid collection.",
+  );
 }
 if (collectionId && !albumId) {
   throw new Error(
-    'No albumId provided. Please provide the name of a valid album'
-  )
+    "No albumId provided. Please provide the name of a valid album",
+  );
 }
 
 // get the collection
 if (!images && collectionId) {
   try {
-    const collectionData = await getCollection(collectionId)
-    const foundItem = collectionData.find((item) => item.id === albumId)
+    const collectionData = await getCollection(collectionId);
+    const foundItem = collectionData.find((item) => item.id === albumId);
 
     // Load metadata pool
     metaPool = await import(
       `../../src/meta/${collectionId}/${collectionId}-meta.json`
-    )
+    );
 
     if (foundItem) {
-      collection = foundItem
-      imgs = await getAlbumImages(albumId)
+      collection = foundItem;
+      imgs = await getAlbumImages(albumId);
 
       // Warn if we have an empty album.
       if (imgs.length === 0) {
-        Logger.warn(`No images found for collection: ${collectionId}`)
+        Logger.warn(`No images found for collection: ${collectionId}`);
       }
 
       if (ramdomize) {
-        imgs = imgs.sort(() => Math.random() - 0.5)
+        imgs = imgs.sort(() => Math.random() - 0.5);
       }
     } else {
       // Warn if we cant find the album.
-      Logger.warn(`Album not found: ${albumId}`)
+      Logger.warn(`Album not found: ${albumId}`);
     }
   } catch (error) {
-    Logger.error(`The error ${error}`)
+    Logger.error(`The error ${error}`);
     throw new Error(
       `No images found.
 Please provide either an array of astro ImageMetadata OR a valid collectionId & albumId.
       images: ${images}
       collectionId: ${collectionId}
       albumId: ${albumId}
-      error: ${error}`
-    )
+      error: ${error}`,
+    );
   }
 } else {
-  imgs = images ?? []
+  imgs = images ?? [];
 }
 
-const targetCellHeightPx = targetCellHeight + 'px'
+const targetCellHeightPx = `${targetCellHeight}px`;
 const targetCellWidthPx =
-  cellFormat === 'square' ? targetCellHeightPx : 'inherit'
+  cellFormat === "square" ? targetCellHeightPx : "inherit";
 ---
 
 <section class={`gallery ${galleryWraperClasses}`}>
@@ -116,13 +117,13 @@ const targetCellWidthPx =
     {
       await Promise.all(
         imgs.map(async (image) => {
-          const {metadata, lightboxDims, thumbDims, dominantColor} =
+          const { metadata, lightboxDims, thumbDims, dominantColor } =
             await extractImageData(
               image,
               targetCellHeight,
               targetModalImageLongDim,
-              metaPool ?? []
-            )
+              metaPool ?? [],
+            );
           return (
             <li
               class={`cell_li  ${cellLiClasses}`}
@@ -140,12 +141,12 @@ const targetCellWidthPx =
                 <Picture
                   class={`cell  ${cellClasses}`}
                   src={image}
-                  formats={['avif', 'webp']}
+                  formats={["avif", "webp"]}
                   alt={
                     metadata?.AltTextAccessibility ||
                     metadata?.Description ||
                     collection?.data?.description ||
-                    'gallery image'
+                    "gallery image"
                   }
                   densities={[1.5, 2]}
                   width={thumbDims.width}
@@ -153,14 +154,14 @@ const targetCellWidthPx =
                 />
               </a>
             </li>
-          )
-        })
+          );
+        }),
       )
     }
   </ul>
 </section>
 
-<style define:vars={{targetCellHeightPx, targetCellWidthPx}} is:global>
+<style define:vars={{ targetCellHeightPx, targetCellWidthPx }} is:global>
   .gallery {
     img {
       max-width: 100%;
@@ -205,30 +206,29 @@ const targetCellWidthPx =
 </style>
 
 <script>
-  import PhotoSwipeLightbox from 'photoswipe/lightbox'
-  import 'photoswipe/style.css'
+  import PhotoSwipeLightbox from "photoswipe/lightbox";
+  import "photoswipe/style.css";
 
   const leftArrowSVGString = `<svg aria-hidden="true" class="pswp__icn" width="20" height="20" viewBox="0 0 30 30" >
       <path fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414" stroke-linecap="round" stroke="var(--pswp-icon-stroke-color)" stroke-width="var(--pswp-icon-stroke-width)" d="M15.7071 5.29289C16.0976 5.68342 16.0976 6.31658 15.7071 6.70711L10.4142 12L15.7071 17.2929C16.0976 17.6834 16.0976 18.3166 15.7071 18.7071C15.3165 19.0976 14.6834 19.0976 14.2929 18.7071L8.46963 12.8839C7.98148 12.3957 7.98148 11.6043 8.46963 11.1161L14.2929 5.29289C14.6834 4.90237 15.3165 4.90237 15.7071 5.29289Z" />
-    </svg>`
+    </svg>`;
   const closeSVGString = `<svg aria-hidden="true" class="pswp__icn" width="20" height="20" viewBox="0 0 20 20" >
 <path fill-rule="evenodd" clip-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="1.414" stroke-linecap="round" stroke="var(--pswp-icon-stroke-color)" stroke-width="var(--pswp-icon-stroke-width)"  d="M5.29289 5.29289C5.68342 4.90237 6.31658 4.90237 6.70711 5.29289L12 10.5858L17.2929 5.29289C17.6834 4.90237 18.3166 4.90237 18.7071 5.29289C19.0976 5.68342 19.0976 6.31658 18.7071 6.70711L13.4142 12L18.7071 17.2929C19.0976 17.6834 19.0976 18.3166 18.7071 18.7071C18.3166 19.0976 17.6834 19.0976 17.2929 18.7071L12 13.4142L6.70711 18.7071C6.31658 19.0976 5.68342 19.0976 5.29289 18.7071C4.90237 18.3166 4.90237 17.6834 5.29289 17.2929L10.5858 12L5.29289 6.70711C4.90237 6.31658 4.90237 5.68342 5.29289 5.29289Z" />
-</svg>`
+</svg>`;
 
   const lightbox = new PhotoSwipeLightbox({
-    arrowPrevSVG: leftArrowSVGString,
     arrowNextSVG: leftArrowSVGString,
-    closeSVG: closeSVGString,
-    zoom: false,
-
-    gallery: '.gallery',
-    children: 'a',
+    arrowPrevSVG: leftArrowSVGString,
     bgOpacity: 0.8,
-    pswpModule: () => import('photoswipe'),
+    children: "a",
+    closeSVG: closeSVGString,
+    gallery: ".gallery",
+    padding: { bottom: 30, left: 80, right: 80, top: 30 },
     preloadFirstSlide: true,
+    pswpModule: () => import("photoswipe"),
     returnFocus: true,
-    showHideAnimationType: 'zoom',
-    padding: {top: 30, bottom: 30, left: 80, right: 80}
-  })
-  lightbox.init()
+    showHideAnimationType: "zoom",
+    zoom: false,
+  });
+  lightbox.init();
 </script>

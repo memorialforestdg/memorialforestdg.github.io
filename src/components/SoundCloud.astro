@@ -1,119 +1,128 @@
 ---
+// eslint-disable sort-keys
+// eslint-disable astro/no-set-html-directive
+
 // SoundCloud
 // https://oembed.com/
 // https://developers.soundcloud.com/docs/oembed#introduction
 // https://developers.soundcloud.com/docs/api/html5-widget
 
+/**  Default configuration values */
 export interface Config {
   // oEmbed API
-  maxwidth?: string
-  maxheight?: string
-  show_comments?: boolean
+  maxwidth?: string;
+  maxheight?: string;
+  show_comments?: boolean;
+
   // oEmbed and Widget APIs
-  auto_play?: boolean
-  color?: string // hex triplet
+  auto_play?: boolean;
+  color?: string; // hex triplet
+
   // Widget API
-  buying?: boolean
-  sharing?: boolean
-  download?: boolean
-  show_artwork?: boolean
-  show_playcount?: boolean
-  show_user?: boolean
-  start_track?: number
-  single_active?: boolean
+  buying?: boolean;
+  sharing?: boolean;
+  download?: boolean;
+  show_artwork?: boolean;
+  show_playcount?: boolean;
+  show_user?: boolean;
+  start_track?: number;
+  single_active?: boolean;
 }
 
 interface Props {
-  oembedUrl: string
-  widget?: 'true' | 'false'
-  config?: Config
+  oembedUrl: string;
+  widget?: "true" | "false";
+  config?: Config;
 }
 
-// Default configuration values
 const defaultConfig: Config = {
   // oEmbed API
-  maxwidth: '', // Pixel value or 100%, defaults to 100%
-  maxheight: '166', // 166 | 450 are the two optional heights for oEmbed, while widget height may be arbitrary.
+  maxheight: "166", // 166 | 450 are the two optional heights for oEmbed, while widget height may be arbitrary.
+  maxwidth: "", // Pixel value or 100%, defaults to 100%
   show_comments: false,
 
   // oEmbed and Widget APIs
   auto_play: false,
-  color: '', // hex triplet
+  color: "", // hex triplet
 
   // Widget API
   buying: false,
-  sharing: true,
   download: true,
+  sharing: true,
   show_artwork: true,
   show_playcount: false,
   show_user: true,
+  single_active: true,
   start_track: 0,
-  single_active: true
-}
+};
 
 const {
   oembedUrl,
-  widget = 'false',
-  config = {}
-}: {oembedUrl: string; widget?: 'true' | 'false'; config?: Config} = Astro.props
+  widget = "false",
+  config = {},
+}: {
+  oembedUrl: string;
+  widget?: "true" | "false";
+  config?: Config;
+} = Astro.props;
 
 function isValidSoundCloudUrl(url: string): boolean {
-  return url.startsWith('https://soundcloud.com/') && !url.endsWith('/')
+  return url.startsWith("https://soundcloud.com/") && !url.endsWith("/");
 }
 
 if (!isValidSoundCloudUrl(oembedUrl)) {
   throw new Error(
-    'Invalid oembedUrl: Must contain "https://soundcloud.com/{user|set|track}" and must not end with a trailing slash.'
-  )
+    'Invalid oembedUrl: Must contain "https://soundcloud.com/{user|set|track}" and must not end with a trailing slash.',
+  );
 }
 
-const finalConfig = {...defaultConfig, ...config}
+const finalConfig = { ...defaultConfig, ...config };
 
-let markup = ''
+let markup = "";
 
-if (widget === 'true') {
+if (widget === "true") {
   const widgetQueryParams = new URLSearchParams(
     Object.entries({
+      auto_play: finalConfig.auto_play === true ? "true" : "false",
+      buying: finalConfig.buying === true ? "true" : "false",
+      color: finalConfig.color || "",
+      download: finalConfig.download === true ? "true" : "false",
+      sharing: finalConfig.sharing === true ? "true" : "false",
+      show_artwork: finalConfig.show_artwork === true ? "true" : "false",
+      show_playcount: finalConfig.show_playcount === true ? "true" : "false",
+      show_user: finalConfig.show_user === true ? "true" : "false",
+      single_active: finalConfig.single_active === true ? "true" : "false",
+      start_track: finalConfig.start_track?.toString() || "0",
       url: encodeURIComponent(oembedUrl),
-      auto_play: finalConfig.auto_play === true ? 'true' : 'false',
-      color: finalConfig.color || '',
-      buying: finalConfig.buying === true ? 'true' : 'false',
-      sharing: finalConfig.sharing === true ? 'true' : 'false',
-      download: finalConfig.download === true ? 'true' : 'false',
-      show_artwork: finalConfig.show_artwork === true ? 'true' : 'false',
-      show_playcount: finalConfig.show_playcount === true ? 'true' : 'false',
-      show_user: finalConfig.show_user === true ? 'true' : 'false',
-      start_track: finalConfig.start_track?.toString() || '0',
-      single_active: finalConfig.single_active === true ? 'true' : 'false'
-    }).filter(([key, value]) => value !== '')
-  )
+    }).filter(([, value]) => value !== ""),
+  );
 
-  const fullWidgetUrl = `https://w.soundcloud.com/player/?${widgetQueryParams}`
-  markup = `<iframe width="${finalConfig.maxwidth ? finalConfig.maxwidth : '100%'}" height="${finalConfig.maxheight}" scrolling="no" frameborder="no" allow="autoplay" class="soundcloud" src="${fullWidgetUrl}"></iframe>`
+  const fullWidgetUrl = `https://w.soundcloud.com/player/?${widgetQueryParams}`;
+  markup = `<iframe width="${finalConfig.maxwidth ? finalConfig.maxwidth : "100%"}" height="${finalConfig.maxheight}" scrolling="no" frameborder="no" allow="autoplay" class="soundcloud" src="${fullWidgetUrl}"></iframe>`;
 } else {
   const oEmbedQueryParams = new URLSearchParams(
     Object.entries({
+      auto_play: finalConfig.auto_play === true ? "true" : "false",
+      color: finalConfig.color || "",
+      format: "json",
+      maxheight: finalConfig.maxheight || "166",
+      maxwidth: finalConfig.maxwidth || "",
+      show_comments: finalConfig.show_comments === true ? "true" : "false",
       url: oembedUrl,
-      format: 'json',
-      maxwidth: finalConfig.maxwidth || '',
-      maxheight: finalConfig.maxheight || '166',
-      color: finalConfig.color || '',
-      auto_play: finalConfig.auto_play === true ? 'true' : 'false',
-      show_comments: finalConfig.show_comments === true ? 'true' : 'false'
-    }).filter(([key, value]) => value !== '')
-  )
-  const fullOembedUrl = `https://soundcloud.com/oembed?${oEmbedQueryParams}`
+    }).filter(([, value]) => value !== ""),
+  );
+  const fullOembedUrl = `https://soundcloud.com/oembed?${oEmbedQueryParams}`;
 
   try {
-    const response = await fetch(fullOembedUrl)
+    const response = await fetch(fullOembedUrl);
     if (!response.ok) {
-      throw new Error(`Fetch error: ${response.statusText}`)
+      throw new Error(`Fetch error: ${response.statusText}`);
     }
-    const data = await response.json()
-    markup = data.html
+    const data = await response.json();
+    markup = data.html;
   } catch (error) {
-    console.error('Error fetching SoundCloud embed:', error)
-    markup = '<p>Error loading SoundCloud embed. Please try again later.</p>'
+    console.error("Error fetching SoundCloud embed:", error);
+    markup = "<p>Error loading SoundCloud embed. Please try again later.</p>";
   }
 }
 ---
@@ -121,7 +130,7 @@ if (widget === 'true') {
 <Fragment set:html={markup} />
 
 <style is:global>
-  iframe[src*='soundcloud.com'] {
+  iframe[src*="soundcloud.com"] {
     height: revert-layer;
     border: 0;
     max-inline-size: 100%;

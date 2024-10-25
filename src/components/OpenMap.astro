@@ -6,91 +6,91 @@
  *  - make props object?
  */
 
-import 'leaflet/dist/leaflet.css'
+import "leaflet/dist/leaflet.css";
 
 export interface Icon {
-  iconUrl: string // the url for the icon
-  shadowUrl?: string // the url for the shadow image
-  iconSize?: [number, number] // size of the icon
-  shadowSize?: [number, number] // size of the shadow
-  iconAnchor?: [number, number] // point of the icon which will correspond to marker's location
-  shadowAnchor?: [number, number] // the same for the shadow
-  popupAnchor?: [number, number] // point from which the popup should open relative to the iconAnchor
-  tooltipAnchor?: [number, number] // point from which the tooltip should open relative to the iconAnchor
+  iconUrl: string; // the url for the icon
+  shadowUrl?: string; // the url for the shadow image
+  iconSize?: [number, number]; // size of the icon
+  shadowSize?: [number, number]; // size of the shadow
+  iconAnchor?: [number, number]; // point of the icon which will correspond to marker's location
+  shadowAnchor?: [number, number]; // the same for the shadow
+  popupAnchor?: [number, number]; // point from which the popup should open relative to the iconAnchor
+  tooltipAnchor?: [number, number]; // point from which the tooltip should open relative to the iconAnchor
 }
 
 export interface Point {
-  x: number
-  y: number
+  x: number;
+  y: number;
 }
 
 // https://leafletjs.com/reference.html#popup
 export interface Popup {
-  pane?: string // 'popupPane'
-  offset?: Point // {x: 0, y: 0}
-  maxWidth?: number // 300
-  minWidth?: number // 50
-  maxHeight?: number | null // null
-  autoPan?: boolean // true
-  autoPanPaddingTopLeft?: Point | null // null
-  autoPanPaddingBottomRight?: Point | null // null
-  autoPanPadding?: Point // Point(5, 5)
-  keepInView?: boolean // false
-  closeButton?: boolean // true
-  autoClose?: boolean // true
-  closeOnEscapeKey?: boolean // true
-  closeOnClick?: boolean // Optional, defaults to the map's closePopupOnClick option
-  className?: string
+  pane?: string; // 'popupPane'
+  offset?: Point; // {x: 0, y: 0}
+  maxWidth?: number; // 300
+  minWidth?: number; // 50
+  maxHeight?: number | null; // null
+  autoPan?: boolean; // true
+  autoPanPaddingTopLeft?: Point | null; // null
+  autoPanPaddingBottomRight?: Point | null; // null
+  autoPanPadding?: Point; // Point(5, 5)
+  keepInView?: boolean; // false
+  closeButton?: boolean; // true
+  autoClose?: boolean; // true
+  closeOnEscapeKey?: boolean; // true
+  closeOnClick?: boolean; // Optional, defaults to the map's closePopupOnClick option
+  className?: string;
 }
 
 export interface Location {
-  id: string
-  content?: string
-  popup?: Popup
-  lat: number
-  lon: number
-  open?: boolean
-  icon?: Icon
+  id: string;
+  content?: string;
+  popup?: Popup;
+  lat: number;
+  lon: number;
+  open?: boolean;
+  icon?: Icon;
 }
 
 export interface GeoStyle {
-  fillColor?: string
-  weight?: number
-  opacity?: number
-  color?: string
-  fillOpacity?: number
+  fillColor?: string;
+  weight?: number;
+  opacity?: number;
+  color?: string;
+  fillOpacity?: number;
 }
 
 interface Props {
-  id?: string
-  style?: string
-  classes?: string
-  width?: string
-  height?: string
-  lat?: number
-  lon?: number
-  zoom?: string
-  maxzoom?: string
-  scrollwheel?: 'false'
-  controls?: 'true'
-  icon?: Icon
-  centericon?: 'true'
-  offset?: [number, number]
-  locations?: Location[]
-  geojson?: string // Url for a Geo JSON Object that defines the shape of map feature eg, a county or a city boundaries
-  geostyle?: GeoStyle // An Object that defines the geojson object styles
+  id?: string;
+  style?: string;
+  classes?: string;
+  width?: string;
+  height?: string;
+  lat?: number;
+  lon?: number;
+  zoom?: string;
+  maxzoom?: string;
+  scrollwheel?: "false";
+  controls?: "true";
+  icon?: Icon;
+  centericon?: "true";
+  offset?: [number, number];
+  locations?: Location[];
+  geojson?: string; // Url for a Geo JSON Object that defines the shape of map feature eg, a county or a city boundaries
+  geostyle?: GeoStyle; // An Object that defines the geojson object styles
 }
 
 const {
-  id = 'map',
-  style = 'border  : 1px solid var(--brand-surface-1);',
-  classes = '',
-  width = '100%',
-  height = '350px',
-  lat = '-3.6107',
-  lon = '55.0691',
-  zoom = '19',
-  maxzoom = '19',
+  id = "map",
+  style = "border  : 1px solid var(--brand-surface-1);",
+  classes = "",
+  width = "100%",
+  height = "350px",
+  lat = "-3.6107",
+  lon = "55.0691",
+  zoom = "19",
+  maxzoom = "19",
   scrollwheel = true,
   controls = true,
   icon,
@@ -98,8 +98,8 @@ const {
   offset,
   locations,
   geojson,
-  geostyle
-} = Astro.props
+  geostyle,
+} = Astro.props;
 ---
 
 <>
@@ -124,12 +124,12 @@ const {
 </>
 
 <script>
-  import L from 'leaflet/dist/leaflet'
-  import iconImg from 'leaflet/dist/images/marker-icon.png'
-  import loadBoundry from '../js/loadBoundry'
+  import L from "leaflet/dist/leaflet";
+  import iconImg from "leaflet/dist/images/marker-icon.png";
+  import loadBoundry from "../js/loadBoundry";
   class OpenMap extends HTMLElement {
     constructor() {
-      super()
+      super();
       const {
         lat = -3.6107,
         lon = 55.0691,
@@ -142,89 +142,92 @@ const {
         locations,
         geojson,
         geostyle,
-        offset
-      } = this.dataset
+        offset,
+      } = this.dataset;
 
-      const id = this.id
+      const { id } = this;
       const mapOptions = {
         center: [lat, lon],
-        zoom,
         maxZoom: maxzoom,
+        offset,
         scrollWheelZoom: scrollwheel,
+        zoom,
         zoomControl: controls,
-        offset: offset
-      }
+      };
 
-      const map = L.map(id, mapOptions)
+      const map = L.map(id, mapOptions);
       const layer = new L.TileLayer(
-        'https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
+        "https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png",
         {
-          maxZoom: 25,
           attribution:
-            '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap: Tiles by Humanitarian</a>'
-        }
-      )
+            '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap: Tiles by Humanitarian</a>',
+          maxZoom: 25,
+        },
+      );
 
       // Add layer to the map
-      map.addLayer(layer)
+      map.addLayer(layer);
       if (geojson) {
         loadBoundry(geojson).then((geojson) => {
           if (geostyle) {
             L.geoJSON(geojson[0]?.geojson, {
-              style: JSON.parse(geostyle)
-            }).addTo(map)
+              style: JSON.parse(geostyle),
+            }).addTo(map);
           }
           if (!geostyle) {
-            const geojsonLayer = L.geoJSON(geojson)
-            map.fitBounds(geojsonLayer.getBounds())
-            geojsonLayer.addTo(map)
+            const geojsonLayer = L.geoJSON(geojson);
+            map.fitBounds(geojsonLayer.getBounds());
+            geojsonLayer.addTo(map);
           }
-        })
+        });
       }
 
       // Load provided icon or use default
       let loadIcon = icon
         ? L.icon(JSON.parse(icon))
-        : L.icon({iconUrl: iconImg.src})
+        : L.icon({ iconUrl: iconImg.src });
 
       // Dont alow both a location array and centericon
       if (centericon && !locations && lat && lon) {
-        L.marker([lat, lon], {icon: loadIcon}).addTo(map)
+        L.marker([lat, lon], { icon: loadIcon }).addTo(map);
       }
 
       // load the locations if they exist
       if (locations) {
         JSON.parse(locations).forEach((location) => {
           // Load location icon or use default
-          loadIcon = location?.icon ? L.icon(location.icon) : loadIcon
+          loadIcon = location?.icon ? L.icon(location.icon) : loadIcon;
           const marker = L.marker([location.lat, location.lon], {
-            icon: loadIcon
-          })
+            icon: loadIcon,
+          });
           location?.content &&
-            marker.bindPopup(location.content, location?.popup)
+            marker.bindPopup(location.content, location?.popup);
           // This is causing all sorts of weird behaviour, with no popups showing where there should
           // and on the vist page, the last one is the one that pops up?
           // if (location.open) {
           //   console.log('open!')
           //   marker.addTo(map).openPopup()
           // } else {
-          marker.addTo(map)
+          marker.addTo(map);
           // }
-        })
+        });
       }
       // Draw the map
-      map.setView({lat: mapOptions.center[0], lon: mapOptions.center[1]}, zoom)
+      map.setView(
+        { lat: mapOptions.center[0], lon: mapOptions.center[1] },
+        zoom,
+      );
       mapOptions.offset &&
         map.panBy(JSON.parse(mapOptions?.offset), {
-          animate: false
-        })
+          animate: false,
+        });
     }
   }
 
-  customElements.define('open-map', OpenMap)
+  customElements.define("open-map", OpenMap);
 </script>
 
-<style is:global define:vars={{width, height}}>
+<style is:global define:vars={{ height, width }}>
   .leaflet-control-attribution {
     font-size: 10px;
   }

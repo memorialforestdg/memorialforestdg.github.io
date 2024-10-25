@@ -1,5 +1,7 @@
 ---
-import type {ImageMetadata, GetImageResult} from 'astro'
+// eslint-disable astro/no-set-html-directive
+
+import type {GetImageResult, ImageMetadata} from 'astro'
 import {getImage} from 'astro:assets'
 
 interface Props {
@@ -14,8 +16,8 @@ interface Props {
   alt?: string
   title: string
   heading?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
-  footer?: string | HTMLElement | HTMLElement[]
-  children?: string | HTMLElement | HTMLElement[]
+  footer?: string | globalThis.HTMLElement | globalThis.HTMLElement[]
+  children?: string | globalThis.HTMLElement | globalThis.HTMLElement[]
   wrapClasses?: string
   headerClasses?: string
   headingWrapClasses?: string
@@ -51,17 +53,17 @@ let imgDesktop: GetImageResult | undefined
 
 if (imgUrl) {
     imgMobile = await getImage({
-    src: imgUrl,
-    format: 'webp',
-    width: mobHW[0],
-    height: mobHW[1]
+      format: 'webp',
+      height: mobHW[1],
+      src: imgUrl,
+      width: mobHW[0],
   })
 
   imgDesktop = await getImage({
-    src: imgUrl,
     format: 'webp',
+    height: deskHW[1],
+    src: imgUrl,
     width: deskHW[0],
-    height: deskHW[1]
   })
 }
 
@@ -92,7 +94,8 @@ if (imgUrl) {
   {footer ? <footer class=`card__footer ${footerClasses}` set:html={footer} /> : null}
 </div>
 
-<style is:global define:vars={{imagePosition, headerHeight}}>
+// eslint-disable-next-line astro/no-unused-define-vars-in-style
+<style is:global define:vars={{headerHeight, imagePosition}}>
   .card {
     display: flex;
     flex-direction: column;

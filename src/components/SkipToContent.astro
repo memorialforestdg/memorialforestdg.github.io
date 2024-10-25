@@ -1,19 +1,19 @@
 ---
 interface Props {
-  target?: string
-  classArray?: Array<string>
-  text?: string
+  target?: string;
+  classArray?: Array<string>;
+  text?: string;
 }
 
 const {
-  target = '#main',
+  target = "#main",
   classArray = [],
-  text = 'Skip to content'
-} = Astro.props
+  text = "Skip To Content",
+} = Astro.props;
 ---
 
 <>
-  <a href={target} class={`skip_link ${classArray.join(' ')}`}>{text}</a>
+  <a href={target} class={`skip_link ${classArray.join(" ")}`}>{text}</a>
 </>
 <style>
   .skip_link {

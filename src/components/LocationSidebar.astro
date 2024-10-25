@@ -1,47 +1,49 @@
 ---
-import {Icon} from 'astro-icon/components'
+// eslint-disable astro/no-set-html-directive
+
+import { Icon } from "astro-icon/components";
 
 function isHttpOrHttpsUrl(url: string): boolean {
-  return url.startsWith('http://') || url.startsWith('https://')
+  return url.startsWith("http://") || url.startsWith("https://");
 }
 
 function isValidW3WFormat(w3w: string): boolean {
   // Less then 64 characters and three words separated by dots.
-  return w3w.length < 64 && /^[a-zA-Z]+\.[a-zA-Z]+\.[a-zA-Z]+$/.test(w3w)
+  return w3w.length < 64 && /^[a-zA-Z]+\.[a-zA-Z]+\.[a-zA-Z]+$/.test(w3w);
 }
 
 function isValidColorFormat(color: string | undefined): boolean {
   // Assuming the color format is like --example-color, adjust regex as needed.
-  return color === undefined || /^--[\w-]+$/.test(color)
+  return color === undefined || /^--[\w-]+$/.test(color);
 }
 
-type Word = string // Placeholder, can't enforce alphabet characters only
-export type W3WFormat = `${Word}.${Word}.${Word}`
+type Word = string; // Placeholder, can't enforce alphabet characters only
+export type W3WFormat = `${Word}.${Word}.${Word}`;
 
-type ValidUrl = Props & {url: string} & {
-  url: ReturnType<typeof isHttpOrHttpsUrl> extends true ? string : undefined
-}
+type ValidUrl = Props & { url: string } & {
+  url: ReturnType<typeof isHttpOrHttpsUrl> extends true ? string : undefined;
+};
 
 interface Props {
-  bgColor?: `--${string}`
-  textColor?: `--${string}`
-  w3w: W3WFormat
-  lat: number
-  lon: number
-  address?: string
-  partners?: string
-  website?: ValidUrl
-  phone?: string
-  hours?: string
-  tickets?: string
-  food?: string
-  bathrooms?: string
-  accessible?: string
-  transport?: string
-  bicycles?: string
-  parking?: string
-  siteInfo?: string
-  locProviso?: string
+  bgColor?: `--${string}`;
+  textColor?: `--${string}`;
+  w3w: W3WFormat;
+  lat: number;
+  lon: number;
+  address?: string;
+  partners?: string;
+  website?: ValidUrl;
+  phone?: string;
+  hours?: string;
+  tickets?: string;
+  food?: string;
+  bathrooms?: string;
+  accessible?: string;
+  transport?: string;
+  bicycles?: string;
+  parking?: string;
+  siteInfo?: string;
+  locProviso?: string;
 }
 
 const {
@@ -63,27 +65,27 @@ const {
   bicycles,
   parking,
   siteInfo,
-  locProviso = `Opening times and access information may change. Please visit the site partner website listed above or phone ahead for updated information.`
-} = Astro.props
+  locProviso = `Opening times and access information may change. Please visit the site partner website listed above or phone ahead for updated information.`,
+} = Astro.props;
 
 // Validate w3w format
 if (!isValidW3WFormat(w3w)) {
   throw new Error(
-    `Invalid w3w format (should be three words, seperated buy dots): ${w3w}`
-  )
+    `Invalid w3w format (should be three words, seperated buy dots): ${w3w}`,
+  );
 }
 
 // Validate bgColor and textColor formats
 if (!isValidColorFormat(bgColor)) {
-  throw new Error(`Invalid css property format for bgColor: ${bgColor}`)
+  throw new Error(`Invalid css property format for bgColor: ${bgColor}`);
 }
 
 if (!isValidColorFormat(textColor)) {
-  throw new Error(`Invalid css property format for textColor: ${textColor}`)
+  throw new Error(`Invalid css property format for textColor: ${textColor}`);
 }
 
-const bgColorVar = `var(${bgColor})`
-const textColorVar = `var(${textColor})`
+const bgColorVar = `var(${bgColor})`;
+const textColorVar = `var(${textColor})`;
 ---
 
 <section class="location__sidebar poly-1 mw-100">
@@ -98,7 +100,7 @@ const textColorVar = `var(${textColor})`
           {
             w3w && (
               <li class="w3w">
-                <strong>What 3 Words:</strong>{' '}
+                <strong>What 3 Words:</strong>{" "}
                 <a
                   class="di-underline-hover"
                   href={`https://w3w.co/${w3w}`}
@@ -271,7 +273,7 @@ const textColorVar = `var(${textColor})`
     </ul>
   </div>
 </section>
-<style define:vars={{bgColorVar, textColorVar}}>
+<style define:vars={{ bgColorVar, textColorVar }}>
   li {
     padding: 0;
   }
