@@ -1,5 +1,5 @@
 ---
-// eslint-disable astro/no-set-html-directive
+/* eslint-disable astro/no-set-html-directive */
 
 import type {GetImageResult, ImageMetadata} from 'astro'
 import {getImage} from 'astro:assets'
@@ -94,7 +94,6 @@ if (imgUrl) {
   {footer ? <footer class=`card__footer ${footerClasses}` set:html={footer} /> : null}
 </div>
 
-// eslint-disable-next-line astro/no-unused-define-vars-in-style
 <style is:global define:vars={{headerHeight, imagePosition}}>
   .card {
     display: flex;

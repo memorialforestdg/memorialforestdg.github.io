@@ -1,6 +1,5 @@
 ---
-// eslint-disable sort-keys
-// eslint-disable astro/no-set-html-directive
+/* eslint-disable astro/no-set-html-directive */
 
 // SoundCloud
 // https://oembed.com/
@@ -34,7 +33,7 @@ interface Props {
   widget?: "true" | "false";
   config?: Config;
 }
-
+/* eslint-disable sort-keys */
 const defaultConfig: Config = {
   // oEmbed API
   maxheight: "166", // 166 | 450 are the two optional heights for oEmbed, while widget height may be arbitrary.
@@ -55,6 +54,7 @@ const defaultConfig: Config = {
   single_active: true,
   start_track: 0,
 };
+/* eslint-enable sort-keys */
 
 const {
   oembedUrl,

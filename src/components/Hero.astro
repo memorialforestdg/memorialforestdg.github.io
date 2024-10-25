@@ -1,5 +1,5 @@
 ---
-// eslint-disable astro/no-set-html-directive
+/* eslint-disable astro/no-set-html-directive */
 interface Props {
   title?: string;
   titleClasses?: Array<string>;
@@ -38,9 +38,7 @@ const {
             </header>
           )
         }
-        // eslint-disable-next-line astro/no-set-html-directive
         <p set:html={text} />
-        // eslint-disable-next-line astro/no-set-html-directive
         <a href={linkHref} class={linkClasses.join(" ")} set:html={linkText} />
       </div>
       <div class="hiro__cols-right flex flex-column"><slot /></div>
