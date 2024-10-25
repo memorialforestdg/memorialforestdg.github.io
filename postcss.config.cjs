@@ -1,13 +1,18 @@
 module.exports = {
   plugins: [
-    require('autoprefixer'),
     require('postcss-combine-media-query'),
     require('postcss-combine-duplicated-selectors')({
       removeDuplicatedProperties: true,
-      removeDuplicatedValues: false
+      removeDuplicatedValues: true
     }),
+    require('postcss-import'),
+    require('postcss-html'),
     require('postcss-preset-env')({
-      features: {}
+      autoprefixer: { grid: true },
+      stage: 3,
+      features: {
+        'nesting-rules': true
+      }
     }),
     require('postcss-reporter')
   ]

@@ -1,14 +1,11 @@
-import eslintPluginAstro from 'eslint-plugin-astro'
-
-// eslint.config.js
-import js from '@eslint/js'
+import eslintPluginAstro from 'eslint-plugin-astro';
+import js from '@eslint/js';
 
 export default [
-  // add more generic rule sets here, such as:
   js.configs.recommended,
   ...eslintPluginAstro.configs.recommended,
   {
-    globals.process: 'readonly',
+    files: ['**/*.js', '**/*.ts', '**/*.cjs', '**/*.mjs', '**/*.astro'], // Adjust file patterns as needed
     ignores: [
       '**/temp.js',
       'config/*',
@@ -18,19 +15,36 @@ export default [
       'build',
       'src/js/vendor',
       '**/node_modules',
-      '.stylelintrc.*'
+      '.stylelintrc.*',
     ],
+    languageOptions: {
+      globals: {
+        process: 'readonly',
+      },
+      parserOptions: {
+        ecmaVersion: 2022, // Latest supported version
+        sourceType: 'module', // Enable ES6 modules
+      },
+    },
     rules: {
-      //   override/add rules settings here, such as:
       'astro/no-set-html-directive': 'error',
       'no-unused-vars': ['error', { argsIgnorePattern: '^typedefs' }],
       'no-useless-concat': 'error',
       'no-useless-return': 'error',
       'no-var': 'error',
-      'object-shorthand': 'error',
-      'prefer-arrow-callback': 'error',
-      'prefer-const': 'error',
-      'prefer-destructuring': 'error',
+      'object-shorthand': ['error', 'always'],
+      'prefer-arrow-callback': ['error', { allowNamedFunctions: true }],
+      'prefer-const': ['error', { destructuring: 'all' }],
+      'prefer-destructuring': [
+        'error',
+        {
+          array: true,
+          object: true,
+        },
+        {
+          enforceForRenamedProperties: false,
+        },
+      ],
       'prefer-exponentiation-operator': 'error',
       'prefer-named-capture-group': 'error',
       'prefer-regex-literals': 'error',
@@ -38,16 +52,31 @@ export default [
       'prefer-spread': 'error',
       'prefer-template': 'error',
       'require-yield': 'error',
-      'rest-spread-spacing': 'error',
+      'rest-spread-spacing': ['error', 'never'],
       'sort-imports': [
         'error',
         {
+          allowSeparatedGroups: false,
           ignoreCase: true,
-          ignoreDeclarationSort: true
-        }
+          ignoreDeclarationSort: true,
+          ignoreMemberSort: false,
+        },
       ],
-      'sort-keys': 'error',
-      'sort-vars': 'error'
-    }
-  }
-]
+      'sort-keys': [
+        'error',
+        'asc',
+        {
+          caseSensitive: true,
+          minKeys: 2,
+          natural: true,
+        },
+      ],
+      'sort-vars': [
+        'error',
+        {
+          ignoreCase: false, // or true, depending on your preference
+        },
+      ],
+    },
+  },
+];
