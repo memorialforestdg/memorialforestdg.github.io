@@ -1,8 +1,8 @@
 // import { getImage } from "astro:assets";
 // import sharp from 'sharp'
-import { z } from 'zod'
-import {imageExifMetadata} from '../schemas.js'
-type ImageExifMetadata = z.infer<typeof imageExifMetadata>
+import { z } from 'zod';
+import { imageExifMetadata } from '../schemas.js';
+type ImageExifMetadata = z.infer<typeof imageExifMetadata>;
 interface MetaPool extends Array<ImageExifMetadata> {}
 
 /**
@@ -12,17 +12,17 @@ interface MetaPool extends Array<ImageExifMetadata> {}
  * @param {string} albumId
  * @returns {Promise<ImageMetadata[]>}
  */
-async function getAlbumImages(albumId) {
+async function getAlbumImages(albumId: string): Promise<ImageMetadata[]> {
   let images = import.meta.glob<{ default: ImageMetadata }>(
-    "/src/content/**/*.{jpeg,jpg,JPG,png,gif,avif,webp}",
+    '/src/content/**/*.{jpeg,jpg,JPG,png,gif,avif,webp}',
   );
 
   images = Object.fromEntries(
-    Object.entries(images).filter(([key]) => key.includes(albumId))
+    Object.entries(images).filter(([key]) => key.includes(albumId)),
   );
 
   const resolvedImages = await Promise.all(
-    Object.values(images).map((image) => image().then((mod) => mod.default))
+    Object.values(images).map((image) => image().then((mod) => mod.default)),
   );
 
   return resolvedImages;
@@ -35,10 +35,12 @@ async function getAlbumImages(albumId) {
  * @param {<GetImageResult>} image
  * @returns {string}
  */
-function extractImagePath(image) {
-
+function extractImagePath(image: { src: string }): string {
   if (!image || !image?.src) {
-    throw new Error("No image path, expected an image object with src property . Received: " + image);
+    throw new Error(
+      'No image path, expected an image object with src property . Received: ' +
+        image,
+    );
   }
 
   const cleanedPath = decodeURIComponent(image.src)
@@ -47,7 +49,6 @@ function extractImagePath(image) {
 
   return cleanedPath;
 }
-
 
 /**
  * Extrapolates the dimensions of an image based on a target in pixels and a flag representing the axis to target.
@@ -61,12 +62,24 @@ function extractImagePath(image) {
  * @returns {{ width: number, height: number }} The extrapolated dimensions.
  * @throws {Error} If image dimensions or axis are invalid, or if image dimensions are not provided.
  */
-function extrapolateImageDims(target: number, flag, imageWidth?, imageHeight?) {
+function extrapolateImageDims(
+  target: number,
+  flag: 'long' | 'short' | 'width' | 'height',
+  imageWidth?: number,
+  imageHeight?: number,
+): { width: number; height: number } {
   if (imageWidth === undefined || imageHeight === undefined) {
-    throw new Error("Image dimensions are required.");
+    throw new Error('Image dimensions are required.');
   }
-  if (flag !== 'long' && flag !== 'short' && flag !== 'width' && flag !== 'height') {
-    throw new Error("Invalid flag: " + flag + ". Expected 'long|short|width|height'.");
+  if (
+    flag !== 'long' &&
+    flag !== 'short' &&
+    flag !== 'width' &&
+    flag !== 'height'
+  ) {
+    throw new Error(
+      'Invalid flag: ' + flag + ". Expected 'long|short|width|height'.",
+    );
   }
 
   let targetWidth: number = 0;
@@ -82,7 +95,7 @@ function extrapolateImageDims(target: number, flag, imageWidth?, imageHeight?) {
     if (imageWidth >= imageHeight) {
       // For 'long', if the image is horizontal, fix width to target
       targetWidth = target;
-      targetHeight =  (imageHeight / imageWidth) * targetWidth;
+      targetHeight = (imageHeight / imageWidth) * targetWidth;
     } else {
       // For 'long', if the image is vertical, fix height to target
       targetWidth = (imageWidth / imageHeight) * target;
@@ -128,7 +141,6 @@ function extrapolateImageDims(target: number, flag, imageWidth?, imageHeight?) {
       targetWidth = (imageHeight / imageWidth) * target;
       targetHeight = target / (imageHeight / imageWidth);
     }
-
   }
   return { width: Math.round(targetWidth), height: Math.round(targetHeight) };
 }
@@ -141,39 +153,46 @@ function extrapolateImageDims(target: number, flag, imageWidth?, imageHeight?) {
  * @returns {'square' | 'landscape' | 'portrait'} The orientation of the image.
  * @throws {TypeError} If width or height is not a number.
  */
-function getImageOrientation(width: number, height: number): 'square' | 'landscape' | 'portrait' {
-    if (isNaN(width) || isNaN(height)) {
-      throw new TypeError('Invalid image dimensions');
-    }
-    if (width === height) {
-      return 'square';
-    } else if (width > height) {
-      return 'landscape';
-    } else {
-      return 'portrait';
-    }
+function getImageOrientation(
+  width: number,
+  height: number,
+): 'square' | 'landscape' | 'portrait' {
+  if (isNaN(width) || isNaN(height)) {
+    throw new TypeError('Invalid image dimensions');
+  }
+  if (width === height) {
+    return 'square';
+  } else if (width > height) {
+    return 'landscape';
+  } else {
+    return 'portrait';
+  }
 }
 
-async function extractImageData(image: ImageMetadata, targetCellHeight: number, targetModalImageLongDim: number, metaPool: MetaPool) {
-
+async function extractImageData(
+  image: ImageMetadata,
+  targetCellHeight: number,
+  targetModalImageLongDim: number,
+  metaPool: MetaPool,
+) {
   // Fallback if sharp fails
-  let dominantColor = 'inherit;'
+  let dominantColor = 'inherit;';
 
   // Calculate image dimensions for lightbox
   const lightboxDims = extrapolateImageDims(
     targetModalImageLongDim,
     'long',
     image.width,
-    image.height
-  )
+    image.height,
+  );
 
   // Calculate image dimensions for thumbnail
   const thumbDims = extrapolateImageDims(
     targetCellHeight,
     'short',
     image.width,
-    image.height
-  )
+    image.height,
+  );
 
   // Get dominant color
   // try {
@@ -188,21 +207,26 @@ async function extractImageData(image: ImageMetadata, targetCellHeight: number, 
   // }
 
   // Pull in image metadata
-  let metadata
+  let metadata;
   if (metaPool) {
     try {
       metadata = Object.values(metaPool)
         .flat()
         .find((item: ImageExifMetadata): boolean => {
-          return item.SourceFile === `..${extractImagePath(image)}`
-        }) as ImageExifMetadata
+          return item.SourceFile === `..${extractImagePath(image)}`;
+        }) as ImageExifMetadata;
     } catch (error) {
-      console.warn(error)
+      console.warn(error);
     }
   }
 
-  return {lightboxDims, thumbDims, dominantColor, metadata}
+  return { lightboxDims, thumbDims, dominantColor, metadata };
 }
 
-
-export { getAlbumImages, extrapolateImageDims, extractImagePath, getImageOrientation, extractImageData }
+export {
+  getAlbumImages,
+  extrapolateImageDims,
+  extractImagePath,
+  getImageOrientation,
+  extractImageData,
+};
