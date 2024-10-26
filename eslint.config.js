@@ -1,11 +1,13 @@
 import eslintPluginAstro from 'eslint-plugin-astro';
 import js from '@eslint/js';
+import tseslint from '@typescript-eslint/eslint-plugin';
+import tseslintParser from '@typescript-eslint/parser';
 
 export default [
   js.configs.recommended,
   ...eslintPluginAstro.configs.recommended,
   {
-    files: ['**/*.js', '**/*.ts', '**/*.cjs', '**/*.mjs', '**/*.astro'], // Adjust file patterns as needed
+    files: ['**/*.js', '**/*.ts', '**/*.cjs', '**/*.mjs', '**/*.astro'],
     ignores: [
       '**/temp.js',
       'config/*',
@@ -21,12 +23,16 @@ export default [
       globals: {
         process: 'readonly',
       },
+      parser: 'astro-eslint-parser',
       parserOptions: {
+        parser: '@typescript-eslint/parser',
+        extraFileExtensions: ['.astro'],
         ecmaVersion: 2022, // Latest supported version
         sourceType: 'module', // Enable ES6 modules
       },
     },
     rules: {
+      ...tseslint.configs.recommended.rules,
       'astro/no-set-html-directive': 'error',
       'no-unused-vars': ['error', { argsIgnorePattern: '^typedefs' }],
       'no-useless-concat': 'error',
@@ -74,7 +80,7 @@ export default [
       'sort-vars': [
         'error',
         {
-          ignoreCase: false, // or true, depending on your preference
+          ignoreCase: false,
         },
       ],
     },

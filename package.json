@@ -35,6 +35,7 @@
   },
   "devDependencies": {
     "@types/leaflet": "^1.9.12",
+    "@typescript-eslint/eslint-plugin": "^8.11.0",
     "@typescript-eslint/parser": "^8.5.0",
     "@vite-pwa/astro": "^0.4.3",
     "astro-compressor": "^0.4.1",
@@ -59,6 +60,7 @@
     "stylelint-no-unsupported-browser-features": "^8.0.1",
     "stylelint-prettier": "^5.0.0",
     "stylelint-selector-bem-pattern": "^4.0.0",
-    "stylelint-use-nesting": "^5.1.1"
+    "stylelint-use-nesting": "^5.1.1",
+    "typescript": "^5.6.3"
   }
 }
