@@ -22,7 +22,7 @@
     "@playform/compress": "0.1.0",
     "astro": "4.12.2",
     "astro-capo": "0.0.1",
-    "astro-icon": "1.1.0",
+    "astro-icon": "1.1.1",
     "astro-purgecss": "4.1.1",
     "astro-relative-links": "0.4.0",
     "astro-robots-txt": "1.0.0",
