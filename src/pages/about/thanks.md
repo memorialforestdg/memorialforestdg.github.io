@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/MDPagesLayout.astro
 pageTitle: Thanks & IP
-flourishClasses: ['--fieldmaple', 'dropcap', '--dc-teal-800']
+flourishClasses: ["--fieldmaple", "dropcap", "--dc-teal-800"]
 ---
 
 ## Thank you
@@ -24,7 +24,7 @@ Postcards, _Tree of Remembrance_ ribbons, handwritten sentences, and the stories
 
 ## Image Attribution
 
-Images of Tree Planting and Gathering Events were primarily taken by [Kirsten McEwan](https://www.kirstinmcewan.co/). Phase 1 images were mainly taken by t s Beall, with help from Gregor Anderson (in Stranraer) and [Colin Tennant](https://wearectproductions.com/) (in Wigtown).
+Images of Tree Planting and Gathering Events were primarily taken by [Kirstin McEwan](https://www.kirstinmcewan.co/). Phase 1 images were mainly taken by t s Beall, with help from Gregor Anderson (in Stranraer) and [Colin Tennant](https://wearectproductions.com/) (in Wigtown).
 
 ## Site Design & Development
 
