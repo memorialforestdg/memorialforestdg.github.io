@@ -10,7 +10,7 @@ collectionId: albums
 albumId: forest_planting
 ---
 
-__In March and April 2024, the <i>Remembering Together D&G</i> project__ planted over 400 trees at five locations across the region as part of <i>The Dispersed Memorial Forest</i>, working with local partners and community groups, alongside individuals and families impacted by the COVID-19 pandemic.
+**In March and April 2024, the <i>Remembering Together D&G</i> project** planted over 400 trees at five locations across the region as part of <i>The Dispersed Memorial Forest</i>, working with local partners and community groups, alongside individuals and families impacted by the COVID-19 pandemic.
 
 ## Tree Planting Events
 
@@ -23,3 +23,7 @@ The Tree Planting events were led by the artists and <a href="https://www.treesu
 - NHS Galloway Community Hospital in Stranraer
 
 To mark the opening at each place, the project hosted a series of Community Gatherings in June 2024, with activities including walks, sharing stories, music and food.
+
+<div class='aspect-ratio--16x9 pt-2 pb-2'>
+    <iframe title="vimeo-player" src="https://player.vimeo.com/video/1054192297?h=6142c4c9ed" width="100%" height="360" frameborder="0" allowfullscreen></iframe>
+</div>

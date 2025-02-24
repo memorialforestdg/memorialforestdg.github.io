@@ -1,9 +1,9 @@
 ---
 import BaseLayout from '~/layouts/BaseLayout.astro'
-import BannerImage from '../../images/RememberingTogetherWBF22LowRes74_ImageColinTennant.jpg'
 import Breadcrumbs from '~components/Breadcrumbs.astro'
 import Flourish from '~components/Flourish.astro'
 import Gallery from '~components/Gallery.astro'
+import BannerImage from '../../images/RememberingTogetherWBF22LowRes74_ImageColinTennant.jpg'
 const pageTitle = 'Phase 2: Co-creating The Dispersed Memorial Forest'
 const bannerAlt =
   'Remembering Together Phase 1 Workshop, image by Colin Tennant'
@@ -12,15 +12,15 @@ const collectionId = 'albums'
 const albumId = 'phase_2'
 
 // inset gallery
-// import img1 from '../../images/4-rememberingtogetherdg_whatdoyouwanttoremember_imagetsbeall_unexpected_garden.jpg'
-// import img2 from '../../images/RememberingTogetherDG_Stranraer_10-09-2022_imagetsBeall_09.jpg'
-// import img3 from '../../images/RememberingTogetherWBF22LowRes57__ImageColinTennant.jpg'
-// import img4 from '../../images/3-RememberingTogetherDG_A-Nurses-Wish_Postcard_imagetsBeall.jpg'
+import img4 from '../../images/3-RememberingTogetherDG_A-Nurses-Wish_Postcard_imagetsBeall.jpg'
+import img1 from '../../images/4-rememberingtogetherdg_whatdoyouwanttoremember_imagetsbeall_unexpected_garden.jpg'
+import img2 from '../../images/RememberingTogetherDG_Stranraer_10-09-2022_imagetsBeall_09.jpg'
+import img3 from '../../images/RememberingTogetherWBF22LowRes57__ImageColinTennant.jpg'
 
-// import img5 from '../../images/RememberingTogetherDG_TreePlanting_STRANRAER_72dpi-106.jpg'
-// import img6 from '../../images/2-RememberingTogetherDG_Stranraer_Leanne-and-May_10092022_imageGregor.jpg'
-// import img7 from '../../images/RememberingTogetherDG_TreePlanting_STRANRAER_72dpi-3.jpg'
-// import img8 from '../../images/planting-dumfries.jpg'
+import img6 from '../../images/2-RememberingTogetherDG_Stranraer_Leanne-and-May_10092022_imageGregor.jpg'
+import img5 from '../../images/RememberingTogetherDG_TreePlanting_STRANRAER_72dpi-106.jpg'
+import img7 from '../../images/RememberingTogetherDG_TreePlanting_STRANRAER_72dpi-3.jpg'
+import img8 from '../../images/planting-dumfries.jpg'
 ---
 
 <BaseLayout
@@ -47,15 +47,6 @@ const albumId = 'phase_2'
               recorded stories of loss and resilience from people across the
               region.
             </p>
-            <!-- <Gallery
-              images={[img1, img2, img3, img4]}
-              galleryWraperClasses={'m3 pa-2 bt bb b--desert-300'}
-              targetCellHeight={180}
-              cellFormat={'square'}
-              galleryUlClasses={'pa-0 list flex flex-wrap gap-2 justify-center'}
-              cellLiClasses={'pa-0 ma-0 shadow-hover grow'}
-              cellClasses={'pa-0 ma-0 bg-brand-purple br1'}
-            /> -->
             <h2>Planting Trees</h2>
             <p>
               Phase 2 began in July 2023, and <a href="../../about/the-artists"
@@ -70,6 +61,15 @@ const albumId = 'phase_2'
               across D&G, so that people across the entire region would be able to
               visit the memorial.
             </p>
+            <Gallery
+              images={[img5, img6, img7, img8]}
+              galleryWraperClasses={'m3 pa-2 bt bb b--desert-300'}
+              targetCellHeight={180}
+              cellFormat={'square'}
+              galleryUlClasses={'pa-0 list flex flex-wrap gap-2 justify-center'}
+              cellLiClasses={'pa-0 ma-0 shadow-hover grow'}
+              cellClasses={'pa-0 ma-0 bg-brand-purple br1'}
+            />
             <p>
               <a href="https://www.treesurv.co.uk/">TreeSurv</a>, a D&G-based
               organisation specialising in planting native woodlands, were
@@ -81,21 +81,16 @@ const albumId = 'phase_2'
               consideration when deciding what species to plant on each site.
             </p>
             <p>
-              Tree Planting Events were hosted at each of the five locations
-              (learn more about <a href="../planting-the-forest"
-                >Planting the Forest</a
-              >). After the trees were planted, sculptural markers were
-              co-designed with local communities, and fabricated and installed.
+              Tree Planting Events were hosted at each of the five locations.
+              After the trees were planted, sculptural markers were co-designed
+              with local communities, and fabricated and installed.
             </p>
-            <!-- <Gallery
-              images={[img5, img6, img7, img8]}
-              galleryWraperClasses={'m3 pa-2 bt bb b--desert-300'}
-              targetCellHeight={180}
-              cellFormat={'square'}
-              galleryUlClasses={'pa-0 list flex flex-wrap gap-2 justify-center'}
-              cellLiClasses={'pa-0 ma-0 shadow-hover grow'}
-              cellClasses={'pa-0 ma-0 bg-brand-purple br1'}
-            /> -->
+
+            <p>
+              <b>Learn more about</b>
+              <a href="../about/planting-the-forest">Planting the Forest</a>.
+            </p>
+
             <h2>Community Gathering Events</h2>
             <p>
               To mark the opening for each of the sites, the project hosted a
@@ -106,7 +101,15 @@ const albumId = 'phase_2'
               inviting guest speakers, musicians, and local businesses to
               support activities.
             </p>
-
+            <Gallery
+              images={[img1, img2, img3, img4]}
+              galleryWraperClasses={'m3 pa-2 bt bb b--desert-300'}
+              targetCellHeight={180}
+              cellFormat={'square'}
+              galleryUlClasses={'pa-0 list flex flex-wrap gap-2 justify-center'}
+              cellLiClasses={'pa-0 ma-0 shadow-hover grow'}
+              cellClasses={'pa-0 ma-0 bg-brand-purple br1'}
+            />
             <p>
               The events allowed an opportunity for reflection, and for
               communities to come together – both key themes identified during
@@ -122,6 +125,15 @@ const albumId = 'phase_2'
               <b>Learn more about the project:</b>
               <a href="../../about/phase-1">Phase 1</a>.
             </p>
+            <div class="aspect-ratio--16x9 pt-2 pb-2">
+              <iframe
+                title="vimeo-player"
+                src="https://player.vimeo.com/video/1054191704?h=22d720a2bc"
+                width="100%"
+                height="360"
+                frameborder="0"
+                allowfullscreen></iframe>
+            </div>
             <hr />
           </Flourish>
           <div class="gallery__wrap">
